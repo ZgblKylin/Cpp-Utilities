@@ -4,15 +4,16 @@
 #include <tuple>
 #include <ratio>
 #include <chrono>
+#include <cmath>
 #include "../utilities_common.hpp"
 
 UTILITIES_NAMESPACE_BEGIN
 
 namespace dimensions {
 template<int length, int mass, int time, int current, int temperature, int amount_of_substance, int illuminace>
-struct dimension_t
+struct dimension
 {
-    using type = dimension_t<length, mass, time, current, temperature, amount_of_substance, illuminace>;
+    using type = dimension<length, mass, time, current, temperature, amount_of_substance, illuminace>;
     static constexpr std::tuple<int, int, int, int, int, int, int> factors{
         length, mass, time, current, temperature, amount_of_substance, illuminace
     };
@@ -24,47 +25,47 @@ struct dimension_t
     static constexpr int factor_amount_of_substance = std::get<5>(factors);
     static constexpr int factor_illuminace          = std::get<6>(factors);
 };
-using scala                 = dimension_t<0, 0, 0, 0, 0, 0, 0>;
-using length                = dimension_t<1, 0, 0, 0, 0, 0, 0>; // m
-using mass                  = dimension_t<0, 1, 0, 0, 0, 0, 0>; // kg
-using time                  = dimension_t<0, 0, 1, 0, 0, 0, 0>; // s
-using current               = dimension_t<0, 0, 0, 1, 0, 0, 0>; // A
-using temperature           = dimension_t<0, 0, 0, 0, 1, 0, 0>; // K
-using amount_of_substance   = dimension_t<0, 0, 0, 0, 0, 1, 0>; // mol
-using illuminace            = dimension_t<0, 0, 0, 0, 0, 0, 1>; // cd
+using scala                 = dimension<0, 0, 0, 0, 0, 0, 0>;
+using length                = dimension<1, 0, 0, 0, 0, 0, 0>; // m
+using mass                  = dimension<0, 1, 0, 0, 0, 0, 0>; // kg
+using time                  = dimension<0, 0, 1, 0, 0, 0, 0>; // s
+using current               = dimension<0, 0, 0, 1, 0, 0, 0>; // A
+using temperature           = dimension<0, 0, 0, 0, 1, 0, 0>; // K
+using amount_of_substance   = dimension<0, 0, 0, 0, 0, 1, 0>; // mol
+using illuminace            = dimension<0, 0, 0, 0, 0, 0, 1>; // cd
 
-template<typename dimension1,  typename dimension2>
-using dimension_multiply = dimension_t<
-    dimension1::factor_length               + dimension2::factor_length,
-    dimension1::factor_mass                 + dimension2::factor_mass,
-    dimension1::factor_time                 + dimension2::factor_time,
-    dimension1::factor_current              + dimension2::factor_current,
-    dimension1::factor_temperature          + dimension2::factor_temperature,
-    dimension1::factor_amount_of_substance  + dimension2::factor_amount_of_substance,
-    dimension1::factor_illuminace           + dimension2::factor_illuminace
+template<typename Dimension1,  typename Dimension2>
+using dimension_multiply = dimension<
+    Dimension1::factor_length               + Dimension2::factor_length,
+    Dimension1::factor_mass                 + Dimension2::factor_mass,
+    Dimension1::factor_time                 + Dimension2::factor_time,
+    Dimension1::factor_current              + Dimension2::factor_current,
+    Dimension1::factor_temperature          + Dimension2::factor_temperature,
+    Dimension1::factor_amount_of_substance  + Dimension2::factor_amount_of_substance,
+    Dimension1::factor_illuminace           + Dimension2::factor_illuminace
 >;
-template<typename dimension1,  typename dimension2>
-using dimension_divide = dimension_t<
-    dimension1::factor_length               - dimension2::factor_length,
-    dimension1::factor_mass                 - dimension2::factor_mass,
-    dimension1::factor_time                 - dimension2::factor_time,
-    dimension1::factor_current              - dimension2::factor_current,
-    dimension1::factor_temperature          - dimension2::factor_temperature,
-    dimension1::factor_amount_of_substance  - dimension2::factor_amount_of_substance,
-    dimension1::factor_illuminace           - dimension2::factor_illuminace
->;
-template<typename dimension, int n>
-using dimension_pow = dimension_t<
-    dimension::factor_length              * n,
-    dimension::factor_mass                * n,
-    dimension::factor_time                * n,
-    dimension::factor_current             * n,
-    dimension::factor_temperature         * n,
-    dimension::factor_amount_of_substance * n,
-    dimension::factor_illuminace          * n
+template<typename Dimension1,  typename Dimension2>
+using dimension_divide = dimension<
+    Dimension1::factor_length               - Dimension2::factor_length,
+    Dimension1::factor_mass                 - Dimension2::factor_mass,
+    Dimension1::factor_time                 - Dimension2::factor_time,
+    Dimension1::factor_current              - Dimension2::factor_current,
+    Dimension1::factor_temperature          - Dimension2::factor_temperature,
+    Dimension1::factor_amount_of_substance  - Dimension2::factor_amount_of_substance,
+    Dimension1::factor_illuminace           - Dimension2::factor_illuminace
 >;
 template<typename Dimension, int n>
-using dimension_root = dimension_t<
+using dimension_pow = dimension<
+    Dimension::factor_length              * n,
+    Dimension::factor_mass                * n,
+    Dimension::factor_time                * n,
+    Dimension::factor_current             * n,
+    Dimension::factor_temperature         * n,
+    Dimension::factor_amount_of_substance * n,
+    Dimension::factor_illuminace          * n
+>;
+template<typename Dimension, int n>
+using dimension_root = dimension<
     Dimension::factor_length              / n,
     Dimension::factor_mass                / n,
     Dimension::factor_time                / n,
@@ -83,72 +84,82 @@ using volume        = dimension_multiply<area, length>;         // Volume m^3
 using pressure      = dimension_divide<force, area>;            // Pascal N/m^2
 
 // forward declarations
-template<typename T, typename dimension, typename ratio>
+template<typename T, typename Dimension, typename Ratio>
 struct quantity;
-template<typename new_ratio, typename T, typename dimension, typename ratio>
-quantity<T, dimension, new_ratio> quantity_cast(quantity<T, dimension, ratio> x);
+template<typename NewRatio, typename T, typename Dimension, typename Ratio>
+quantity<T, Dimension, NewRatio> quantity_cast(quantity<T, Dimension, Ratio> x);
 
-template<typename T, typename dimension, typename ratio = std::ratio<1>>
+template<typename T, typename Dimension, typename Ratio = std::ratio<1>>
 struct quantity
 {
-    using type = quantity<T, dimension, ratio>;
+    using type = quantity<T, Dimension, Ratio>;
     using value_type = T;
-    using dimension_type = dimension;
-    using ratio_type = ratio;
+    using dimension_type = Dimension;
+    using ratio_type = Ratio;
 
     inline explicit quantity(T x = 0)
         : v(x)
     {}
 
-    template<typename ratio2>
-    inline quantity(const quantity<T, dimension, ratio2>& other)
-        : v(quantity_cast<ratio>(other).value())
+    inline quantity(const quantity<T, Dimension, Ratio>& other)
+        : v(other.v)
+    {}
+
+    template<typename OtherRatio>
+    inline explicit quantity(const quantity<T, Dimension, OtherRatio>& other)
+        : v(quantity_cast<Ratio>(other).value())
     {}
 
     inline T value() const
     { return v; }
 
-    template<typename ratio2>
-    inline type& operator=(const quantity<T, dimension, ratio2>& other)
+    inline quantity<T, Dimension, Ratio>& operator=(const quantity<T, Dimension, Ratio>& other)
     {
-        v = quantity_cast<ratio>(other).v;
+        if (this != &other) v = other.v;
         return *this;
     }
 
-    template<typename ratio2>
-    inline bool operator==(const quantity<T, dimension, ratio2>& other) const
-    { return v == quantity_cast<ratio>(other).v; }
+    template<typename OtherRatio>
+    inline quantity<T, Dimension, Ratio>& operator=(const quantity<T, Dimension, OtherRatio>& other)
+    {
+        v = quantity_cast<Ratio>(other).v;
+        return *this;
+    }
 
-    template<typename ratio2>
-    inline bool operator!=(const quantity<T, dimension, ratio2>& other) const
+    template<typename OtherRatio>
+    inline bool operator==(const quantity<T, Dimension, OtherRatio>& other) const
+    { return v == quantity_cast<Ratio>(other).v; }
+
+    template<typename OtherRatio>
+    inline bool operator!=(const quantity<T, Dimension, OtherRatio>& other) const
     { return !(*this == other); }
 
-    template<typename ratio2>
-    inline bool operator<(const quantity<T, dimension, ratio2>& other) const
-    { return v < quantity_cast<ratio>(other).v; }
+    template<typename OtherRatio>
+    inline bool operator<(const quantity<T, Dimension, OtherRatio>& other) const
+    { return v < quantity_cast<Ratio>(other).v; }
 
-    template<typename ratio2>
-    inline bool operator<=(const quantity<T, dimension, ratio2>& other) const
+    template<typename OtherRatio>
+    inline bool operator<=(const quantity<T, Dimension, OtherRatio>& other) const
     { return (*this < other) || (*this == other); }
 
-    template<typename ratio2>
-    inline bool operator>(const quantity<T, dimension, ratio2>& other) const
+    template<typename OtherRatio>
+    inline bool operator>(const quantity<T, Dimension, OtherRatio>& other) const
     { return !(*this <= other); }
 
-    template<typename ratio2>
-    inline bool operator>=(const quantity<T, dimension, ratio2>& other) const
+    template<typename OtherRatio>
+    inline bool operator>=(const quantity<T, Dimension, OtherRatio>& other) const
     { return !(*this < other); }
 
 private:
     T v;
 };
 
-template<typename new_ratio, typename T, typename dimension, typename ratio>
-inline quantity<T, dimension, new_ratio> quantity_cast(quantity<T, dimension, ratio> x)
+template<typename NewRatio, typename T, typename Dimension, typename Ratio>
+inline quantity<T, Dimension, NewRatio> quantity_cast(quantity<T, Dimension, Ratio> x)
 {
-    using ratio_div = std::ratio_divide<ratio, new_ratio>;
+    using ratio_div = std::ratio_divide<Ratio, NewRatio>;
     T val = x.value() * ratio_div::num / ratio_div::den;
-    return quantity<T, dimension, new_ratio>(val);
+    return quantity<T, Dimension, NewRatio>(val);
 }
 
 using ratio_PI = std::ratio<80813362, 25723692>; // 3.14159266096017653069
@@ -191,62 +202,62 @@ using ratio_us_dry_peck = std::ratio_multiply<ratio_us_dry_gallon, std::ratio<2>
 using ratio_us_bushel = std::ratio_multiply<ratio_us_dry_peck, std::ratio<4>>; // bushel = 4 dry peck
 } // namespace dimensions
 
-template<typename T, typename Dimension, typename ratio1, typename ratio2>
-inline dimensions::quantity<T, Dimension, ratio1>
-operator+(dimensions::quantity<T, Dimension, ratio1> x, dimensions::quantity<T, Dimension, ratio2> y)
+template<typename T, typename Dimension, typename Ratio1, typename Ratio2>
+inline dimensions::quantity<T, Dimension, Ratio1>
+operator+(dimensions::quantity<T, Dimension, Ratio1> x, dimensions::quantity<T, Dimension, Ratio2> y)
 {
-    return dimensions::quantity<T, Dimension, ratio1>(x.value()
-                                                      + dimensions::quantity_cast<ratio1>(y).value());
+    return dimensions::quantity<T, Dimension, Ratio1>(x.value()
+                                                      + dimensions::quantity_cast<Ratio1>(y).value());
 }
 
-template<typename T, typename Dimension, typename ratio1, typename ratio2>
-inline dimensions::quantity<T, Dimension, ratio1>
-operator-(dimensions::quantity<T, Dimension, ratio1>& x, dimensions::quantity<T, Dimension, ratio2> y)
+template<typename T, typename Dimension, typename Ratio1, typename Ratio2>
+inline dimensions::quantity<T, Dimension, Ratio1>
+operator-(dimensions::quantity<T, Dimension, Ratio1>& x, dimensions::quantity<T, Dimension, Ratio2> y)
 {
-    return dimensions::quantity<T, Dimension, ratio1>(x.value()
-                                                      - dimensions::quantity_cast<ratio1>(y).value());
+    return dimensions::quantity<T, Dimension, Ratio1>(x.value()
+                                                      - dimensions::quantity_cast<Ratio1>(y).value());
 }
 
-template<typename T, typename dimension1, typename ratio1, typename dimension2, typename ratio2>
-inline dimensions::quantity<T, dimensions::dimension_multiply<dimension1, dimension2>, ratio1>
-operator*(dimensions::quantity<T, dimension1, ratio1> x, dimensions::quantity<T, dimension2, ratio2> y)
+template<typename T, typename Dimension1, typename Ratio1, typename Dimension2, typename Ratio2>
+inline dimensions::quantity<T, dimensions::dimension_multiply<Dimension1, Dimension2>, Ratio1>
+operator*(dimensions::quantity<T, Dimension1, Ratio1> x, dimensions::quantity<T, Dimension2, Ratio2> y)
 {
-    using dim = dimensions::dimension_multiply<dimension1, dimension2>;
-    return dimensions::quantity<T, dim, ratio1>(x.value()
-                                                * dimensions::quantity_cast<ratio1>(y).value());
+    using dim = dimensions::dimension_multiply<Dimension1, Dimension2>;
+    return dimensions::quantity<T, dim, Ratio1>(x.value()
+                                                * dimensions::quantity_cast<Ratio1>(y).value());
 }
 
-template<typename T, typename dimension1, typename ratio1, typename dimension2, typename ratio2>
-inline dimensions::quantity<T, dimensions::dimension_divide<dimension1, dimension2>, ratio1>
-operator/(dimensions::quantity<T, dimension1, ratio1> x, dimensions::quantity<T, dimension2, ratio2> y)
+template<typename T, typename Dimension1, typename Ratio1, typename Dimension2, typename Ratio2>
+inline dimensions::quantity<T, dimensions::dimension_divide<Dimension1, Dimension2>, Ratio1>
+operator/(dimensions::quantity<T, Dimension1, Ratio1> x, dimensions::quantity<T, Dimension2, Ratio2> y)
 {
-    using dim = dimensions::dimension_divide<dimension1, dimension2>;
-    return dimensions::quantity<T, dim, ratio1>(x.value()
-                                                / dimensions::quantity_cast<ratio1>(y).value());
+    using dim = dimensions::dimension_divide<Dimension1, Dimension2>;
+    return dimensions::quantity<T, dim, Ratio1>(x.value()
+                                                / dimensions::quantity_cast<Ratio1>(y).value());
 }
 
-template<int factor, typename T, typename Dimension, typename ratio>
-inline dimensions::quantity<T, dimensions::dimension_pow<Dimension, factor>, std::ratio<1>>
-pow(const dimensions::quantity<T, Dimension, ratio>& x)
+template<int Factor, typename T, typename Dimension, typename Ratio>
+inline dimensions::quantity<T, dimensions::dimension_pow<Dimension, Factor>, std::ratio<1>>
+pow(const dimensions::quantity<T, Dimension, Ratio>& x)
 {
     return dimensions::quantity<
                T,
-               dimensions::dimension_pow<Dimension, factor>,
+               dimensions::dimension_pow<Dimension, Factor>,
                std::ratio<1>
            >(std::pow(dimensions::quantity_cast<std::ratio<1>>(x).value(),
-                      factor));
+                      Factor));
 }
 
-template<int factor, typename T, typename Dimension, typename ratio>
-inline dimensions::quantity<T, dimensions::dimension_root<Dimension, factor>, std::ratio<1>>
-root(const dimensions::quantity<T, Dimension, ratio>& x)
+template<int Factor, typename T, typename Dimension, typename Ratio>
+inline dimensions::quantity<T, dimensions::dimension_root<Dimension, Factor>, std::ratio<1>>
+root(const dimensions::quantity<T, Dimension, Ratio>& x)
 {
     return dimensions::quantity<
                T,
-               dimensions::dimension_root<Dimension, factor>,
+               dimensions::dimension_root<Dimension, Factor>,
                std::ratio<1>
            >(std::pow(dimensions::quantity_cast<std::ratio<1>>(x).value(),
-                      1.0 / factor));
+                      1.0 / Factor));
 }
 
 UTILITIES_NAMESPACE_END
