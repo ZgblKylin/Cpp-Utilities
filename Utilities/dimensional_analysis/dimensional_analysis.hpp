@@ -11,7 +11,7 @@
  * \brief Helper classes, typedefs and functions for dimensional analyse.
  * \details Provide helperful functionalities for dimensional analysis with
  *          pros:\n
- *          **Zero-cost abstract** Using template to encapsulate
+ *          **Zero-cost abstraction** Using template to encapsulate
  *          functionalities, grants same memory-layout and runtime performance
  *          as primitive types.\n
  *          **Strong typed** All values in dimensional objects has its unique
