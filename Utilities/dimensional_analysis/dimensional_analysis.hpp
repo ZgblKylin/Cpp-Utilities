@@ -9,12 +9,13 @@
 /**
  * \defgroup DimensionalAnalysis Dimensional Analysis
  * \brief Helper classes, typedefs and functions for dimensional analyse.
- * \details Provide helperful functionalities for dimensional analysis.\n
- *          All classes are written with **zero-cost abstraction**, all usual
- *          operators are overloaded, you could use them simply like
- *          tradition numeric types.\n
- *          All values in dimensional objects has its unique **unit**,
- *          calculation between them is **strong typed**, guaranteed by compiler
+ * \details Provide helperful functionalities for dimensional analysis with
+ *          pros:\n
+ *          **Zero-cost abstract** Using template to encapsulate
+ *          functionalities, grants same memory-layout and runtime performance
+ *          as primitive types.\n
+ *          **Strong typed** All values in dimensional objects has its unique
+            **unit**, calculation between them is guaranteed by compiler
  *          warning and **error**.\n
  *          **Non-standard unit** of same "type", like `yard` vs `meter`, is
  *          supported, and will be regarded like **same** unit, `std::ratio` is
