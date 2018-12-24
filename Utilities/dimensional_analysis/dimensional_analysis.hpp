@@ -26,7 +26,29 @@
  *          **Multiply/divide** values with **any** units is safe, a new value
  *          with **new unit** will be generated.\n
  *          **User defined unit** is supported. Helper types is provided to deliver
- *          new unit from existsing units.
+ *          new unit from existsing units.\n
+ * \n
+ * **Sample Code**\n
+ * ```cpp
+ * using dimensional::quantity;
+ * using dimensional::quantity_cast;
+ * quantity<double, dimensional::length> meters(1);
+ * quantity<double, dimensional::length, dimensional::ratio_yard> yards(1.0);
+ * meters += yards;
+ * yards = meters;
+ * // 2.09361mile 1.9144meter 1.9144meter
+ * std::cout << yards.value() << "mile "
+ *           << yards.standard_value() << "meter "
+ *           << meters.value() << "meter" << std::endl;
+ * auto speed = yards / quantity<double, dimensional::time>(1);
+ * using ratio_km_per_h = std::ratio_divide<std::ratio<1000>, std::ratio<3600>>;
+ * using ratio_mile_per_h = std::ratio_divide<dimensional::ratio_mile, std::ratio<3600>>;
+ * // 0.836127m/s 3.01006km/h 1.87036mile/h
+ * std::cout << speed.value() << "m/s "
+ *           << quantity_cast<ratio_km_per_h>(speed).value() << "km/h "
+ *           << quantity_cast<ratio_mile_per_h>(speed).value() << "mile/h"
+ *           << std::endl;
+ * ```
  * @{
  */
 
@@ -36,7 +58,8 @@ UTILITIES_NAMESPACE_BEGIN
  * \brief Namespace for all classes, typedefs and functions of dimensional
  *        analyse. See \ref DimensionalAnalysis for more instrucion.
  * \warning `using namespace` is forbidden, because some classes and typedefs
- *          will duplicate existing symbols.
+ *          will duplicate with existing symbols. Consider `using` keyword with
+ *          specific symbol like `using dimensional::quantity` instead.
  * @{
  */
 namespace dimensional {
@@ -47,7 +70,8 @@ namespace dimensional {
  * to guarantee strong-typed unit analysis.\n
  * Directly use this struct is not suggested, use `unit_multiply`,
  * `unit_divide`, `unit_power` and `unit_root` with `typedef/using` to
- * generate derived unit with exisiting units.
+ * generate derived unit with exisiting units.\n
+ * See \ref DimensionalAnalysis for samples.
  * \tparam length               Power factor of length unit.
  * \tparam mass                 Power factor of length mass unit.
  * \tparam time                 Power factor of length time unit.
@@ -293,7 +317,7 @@ typedef unit_divide<amount_of_substance, time> catalytic;
 
 // Forward declarations
 template<typename T, typename Unit, typename Ratio>
-struct quantity;
+class quantity;
 template<typename NewRatio, typename T, typename Unit, typename Ratio>
 quantity<T, Unit, NewRatio> quantity_cast(quantity<T, Unit, Ratio> x);
 
@@ -305,14 +329,16 @@ quantity<T, Unit, NewRatio> quantity_cast(quantity<T, Unit, Ratio> x);
  * other. Multiply, divide, power, root calculation will generate value with
  * unit.\n
  * Value is allowd to be described with different Ratio. Calculation with
- * different ratios is safe, and result has same Ratio of first operand.
+ * different ratios is safe, and result has same Ratio of first operand.\n
+ * See \ref DimensionalAnalysis for samples.
  * \tparam T        Arithmetic type for value.
  * \tparam Unit     Unit type for this physical quantity.
  * \tparam Ratio    Conversion ratio for nonstandard units such as feet or yard.
  */
 template<typename T, typename Unit, typename Ratio = std::ratio<1>>
-struct quantity
+class quantity
 {
+public:
     /** \brief Self type for this quantity struct. */
     using type = quantity<T, Unit, Ratio>;
     /** \brief Value type for this quantity struct. */
@@ -358,24 +384,38 @@ struct quantity
     { return v; }
 
     /**
-     * \brief Get standard value of the quantity, `Ratio` is reverted.
+     * \brief Get standard value of the quantity, `Ratio` is reverted to
+     *        `std::ratio<1>`.
      * \return Standard value with `Ratio` reverted.
      */
     inline T standard_value() const
     { return quantity_cast<std::ratio<1>>(*this).value(); }
 
     /**
+     * \brief Add & assignment operator overload, add value from same type with
+     *        **maybe** different ratio, operand value will be converted by
+     *        `ratio_type` before performing add.
+     * \tparam  OtherRatio  Ratio of input operand.
+     * \param   other       Operand to assign from.
+     * \return Reference to self with value added.
+     */
+    template<typename OtherRatio>
+    inline quantity<T, Unit, Ratio>&
+    operator+=(const quantity<T, Unit, OtherRatio>& other)
+    { v += quantity_cast<Ratio>(other).v; return *this; }
+
+    /**
      * \brief Assisgnment operator overload.
      * \param other Operand to assign from.
      * \return Reference to self with value assigned.
      */
-    inline quantity<T, Unit, Ratio>
+    inline quantity<T, Unit, Ratio>&
     operator=(const quantity<T, Unit, Ratio>& other)
     { v = other.v; return *this; }
 
     /**
      * \brief Assisgnment operator overload, assign value from same type but
-     *        different ratio, value of operand will be converted by
+     *        different ratio, operand value will be converted by
      *        `ratio_type` before performing assignment.
      * \tparam  OtherRatio  Ratio of input operand.
      * \param   other       Operand to assign from.
@@ -585,7 +625,8 @@ root(const quantity<T, Unit, Ratio>& x)
 /**
  * \relates quantity
  * \brief Cast a quantity to another ratio, value will be converted too.
- *        Sample: `b = quantity_cast<std::ratio<1>>(a);`
+ *        Sample code for convert to standard value:
+ *        `b = quantity_cast<std::ratio<1>>(a);`
  * \tparam  NewRatio    Ratio to be cast to.
  * \param   x           Operand to be cast.
  * \return New quantity cast to `NewRatio`.
@@ -854,7 +895,6 @@ typedef std::ratio_multiply<ratio_pound, std::ratio<28>> ratio_en_quarter;
  * \f$1 stone = 14 pound = 6.35029318 kg\f$.
  */
 typedef std::ratio_multiply<ratio_pound, std::ratio<14>> ratio_en_stone;
-
 /**
  * \brief Ratio to convert to cubicmeter.
  * \f$1 fluid\ dram = 3.5516328125 ml\f$.
