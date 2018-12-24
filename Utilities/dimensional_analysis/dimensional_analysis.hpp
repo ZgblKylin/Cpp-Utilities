@@ -8,8 +8,7 @@
 
 /**
  * \defgroup DimensionalAnalysis Dimensional Analysis
- * \brief Help classes, typedefs and functions for
- *                               dimensional analyse.
+ * \brief Helper classes, typedefs and functions for dimensional analyse.
  * \details Provide helperful functionalities for dimensional analysis.\n
  *          All classes are written with **zero-cost abstraction**, all usual
  *          operators are overloaded, you could use them simply like

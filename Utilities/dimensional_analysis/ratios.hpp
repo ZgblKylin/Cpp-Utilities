@@ -8,6 +8,10 @@
 
 UTILITIES_NAMESPACE_BEGIN
 
+/**
+ * \addtogroup DimensionalAnalysis
+ * @{
+ */
 namespace dimensional {
 /**
  * \brief Calculate approximate fraction from input decimal.
@@ -16,7 +20,7 @@ namespace dimensional {
  * \param n     Max calculate precision. Not the bigger the better, too big
  *              value wiil caouse integer overflow, and some small value may
  *              product fraction with higher precision.
- * \return pair of numerator and denominator of fraction with type `intmax_t`.
+ * \return Numerator and denominator of the fraction with type `intmax_t`.
  */
 std::pair<intmax_t, intmax_t> approximateRatio(long double value, int n)
 {
@@ -47,6 +51,7 @@ std::pair<intmax_t, intmax_t> approximateRatio(long double value, int n)
 }
 
 } // namespace dimensional
+/** @} */
 
 UTILITIES_NAMESPACE_END
 
