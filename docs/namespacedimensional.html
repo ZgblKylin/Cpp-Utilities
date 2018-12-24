@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.0.0</span>
+   &#160;<span id="projectnumber">1.0.1</span>
    </div>
   </td>
  </tr>
@@ -75,8 +75,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdimensional_1_1quantity.html">quantity</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The quantity struct is used to describe arithmetic values with units.  <a href="structdimensional_1_1quantity.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdimensional_1_1quantity.html">quantity</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The quantity struct is used to describe arithmetic values with units.  <a href="classdimensional_1_1quantity.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdimensional_1_1unit.html">unit</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The unit struct is used to describe physical units.  <a href="structdimensional_1_1unit.html#details">More...</a><br /></td></tr>
@@ -85,7 +85,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad6c46d70a4d0ab572c309757bfe53b59"><td class="memTemplParams" colspan="2">template&lt;typename NewRatio , typename T , typename Unit , typename Ratio &gt; </td></tr>
-<tr class="memitem:ad6c46d70a4d0ab572c309757bfe53b59"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structdimensional_1_1quantity.html">quantity</a>&lt; T, Unit, NewRatio &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedimensional.html#ad6c46d70a4d0ab572c309757bfe53b59">quantity_cast</a> (<a class="el" href="structdimensional_1_1quantity.html">quantity</a>&lt; T, Unit, Ratio &gt; x)</td></tr>
+<tr class="memitem:ad6c46d70a4d0ab572c309757bfe53b59"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdimensional_1_1quantity.html">quantity</a>&lt; T, Unit, NewRatio &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedimensional.html#ad6c46d70a4d0ab572c309757bfe53b59">quantity_cast</a> (<a class="el" href="classdimensional_1_1quantity.html">quantity</a>&lt; T, Unit, Ratio &gt; x)</td></tr>
 <tr class="separator:ad6c46d70a4d0ab572c309757bfe53b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a049d9b403b27489ff9a03ef94ec6fb5d"><td class="memItemLeft" align="right" valign="top">std::pair&lt; intmax_t, intmax_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedimensional.html#a049d9b403b27489ff9a03ef94ec6fb5d">approximateRatio</a> (long double value, int n)</td></tr>
 <tr class="memdesc:a049d9b403b27489ff9a03ef94ec6fb5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate approximate fraction from input decimal.  <a href="#a049d9b403b27489ff9a03ef94ec6fb5d">More...</a><br /></td></tr>
@@ -93,7 +93,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Namespace for all classes, typedefs and functions of dimensional analyse. See <a class="el" href="group___dimensional_analysis.html">Dimensional Analysis</a> for more instrucion. </p>
-<dl class="section warning"><dt>Warning</dt><dd><code>using namespace</code> is forbidden, because some classes and typedefs will duplicate existing symbols. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><code>using namespace</code> is forbidden, because some classes and typedefs will duplicate with existing symbols. Consider <code>using</code> keyword with specific symbol like <code>using <a class="el" href="classdimensional_1_1quantity.html" title="The quantity struct is used to describe arithmetic values with units. ">dimensional::quantity</a></code> instead. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="ad6c46d70a4d0ab572c309757bfe53b59"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6c46d70a4d0ab572c309757bfe53b59">&#9670;&nbsp;</a></span>quantity_cast()</h2>
@@ -107,9 +107,9 @@ template&lt;typename NewRatio , typename T , typename Unit , typename Ratio &gt;
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structdimensional_1_1quantity.html">quantity</a>&lt;T, Unit, NewRatio&gt; dimensional::quantity_cast </td>
+          <td class="memname"><a class="el" href="classdimensional_1_1quantity.html">quantity</a>&lt;T, Unit, NewRatio&gt; dimensional::quantity_cast </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structdimensional_1_1quantity.html">quantity</a>&lt; T, Unit, Ratio &gt;&#160;</td>
+          <td class="paramtype"><a class="el" href="classdimensional_1_1quantity.html">quantity</a>&lt; T, Unit, Ratio &gt;&#160;</td>
           <td class="paramname"><em>x</em></td><td>)</td>
           <td></td>
         </tr>
@@ -157,7 +157,7 @@ template&lt;typename NewRatio , typename T , typename Unit , typename Ratio &gt;
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>pair of numerator and denominator of fraction with type <code>intmax_t</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Numerator and denominator of the fraction with type <code>intmax_t</code>. </dd></dl>
 
 </div>
 </div>
