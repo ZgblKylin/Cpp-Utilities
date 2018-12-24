@@ -1,0 +1,99 @@
+\form#0:$m/s$
+\form#1:$m/s^{2}$
+\form#2:$s^{-1}$
+\form#3:$kg \cdot m \cdot s^{-2}$
+\form#4:$m^{2}$
+\form#5:$m^{3}$
+\form#6:$N/m^{2}$
+\form#7:$kg \cdot m^{-1} \cdot s^{-2}$
+\form#8:$N \cdot m$
+\form#9:$kg \cdot m^{2} \cdot s^{-2}$
+\form#10:$J/s$
+\form#11:$kg \cdot m^{-2} \cdot s^{-3}$
+\form#12:$s \cdot A$
+\form#13:$W/A$
+\form#14:$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-1}$
+\form#15:$C/V$
+\form#16:$kg^{-1} \cdot m^{-2} \cdot s^{4} \cdot A^{2}$
+\form#17:$V/A$
+\form#18:$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-2}$
+\form#19:$1/\Omega$
+\form#20:$kg^{-1} \cdot m^{-2} \cdot s^{3} \cdot A^{2}$
+\form#21:$V \cdot s$
+\form#22:$kg \cdot m^{2} \cdot s^{-2} \cdot A^{-1}$
+\form#23:$Wb/m^{2}$
+\form#24:$kg \cdot s^{-2} \cdot A^{-1}$
+\form#25:$Wb/A$
+\form#26:$kg \cdot m^{2} \cdot s^{-2} \cdot A^{-2}$
+\form#27:$cd \cdot sr$
+\form#28:$lm/m^{2}$
+\form#29:$m^{-2} \cdot cd$
+\form#30:$J/kg$
+\form#31:$m^{2} \cdot s^{-2}$
+\form#32:$mol \cdot s^{-1}$
+\form#33:$3.14159266096017653069$
+\form#34:$degree = rad * \frac{pi}{180}$
+\form#35:$1 li = 10 yin = \frac{1}{3} km$
+\form#36:$1 yin = \frac{1}{10} li = 10 zhang = 333.\overline{3} m$
+\form#37:$1 zhang = \frac{1}{10} yin = 10 chi = 3.\overline{3} m$
+\form#38:$1 xun = 1/2 zhang = 5 chi = 1.\overline{6} m$
+\form#39:$1 chi = 33.\overline{3} cm$
+\form#40:$1 cun = \frac{1}{10} chi = 3.\overline{3} cm$
+\form#41:$1 fen = \frac{1}{10} cun = 3.\overline{3} mm$
+\form#42:$1 li = \frac{1}{10} fen = 333.\overline{3} um$
+\form#43:$1 hao = \frac{1}{10} li = 33.\overline{3} um$
+\form#44:$1 si = \frac{1}{10} hao = 3.\overline{3} um$
+\form#45:$1 hu = \frac{1}{10} si = 333.\overline{3} nm$
+\form#46:$1 qing = 100 mu = 66666.\overline{6} m^{2}$
+\form#47:$1 mu = 60 zhang^{2} = 666.\overline{6} m^{2}$
+\form#48:$1 gong = \frac{1}{240} mu = 277.\overline{7} m^{2}$
+\form#49:$1 dan = 50 kg$
+\form#50:$1 jin = 500 g catty$
+\form#51:$1 liang = \frac{1}{10} jin = 50 g$
+\form#52:$1 qian = \frac{1}{10} liang = 5 g$
+\form#53:$1 fen = \frac{1}{10} qian = 500 mg$
+\form#54:$1 li = \frac{1}{10} fen = 50 mg$
+\form#55:$1 hao = \frac{1}{10} li = 5 mg$
+\form#56:$1 si = \frac{1}{10} hao = 500 ug$
+\form#57:$1 hu = \frac{1}{10} si = 50 ug$
+\form#58:$1 mile = 1.609344 km$
+\form#59:$1 furlong = 201.168 m$
+\form#60:$1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 18.0825168539326 m$
+\form#61:$1 yard = \frac{1}{22} chain = \frac{1}{1760} mile = 0.9144 m$
+\form#62:$1 nail = \frac{1}{16} yard = \frac{9}{4} inch = 5.715 cm$
+\form#63:$1 feet = \frac{1}{3} yard = 30.48 cm$
+\form#64:$1 inch = \frac{1}{12} feet = 2.54 cm$
+\form#65:$1 pica = \frac{1}{6} inch = 4.2\overline{3} mm$
+\form#66:$1 point = \frac{1}{12} pica = 0.352\overline{7} mm$
+\form#67:$1 longton = 2240 pound = 1016.0469088kg$
+\form#68:$1 shortton = 2000 pound = 907.18474 kg$
+\form#69:$1 long\ hundredweight = 112 pound = 50.80234544 kg$
+\form#70:$1 short\ hundredweight = 100 pound = 45.359237 kg$
+\form#71:$1 pound = 0.45359237 kg$
+\form#72:$1 ounce = \frac{1}{16} pound = 28.349523125 g$
+\form#73:$1 drachm = \frac{1}{16} ounce = 1.7718451953125 g$
+\form#74:$1 grain = 64.79891 mg$
+\form#75:$1 Imperial\ hundredweight = 8 stone = 112 pound = 50.80234544 kg$
+\form#76:$1 quarter = 2 stone = 28 pound = 12.70058636 kg$
+\form#77:$1 stone = 14 pound = 6.35029318 kg$
+\form#78:$1 fluid\ dram = 3.5516328125 ml$
+\form#79:$1 fluid\ ounce = 8 fluind\ dram$
+\form#80:$1 gill = 5 fluid\ ounce$
+\form#81:$1 cup = 2 gill$
+\form#82:$1 pint = cup$
+\form#83:$1 quart = 2 pint$
+\form#84:$1 gallon = 4 quart$
+\form#85:$1 peck = 2 gallon$
+\form#86:$1 bushel = 4 peck$
+\form#87:$1 US hundredweight = 100 pound = 45.359237 kg$
+\form#88:$1 fluid\ dram = 3.6966911953125 ml$
+\form#89:$1 fluid\ ounce = 8 fluid\ dram$
+\form#90:$1 teaspoons = \frac{1}{6} fluid\ ounce$
+\form#91:$1 tablespoons = \frac{1}{2} fluid\ ounce$
+\form#92:$1 gill = 4 fluid\ ounce$
+\form#93:$1 pint = 2 cup$
+\form#94:$1 dry\ pint = 0.5506104713575 l$
+\form#95:$1 dry\ quart = 2 dry\ pint$
+\form#96:$1 dry\ gallon = 4 dry\ quart$
+\form#97:$1 dry\ peck = 2 dry\ gallon$
+\form#98:$1 bushel = 4 dry\ peck$
