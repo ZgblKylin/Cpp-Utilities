@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
   </td>
  </tr>
@@ -81,8 +81,8 @@ Namespaces</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Helper classes, typedefs and functions for dimensional analyse. </p>
 <p>Provide helperful functionalities for dimensional analysis.<br />
- All classes are written with <b>zero-cost abstraction</b>, all usual operators are overloaded, you could use them simply like tradition numeric types.<br />
- All values in dimensional objects has its unique <b>unit</b>, calculation between them is <b>strong typed</b>, guaranteed by compiler warning and <b>error</b>.<br />
+ <b>Zero-cost abstract</b> Using template to encapsulate functionalities, grants same memory-layout and runtime performance as primitive types.<br />
+ <b>Strong typed</b> All values in dimensional objects has its unique unit**, calculation between them is guaranteed by compiler warning and <b>error</b>.<br />
  <b>Non-standard unit</b> of same "type", like <code>yard</code> vs <code>meter</code>, is supported, and will be regarded like <b>same</b> unit, <code>std::ratio</code> is used for modifier of the unit. Calculations between same unit with different ratio is safe, ratios of each operand will be performed into the calculation.<br />
  <b>Add/subtract</b> with <b>same</b> unit is allowed, whereas with different units will cause compile error.<br />
  <b>Multiply/divide</b> values with <b>any</b> units is safe, a new value with <b>new unit</b> will be generated.<br />
