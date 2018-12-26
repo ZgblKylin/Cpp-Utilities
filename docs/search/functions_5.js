@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['standard_5fvalue',['standard_value',['../classdimensional_1_1quantity.html#a8462e55d56232e9c48abcd1bb2325af2',1,'dimensional::quantity']]]
+  ['standard_5fvalue',['standard_value',['../class_dimensional_1_1_quantity.html#abb794e63000de5ff8e4a1e3958e64fc1',1,'Dimensional::Quantity']]]
 ];

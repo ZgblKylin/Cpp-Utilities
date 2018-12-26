@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['force',['force',['../structdimensional_1_1unit.html#a7de4a2befab8e297ebc4e55f8edc0a30',1,'dimensional::unit']]],
-  ['frenquency',['frenquency',['../structdimensional_1_1unit.html#a2e6fc59c1911a852080d3063150de3c1',1,'dimensional::unit']]]
+  ['force',['Force',['../struct_dimensional_1_1_unit.html#a7ea5d902cfd0a1d1dc63eaf77e2800ce',1,'Dimensional::Unit']]],
+  ['frenquency',['Frenquency',['../struct_dimensional_1_1_unit.html#a82bf54bd48d0aac2ccc92ca604af24f7',1,'Dimensional::Unit']]]
 ];

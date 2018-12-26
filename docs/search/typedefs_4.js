@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['illuminance',['illuminance',['../structdimensional_1_1unit.html#a612d29054bed087b1b0f07f0394a1dc0',1,'dimensional::unit']]],
-  ['inductance',['inductance',['../structdimensional_1_1unit.html#adb72fb55fa9a5981982a410ad5800e6a',1,'dimensional::unit']]]
+  ['illuminance',['Illuminance',['../struct_dimensional_1_1_unit.html#a8071b6ff261a06e90062c333559f9cf6',1,'Dimensional::Unit']]],
+  ['inductance',['Inductance',['../struct_dimensional_1_1_unit.html#a51214909e540b8a4a0aa775d9acddbff',1,'Dimensional::Unit']]]
 ];

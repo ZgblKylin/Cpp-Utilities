@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pow',['pow',['../classdimensional_1_1quantity.html#aa1f1884be3f6a85fb72b7cd21d8da9d5',1,'dimensional::quantity']]],
-  ['power',['power',['../structdimensional_1_1unit.html#a60d0f5b89b16038b9aa95e049534c593',1,'dimensional::unit']]],
-  ['pressure',['pressure',['../structdimensional_1_1unit.html#ac16058cb0ad002ad8dd7adefd039bd2a',1,'dimensional::unit']]]
+  ['pow',['pow',['../class_dimensional_1_1_quantity.html#a4d6941bd4f7a697e730b0e2fb2355096',1,'Dimensional::Quantity']]],
+  ['power',['Power',['../struct_dimensional_1_1_unit.html#a62bb3aa7042c094c841c9f2c1702b43e',1,'Dimensional::Unit']]],
+  ['pressure',['Pressure',['../struct_dimensional_1_1_unit.html#a811a9c6202076db547347f54c364ca01',1,'Dimensional::Unit']]]
 ];

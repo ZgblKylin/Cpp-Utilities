@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unit',['unit',['../structdimensional_1_1unit.html',1,'dimensional']]]
+  ['unit',['Unit',['../struct_dimensional_1_1_unit.html',1,'Dimensional']]]
 ];

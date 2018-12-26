@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value',['value',['../classdimensional_1_1quantity.html#a89bab77ddf2e41207639a76a2f68b06f',1,'dimensional::quantity']]]
+  ['value',['value',['../class_dimensional_1_1_quantity.html#aa9dbd91147f54862f9d9fc5249ab9590',1,'Dimensional::Quantity']]]
 ];

@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['absorbed',['absorbed',['../structdimensional_1_1unit.html#a04175a4f756c76c63b782ac795da2d4a',1,'dimensional::unit']]],
-  ['acceleration',['acceleration',['../structdimensional_1_1unit.html#a17feea4114d6b07470c72890a0dc781b',1,'dimensional::unit']]],
-  ['amount_5fof_5fsubstance',['amount_of_substance',['../structdimensional_1_1unit.html#a843fe0d10b6c4ad524211c79609416eb',1,'dimensional::unit']]],
-  ['approximateratio',['approximateRatio',['../namespacedimensional.html#a049d9b403b27489ff9a03ef94ec6fb5d',1,'dimensional']]],
-  ['area',['area',['../structdimensional_1_1unit.html#afce21a3ffc9334c0bbf6392bc5d7a58d',1,'dimensional::unit']]]
+  ['absorbeddose',['AbsorbedDose',['../struct_dimensional_1_1_unit.html#a4ea995aeb49c9a3361c4d50cba384967',1,'Dimensional::Unit']]],
+  ['acceleration',['Acceleration',['../struct_dimensional_1_1_unit.html#a13945f34cda20835710037b27adee9f8',1,'Dimensional::Unit']]],
+  ['amountofsubstance',['AmountOfSubstance',['../struct_dimensional_1_1_unit.html#af2d5c04939f2dcbd1886cc4d20bedb3c',1,'Dimensional::Unit']]],
+  ['approximateratio',['approximateRatio',['../namespace_dimensional.html#abc3f74fae5951c010177c5d245690be9',1,'Dimensional']]],
+  ['area',['Area',['../struct_dimensional_1_1_unit.html#aefc42563e06eeab0226eaeca6f930095',1,'Dimensional::Unit']]]
 ];

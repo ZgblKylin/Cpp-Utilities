@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['magnet_5fflux_5fdensity',['magnet_flux_density',['../structdimensional_1_1unit.html#ad1e70cae37bca0132e52ed3761ee2ec7',1,'dimensional::unit']]],
-  ['magnetic_5fflux',['magnetic_flux',['../structdimensional_1_1unit.html#a31c08e51902f2e8943bac2ac6c298acf',1,'dimensional::unit']]],
-  ['mass',['mass',['../structdimensional_1_1unit.html#a626a7b3aba282c463cc3076448cf21fe',1,'dimensional::unit']]]
+  ['magnetfluxdensity',['MagnetFluxDensity',['../struct_dimensional_1_1_unit.html#a2be6e8299922aea6ae1dcc72066b9a41',1,'Dimensional::Unit']]],
+  ['magneticflux',['MagneticFlux',['../struct_dimensional_1_1_unit.html#abaacd8f91bb57a4b7e23e5978d01851b',1,'Dimensional::Unit']]],
+  ['mass',['Mass',['../struct_dimensional_1_1_unit.html#a11021c171307ec0682b50efb8744db04',1,'Dimensional::Unit']]]
 ];

@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['operator_21_3d',['operator!=',['../classdimensional_1_1quantity.html#a4dff74a58ed1a35c2961c3fd2759694f',1,'dimensional::quantity']]],
-  ['operator_2a',['operator*',['../classdimensional_1_1quantity.html#ae2a2b449c1a7329045e4b6f3d1cb113d',1,'dimensional::quantity']]],
-  ['operator_2b',['operator+',['../classdimensional_1_1quantity.html#a1a3a1a2b8f8177c5fb9916262222337b',1,'dimensional::quantity']]],
-  ['operator_2b_3d',['operator+=',['../classdimensional_1_1quantity.html#a2528671aacfcb4d3a7aa71c686203c78',1,'dimensional::quantity']]],
-  ['operator_2d',['operator-',['../classdimensional_1_1quantity.html#a5edee55bd71e9479566a25c400670752',1,'dimensional::quantity']]],
-  ['operator_2f',['operator/',['../classdimensional_1_1quantity.html#a61267f6476e8eb9ada16a939fdf26e63',1,'dimensional::quantity']]],
-  ['operator_3c',['operator&lt;',['../classdimensional_1_1quantity.html#adaa4e2e4f4b5a00a3107b33babdddea5',1,'dimensional::quantity']]],
-  ['operator_3c_3d',['operator&lt;=',['../classdimensional_1_1quantity.html#a511a2af317bbfa618bfdc6dfea22b603',1,'dimensional::quantity']]],
-  ['operator_3d',['operator=',['../classdimensional_1_1quantity.html#aa5e23bc517772230b6065cdd26f47e72',1,'dimensional::quantity::operator=(const quantity&lt; T, Unit, Ratio &gt; &amp;other)'],['../classdimensional_1_1quantity.html#ace34d56240c2d3eaf2e996f04cb06f4d',1,'dimensional::quantity::operator=(const quantity&lt; T, Unit, OtherRatio &gt; &amp;other)']]],
-  ['operator_3d_3d',['operator==',['../classdimensional_1_1quantity.html#acb57cd4f16566e150724fb510cbfe278',1,'dimensional::quantity']]],
-  ['operator_3e',['operator&gt;',['../classdimensional_1_1quantity.html#a0d27603d4d5c0295e8f4b635514924c1',1,'dimensional::quantity']]],
-  ['operator_3e_3d',['operator&gt;=',['../classdimensional_1_1quantity.html#a48bd82104617a0fa17f5f5379bf98b1d',1,'dimensional::quantity']]]
+  ['operator_21_3d',['operator!=',['../class_dimensional_1_1_quantity.html#aebe2b34f87e01d71d7d1d77ac38cdfef',1,'Dimensional::Quantity']]],
+  ['operator_2a',['operator*',['../class_dimensional_1_1_quantity.html#a06c8fdeb1b7ba16ac295ab1f5611c2e1',1,'Dimensional::Quantity']]],
+  ['operator_2b',['operator+',['../class_dimensional_1_1_quantity.html#ab4269dc648ef39e73e0e21d9a5702511',1,'Dimensional::Quantity']]],
+  ['operator_2b_3d',['operator+=',['../class_dimensional_1_1_quantity.html#a750687aac46ed38f8e526a89c4125265',1,'Dimensional::Quantity']]],
+  ['operator_2d',['operator-',['../class_dimensional_1_1_quantity.html#a22d543708542094d7df3dd866bdd59c6',1,'Dimensional::Quantity']]],
+  ['operator_2f',['operator/',['../class_dimensional_1_1_quantity.html#ab29fee6795c7fb4775fbae07cdab5c13',1,'Dimensional::Quantity']]],
+  ['operator_3c',['operator&lt;',['../class_dimensional_1_1_quantity.html#a7891dc9a02d034839e2703d9fabe2958',1,'Dimensional::Quantity']]],
+  ['operator_3c_3d',['operator&lt;=',['../class_dimensional_1_1_quantity.html#a88f272b0b2f39a758c555e078dd6af32',1,'Dimensional::Quantity']]],
+  ['operator_3d',['operator=',['../class_dimensional_1_1_quantity.html#a3e283ea067aaf65f02366013b6e5833e',1,'Dimensional::Quantity::operator=(const Quantity&lt; T, U, Ratio &gt; &amp;other)'],['../class_dimensional_1_1_quantity.html#a433c2e7bd9e4866f9740cee95c0db64e',1,'Dimensional::Quantity::operator=(const Quantity&lt; T, U, OtherRatio &gt; &amp;other)']]],
+  ['operator_3d_3d',['operator==',['../class_dimensional_1_1_quantity.html#a3561837402ddff080205e06e4e3a834d',1,'Dimensional::Quantity']]],
+  ['operator_3e',['operator&gt;',['../class_dimensional_1_1_quantity.html#a4c809b1c85ae8152e543e16290b095a3',1,'Dimensional::Quantity']]],
+  ['operator_3e_3d',['operator&gt;=',['../class_dimensional_1_1_quantity.html#a193aa8b5efdf94068ba11beec2607a29',1,'Dimensional::Quantity']]]
 ];

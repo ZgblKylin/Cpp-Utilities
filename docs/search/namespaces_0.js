@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dimensional',['dimensional',['../namespacedimensional.html',1,'']]]
+  ['dimensional',['Dimensional',['../namespace_dimensional.html',1,'']]]
 ];

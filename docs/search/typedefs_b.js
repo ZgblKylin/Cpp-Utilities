@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['unit_5fdivide',['unit_divide',['../structdimensional_1_1unit.html#a4c697f7c164e79aef0495bad194ae9fb',1,'dimensional::unit']]],
-  ['unit_5fmultiply',['unit_multiply',['../structdimensional_1_1unit.html#a1a443b4560b503514d87bae048ff8672',1,'dimensional::unit']]],
-  ['unit_5fpow',['unit_pow',['../structdimensional_1_1unit.html#a8faa11ee954812e395767172f97e3ed1',1,'dimensional::unit']]],
-  ['unit_5froot',['unit_root',['../structdimensional_1_1unit.html#a0a074eb55e5bff8e079431aeb668d604',1,'dimensional::unit']]],
-  ['unit_5ftype',['unit_type',['../classdimensional_1_1quantity.html#a0f6c6181b38c1110e846c49f190b1423',1,'dimensional::quantity']]]
+  ['unit_5ftype',['unit_type',['../class_dimensional_1_1_quantity.html#aa57e6634876446e1c486df79b207311b',1,'Dimensional::Quantity']]],
+  ['unitdivide',['UnitDivide',['../struct_dimensional_1_1_unit.html#a480d403224861d41a81d8c9971c0e396',1,'Dimensional::Unit']]],
+  ['unitmultiply',['UnitMultiply',['../struct_dimensional_1_1_unit.html#ab62b0f814065c13ee42a6d0a3fd7ebec',1,'Dimensional::Unit']]],
+  ['unitpow',['UnitPow',['../struct_dimensional_1_1_unit.html#a7a39f68d2b27d8753c0d72e8b15d899d',1,'Dimensional::Unit']]],
+  ['unitroot',['UnitRoot',['../struct_dimensional_1_1_unit.html#afefb410d0d193083ea9ea371546c060f',1,'Dimensional::Unit']]]
 ];

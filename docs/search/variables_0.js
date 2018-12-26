@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['factor_5famount_5fof_5fsubstance',['factor_amount_of_substance',['../structdimensional_1_1unit.html#a043f53b51d472ef72f84f8784c501978',1,'dimensional::unit']]],
-  ['factor_5fcurrent',['factor_current',['../structdimensional_1_1unit.html#a4f68b22316951667ab922aa6c8cc4a16',1,'dimensional::unit']]],
-  ['factor_5flength',['factor_length',['../structdimensional_1_1unit.html#a91b885c2d7dcec55c80d58929c317c75',1,'dimensional::unit']]],
-  ['factor_5fluminous_5fintensity',['factor_luminous_intensity',['../structdimensional_1_1unit.html#a7d689743af017ce566659a525ecffe6d',1,'dimensional::unit']]],
-  ['factor_5fmass',['factor_mass',['../structdimensional_1_1unit.html#aa90f2d76e24c9152df83dc5ad0139c13',1,'dimensional::unit']]],
-  ['factor_5ftemperature',['factor_temperature',['../structdimensional_1_1unit.html#ad90076f0bbf106970977decdb0bff2bb',1,'dimensional::unit']]],
-  ['factor_5ftime',['factor_time',['../structdimensional_1_1unit.html#a1b4996c4a00af5457c86b3ff21d7c056',1,'dimensional::unit']]],
-  ['factors',['factors',['../structdimensional_1_1unit.html#aed26902c96b68e4817945b1254c4ea62',1,'dimensional::unit']]]
+  ['factoramountofsubstance',['factorAmountOfSubstance',['../struct_dimensional_1_1_unit.html#af5aad5ff98685dfba3f0f6f82406dccc',1,'Dimensional::Unit']]],
+  ['factorcurrent',['factorCurrent',['../struct_dimensional_1_1_unit.html#a30066d103e8c79cd6f620aa88a7797c2',1,'Dimensional::Unit']]],
+  ['factorlength',['factorLength',['../struct_dimensional_1_1_unit.html#a51ea0da54c2a91564e2f90f45e555f1f',1,'Dimensional::Unit']]],
+  ['factorluminousintensity',['factorLuminousIntensity',['../struct_dimensional_1_1_unit.html#ad6c13b894589debc60d585226e04603c',1,'Dimensional::Unit']]],
+  ['factormass',['factorMass',['../struct_dimensional_1_1_unit.html#a2c4d120e60e400794ce16dec74430885',1,'Dimensional::Unit']]],
+  ['factors',['factors',['../struct_dimensional_1_1_unit.html#a8666366931b3c834df1531a5ac1c2c26',1,'Dimensional::Unit']]],
+  ['factortemperature',['factorTemperature',['../struct_dimensional_1_1_unit.html#a5ca9ed5745370dcbc4690e58b0e464ef',1,'Dimensional::Unit']]],
+  ['factortime',['factorTime',['../struct_dimensional_1_1_unit.html#ae663bbbde99350bb783ec91237e06503',1,'Dimensional::Unit']]]
 ];

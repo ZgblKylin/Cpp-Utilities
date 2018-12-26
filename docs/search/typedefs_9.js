@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['scala',['scala',['../structdimensional_1_1unit.html#a9bd82594e04cef670d91e910318e47ee',1,'dimensional::unit']]],
-  ['speed',['speed',['../structdimensional_1_1unit.html#a5d9fbad1d641eab8c8b070803fd4e9b0',1,'dimensional::unit']]]
+  ['scala',['Scala',['../struct_dimensional_1_1_unit.html#aaae0e8ae65b46289af1378c88a397917',1,'Dimensional::Unit']]],
+  ['speed',['Speed',['../struct_dimensional_1_1_unit.html#a2778245cc18590fcf814160ae0c93ced',1,'Dimensional::Unit']]]
 ];

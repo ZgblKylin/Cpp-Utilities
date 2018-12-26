@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['quantity',['quantity',['../classdimensional_1_1quantity.html#a6c0da810bfa2e29e552f8f841876ad2e',1,'dimensional::quantity::quantity(T x=0)'],['../classdimensional_1_1quantity.html#a8c7d6b5f7f947d867c5d4d826bf7449e',1,'dimensional::quantity::quantity(const quantity&lt; T, Unit, Ratio &gt; &amp;other)'],['../classdimensional_1_1quantity.html#a4bcf376b5842a02801994efa75d9fea4',1,'dimensional::quantity::quantity(const quantity&lt; T, Unit, OtherRatio &gt; &amp;other)']]],
-  ['quantity_5fcast',['quantity_cast',['../classdimensional_1_1quantity.html#a9d2f5f1efe1196591141abf2b7584b39',1,'dimensional::quantity::quantity_cast()'],['../namespacedimensional.html#ad6c46d70a4d0ab572c309757bfe53b59',1,'dimensional::quantity_cast()']]]
+  ['quantity',['Quantity',['../class_dimensional_1_1_quantity.html#a1fa6d53c45c5aca1195c968101d066fc',1,'Dimensional::Quantity::Quantity(T x=0)'],['../class_dimensional_1_1_quantity.html#a0c2bc6fb39abb83c28f1ec34f2659b57',1,'Dimensional::Quantity::Quantity(const Quantity&lt; T, U, Ratio &gt; &amp;other)'],['../class_dimensional_1_1_quantity.html#a969f535ceeaaf1785e862d67fcf75561',1,'Dimensional::Quantity::Quantity(const Quantity&lt; T, U, OtherRatio &gt; &amp;other)']]],
+  ['quantity_5fcast',['quantity_cast',['../class_dimensional_1_1_quantity.html#a6a71b12c7ca38fddda916be9b5deb574',1,'Dimensional::Quantity::quantity_cast()'],['../namespace_dimensional.html#a9bc0764af85e10a73dd0e699a1ba91d3',1,'Dimensional::quantity_cast()']]]
 ];
