@@ -4,7 +4,7 @@
 #include <utility>
 #include <cstdint>
 #include <cmath>
-#include "../utilities_common.h"
+#include "../Common.h"
 
 UTILITIES_NAMESPACE_BEGIN
 
@@ -12,10 +12,10 @@ UTILITIES_NAMESPACE_BEGIN
  * \addtogroup DimensionalAnalysis
  * @{
  */
-namespace dimensional {
+namespace Dimensional {
 /**
  * \brief Calculate approximate fraction from input decimal.
- * \details `#include <ratios.hpp>`
+ * \details `#include <Ratios.hpp>`
  * \param value Decimal which fraction will generate from.
  * \param n     Max calculate precision. Not the bigger the better, too big
  *              value wiil caouse integer overflow, and some small value may

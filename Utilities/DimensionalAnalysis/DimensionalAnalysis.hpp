@@ -1,10 +1,10 @@
-#ifndef DIMENSIONALANALYSIS_HPP
-#define DIMENSIONALANALYSIS_HPP
+#ifndef UTILITIES_DIMENSIONALANALYSIS_HPP
+#define UTILITIES_DIMENSIONALANALYSIS_HPP
 
 #include <tuple>
 #include <ratio>
 #include <cmath>
-#include "../utilities_common.h"
+#include "../Common.h"
 
 /**
  * \defgroup DimensionalAnalysis Dimensional Analysis
@@ -26,24 +26,24 @@
  *          different units will cause compile error.\n
  *          **Multiply/divide** values with **any** units is safe, a new value
  *          with **new unit** will be generated.\n
- *          **User defined unit** is supported. Helper types is provided to deliver
- *          new unit from existsing units.\n
+ *          **User defined unit** is supported. Helper types is provided to
+ *          derive new unit from existsing units.\n
  * \n
  * **Sample Code**\n
  * ```cpp
- * using dimensional::quantity;
- * using dimensional::quantity_cast;
- * quantity<double, dimensional::length> meters(1);
- * quantity<double, dimensional::length, dimensional::ratio_yard> yards(1.0);
+ * using Dimensional::Quantity;
+ * using Dimensional::quantity_cast;
+ * Quantity<double, Dimensional::length> meters(1);
+ * Quantity<double, Dimensional::length, Dimensional::ratio_yard> yards(1.0);
  * meters += yards;
  * yards = meters;
  * // 2.09361mile 1.9144meter 1.9144meter
  * std::cout << yards.value() << "mile "
  *           << yards.standard_value() << "meter "
  *           << meters.value() << "meter" << std::endl;
- * auto speed = yards / quantity<double, dimensional::time>(1);
+ * auto speed = yards / Quantity<double, Dimensional::time>(1);
  * using ratio_km_per_h = std::ratio_divide<std::ratio<1000>, std::ratio<3600>>;
- * using ratio_mile_per_h = std::ratio_divide<dimensional::ratio_mile, std::ratio<3600>>;
+ * using ratio_mile_per_h = std::ratio_divide<Dimensional::ratio_mile, std::ratio<3600>>;
  * // 0.836127m/s 3.01006km/h 1.87036mile/h
  * std::cout << speed.value() << "m/s "
  *           << quantity_cast<ratio_km_per_h>(speed).value() << "km/h "
@@ -55,22 +55,22 @@
 
 UTILITIES_NAMESPACE_BEGIN
 /**
- * \namespace dimensional
+ * \namespace Dimensional
  * \brief Namespace for all classes, typedefs and functions of dimensional
  *        analyse. See \ref DimensionalAnalysis for more instrucion.
- * \warning `using namespace` is forbidden, because some classes and typedefs
+ * \warning `using namespace` is not recommend, because some classes and typedefs
  *          will duplicate with existing symbols. Consider `using` keyword with
- *          specific symbol like `using dimensional::quantity` instead.
+ *          specific symbol like `using Dimensional::Quantity` instead.
  * @{
  */
-namespace dimensional {
+namespace Dimensional {
 /**
- * \brief The unit struct is used to describe physical units.
+ * \brief The Unit struct is used to describe physical units.
  * \details
  * This template use 7 international base units to describe all physical units,
  * to guarantee strong-typed unit analysis.\n
- * Directly use this struct is not suggested, use `unit_multiply`,
- * `unit_divide`, `unit_power` and `unit_root` with `typedef/using` to
+ * Directly use this struct is not suggested, use `UnitMultiply`,
+ * `UnitDivide`, `UnitPower` and `UnitRoot` with `typedef/using` to
  * generate derived unit with exisiting units.\n
  * See \ref DimensionalAnalysis for samples.
  * \tparam length               Power factor of length unit.
@@ -78,252 +78,273 @@ namespace dimensional {
  * \tparam time                 Power factor of length time unit.
  * \tparam current              Power factor of length current unit.
  * \tparam temperature          Power factor of length temperature unit.
- * \tparam amount_of_substance  Power factor of amount_of_substance unit.
- * \tparam luminous_intensity   Power factor of luminous_intensity unit.
+ * \tparam amountOfSubstance    Power factor of amount_of_substance unit.
+ * \tparam luminousIntensity    Power factor of luminous_intensity unit.
  */
-template<int length, int mass, int time, int current, int temperature, int amount_of_substance, int luminous_intensity>
-struct unit
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+struct Unit
 {
     /** \brief Type of the struct itself. */
-    using type = unit<length, mass, time, current, temperature, amount_of_substance, luminous_intensity>;
+    using type = Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>;
     /** \brief Power factors of 7 base units. */
     static constexpr std::tuple<int, int, int, int, int, int, int> factors{
-        length, mass, time, current, temperature, amount_of_substance, luminous_intensity
+        length, mass, time, current, temperature, amountOfSubstance, luminousIntensity
     };
     /** \brief Power factor of length unit. */
-    static constexpr int factor_length              = std::get<0>(factors);
+    static constexpr int factorLength               = std::get<0>(factors);
     /** \brief Power factor of length mass unit. */
-    static constexpr int factor_mass                = std::get<1>(factors);
+    static constexpr int factorMass                 = std::get<1>(factors);
     /** \brief Power factor of length time unit. */
-    static constexpr int factor_time                = std::get<2>(factors);
+    static constexpr int factorTime                 = std::get<2>(factors);
     /** \brief Power factor of length current unit. */
-    static constexpr int factor_current             = std::get<3>(factors);
+    static constexpr int factorCurrent              = std::get<3>(factors);
     /** \brief Power factor of length temperature unit. */
-    static constexpr int factor_temperature         = std::get<4>(factors);
+    static constexpr int factorTemperature          = std::get<4>(factors);
     /** \brief Power factor of amount_of_substance unit unit. */
-    static constexpr int factor_amount_of_substance = std::get<5>(factors);
+    static constexpr int factorAmountOfSubstance    = std::get<5>(factors);
     /** \brief Power factor of luminous_intensity unit unit. */
-    static constexpr int factor_luminous_intensity  = std::get<6>(factors);
+    static constexpr int factorLuminousIntensity    = std::get<6>(factors);
 };
 
 /**
  * \name Unit Conversion
- * \relates unit
+ * \relates Unit
  * \brief Helper typedef for unit conversion
  * @{
 */
 /**
- * \brief The unit_multiply type is an alias of multiply calculation with two unit.
+ * \brief The UnitMultiply type is an alias of multiply calculation with two
+ *        units.
  * \tparam Unit1 First operand unit.
  * \tparam Unit2 Second operand unit.
  */
 template<typename Unit1,  typename Unit2>
-using unit_multiply = unit<
-    Unit1::factor_length               + Unit2::factor_length,
-    Unit1::factor_mass                 + Unit2::factor_mass,
-    Unit1::factor_time                 + Unit2::factor_time,
-    Unit1::factor_current              + Unit2::factor_current,
-    Unit1::factor_temperature          + Unit2::factor_temperature,
-    Unit1::factor_amount_of_substance  + Unit2::factor_amount_of_substance,
-    Unit1::factor_luminous_intensity   + Unit2::factor_luminous_intensity
+using UnitMultiply = Unit<
+    Unit1::factorLength             + Unit2::factorLength,
+    Unit1::factorMass               + Unit2::factorMass,
+    Unit1::factorTime               + Unit2::factorTime,
+    Unit1::factorCurrent            + Unit2::factorCurrent,
+    Unit1::factorTemperature        + Unit2::factorTemperature,
+    Unit1::factorAmountOfSubstance  + Unit2::factorAmountOfSubstance,
+    Unit1::factorLuminousIntensity  + Unit2::factorLuminousIntensity
 >;
 /**
- * \brief The unit_divide type is an alias of divide calculation with two unit.
+ * \brief The UnitDivide type is an alias of divide calculation with two units.
  * \tparam Unit1 First operand unit.
  * \tparam Unit2 Second operand unit.
  */
 template<typename Unit1,  typename Unit2>
-using unit_divide = unit<
-    Unit1::factor_length               - Unit2::factor_length,
-    Unit1::factor_mass                 - Unit2::factor_mass,
-    Unit1::factor_time                 - Unit2::factor_time,
-    Unit1::factor_current              - Unit2::factor_current,
-    Unit1::factor_temperature          - Unit2::factor_temperature,
-    Unit1::factor_amount_of_substance  - Unit2::factor_amount_of_substance,
-    Unit1::factor_luminous_intensity   - Unit2::factor_luminous_intensity
+using UnitDivide = Unit<
+    Unit1::factorLength             - Unit2::factorLength,
+    Unit1::factorMass               - Unit2::factorMass,
+    Unit1::factorTime               - Unit2::factorTime,
+    Unit1::factorCurrent            - Unit2::factorCurrent,
+    Unit1::factorTemperature        - Unit2::factorTemperature,
+    Unit1::factorAmountOfSubstance  - Unit2::factorAmountOfSubstance,
+    Unit1::factorLuminousIntensity  - Unit2::factorLuminousIntensity
 >;
 /**
- * \brief The unit_pow type is an alias of power calculation with two unit.
- * \tparam Unit Operand unit.
- * \tparam n    Factor of power calculation.
+ * \brief The UnitPow type is an alias of power calculation with two units.
+ * \tparam U Operand unit.
+ * \tparam n Factor of power calculation.
  */
-template<typename Unit, int n>
-using unit_pow = unit<
-    Unit::factor_length                * n,
-    Unit::factor_mass                  * n,
-    Unit::factor_time                  * n,
-    Unit::factor_current               * n,
-    Unit::factor_temperature           * n,
-    Unit::factor_amount_of_substance   * n,
-    Unit::factor_luminous_intensity    * n
+template<typename U, int n>
+using UnitPow = Unit<
+    U::factorLength             * n,
+    U::factorMass               * n,
+    U::factorTime               * n,
+    U::factorCurrent            * n,
+    U::factorTemperature        * n,
+    U::factorAmountOfSubstance  * n,
+    U::factorLuminousIntensity  * n
 >;
 /**
- * \brief The unit_root type is an alias of power calculation with two unit.
- * \tparam Unit Operand unit.
- * \tparam n    Factor of root calculation.
+ * \brief The UnitRoot type is an alias of power calculation with two units.
+ * \tparam U Operand unit.
+ * \tparam n Factor of root calculation.
  */
-template<typename Unit, int n>
-using unit_root = unit<
-    Unit::factor_length                / n,
-    Unit::factor_mass                  / n,
-    Unit::factor_time                  / n,
-    Unit::factor_current               / n,
-    Unit::factor_temperature           / n,
-    Unit::factor_amount_of_substance   / n,
-    Unit::factor_luminous_intensity    / n
+template<typename U, int n>
+using UnitRoot = Unit<
+    U::factorLength             / n,
+    U::factorMass               / n,
+    U::factorTime               / n,
+    U::factorCurrent            / n,
+    U::factorTemperature        / n,
+    U::factorAmountOfSubstance  / n,
+    U::factorLuminousIntensity  / n
 >;
 /** @} */
 
 /**
  * \name Base Units
- * \relates unit
+ * \relates Unit
  * \brief 7 international base units.
  * @{
 */
 /**
  * \brief The scala type of non-unit.
 */
-typedef unit<0, 0, 0, 0, 0, 0, 0> scala;
+typedef Unit<0, 0, 0, 0, 0, 0, 0> Scala;
 /**
  * \brief Length unit, called **meter**, with symbol `m`.
  */
-typedef unit<1, 0, 0, 0, 0, 0, 0> length;
+typedef Unit<1, 0, 0, 0, 0, 0, 0> Length;
 /**
  * \brief Mass unit, called **kilogram**, with symbol `kg`.
  */
-typedef unit<0, 1, 0, 0, 0, 0, 0> mass;
+typedef Unit<0, 1, 0, 0, 0, 0, 0> Mass;
 /**
  * \brief Time unit, called **second**, with symbol `s`.
  */
-typedef unit<0, 0, 1, 0, 0, 0, 0> time;
+typedef Unit<0, 0, 1, 0, 0, 0, 0> Time;
 /**
  * \brief Electric current unit, called **ampere**, with symbol `A`.
  */
-typedef unit<0, 0, 0, 1, 0, 0, 0> current;
+typedef Unit<0, 0, 0, 1, 0, 0, 0> Current;
 /**
  * \brief Thermodynamic temperature unit, called **kelvin**, with symbol `K`.
  */
-typedef unit<0, 0, 0, 0, 1, 0, 0> temperature;
+typedef Unit<0, 0, 0, 0, 1, 0, 0> Temperature;
 /**
  * \brief Amount of substance unit, called **mole**, with symbol `mol`.
  */
-typedef unit<0, 0, 0, 0, 0, 1, 0> amount_of_substance;
+typedef Unit<0, 0, 0, 0, 0, 1, 0> AmountOfSubstance;
 /**
  * \brief Luminous intensity unit, called **candela**, with symbol `cd`.
 */
-typedef unit<0, 0, 0, 0, 0, 0, 1> luminous_intensity;
+typedef Unit<0, 0, 0, 0, 0, 0, 1> LuminousIntensity;
 /** @} */
 
 /**
  * \name Derived Units
- * \relates unit
+ * \relates Unit
  * \brief International System of Units derived from base units.
  * @{
  */
 /**
  * \brief Speed unit, derived from \f$m/s\f$.
 */
-typedef unit_divide<length, time> speed;
+typedef UnitDivide<Length, Time> Speed;
 /**
  * \brief Acceleration unit, derived from \f$m/s^{2}\f$.
  */
-typedef unit_divide<speed, time> acceleration;
+typedef UnitDivide<Speed, Time> Acceleration;
 /**
- * \brief Frequence unit, called **hertz**, with symbol `Hz`, derived from \f$s^{-1}\f$.
+ * \brief Frequence unit, called **hertz**, with symbol `Hz`, derived from
+ *        \f$s^{-1}\f$.
  */
-typedef unit_divide<scala, time> frenquency;
+typedef UnitDivide<Scala, Time> Frenquency;
 // TODO radian
 // TODO steradian
 /**
- * Force unit, called **newton**, with symbol `N`, derived from \f$kg \cdot m \cdot s^{-2}\f$.
+ * \brief Force unit, called **newton**, with symbol `N`, derived from
+ *        \f$kg \cdot m \cdot s^{-2}\f$.
  */
-typedef unit_multiply<mass, acceleration> force;
+typedef UnitMultiply<Mass, Acceleration> Force;
 /**
  * \brief Area unit, with symbol \f$m^{2}\f$.
  */
-typedef unit_multiply<length, length> area;
+typedef UnitMultiply<Length, Length> Area;
 /**
  * \brief Volume unit, with symbol \f$m^{3}\f$.
  */
-typedef unit_multiply<area, length> volume;
+typedef UnitMultiply<Area, Length> Volume;
 /**
- * \brief Pressure unit, called **pascal**, with symbol `Pa`, derived from \f$N/m^{2}\f$ or \f$kg \cdot m^{-1} \cdot s^{-2}\f$.
+ * \brief Pressure unit, called **pascal**, with symbol `Pa`, derived from
+ *        \f$N/m^{2}\f$ or \f$kg \cdot m^{-1} \cdot s^{-2}\f$.
  */
-typedef unit_divide<force, area> pressure;
+typedef UnitDivide<Force, Area> Pressure;
 /**
- * \brief Enegy unit, called **joule**, with symbol `J`, derived from \f$N \cdot m\f$ or \f$kg \cdot m^{2} \cdot s^{-2}\f$.
+ * \brief Enegy unit, called **joule**, with symbol `J`, derived from
+ *        \f$N \cdot m\f$ or \f$kg \cdot m^{2} \cdot s^{-2}\f$.
  */
-typedef unit_multiply<force, length> energy;
+typedef UnitMultiply<Force, Length> Energy;
 /**
- * \brief Power unit, called **watt**, with symbol `W`, derived from \f$J/s\f$ or \f$kg \cdot m^{-2} \cdot s^{-3}\f$.
+ * \brief Power unit, called **watt**, with symbol `W`, derived from \f$J/s\f$
+ *        or \f$kg \cdot m^{-2} \cdot s^{-3}\f$.
  */
-typedef unit_divide<energy, time> power;
+typedef UnitDivide<Energy, Time> Power;
 /**
- * \brief Charge unit, called **coulomb**, with symbol `C`, derived from \f$s \cdot A\f$.
+ * \brief Charge unit, called **coulomb**, with symbol `C`, derived from
+ *        \f$s \cdot A\f$.
  */
-typedef unit_multiply<time, current> charge;
+typedef UnitMultiply<Time, Current> Charge;
 /**
- * \brief Voltage unit, called **volt**, with symbol `V`, derived from \f$W/A\f$ or \f$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-1}\f$.
+ * \brief Voltage unit, called **volt**, with symbol `V`, derived from \f$W/A\f$
+ *        or \f$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-1}\f$.
  */
-typedef unit_divide<power, charge> voltage;
+typedef UnitDivide<Power, Charge> Voltage;
 /**
- * \brief Elelctric capacitance unit, called **farad**, with symbol `F`, derived from \f$C/V\f$ or \f$kg^{-1} \cdot m^{-2} \cdot s^{4} \cdot A^{2}\f$.
+ * \brief Elelctric capacitance unit, called **farad**, with symbol `F`, derived
+ *        from \f$C/V\f$ or \f$kg^{-1} \cdot m^{-2} \cdot s^{4} \cdot A^{2}\f$.
  */
-typedef unit_divide<charge, voltage> capacitance;
+typedef UnitDivide<Charge, Voltage> ElelctricCapacitance;
 /**
- * \brief Electric resistance unit, called **ohm**, with symbol `Ω`, derived from \f$V/A\f$ or \f$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-2}\f$.
+ * \brief Electric resistance unit, called **ohm**, with symbol `Ω`, derived
+ *        from \f$V/A\f$ or \f$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-2}\f$.
  */
-typedef unit_divide<current, voltage> resistance;
+typedef UnitDivide<Current, Voltage> ElectricResistance;
 /**
- * \brief Electric conductance unit, called **simens**, with symbol `S`, derived from \f$1/\Omega\f$ or \f$kg^{-1} \cdot m^{-2} \cdot s^{3} \cdot A^{2}\f$.
+ * \brief Electric conductance unit, called **simens**, with symbol `S`, derived
+ *        from \f$1/\Omega\f$ or
+ *        \f$kg^{-1} \cdot m^{-2} \cdot s^{3} \cdot A^{2}\f$.
  */
-typedef unit_divide<scala, resistance> conductance;
+typedef UnitDivide<Scala, ElectricResistance> ElelctricConductance;
 /**
- * \brief Magnetic flux unit, called **webber**, with symbol Wb**, derived from \f$V \cdot s\f$ or \f$kg \cdot m^{2} \cdot s^{-2} \cdot A^{-1}\f$.
+ * \brief Magnetic flux unit, called **webber**, with symbol Wb**, derived from
+ *        \f$V \cdot s\f$ or \f$kg \cdot m^{2} \cdot s^{-2} \cdot A^{-1}\f$.
  */
-typedef unit_multiply<charge, time> magnetic_flux;
+typedef UnitMultiply<Charge, Time> MagneticFlux;
 /**
- * \brief Magnet flux density unit, called **tesla**, with symbol `T`, derived from \f$Wb/m^{2}\f$ or \f$kg \cdot s^{-2} \cdot A^{-1}\f$.
+ * \brief Magnet flux density unit, called **tesla**, with symbol `T`, derived
+ *        from \f$Wb/m^{2}\f$ or \f$kg \cdot s^{-2} \cdot A^{-1}\f$.
  */
-typedef unit_divide<magnetic_flux, area> magnet_flux_density;
+typedef UnitDivide<MagneticFlux, Area> MagnetFluxDensity;
 /**
- * \brief Electric unit, called **henry**, with symbol `H`, derived from \f$Wb/A\f$ or \f$kg \cdot m^{2} \cdot s^{-2} \cdot A^{-2}\f$.
+ * \brief Electric unit, called **henry**, with symbol `H`, derived from
+ *        \f$Wb/A\f$ or \f$kg \cdot m^{2} \cdot s^{-2} \cdot A^{-2}\f$.
  */
-typedef unit_divide<magnetic_flux, current> inductance;
+typedef UnitDivide<MagneticFlux, Current> Inductance;
 /**
- * \brief Luminous flux unit, called **lumen**, with symbol `lm`, derived from \f$cd \cdot sr\f$.
+ * \brief Luminous flux unit, called **lumen**, with symbol `lm`, derived from
+ *        \f$cd \cdot sr\f$.
  */
-typedef luminous_intensity luminous;
+typedef LuminousIntensity Luminous;
 /**
- * \brief Illuminance unit, called **lux**, with symbol `ls`, derived from \f$lm/m^{2}\f$ or \f$m^{-2} \cdot cd\f$.
+ * \brief Illuminance unit, called **lux**, with symbol `ls`, derived from
+ *        \f$lm/m^{2}\f$ or \f$m^{-2} \cdot cd\f$.
  */
-typedef unit_divide<luminous_intensity, area> illuminance;
+typedef UnitDivide<LuminousIntensity, Area> Illuminance;
 /**
- * \brief Radioactivity unit of decays per second, called **becquerel**, with symbol `Bq` derived from \f$s^{-1}\f$.
+ * \brief Radioactivity unit of decays per second, called **becquerel**, with
+ *        symbol `Bq` derived from \f$s^{-1}\f$.
  */
-typedef unit_divide<scala, time> radioactivity;
+typedef UnitDivide<Scala, Time> Radioactivity;
 /**
- * \brief Absorbed dose unit of ionising radiation, called **gray**, with symbol `Gy`, derived from \f$J/kg\f$ or \f$m^{2} \cdot s^{-2}\f$.
+ * \brief Absorbed dose unit of ionising radiation, called **gray**, with symbol
+ *        `Gy`, derived from \f$J/kg\f$ or \f$m^{2} \cdot s^{-2}\f$.
  */
-typedef unit_divide<energy, mass> absorbed;
+typedef UnitDivide<Energy, Mass> AbsorbedDose;
 /**
- * \brief Equivalent dose unit of ionising radiation, called **sievert**, with symbol `Sv`, derived from \f$J/kg\f$ or \f$m^{2} \cdot s^{-2}\f$.
+ * \brief Equivalent dose unit of ionising radiation, called **sievert**, with
+ *        symbol `Sv`, derived from \f$J/kg\f$ or \f$m^{2} \cdot s^{-2}\f$.
  */
-typedef unit_divide<energy, mass> equivalent;
+typedef UnitDivide<Energy, Mass> EquivalentDose;
 /**
- * \brief Catalytic activity unit called **katal**, with symbol `kat`, derived from \f$mol \cdot s^{-1}\f$.
+ * \brief Catalytic activity unit called **katal**, with symbol `kat`, derived
+ *        from \f$mol \cdot s^{-1}\f$.
  */
-typedef unit_divide<amount_of_substance, time> catalytic;
+typedef UnitDivide<AmountOfSubstance, Time> CatalyticActivity;
 /** @} */
 
 // Forward declarations
 template<typename T, typename Unit, typename Ratio>
-class quantity;
-template<typename NewRatio, typename T, typename Unit, typename Ratio>
-quantity<T, Unit, NewRatio> quantity_cast(quantity<T, Unit, Ratio> x);
+class Quantity;
+template<typename NewRatio, typename T, typename U, typename Ratio>
+Quantity<T, U, NewRatio> quantity_cast(Quantity<T, U, Ratio> x);
 
 /**
- * \brief The quantity struct is used to describe arithmetic values with units.
+ * \brief The Quantity struct is used to describe arithmetic values with units.
  * \details
  * This template guarantee strong-typed safe calculation of physical values.\n
  * Variables with different unit cannot add, subtract and compare with each
@@ -333,19 +354,19 @@ quantity<T, Unit, NewRatio> quantity_cast(quantity<T, Unit, Ratio> x);
  * different ratios is safe, and result has same Ratio of first operand.\n
  * See \ref DimensionalAnalysis for samples.
  * \tparam T        Arithmetic type for value.
- * \tparam Unit     Unit type for this physical quantity.
+ * \tparam U        Unit type for this physical quantity.
  * \tparam Ratio    Conversion ratio for nonstandard units such as feet or yard.
  */
-template<typename T, typename Unit, typename Ratio = std::ratio<1>>
-class quantity
+template<typename T, typename U, typename Ratio = std::ratio<1>>
+class Quantity
 {
 public:
     /** \brief Self type for this quantity struct. */
-    using type = quantity<T, Unit, Ratio>;
+    using type = Quantity<T, U, Ratio>;
     /** \brief Value type for this quantity struct. */
     using value_type = T;
     /** \brief Unit type for this quantity struct. */
-    using unit_type = Unit;
+    using unit_type = U;
     /** \brief Ratio type for this quantity struct. */
     using ratio_type = Ratio;
 
@@ -353,7 +374,7 @@ public:
      * \brief Default constructor
      * \param x Initial value, default is 0.
      */
-    inline explicit quantity(T x = 0)
+    inline explicit Quantity(T x = 0)
         : v(x)
     {}
 
@@ -361,7 +382,7 @@ public:
      * \brief Copy constructor
      * \param other Operand to be copied.
      */
-    inline quantity(const quantity<T, Unit, Ratio>& other)
+    inline Quantity(const Quantity<T, U, Ratio>& other)
         : v(other.v)
     {}
 
@@ -371,7 +392,7 @@ public:
      * \param other         Operand to be copied.
      */
     template<typename OtherRatio>
-    inline quantity(const quantity<T, Unit, OtherRatio>& other)
+    inline Quantity(const Quantity<T, U, OtherRatio>& other)
         : v(quantity_cast<Ratio>(other).value())
     {}
 
@@ -401,8 +422,8 @@ public:
      * \return Reference to self with value added.
      */
     template<typename OtherRatio>
-    inline quantity<T, Unit, Ratio>&
-    operator+=(const quantity<T, Unit, OtherRatio>& other)
+    inline Quantity<T, U, Ratio>&
+    operator+=(const Quantity<T, U, OtherRatio>& other)
     { v += quantity_cast<Ratio>(other).v; return *this; }
 
     /**
@@ -410,8 +431,8 @@ public:
      * \param other Operand to assign from.
      * \return Reference to self with value assigned.
      */
-    inline quantity<T, Unit, Ratio>&
-    operator=(const quantity<T, Unit, Ratio>& other)
+    inline Quantity<T, U, Ratio>&
+    operator=(const Quantity<T, U, Ratio>& other)
     { v = other.v; return *this; }
 
     /**
@@ -423,8 +444,8 @@ public:
      * \return Reference to self with value assigned.
      */
     template<typename OtherRatio>
-    inline quantity<T, Unit, Ratio>&
-    operator=(const quantity<T, Unit, OtherRatio>& other)
+    inline Quantity<T, U, Ratio>&
+    operator=(const Quantity<T, U, OtherRatio>& other)
     { v = quantity_cast<Ratio>(other).v; return *this; }
 
     /**
@@ -435,7 +456,7 @@ public:
      * \return Boolean value for result of comparison.
      */
     template<typename OtherRatio>
-    inline bool operator==(const quantity<T, Unit, OtherRatio>& other) const
+    inline bool operator==(const Quantity<T, U, OtherRatio>& other) const
     { return v == quantity_cast<Ratio>(other).v; }
 
     /**
@@ -446,7 +467,7 @@ public:
      * \return Boolean value for result of comparison.
      */
     template<typename OtherRatio>
-    inline bool operator!=(const quantity<T, Unit, OtherRatio>& other) const
+    inline bool operator!=(const Quantity<T, U, OtherRatio>& other) const
     { return !(*this == other); }
 
     /**
@@ -457,7 +478,7 @@ public:
      * \return Boolean value for result of comparison.
      */
     template<typename OtherRatio>
-    inline bool operator<(const quantity<T, Unit, OtherRatio>& other) const
+    inline bool operator<(const Quantity<T, U, OtherRatio>& other) const
     { return v < quantity_cast<Ratio>(other).v; }
 
     /**
@@ -468,7 +489,7 @@ public:
      * \return Boolean value for result of comparison.
      */
     template<typename OtherRatio>
-    inline bool operator<=(const quantity<T, Unit, OtherRatio>& other) const
+    inline bool operator<=(const Quantity<T, U, OtherRatio>& other) const
     { return (*this < other) || (*this == other); }
 
     /**
@@ -479,7 +500,7 @@ public:
      * \return Boolean value for result of comparison.
      */
     template<typename OtherRatio>
-    inline bool operator>(const quantity<T, Unit, OtherRatio>& other) const
+    inline bool operator>(const Quantity<T, U, OtherRatio>& other) const
     { return !(*this <= other); }
 
     /**
@@ -490,7 +511,7 @@ public:
      * \return Boolean value for result of comparison.
      */
     template<typename OtherRatio>
-    inline bool operator>=(const quantity<T, Unit, OtherRatio>& other) const
+    inline bool operator>=(const Quantity<T, U, OtherRatio>& other) const
     { return !(*this < other); }
 
 private:
@@ -498,538 +519,546 @@ private:
 };
 
 /**
- * \relates quantity
+ * \relates Quantity
  * \brief Plus operator overload, values will be converted to same ratio before
  *        calculation, both inputs should have same value type and unit type.
  * \tparam  T       Value type of operands.
- * \tparam  Unit    Unit of operands.
+ * \tparam  U       Unit of operands.
  * \tparam  Ratio1  Ratio of first operand.
  * \tparam  Ratio2  Ratio of second operand.
  * \param   x       First operand.
  * \param   y       Second operand.
  * \return Calculation result represened with `Ratio1.`
  */
-template<typename T, typename Unit, typename Ratio1, typename Ratio2>
-inline quantity<T, Unit, Ratio1>
-operator+(quantity<T, Unit, Ratio1> x, quantity<T, Unit, Ratio2> y)
+template<typename T, typename U, typename Ratio1, typename Ratio2>
+inline Quantity<T, U, Ratio1>
+operator+(Quantity<T, U, Ratio1> x, Quantity<T, U, Ratio2> y)
 {
-    return quantity<T, Unit, Ratio1>(x.value()
-                                     + quantity_cast<Ratio1>(y).value());
+    return Quantity<T, U, Ratio1>(x.value()
+                                  + quantity_cast<Ratio1>(y).value());
 }
 
 /**
- * \relates quantity
- * \brief Subtract operator overload, values will be converted to same ratio before
- *        calculation, both inputs should have same value type and unit type.
+ * \relates Quantity
+ * \brief Subtract operator overload, values will be converted to same ratio
+ *        before calculation, both inputs should have same value type and unit
+ *        type.
  * \tparam  T       Value type of operands.
- * \tparam  Unit    Unit of operands.
+ * \tparam  U       Unit of operands.
  * \tparam  Ratio1  Ratio of first operand.
  * \tparam  Ratio2  Ratio of second operand.
  * \param   x       First operand.
  * \param   y       Second operand.
  * \return Calculation result represened with `Ratio1.`
  */
-template<typename T, typename Unit, typename Ratio1, typename Ratio2>
-inline quantity<T, Unit, Ratio1>
-operator-(quantity<T, Unit, Ratio1>& x, quantity<T, Unit, Ratio2> y)
+template<typename T, typename U, typename Ratio1, typename Ratio2>
+inline Quantity<T, U, Ratio1>
+operator-(Quantity<T, U, Ratio1>& x, Quantity<T, U, Ratio2> y)
 {
-    return quantity<T, Unit, Ratio1>(x.value()
-                                     - quantity_cast<Ratio1>(y).value());
+    return Quantity<T, U, Ratio1>(x.value()
+                                  - quantity_cast<Ratio1>(y).value());
 }
 
 /**
- * \relates quantity
- * \brief Multiply operator overload, values will be converted to same ratio before
- *        calculation, both inputs should have same value type and unit type.
+ * \relates Quantity
+ * \brief Multiply operator overload, values will be converted to same ratio
+ *        before calculation, inputs can have different unit type, a new unit
+ *        type will be generated.
  * \tparam  T       Value type of operands.
- * \tparam  Unit    Unit of operands.
+ * \tparam  Unit1   Unit of first operand.
  * \tparam  Ratio1  Ratio of first operand.
+ * \tparam  Unit2   Unit of second operand.
  * \tparam  Ratio2  Ratio of second operand.
  * \param   x       First operand.
  * \param   y       Second operand.
  * \return Calculation result represened with `Ratio1.`
  */
 template<typename T, typename Unit1, typename Ratio1, typename Unit2, typename Ratio2>
-inline quantity<T, unit_multiply<Unit1, Unit2>, Ratio1>
-operator*(quantity<T, Unit1, Ratio1> x, quantity<T, Unit2, Ratio2> y)
+inline Quantity<T, UnitMultiply<Unit1, Unit2>, Ratio1>
+operator*(Quantity<T, Unit1, Ratio1> x, Quantity<T, Unit2, Ratio2> y)
 {
-    using dim = unit_multiply<Unit1, Unit2>;
-    return quantity<T, dim, Ratio1>(x.value()
+    using dim = UnitMultiply<Unit1, Unit2>;
+    return Quantity<T, dim, Ratio1>(x.value()
                                     * quantity_cast<Ratio1>(y).value());
 }
 
 /**
- * \relates quantity
- * \brief Divide operator overload, values will be converted to same ratio before
- *        calculation, both inputs should have same value type and unit type.
+ * \relates Quantity
+ * \brief Divide operator overload, values will be converted to same ratio
+ *        before calculation, inputs can have different unit type, a new unit
+ *        type will be generated.
  * \tparam  T       Value type of operands.
- * \tparam  Unit    Unit of operands.
+ * \tparam  Unit1   Unit of first operand.
  * \tparam  Ratio1  Ratio of first operand.
+ * \tparam  Unit2   Unit of second operand.
  * \tparam  Ratio2  Ratio of second operand.
  * \param   x       First operand.
  * \param   y       Second operand.
  * \return Calculation result represened with `Ratio1.`
  */
 template<typename T, typename Unit1, typename Ratio1, typename Unit2, typename Ratio2>
-inline quantity<T, unit_divide<Unit1, Unit2>, Ratio1>
-operator/(quantity<T, Unit1, Ratio1> x, quantity<T, Unit2, Ratio2> y)
+inline Quantity<T, UnitDivide<Unit1, Unit2>, Ratio1>
+operator/(Quantity<T, Unit1, Ratio1> x, Quantity<T, Unit2, Ratio2> y)
 {
-    using dim = unit_divide<Unit1, Unit2>;
-    return quantity<T, dim, Ratio1>(x.value()
+    using dim = UnitDivide<Unit1, Unit2>;
+    return Quantity<T, dim, Ratio1>(x.value()
                                     / quantity_cast<Ratio1>(y).value());
 }
 
 /**
- * \relates quantity
+ * \relates Quantity
  * \brief Power calculation, performed both on value and unit.
  * \tparam  factor  Factor of power calculation.
  * \tparam  T       Value type of operands.
- * \tparam  Unit    Unit of operand.
+ * \tparam  U       Unit of operand.
  * \tparam  Ratio   Ratio of operand.
  * \param   x       Quantity operand.
  * \return Calculation result with power performed both on value and unit.
  */
-template<int factor, typename T, typename Unit, typename Ratio>
-inline quantity<T, unit_pow<Unit, factor>, std::ratio<1>>
-pow(const quantity<T, Unit, Ratio>& x)
+template<int factor, typename T, typename U, typename Ratio>
+inline Quantity<T, UnitPow<U, factor>, std::ratio<1>>
+pow(const Quantity<T, U, Ratio>& x)
 {
-    return quantity<
+    return Quantity<
                T,
-               unit_pow<Unit, factor>,
+               UnitPow<U, factor>,
                std::ratio<1>
            >(std::pow(quantity_cast<std::ratio<1>>(x).value(),
                       factor));
 }
 
 /**
- * \relates quantity
+ * \relates Quantity
  * \brief Root calculation, performed both on value and unit.
  * \tparam  factor  Factor of root calculation.
  * \tparam  T       Value type of operands.
- * \tparam  Unit    Unit of operand.
+ * \tparam  U       Unit of operand.
  * \tparam  Ratio   Ratio of operand.
  * \param   x       Quantity operand.
  * \return Calculation result with root performed both on value and unit.
  */
-template<int factor, typename T, typename Unit, typename Ratio>
-inline quantity<T, unit_root<Unit, factor>, std::ratio<1>>
-root(const quantity<T, Unit, Ratio>& x)
+template<int factor, typename T, typename U, typename Ratio>
+inline Quantity<T, UnitRoot<U, factor>, std::ratio<1>>
+root(const Quantity<T, U, Ratio>& x)
 {
-    return quantity<
+    return Quantity<
                T,
-               unit_root<Unit, factor>,
+               UnitRoot<U, factor>,
                std::ratio<1>
            >(std::pow(quantity_cast<std::ratio<1>>(x).value(),
                       1.0 / factor));
 }
 
 /**
- * \relates quantity
+ * \relates Quantity
  * \brief Cast a quantity to another ratio, value will be converted too.
  *        Sample code for convert to standard value:
  *        `b = quantity_cast<std::ratio<1>>(a);`
  * \tparam  NewRatio    Ratio to be cast to.
+ * \tparam  T           Value type of input.
+ * \tparam  U           Unit of input.
+ * \tparam  Ratio       Ratio of input.
  * \param   x           Operand to be cast.
  * \return New quantity cast to `NewRatio`.
  */
-template<typename NewRatio, typename T, typename Unit, typename Ratio>
-inline quantity<T, Unit, NewRatio> quantity_cast(quantity<T, Unit, Ratio> x)
+template<typename NewRatio, typename T, typename U, typename Ratio>
+inline Quantity<T, U, NewRatio> quantity_cast(Quantity<T, U, Ratio> x)
 {
     using ratio_div = std::ratio_divide<Ratio, NewRatio>;
     T val = x.value()
             * (static_cast<long double>(ratio_div::num) / ratio_div::den);
-    return quantity<T, Unit, NewRatio>(val);
+    return Quantity<T, U, NewRatio>(val);
 }
 
 /**
  * \name Common Ratio
- * \relates quantity
+ * \relates Quantity
  * \brief Common ratios for calculation.
  * @{
  */
 /**
  * \brief Ratio to display π in approximate fraction,
- * with high presion up to \f$3.14159266096017653069\f$.
+ *        with high presion up to \f$3.14159266096017653069\f$.
  */
 typedef std::ratio<80813362, 25723692> ratio_PI;
 /**
  * \brief Ratio to convert radian into degree,
- * using equation \f$degree = rad * \frac{pi}{180}\f$.
+ *        using equation \f$degree = rad * \frac{pi}{180}\f$.
  */
 typedef std::ratio_divide<ratio_PI, std::ratio<180>> ratio_degree;
 /** @} */
 
 /**
   * \name Chinese Units
-  * \brief quantity
-  * Ratios for Chinese units of mass and length.
+  * \relates Quantity
+  * \brief Ratios for Chinese units of mass and length.
   * @{
   */
 /**
  * \brief Ratio to convert to meter.
- * \f$1 li = 10 yin = \frac{1}{3} km\f$.
+ *        \f$1 li = 10 yin = \frac{1}{3} km\f$.
  */
 typedef std::ratio<1000, 3> ratio_length_li;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 yin = \frac{1}{10} li = 10 zhang = 333.\overline{3} m\f$.
+ *        \f$1 yin = \frac{1}{10} li = 10 zhang = 333.\overline{3} m\f$.
  */
 typedef std::ratio_divide<ratio_length_li, std::ratio<10>> ratio_yin;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 zhang = \frac{1}{10} yin = 10 chi = 3.\overline{3} m\f$.
+ *        \f$1 zhang = \frac{1}{10} yin = 10 chi = 3.\overline{3} m\f$.
  */
 typedef std::ratio_divide<ratio_yin, std::ratio<10>> ratio_zhang;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 xun = 1/2 zhang = 5 chi = 1.\overline{6} m\f$.
+ *        \f$1 xun = 1/2 zhang = 5 chi = 1.\overline{6} m\f$.
  */
 typedef std::ratio_divide<ratio_zhang, std::ratio<2>> ratio_xun;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 chi = 33.\overline{3} cm\f$.
+ *        \f$1 chi = 33.\overline{3} cm\f$.
  */
 typedef std::ratio_divide<ratio_zhang, std::ratio<10>> ratio_chi;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 cun = \frac{1}{10} chi = 3.\overline{3} cm\f$.
+ *        \f$1 cun = \frac{1}{10} chi = 3.\overline{3} cm\f$.
  */
 typedef std::ratio_divide<ratio_chi, std::ratio<10>> ratio_cun;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 fen = \frac{1}{10} cun = 3.\overline{3} mm\f$.
+ *        \f$1 fen = \frac{1}{10} cun = 3.\overline{3} mm\f$.
  */
 typedef std::ratio_divide<ratio_cun, std::ratio<10>> ratio_length_fen;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 li = \frac{1}{10} fen = 333.\overline{3} um\f$.
+ *        \f$1 li = \frac{1}{10} fen = 333.\overline{3} um\f$.
  */
 typedef std::ratio_divide<ratio_length_fen, std::ratio<10>> ratio_length_li2;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 hao = \frac{1}{10} li = 33.\overline{3} um\f$.
+ *        \f$1 hao = \frac{1}{10} li = 33.\overline{3} um\f$.
  */
 typedef std::ratio_divide<ratio_length_li2, std::ratio<10>> ratio_length_hao;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 si = \frac{1}{10} hao = 3.\overline{3} um\f$.
+ *        \f$1 si = \frac{1}{10} hao = 3.\overline{3} um\f$.
  */
 typedef std::ratio_divide<ratio_length_hao, std::ratio<10>> ratio_length_si;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 hu = \frac{1}{10} si = 333.\overline{3} nm\f$.
+ *        \f$1 hu = \frac{1}{10} si = 333.\overline{3} nm\f$.
  */
 typedef std::ratio_divide<ratio_length_si, std::ratio<10>> ratio_length_hu;
 /**
  * \brief Ratio to convert to suqaremeter.
- * \f$1 qing = 100 mu = 66666.\overline{6} m^{2}\f$.
+ *        \f$1 qing = 100 mu = 66666.\overline{6} m^{2}\f$.
  */
 typedef std::ratio<200000, 3> ratio_qing;
 /**
  * \brief Ratio to convert to suqaremeter.
- * \f$1 mu = 60 zhang^{2} = 666.\overline{6} m^{2}\f$.
+ *        \f$1 mu = 60 zhang^{2} = 666.\overline{6} m^{2}\f$.
  */
 typedef std::ratio<2000, 3> ratio_mu;
 /**
  * \brief Ratio to convert to suqaremeter.
- * \f$1 gong = \frac{1}{240} mu = 277.\overline{7} m^{2}\f$.
+ *        \f$1 gong = \frac{1}{240} mu = 277.\overline{7} m^{2}\f$.
  */
 typedef std::ratio_divide<ratio_mu, std::ratio<240>> ratio_gong;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 dan = 50 kg\f$.
+ *        \f$1 dan = 50 kg\f$.
  */
 typedef std::ratio<50> ratio_dan;
 /**
  * \brief Ratio to convert to kilogram, also called `market carry`.
- * \f$1 jin = 500 g catty\f$.
+ *        \f$1 jin = 500 g catty\f$.
  */
 typedef std::ratio<1, 2> ratio_jin;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 liang = \frac{1}{10} jin = 50 g\f$.
+ *        \f$1 liang = \frac{1}{10} jin = 50 g\f$.
  */
 typedef std::ratio_divide<ratio_jin, std::ratio<10>> ratio_liang;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 qian = \frac{1}{10} liang = 5 g\f$.
+ *        \f$1 qian = \frac{1}{10} liang = 5 g\f$.
  */
 typedef std::ratio_divide<ratio_liang, std::ratio<10>> ratio_qian;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 fen = \frac{1}{10} qian = 500 mg\f$.
+ *        \f$1 fen = \frac{1}{10} qian = 500 mg\f$.
  */
 typedef std::ratio_divide<ratio_qian, std::ratio<10>> ratio_mass_fen;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 li = \frac{1}{10} fen = 50 mg\f$.
+ *        \f$1 li = \frac{1}{10} fen = 50 mg\f$.
  */
 typedef std::ratio_divide<ratio_mass_fen, std::ratio<10>> ratio_mass_li;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 hao = \frac{1}{10} li = 5 mg\f$.
+ *        \f$1 hao = \frac{1}{10} li = 5 mg\f$.
  */
 typedef std::ratio_divide<ratio_mass_li, std::ratio<10>> ratio_mass_hao;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 si = \frac{1}{10} hao = 500 ug\f$.
+ *        \f$1 si = \frac{1}{10} hao = 500 ug\f$.
  */
 typedef std::ratio_divide<ratio_mass_hao, std::ratio<10>> ratio_mass_si;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 hu = \frac{1}{10} si = 50 ug\f$.
+ *        \f$1 hu = \frac{1}{10} si = 50 ug\f$.
  */
 typedef std::ratio_divide<ratio_mass_si, std::ratio<10>> ratio_mass_hu;
 /** @} */
 
 /**
  * \name Yard Pound
- * \relates quantity
+ * \relates Quantity
  * \brief Ratios for International Avoirdupois System of yard and pound units.
  * @{
  */
 /**
  * \brief Ratio to convert to meter.
- * \f$1 mile = 1.609344 km\f$.
+ *        \f$1 mile = 1.609344 km\f$.
  */
 typedef std::ratio_multiply<std::ratio<1609344ll, 1000000ll>, std::kilo> ratio_mile;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 furlong = 201.168 m\f$.
+ *        \f$1 furlong = 201.168 m\f$.
  */
 typedef std::ratio_divide<ratio_mile, std::ratio<8>> ratio_furlong;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 18.0825168539326 m\f$.
+ *        \f$1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 18.0825168539326 m\f$.
  */
 typedef std::ratio_divide<ratio_furlong, std::ratio<10>> ratio_chain;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 yard = \frac{1}{22} chain = \frac{1}{1760} mile = 0.9144 m\f$.
+ *        \f$1 yard = \frac{1}{22} chain = \frac{1}{1760} mile = 0.9144 m\f$.
  */
 typedef std::ratio_divide<ratio_chain, std::ratio<22>> ratio_yard;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 nail = \frac{1}{16} yard = \frac{9}{4} inch = 5.715 cm\f$.
+ *        \f$1 nail = \frac{1}{16} yard = \frac{9}{4} inch = 5.715 cm\f$.
  */
 typedef std::ratio_divide<ratio_yard, std::ratio<16>> ratio_nail;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 feet = \frac{1}{3} yard = 30.48 cm\f$.
+ *        \f$1 feet = \frac{1}{3} yard = 30.48 cm\f$.
  */
 typedef std::ratio_divide<ratio_yard, std::ratio<3>> ratio_feet;
 /**
  * \brief Ratio to convert to meter.
- * \f$1 inch = \frac{1}{12} feet = 2.54 cm\f$.
+ *        \f$1 inch = \frac{1}{12} feet = 2.54 cm\f$.
  */
 typedef std::ratio_divide<ratio_feet, std::ratio<12>> ratio_inch;
 /**
  * \brief Ratio to convert to meter, with symbol `pc`.
- * \f$1 pica = \frac{1}{6} inch = 4.2\overline{3} mm\f$.
+ *        \f$1 pica = \frac{1}{6} inch = 4.2\overline{3} mm\f$.
  */
 typedef std::ratio_divide<ratio_inch, std::ratio<6>> ratio_pica;
 /**
  * \brief Ratio to convert to meter, with symbol 'pt'.
- * \f$1 point = \frac{1}{12} pica = 0.352\overline{7} mm\f$.
+ *        \f$1 point = \frac{1}{12} pica = 0.352\overline{7} mm\f$.
  */
 typedef std::ratio_divide<ratio_pica, std::ratio<12>> ratio_point;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 longton = 2240 pound = 1016.0469088kg\f$.
+ *        \f$1 longton = 2240 pound = 1016.0469088kg\f$.
  */
 typedef std::ratio<10160469088, 10000000> ratio_longton;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 shortton = 2000 pound = 907.18474 kg\f$.
+ *        \f$1 shortton = 2000 pound = 907.18474 kg\f$.
  */
 typedef std::ratio<90718474, 100000> ratio_shortton;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 long\ hundredweight = 112 pound = 50.80234544 kg\f$.
+ *        \f$1 long\ hundredweight = 112 pound = 50.80234544 kg\f$.
  */
 typedef std::ratio<5080234544, 100000000> ratio_long_hundredweight;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 short\ hundredweight = 100 pound = 45.359237 kg\f$.
+ *        \f$1 short\ hundredweight = 100 pound = 45.359237 kg\f$.
  */
 typedef std::ratio<45359237, 1000000> ratio_short_hundredweight;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 pound = 0.45359237 kg\f$.
+ *        \f$1 pound = 0.45359237 kg\f$.
  */
 typedef std::ratio<45359237, 100000000> ratio_pound;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 ounce = \frac{1}{16} pound = 28.349523125 g\f$.
+ *        \f$1 ounce = \frac{1}{16} pound = 28.349523125 g\f$.
  */
 typedef std::ratio_divide<ratio_pound, std::ratio<16>> ratio_ounce;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 drachm = \frac{1}{16} ounce = 1.7718451953125 g\f$.
+ *        \f$1 drachm = \frac{1}{16} ounce = 1.7718451953125 g\f$.
  */
 typedef std::ratio_divide<ratio_ounce, std::ratio<16>> ratio_drachm;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 grain = 64.79891 mg\f$.
+ *        \f$1 grain = 64.79891 mg\f$.
  */
 typedef std::ratio<6479891, 100000> ratio_grain;
 /** @} */
 
 /**
  * \name Imperial Units
- * \relates quantity
+ * \relates Quantity
  * \brief Imperial units of mass and volume
  * @{
  */
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 Imperial\ hundredweight = 8 stone = 112 pound = 50.80234544 kg\f$.
+ *        \f$1 Imperial\ hundredweight = 8 stone = 112 pound = 50.80234544 kg\f$.
  */
 typedef ratio_long_hundredweight ratio_en_hundredweight;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 quarter = 2 stone = 28 pound = 12.70058636 kg\f$.
+ *        \f$1 quarter = 2 stone = 28 pound = 12.70058636 kg\f$.
  */
 typedef std::ratio_multiply<ratio_pound, std::ratio<28>> ratio_en_quarter;
 /**
  * \brief Ratio to convert to kilogram.
- * \f$1 stone = 14 pound = 6.35029318 kg\f$.
+ *        \f$1 stone = 14 pound = 6.35029318 kg\f$.
  */
 typedef std::ratio_multiply<ratio_pound, std::ratio<14>> ratio_en_stone;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 fluid\ dram = 3.5516328125 ml\f$.
+ *        \f$1 fluid\ dram = 3.5516328125 ml\f$.
  */
 typedef std::ratio_multiply<std::ratio<35516328125ll, 10000000000ll>, std::micro> ratio_en_fluid_dram;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 fluid\ ounce = 8 fluind\ dram\f$.
+ *        \f$1 fluid\ ounce = 8 fluind\ dram\f$.
  */
 typedef std::ratio_multiply<ratio_en_fluid_dram, std::ratio<8>> ratio_en_fluid_ounce;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 gill = 5 fluid\ ounce\f$.
+ *        \f$1 gill = 5 fluid\ ounce\f$.
  */
 typedef std::ratio_multiply<ratio_en_fluid_ounce, std::ratio<5>> ratio_en_gill;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 cup = 2 gill\f$.
+ *        \f$1 cup = 2 gill\f$.
  */
 typedef std::ratio_multiply<ratio_en_gill, std::ratio<2>> ratio_en_cup;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 pint = cup\f$.
+ *        \f$1 pint = cup\f$.
  */
 typedef std::ratio_multiply<ratio_en_cup, std::ratio<2>> ratio_en_pint;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 quart = 2 pint\f$.
+ *        \f$1 quart = 2 pint\f$.
  */
 typedef std::ratio_multiply<ratio_en_pint, std::ratio<2>> ratio_en_quart;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 gallon = 4 quart\f$.
+ *        \f$1 gallon = 4 quart\f$.
  */
 typedef std::ratio_multiply<ratio_en_quart, std::ratio<4>> ratio_en_gallon;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 peck = 2 gallon\f$.
+ *        \f$1 peck = 2 gallon\f$.
  */
 typedef std::ratio_multiply<ratio_en_gallon, std::ratio<2>> ratio_en_peck;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 bushel = 4 peck\f$.
+ *        \f$1 bushel = 4 peck\f$.
  */
 typedef std::ratio_multiply<ratio_en_peck, std::ratio<4>> ratio_en_bushel;
 /** @} */
 
 /**
  * \name US Units
- * \relates quantity
+ * \relates Quantity
  * \brief US units of mass and volume
  * @{
  */
 /**
  * \brief Ratio to convert to kilogram
- * \f$1 US hundredweight = 100 pound = 45.359237 kg\f$.
+ *        \f$1 US hundredweight = 100 pound = 45.359237 kg\f$.
  */
 typedef ratio_short_hundredweight ratio_us_hundredweight;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 fluid\ dram = 3.6966911953125 ml\f$.
+ *        \f$1 fluid\ dram = 3.6966911953125 ml\f$.
  */
 typedef std::ratio_multiply<std::ratio<36966911953125ll, 10000000000000ll>, std::micro> ratio_us_fluid_dram;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 fluid\ ounce = 8 fluid\ dram\f$.
+ *        \f$1 fluid\ ounce = 8 fluid\ dram\f$.
  */
 typedef std::ratio_multiply<ratio_us_fluid_dram, std::ratio<8>> ratio_us_fluid_ounce;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 teaspoons = \frac{1}{6} fluid\ ounce\f$.
+ *        \f$1 teaspoons = \frac{1}{6} fluid\ ounce\f$.
  */
 typedef std::ratio_divide<ratio_us_fluid_ounce, std::ratio<6>> ratio_us_teaspoons;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 tablespoons = \frac{1}{2} fluid\ ounce\f$.
+ *        \f$1 tablespoons = \frac{1}{2} fluid\ ounce\f$.
  */
 typedef std::ratio_divide<ratio_us_fluid_ounce, std::ratio<2>> ratio_us_tablespoons;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 gill = 4 fluid\ ounce\f$.
+ *        \f$1 gill = 4 fluid\ ounce\f$.
  */
 typedef std::ratio_multiply<ratio_us_fluid_ounce, std::ratio<4>> ratio_us_gill;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 cup = 2 gill\f$.
+ *        \f$1 cup = 2 gill\f$.
  */
 typedef std::ratio_multiply<ratio_us_gill, std::ratio<2>> ratio_us_cup;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 pint = 2 cup\f$.
+ *        \f$1 pint = 2 cup\f$.
  */
 typedef std::ratio_multiply<ratio_us_cup, std::ratio<2>> ratio_us_pint;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 quart = 2 pint\f$.
+ *        \f$1 quart = 2 pint\f$.
  */
 typedef std::ratio_multiply<ratio_us_pint, std::ratio<2>> ratio_us_quart;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 gallon = 4 quart\f$.
+ *        \f$1 gallon = 4 quart\f$.
  */
 typedef std::ratio_multiply<ratio_us_quart, std::ratio<4>> ratio_us_gallon;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 dry\ pint = 0.5506104713575 l\f$.
+ *        \f$1 dry\ pint = 0.5506104713575 l\f$.
  */
 typedef std::ratio_multiply<std::ratio<5506104713575ll, 10000000000000ll>, std::milli> ratio_us_dry_pint;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 dry\ quart = 2 dry\ pint\f$.
+ *        \f$1 dry\ quart = 2 dry\ pint\f$.
  */
 typedef std::ratio_multiply<ratio_us_dry_pint, std::ratio<2>> ratio_us_dry_quart;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 dry\ gallon = 4 dry\ quart\f$.
+ *        \f$1 dry\ gallon = 4 dry\ quart\f$.
  */
 typedef std::ratio_multiply<ratio_us_dry_quart, std::ratio<4>> ratio_us_dry_gallon;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 dry\ peck = 2 dry\ gallon\f$.
+ *        \f$1 dry\ peck = 2 dry\ gallon\f$.
  */
 typedef std::ratio_multiply<ratio_us_dry_gallon, std::ratio<2>> ratio_us_dry_peck;
 /**
  * \brief Ratio to convert to cubicmeter.
- * \f$1 bushel = 4 dry\ peck\f$.
+ *        \f$1 bushel = 4 dry\ peck\f$.
  */
 typedef std::ratio_multiply<ratio_us_dry_peck, std::ratio<4>> ratio_us_bushel;
 /** @} */
-} // namespace dimensional
+} // namespace Dimensional
 /** @} */
 
 UTILITIES_NAMESPACE_END
 
 /** @} */
 
-#endif // DIMENSIONALANALYSIS_HPP
+#endif // UTILITIES_DIMENSIONALANALYSIS_HPP

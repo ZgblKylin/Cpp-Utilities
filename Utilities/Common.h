@@ -1,5 +1,5 @@
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef UTILITIES_COMMON_HPP
+#define UTILITIES_COMMON_HPP
 
 /**
  * \mainpage Utilities
@@ -15,16 +15,16 @@
  * Helpr classes, typedefs and functions for dimensional analyse.
  *
  * \section repository_files Files
- * - \ref utilities_common.h Macros defined for utilities.
- * - \ref dimensional_analysis/
- *   - \ref dimensional_analysis.hpp Functionalities for dimensional analysis,
+ * - \ref Common.h Macros defined for utilities.
+ * - \ref DimensionalAnalysis/
+ *   - \ref DimensionalAnalysis.hpp Functionalities for dimensional analysis,
  *     guaranteed by strong type, and provides zero-cost abstraction.
- *   - \ref ratios.hpp Functionalities for ratio calculation, such as
+ *   - \ref Ratios.hpp Functionalities for ratio calculation, such as
  *     generating approximiate fraction from decimals.
  */
 
 /**
- * \file utilities_common.h
+ * \file Common.h
  * \brief Macros defined for utilities.
  * \details
  * This file provides macros defined for all utilites.\n
@@ -32,7 +32,7 @@
  * utility symbols will be defined in this namespace.\n
  * **Example:**
  * ```cpp
- * #define UTILITIES_NAMESPACE utilities
+ * #define UTILITIES_NAMESPACE Utilities
  * ```
  */
 
@@ -56,4 +56,4 @@
 #  define UTILITIES_NAMESPACE_END
 #endif
 
-#endif // UTILITIES_HPP
+#endif // UTILITIES_COMMON_HPP
