@@ -7,6 +7,8 @@ var searchData=
   ['safeweakptr',['SafeWeakPtr',['../class_memory_1_1_safe_weak_ptr.html',1,'Memory::SafeWeakPtr&lt; T &gt;'],['../class_memory_1_1_safe_weak_ptr.html#aa202ffc569579e578beb063cad32f2d4',1,'Memory::SafeWeakPtr::SafeWeakPtr() noexcept=default'],['../class_memory_1_1_safe_weak_ptr.html#ace651eec61581b59a9129a654c2662c1',1,'Memory::SafeWeakPtr::SafeWeakPtr(const SafeWeakPtr&lt; Y &gt; &amp;other)'],['../class_memory_1_1_safe_weak_ptr.html#acde74719fc092fac26bb76031450a5fb',1,'Memory::SafeWeakPtr::SafeWeakPtr(const SafeSharedPtr&lt; Y &gt; &amp;other)']]],
   ['scala',['Scala',['../struct_dimensional_1_1_unit.html#aaae0e8ae65b46289af1378c88a397917',1,'Dimensional::Unit']]],
   ['shared_5ffrom_5fthis',['shared_from_this',['../class_memory_1_1_enable_safe_shared_from_this.html#a07f4df51ee3b29aa930181582bc0b954',1,'Memory::EnableSafeSharedFromThis::shared_from_this()'],['../class_memory_1_1_enable_safe_shared_from_this.html#ae3d7ba5ecad32ebd6ddc147b0ae695b6',1,'Memory::EnableSafeSharedFromThis::shared_from_this() const']]],
+  ['shared_5flock',['shared_lock',['../class_memory_1_1_safe_shared_ptr.html#ac047b57efffa44d0babf99846c535af3',1,'Memory::SafeSharedPtr']]],
+  ['sharedlock',['SharedLock',['../class_memory_1_1_safe_shared_ptr.html#a94dd72f327e72c8aff63ab8a97b0895e',1,'Memory::SafeSharedPtr']]],
   ['speed',['Speed',['../struct_dimensional_1_1_unit.html#a2778245cc18590fcf814160ae0c93ced',1,'Dimensional::Unit']]],
   ['standard_5fvalue',['standard_value',['../class_dimensional_1_1_quantity.html#abb794e63000de5ff8e4a1e3958e64fc1',1,'Dimensional::Quantity']]],
   ['static_5fpointer_5fcast',['static_pointer_cast',['../class_memory_1_1_safe_shared_ptr.html#a4dea18ba7a29f4a2760beee3279ab567',1,'Memory::SafeSharedPtr']]],

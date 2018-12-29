@@ -37,8 +37,8 @@
  *   Quantity<double, Dimensional::length, Dimensional::ratio_yard> yards(1.0);
  *   meters += yards;
  *   yards = meters;
- *   // 2.09361mile 1.9144meter 1.9144meter
- *   std::cout << yards.value() << "mile "
+ *   // 2.09361yard 1.9144meter 1.9144meter
+ *   std::cout << yards.value() << "yard "
  *             << yards.standard_value() << "meter "
  *             << meters.value() << "meter" << std::endl;
  *   auto speed = yards / Quantity<double, Dimensional::time>(1);
@@ -67,13 +67,6 @@ UTILITIES_NAMESPACE_BEGIN
 namespace Dimensional {
 /**
  * \brief The Unit struct is used to describe physical units.
- * \details
- *   This template use 7 international base units to describe all physical units,
- *   to guarantee strong-typed unit analysis.\n
- *   Directly use this struct is not suggested, use `UnitMultiply`,
- *   `UnitDivide`, `UnitPower` and `UnitRoot` with `typedef/using` to
- *   generate derived unit with exisiting units.\n
- *   \sa DimensionalAnalysis, Quantity
  * \tparam length               Power factor of length unit.
  * \tparam mass                 Power factor of length mass unit.
  * \tparam time                 Power factor of length time unit.
@@ -81,6 +74,13 @@ namespace Dimensional {
  * \tparam temperature          Power factor of length temperature unit.
  * \tparam amountOfSubstance    Power factor of amount_of_substance unit.
  * \tparam luminousIntensity    Power factor of luminous_intensity unit.
+ * \details
+ *   This template use 7 international base units to describe all physical units,
+ *   to guarantee strong-typed unit analysis.\n
+ *   Directly use this struct is not suggested, use `UnitMultiply`,
+ *   `UnitDivide`, `UnitPower` and `UnitRoot` with `typedef/using` to
+ *   generate derived unit with exisiting units.\n
+ * sa DimensionalAnalysis, Quantity
  */
 template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
 struct Unit
@@ -284,7 +284,7 @@ typedef UnitDivide<Charge, Voltage> ElelctricCapacitance;
  * \brief Electric resistance unit, called **ohm**, with symbol `Ω`, derived
  *        from \f$V/A\f$ or \f$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-2}\f$.
  */
-typedef UnitDivide<Current, Voltage> ElectricResistance;
+typedef UnitDivide<Voltage, Current> ElectricResistance;
 /**
  * \brief Electric conductance unit, called **simens**, with symbol `S`, derived
  *        from \f$1/\Omega\f$ or
@@ -346,6 +346,9 @@ Quantity<T, U, NewRatio> quantity_cast(Quantity<T, U, Ratio> x);
 
 /**
  * \brief The Quantity struct is used to describe arithmetic values with units.
+ * \tparam T        Arithmetic type for value.
+ * \tparam U        Unit type for this physical quantity.
+ * \tparam Ratio    Conversion ratio for nonstandard units such as feet or yard.
  * \details
  *   This template guarantee strong-typed safe calculation of physical values.\n
  *   Variables with different unit cannot add, subtract and compare with each
@@ -353,10 +356,7 @@ Quantity<T, U, NewRatio> quantity_cast(Quantity<T, U, Ratio> x);
  *   unit.\n
  *   Value is allowd to be described with different Ratio. Calculation with
  *   different ratios is safe, and result has same Ratio of first operand.\n
- *   \sa DimensionalAnalysis, Unit
- * \tparam T        Arithmetic type for value.
- * \tparam U        Unit type for this physical quantity.
- * \tparam Ratio    Conversion ratio for nonstandard units such as feet or yard.
+ * \sa DimensionalAnalysis, Unit
  */
 template<typename T, typename U, typename Ratio = std::ratio<1>>
 class Quantity

@@ -115,19 +115,15 @@ $(function() {
 <h3><a id="index_l"></a>- l -</h3><ul>
 <li>lock()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock.html#a8910cf79fa5d02530a57b239f15749a1">Memory::RWSpinLock</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3">Memory::SafeSharedPtr&lt; T &gt;</a>
 , <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a288477018d372f0888f60815328769d9">Memory::SafeWeakPtr&lt; T &gt;</a>
 </li>
 <li>lock_shared()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock.html#afd7f0984624001c03258bee4354e8388">Memory::RWSpinLock</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>lock_upgrade()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock.html#a318a4d4b4f3dc8f6fb4d8c07f15956e7">Memory::RWSpinLock</a>
-</li>
-<li>lockForRead()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03">Memory::SafeSharedPtr&lt; T &gt;</a>
-</li>
-<li>lockForWrite()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 </ul>
 
@@ -244,9 +240,6 @@ $(function() {
 <li>ReadHolder()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html#a9d79840d7b3a3bcba67326950e6e7724">Memory::RWSpinLock::ReadHolder</a>
 </li>
-<li>readLocker()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ad0cf136d4b8d1c0a10d2682910e484c0">Memory::SafeSharedPtr&lt; T &gt;</a>
-</li>
 <li>reinterpret_pointer_cast()
 : <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a29dfd0c539b8114ba4a245b9d678172d">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
@@ -254,7 +247,7 @@ $(function() {
 : <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html#a72ea795eeb8695b526034c35c800411a">Memory::RWSpinLock::ReadHolder</a>
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a87034edbd87288b07f80d9008c647f87">Memory::RWSpinLock::UpgradedHolder</a>
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html#a1f346f9e7532e37ed641d9f16c757510">Memory::RWSpinLock::WriteHolder</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae23bf67de01d20722d835dc9f92628b7">Memory::SafeSharedPtr&lt; T &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae04ef16994300ab38b8890f617780428">Memory::SafeSharedPtr&lt; T &gt;</a>
 , <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a63f83679563c8bed827391e60cd6eaef">Memory::SafeWeakPtr&lt; T &gt;</a>
 </li>
 <li>root()
@@ -281,6 +274,9 @@ $(function() {
 </li>
 <li>shared_from_this()
 : <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a07f4df51ee3b29aa930181582bc0b954">Memory::EnableSafeSharedFromThis&lt; T &gt;</a>
+</li>
+<li>shared_lock()
+: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ac047b57efffa44d0babf99846c535af3">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>standard_value()
 : <a class="el" href="class_dimensional_1_1_quantity.html#abb794e63000de5ff8e4a1e3958e64fc1">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
@@ -315,8 +311,12 @@ $(function() {
 
 
 <h3><a id="index_u"></a>- u -</h3><ul>
+<li>unique_lock()
+: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a26093a080343563c68548e6ae5ccbaa0">Memory::SafeSharedPtr&lt; T &gt;</a>
+</li>
 <li>unlock()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock.html#ae3aca9f278ce35c12300c8159e9e898e">Memory::RWSpinLock</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>unlock_and_lock_shared()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock.html#aae71af29b49eb7345131fb967eb56ee5">Memory::RWSpinLock</a>
@@ -326,6 +326,7 @@ $(function() {
 </li>
 <li>unlock_shared()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock.html#a8ce7c822fdb5e9c3b5997e77186ef2ad">Memory::RWSpinLock</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>unlock_upgrade()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock.html#a0fefc1cc0184d89dc778b5a63903923e">Memory::RWSpinLock</a>
@@ -336,14 +337,8 @@ $(function() {
 <li>unlock_upgrade_and_lock_shared()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock.html#ad5aeb650d708607c0326c6378108bb74">Memory::RWSpinLock</a>
 </li>
-<li>unlockRead()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d">Memory::SafeSharedPtr&lt; T &gt;</a>
-</li>
-<li>unlockWrite()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61">Memory::SafeSharedPtr&lt; T &gt;</a>
-</li>
 <li>UpgradedHolder()
-: <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#ac705369f4a821a31b1fc99851b18d4f2">Memory::RWSpinLock::UpgradedHolder</a>
+: <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a5dba0dda7825da7c391560602883c014">Memory::RWSpinLock::UpgradedHolder</a>
 </li>
 <li>use_count()
 : <a class="el" href="class_memory_1_1_safe_shared_ptr.html#aa0193148c36b6146d578eda25f501995">Memory::SafeSharedPtr&lt; T &gt;</a>
@@ -365,9 +360,6 @@ $(function() {
 </li>
 <li>WriteHolder()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html#a7e3baf33ba3b8e9c16082bea16dcc643">Memory::RWSpinLock::WriteHolder</a>
-</li>
-<li>writeLocker()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#aeca2bb83ebdf8aafffaafae82ff51167">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 </ul>
 

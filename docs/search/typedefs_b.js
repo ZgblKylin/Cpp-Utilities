@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['uniquelock',['UniqueLock',['../class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52',1,'Memory::SafeSharedPtr']]],
   ['unit_5ftype',['unit_type',['../class_dimensional_1_1_quantity.html#aa57e6634876446e1c486df79b207311b',1,'Dimensional::Quantity']]],
   ['unitdivide',['UnitDivide',['../struct_dimensional_1_1_unit.html#a480d403224861d41a81d8c9971c0e396',1,'Dimensional::Unit']]],
   ['unitmultiply',['UnitMultiply',['../struct_dimensional_1_1_unit.html#ab62b0f814065c13ee42a6d0a3fd7ebec',1,'Dimensional::Unit']]],

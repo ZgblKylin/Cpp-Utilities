@@ -96,12 +96,12 @@ Public Types</h2></td></tr>
 <tr class="memitem:afee9452fe9852f8e57a86cf8f3124b89"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#afee9452fe9852f8e57a86cf8f3124b89">ReadWriteLock</a> = std::shared_mutex</td></tr>
 <tr class="memdesc:afee9452fe9852f8e57a86cf8f3124b89"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined to <code>std::shared_mutex</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock.html" title="High-performance read-write-spinlock, see RWSpinLock.hpp for details. ">RWSpinLock</a>.  <a href="#afee9452fe9852f8e57a86cf8f3124b89">More...</a><br /></td></tr>
 <tr class="separator:afee9452fe9852f8e57a86cf8f3124b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab47f6c4ec58e9ef768a6c07d9c090647"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ab47f6c4ec58e9ef768a6c07d9c090647">ReadLocker</a> = std::shared_lock&lt; std::shared_mutex &gt;</td></tr>
-<tr class="memdesc:ab47f6c4ec58e9ef768a6c07d9c090647"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined to <code>std::shared_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html" title="RAII guard for read lock with RWSpinLock::lock_shared() on construction and RWSpinLock::unlock_shared...">RWSpinLock::ReadHolder</a>.  <a href="#ab47f6c4ec58e9ef768a6c07d9c090647">More...</a><br /></td></tr>
-<tr class="separator:ab47f6c4ec58e9ef768a6c07d9c090647"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93132944a4ba455e19cc1f666d7a25da"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a93132944a4ba455e19cc1f666d7a25da">WriteLocker</a> = std::unique_lock&lt; std::shared_mutex &gt;</td></tr>
-<tr class="memdesc:a93132944a4ba455e19cc1f666d7a25da"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined to <code>std::unique_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html" title="RAII guard for write lock with RWSpinLock::lock() on construction and RWSpinLock::unlock() on destruc...">RWSpinLock::WriteHolder</a>.  <a href="#a93132944a4ba455e19cc1f666d7a25da">More...</a><br /></td></tr>
-<tr class="separator:a93132944a4ba455e19cc1f666d7a25da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94dd72f327e72c8aff63ab8a97b0895e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a94dd72f327e72c8aff63ab8a97b0895e">SharedLock</a> = std::shared_lock&lt; std::shared_mutex &gt;</td></tr>
+<tr class="memdesc:a94dd72f327e72c8aff63ab8a97b0895e"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined to <code>std::shared_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html" title="RAII guard for read lock with RWSpinLock::lock_shared() on construction and RWSpinLock::unlock_shared...">RWSpinLock::ReadHolder</a>.  <a href="#a94dd72f327e72c8aff63ab8a97b0895e">More...</a><br /></td></tr>
+<tr class="separator:a94dd72f327e72c8aff63ab8a97b0895e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3073aba790f930cb0036209d01c74e52"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52">UniqueLock</a> = std::unique_lock&lt; std::shared_mutex &gt;</td></tr>
+<tr class="memdesc:a3073aba790f930cb0036209d01c74e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined to <code>std::unique_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html" title="RAII guard for write lock with RWSpinLock::lock() on construction and RWSpinLock::unlock() on destruc...">RWSpinLock::WriteHolder</a>.  <a href="#a3073aba790f930cb0036209d01c74e52">More...</a><br /></td></tr>
+<tr class="separator:a3073aba790f930cb0036209d01c74e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22607aa4670e8d5b16ec3b4055a6f424"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a22607aa4670e8d5b16ec3b4055a6f424">element_type</a> = std::remove_extent_t&lt; T &gt;</td></tr>
 <tr class="memdesc:a22607aa4670e8d5b16ec3b4055a6f424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of element managed. <code>T</code> for C++11, and <code>std::remove_extent_t&lt;T&gt;</code> for C++17.  <a href="#a22607aa4670e8d5b16ec3b4055a6f424">More...</a><br /></td></tr>
 <tr class="separator:a22607aa4670e8d5b16ec3b4055a6f424"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,24 +253,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31c5707b80a33b6dd4c27cb828aa7e7f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a31c5707b80a33b6dd4c27cb828aa7e7f">owner_before</a> (const <a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt; Y &gt; &amp;other) const</td></tr>
 <tr class="memdesc:a31c5707b80a33b6dd4c27cb828aa7e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether this <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> precedes other in implementation defined owner-based (as opposed to value-based) order.  <a href="#a31c5707b80a33b6dd4c27cb828aa7e7f">More...</a><br /></td></tr>
 <tr class="separator:a31c5707b80a33b6dd4c27cb828aa7e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4839bd357e9668d484be59ffb5d33a03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03">lockForRead</a> () const</td></tr>
-<tr class="memdesc:a4839bd357e9668d484be59ffb5d33a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the lock for reading. This function will block the current thread if another thread has locked for writing.  <a href="#a4839bd357e9668d484be59ffb5d33a03">More...</a><br /></td></tr>
-<tr class="separator:a4839bd357e9668d484be59ffb5d33a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7b961f5866178d2d76f3fb754e36b5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d">unlockRead</a> () const</td></tr>
-<tr class="memdesc:ae7b961f5866178d2d76f3fb754e36b5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks the read lock.  <a href="#ae7b961f5866178d2d76f3fb754e36b5d">More...</a><br /></td></tr>
-<tr class="separator:ae7b961f5866178d2d76f3fb754e36b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f0158af2fa1edf915f0c7237323d470"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470">lockForWrite</a> ()</td></tr>
-<tr class="memdesc:a1f0158af2fa1edf915f0c7237323d470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the lock for writing. This function will block the current thread if another thread (including the current) has locked for reading or writing.  <a href="#a1f0158af2fa1edf915f0c7237323d470">More...</a><br /></td></tr>
-<tr class="separator:a1f0158af2fa1edf915f0c7237323d470"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dddb63d043d0519d8cd8579e4fc7a61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61">unlockWrite</a> () const</td></tr>
-<tr class="memdesc:a1dddb63d043d0519d8cd8579e4fc7a61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks the write lock.  <a href="#a1dddb63d043d0519d8cd8579e4fc7a61">More...</a><br /></td></tr>
-<tr class="separator:a1dddb63d043d0519d8cd8579e4fc7a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0cf136d4b8d1c0a10d2682910e484c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ab47f6c4ec58e9ef768a6c07d9c090647">ReadLocker</a> &amp;&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ad0cf136d4b8d1c0a10d2682910e484c0">readLocker</a> () const</td></tr>
-<tr class="memdesc:ad0cf136d4b8d1c0a10d2682910e484c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a RAII guard for read lock, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead()</a> on destruction.  <a href="#ad0cf136d4b8d1c0a10d2682910e484c0">More...</a><br /></td></tr>
-<tr class="separator:ad0cf136d4b8d1c0a10d2682910e484c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeca2bb83ebdf8aafffaafae82ff51167"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a93132944a4ba455e19cc1f666d7a25da">WriteLocker</a> &amp;&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#aeca2bb83ebdf8aafffaafae82ff51167">writeLocker</a> () const</td></tr>
-<tr class="memdesc:aeca2bb83ebdf8aafffaafae82ff51167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a RAII guard for write lock, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite()</a> on destruction.  <a href="#aeca2bb83ebdf8aafffaafae82ff51167">More...</a><br /></td></tr>
-<tr class="separator:aeca2bb83ebdf8aafffaafae82ff51167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9054feae00b20d15e00879a49e683d69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69">lock_shared</a> () const</td></tr>
+<tr class="memdesc:a9054feae00b20d15e00879a49e683d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the lock for reading. This function will block the current thread if another thread has locked for writing.  <a href="#a9054feae00b20d15e00879a49e683d69">More...</a><br /></td></tr>
+<tr class="separator:a9054feae00b20d15e00879a49e683d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae148778e9c3ac646541964ad048538b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2">unlock_shared</a> () const</td></tr>
+<tr class="memdesc:ae148778e9c3ac646541964ad048538b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks the read lock.  <a href="#ae148778e9c3ac646541964ad048538b2">More...</a><br /></td></tr>
+<tr class="separator:ae148778e9c3ac646541964ad048538b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0489e2c856bdae027f8a9f58c9b012f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3">lock</a> ()</td></tr>
+<tr class="memdesc:a0489e2c856bdae027f8a9f58c9b012f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the lock for writing. This function will block the current thread if another thread (including the current) has locked for reading or writing.  <a href="#a0489e2c856bdae027f8a9f58c9b012f3">More...</a><br /></td></tr>
+<tr class="separator:a0489e2c856bdae027f8a9f58c9b012f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e8ba57f44e791d30ee35b9b7e368a3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b">unlock</a> () const</td></tr>
+<tr class="memdesc:a2e8ba57f44e791d30ee35b9b7e368a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks the write lock.  <a href="#a2e8ba57f44e791d30ee35b9b7e368a3b">More...</a><br /></td></tr>
+<tr class="separator:a2e8ba57f44e791d30ee35b9b7e368a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac047b57efffa44d0babf99846c535af3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a94dd72f327e72c8aff63ab8a97b0895e">SharedLock</a> &amp;&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ac047b57efffa44d0babf99846c535af3">shared_lock</a> () const</td></tr>
+<tr class="memdesc:ac047b57efffa44d0babf99846c535af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a RAII guard for read lock, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared()</a> on destruction.  <a href="#ac047b57efffa44d0babf99846c535af3">More...</a><br /></td></tr>
+<tr class="separator:ac047b57efffa44d0babf99846c535af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26093a080343563c68548e6ae5ccbaa0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52">UniqueLock</a> &amp;&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a26093a080343563c68548e6ae5ccbaa0">unique_lock</a> () const</td></tr>
+<tr class="memdesc:a26093a080343563c68548e6ae5ccbaa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a RAII guard for write lock, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock()</a> on destruction.  <a href="#a26093a080343563c68548e6ae5ccbaa0">More...</a><br /></td></tr>
+<tr class="separator:a26093a080343563c68548e6ae5ccbaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="related"></a>
 Related Functions</h2></td></tr>
@@ -401,7 +401,7 @@ class Memory::SafeSharedPtr&lt; T &gt;</h3>
  When <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> is a mutable object, operations with underlying pointer will be guarded by write lock.<br />
  <br />
  <b>Sample Code</b><br />
-</p><div class="fragment"><div class="line"><a class="code" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr&lt;int&gt;</a> ptr = make_shared&lt;int&gt;(0);</div><div class="line">std::thread thread[](<a class="code" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr&lt;int&gt;</a> ptr){</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 1000 * 1000; ++i)</div><div class="line">        +ptr += 1;</div><div class="line">}, ptr);</div><div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 1000 * 1000; ++i)</div><div class="line">    *ptr += 1;</div><div class="line">thread.join();</div><div class="line">std::cout &lt;&lt; *ptr &lt;&lt; std::endl; <span class="comment">// 2000000</span></div></div><!-- fragment --><p> To prevent lock/unlock too often, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead()</a> / <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite()</a>, then use <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a> for raw pointer directly, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead()</a> / <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite()</a> when finished.<br />
+</p><div class="fragment"><div class="line"><a class="code" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr&lt;int&gt;</a> ptr = make_shared&lt;int&gt;(0);</div><div class="line">std::thread thread[](<a class="code" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr&lt;int&gt;</a> ptr){</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 1000 * 1000; ++i)</div><div class="line">        +ptr += 1;</div><div class="line">}, ptr);</div><div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 1000 * 1000; ++i)</div><div class="line">    *ptr += 1;</div><div class="line">thread.join();</div><div class="line">std::cout &lt;&lt; *ptr &lt;&lt; std::endl; <span class="comment">// 2000000</span></div></div><!-- fragment --><p> To prevent lock/unlock too often, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared()</a> / <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock()</a>, then use <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a> for raw pointer directly, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared()</a> / <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock()</a> when finished.<br />
  <br />
  See <a href="https://en.cppreference.com/w/cpp/memory/shared_ptr">https://en.cppreference.com/w/cpp/memory/shared_ptr</a> for more details of functionalities with std::shared_ptr.<br />
 </p><hr/>
@@ -454,8 +454,8 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="ab47f6c4ec58e9ef768a6c07d9c090647"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab47f6c4ec58e9ef768a6c07d9c090647">&#9670;&nbsp;</a></span>ReadLocker</h2>
+<a id="a94dd72f327e72c8aff63ab8a97b0895e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94dd72f327e72c8aff63ab8a97b0895e">&#9670;&nbsp;</a></span>SharedLock</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -463,7 +463,7 @@ template&lt;typename T&gt; </div>
 template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr.html#ab47f6c4ec58e9ef768a6c07d9c090647">ReadLocker</a> =  std::shared_lock&lt;std::shared_mutex&gt;</td>
+          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr.html#a94dd72f327e72c8aff63ab8a97b0895e">SharedLock</a> =  std::shared_lock&lt;std::shared_mutex&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -472,8 +472,8 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a93132944a4ba455e19cc1f666d7a25da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93132944a4ba455e19cc1f666d7a25da">&#9670;&nbsp;</a></span>WriteLocker</h2>
+<a id="a3073aba790f930cb0036209d01c74e52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3073aba790f930cb0036209d01c74e52">&#9670;&nbsp;</a></span>UniqueLock</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -481,7 +481,7 @@ template&lt;typename T&gt; </div>
 template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr.html#a93132944a4ba455e19cc1f666d7a25da">WriteLocker</a> =  std::unique_lock&lt;std::shared_mutex&gt;</td>
+          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52">UniqueLock</a> =  std::unique_lock&lt;std::shared_mutex&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2010,7 +2010,7 @@ template&lt;typename T&gt; </div>
 <p>Returns the stored pointer. </p>
 <dl class="section return"><dt>Returns</dt><dd>The stored pointer. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>A <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> may share ownership of an object while storing a pointer to another object. <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a></code> returns the stored pointer, not the managed pointer. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Thread safety is not gauranteed with this method, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead()</a> / <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite()</a> before <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>, and call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead()</a> / <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite()</a> when finished. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Thread safety is not gauranteed with this method, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared()</a> / <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock()</a> before <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>, and call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared()</a> / <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock()</a> when finished. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>operator*, operator-&gt; </dd></dl>
 
 </div>
@@ -2041,7 +2041,7 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Dereferences the stored pointer, guard it with <b>write lock</b>. The behavior is undefined if the stored pointer is null. </p>
-<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to dereferencing the stored pointer, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite()</a> on destruction. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to dereferencing the stored pointer, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock()</a> on destruction. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get</a> </dd></dl>
 
@@ -2073,7 +2073,7 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Dereferences the stored pointer, guard it with <b>read lock</b>. The behavior is undefined if the stored pointer is null. </p>
-<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to dereferencing the stored pointer, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead()</a> on destruction. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to dereferencing the stored pointer, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared()</a> on destruction. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get</a> </dd></dl>
 
@@ -2105,7 +2105,7 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Dereferences the stored pointer, guard it with <b>write lock</b>. The behavior is undefined if the stored pointer is null. </p>
-<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to the stored pointer, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite()</a> on destruction. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to the stored pointer, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock()</a> on destruction. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get</a> </dd></dl>
 
@@ -2137,7 +2137,7 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Dereferences the stored pointer, guard it with <b>read lock</b>. The behavior is undefined if the stored pointer is null. </p>
-<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to the stored pointer, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead()</a> on destruction. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to the stored pointer, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared()</a> on destruction. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get</a> </dd></dl>
 
@@ -2176,7 +2176,7 @@ template&lt;typename T&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to the idx-th element of the array, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite()</a> on destruction.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to the idx-th element of the array, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock()</a> on destruction.</dd></dl>
 <p>The behavior is undefined if the stored pointer is null or if <code>idx</code> is negative.<br />
  If <code>T</code> (the template parameter of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>) is an array type <code>U[N]</code>, <code>idx</code> must be less than <code>N</code>, otherwise the behavior is undefined.<br />
  When <code>T</code> is not an array type, it is unspecified whether this function is declared. If the function is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function is guaranteed to be legal. </p><dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
@@ -2217,7 +2217,7 @@ template&lt;typename T&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to the idx-th element of the array, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead()</a> on destruction.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A temporary object provides proxy to the idx-th element of the array, with <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared()</a> on destruction.</dd></dl>
 <p>The behavior is undefined if the stored pointer is null or if <code>idx</code> is negative.<br />
  If <code>T</code> (the template parameter of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>) is an array type <code>U[N]</code>, <code>idx</code> must be less than <code>N</code>, otherwise the behavior is undefined.<br />
  When <code>T</code> is not an array type, it is unspecified whether this function is declared. If the function is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function is guaranteed to be legal. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get</a> </dd></dl>
@@ -2387,8 +2387,8 @@ template&lt;typename Y &gt; </div>
 
 </div>
 </div>
-<a id="a4839bd357e9668d484be59ffb5d33a03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4839bd357e9668d484be59ffb5d33a03">&#9670;&nbsp;</a></span>lockForRead()</h2>
+<a id="a9054feae00b20d15e00879a49e683d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9054feae00b20d15e00879a49e683d69">&#9670;&nbsp;</a></span>lock_shared()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2399,7 +2399,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::lockForRead </td>
+          <td class="memname">void <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::lock_shared </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -2413,15 +2413,15 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Locks the lock for reading. This function will block the current thread if another thread has locked for writing. </p>
-<p>Multiply readers in different thread can lockForRead at same time.<br />
+<p>Multiply readers in different thread can lock_shared at same time.<br />
  It is not possible to lock for read if the thread already has locked for write. </p><dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Read-write lock is <code>NOT</code> recursive, locking multiply times in same thread will cause block. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared</a> </dd></dl>
 
 </div>
 </div>
-<a id="ae7b961f5866178d2d76f3fb754e36b5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7b961f5866178d2d76f3fb754e36b5d">&#9670;&nbsp;</a></span>unlockRead()</h2>
+<a id="ae148778e9c3ac646541964ad048538b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae148778e9c3ac646541964ad048538b2">&#9670;&nbsp;</a></span>unlock_shared()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2432,7 +2432,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::unlockRead </td>
+          <td class="memname">void <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::unlock_shared </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -2447,12 +2447,12 @@ template&lt;typename T&gt; </div>
 
 <p>Unlocks the read lock. </p>
 <p>Attempting to unlock a lock that is not locked is an error, and will result in undefined behaviour. </p><dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared</a> </dd></dl>
 
 </div>
 </div>
-<a id="a1f0158af2fa1edf915f0c7237323d470"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f0158af2fa1edf915f0c7237323d470">&#9670;&nbsp;</a></span>lockForWrite()</h2>
+<a id="a0489e2c856bdae027f8a9f58c9b012f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0489e2c856bdae027f8a9f58c9b012f3">&#9670;&nbsp;</a></span>lock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2463,7 +2463,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::lockForWrite </td>
+          <td class="memname">void <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::lock </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -2477,15 +2477,15 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Locks the lock for writing. This function will block the current thread if another thread (including the current) has locked for reading or writing. </p>
-<p>Only <code>one</code> write can lockForWrite at same time.<br />
+<p>Only <code>one</code> write can lock at same time.<br />
  It is not possible to lock for read if the thread already has locked for write. </p><dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Read-write lock is <code>NOT</code> recursive, locking multiply times in same thread will cause block. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock</a> </dd></dl>
 
 </div>
 </div>
-<a id="a1dddb63d043d0519d8cd8579e4fc7a61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1dddb63d043d0519d8cd8579e4fc7a61">&#9670;&nbsp;</a></span>unlockWrite()</h2>
+<a id="a2e8ba57f44e791d30ee35b9b7e368a3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e8ba57f44e791d30ee35b9b7e368a3b">&#9670;&nbsp;</a></span>unlock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2496,7 +2496,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::unlockWrite </td>
+          <td class="memname">void <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::unlock </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -2511,12 +2511,12 @@ template&lt;typename T&gt; </div>
 
 <p>Unlocks the write lock. </p>
 <p>Attempting to unlock a lock that is not locked is an error, and will result in undefined behaviour. </p><dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock</a> </dd></dl>
 
 </div>
 </div>
-<a id="ad0cf136d4b8d1c0a10d2682910e484c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0cf136d4b8d1c0a10d2682910e484c0">&#9670;&nbsp;</a></span>readLocker()</h2>
+<a id="ac047b57efffa44d0babf99846c535af3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac047b57efffa44d0babf99846c535af3">&#9670;&nbsp;</a></span>shared_lock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2527,7 +2527,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#ab47f6c4ec58e9ef768a6c07d9c090647">ReadLocker</a>&amp;&amp; <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::readLocker </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a94dd72f327e72c8aff63ab8a97b0895e">SharedLock</a>&amp;&amp; <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::shared_lock </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -2540,15 +2540,15 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Generate a RAII guard for read lock, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead()</a> on destruction. </p>
+<p>Generate a RAII guard for read lock, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared()</a> on destruction. </p>
 <dl class="section return"><dt>Returns</dt><dd>RAII guard for read lock </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a4839bd357e9668d484be59ffb5d33a03" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lockForRead</a>, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae7b961f5866178d2d76f3fb754e36b5d" title="Unlocks the read lock. ">unlockRead</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">lock_shared</a>, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">unlock_shared</a> </dd></dl>
 
 </div>
 </div>
-<a id="aeca2bb83ebdf8aafffaafae82ff51167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeca2bb83ebdf8aafffaafae82ff51167">&#9670;&nbsp;</a></span>writeLocker()</h2>
+<a id="a26093a080343563c68548e6ae5ccbaa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26093a080343563c68548e6ae5ccbaa0">&#9670;&nbsp;</a></span>unique_lock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2559,7 +2559,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a93132944a4ba455e19cc1f666d7a25da">WriteLocker</a>&amp;&amp; <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::writeLocker </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52">UniqueLock</a>&amp;&amp; <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::unique_lock </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -2572,10 +2572,10 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Generate a RAII guard for write lock, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite()</a> on destruction. </p>
+<p>Generate a RAII guard for write lock, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock()</a> on destruction. </p>
 <dl class="section return"><dt>Returns</dt><dd>RAII write for read lock </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This method is thread-safe. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1f0158af2fa1edf915f0c7237323d470" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lockForWrite</a>, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1dddb63d043d0519d8cd8579e4fc7a61" title="Unlocks the write lock. ">unlockWrite</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">lock</a>, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock. ">unlock</a> </dd></dl>
 
 </div>
 </div>
@@ -3561,7 +3561,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>std::less&lt;<a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;::element_type*&gt;()(lhs.get(), nullptr)</code>.</dd></dl>
-<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> created using the aliasing constructor. </dd></dl>
+<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a SafeSharedPtrcreated using the aliasing constructor. </dd></dl>
 
 </div>
 </div>
@@ -3617,7 +3617,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>std::less&lt;<a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;::element_type*&gt;()(nullptr, rhs.get())</code>.</dd></dl>
-<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> created using the aliasing constructor. </dd></dl>
+<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a SafeSharedPtrcreated using the aliasing constructor. </dd></dl>
 
 </div>
 </div>
@@ -3673,7 +3673,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>nullptr &lt; lhs</code>.</dd></dl>
-<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> created using the aliasing constructor. </dd></dl>
+<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a SafeSharedPtrcreated using the aliasing constructor. </dd></dl>
 
 </div>
 </div>
@@ -3729,7 +3729,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>rhs &lt; nullptr</code>.</dd></dl>
-<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> created using the aliasing constructor. </dd></dl>
+<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a SafeSharedPtrcreated using the aliasing constructor. </dd></dl>
 
 </div>
 </div>
@@ -3785,7 +3785,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>!(nullptr &lt; lhs)</code>.</dd></dl>
-<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> created using the aliasing constructor. </dd></dl>
+<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a SafeSharedPtrcreated using the aliasing constructor. </dd></dl>
 
 </div>
 </div>
@@ -3841,7 +3841,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>!(rhs &lt; nullptr)</code>.</dd></dl>
-<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> created using the aliasing constructor. </dd></dl>
+<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a SafeSharedPtrcreated using the aliasing constructor. </dd></dl>
 
 </div>
 </div>
@@ -3897,7 +3897,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>!(lhs &lt; nullptr)</code>.</dd></dl>
-<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> created using the aliasing constructor. </dd></dl>
+<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a SafeSharedPtrcreated using the aliasing constructor. </dd></dl>
 
 </div>
 </div>
@@ -3953,7 +3953,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>!(nullptr &lt; rhs)</code>.</dd></dl>
-<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> created using the aliasing constructor. </dd></dl>
+<p>The comparison operators for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> simply compare pointer values; the actual objects pointed to are not compared. Having operator&lt; defined for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> allows <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be used as keys in associative containers, like <code>std::map</code> and <code>std::set</code>. </p><dl class="section note"><dt>Note</dt><dd>In all cases, it is the stored pointer (the one returned by <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get()</a>) that is compared, rather than the managed pointer (the one passed to the deleter when use_count goes to zero). The two pointers may differ in a SafeSharedPtrcreated using the aliasing constructor. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82" title="Returns the stored pointer. ">get</a> </dd></dl>
 
 </div>

@@ -60,8 +60,8 @@ template<typename T> class SafeWeakPtr;
  *   thread.join();
  *   std::cout << *ptr << std::endl; // 2000000
  *   ```
- *   To prevent lock/unlock too often, call lockForRead() / lockForWrite(), then
- *   use get() for raw pointer directly, call unlockRead() / unlockWrite() when
+ *   To prevent lock/unlock too often, call lock_shared() / lock(), then
+ *   use get() for raw pointer directly, call unlock_shared() / unlock() when
  *   finished.\n
  *  \n
  *   See https://en.cppreference.com/w/cpp/memory/shared_ptr for more details of
@@ -142,15 +142,15 @@ public:
      */
     using ReadWriteLock = std::shared_mutex;
     /**
-     * \brief defined to `std::shared_lock<std::shared_mutex>` with C++17 or higher,
-     *        otherwise defined to RWSpinLock::ReadHolder.
+     * \brief defined to `std::shared_lock<std::shared_mutex>` with C++17 or
+     *        higher, otherwise defined to RWSpinLock::ReadHolder.
      */
-    using ReadLocker = std::shared_lock<std::shared_mutex>;
+    using SharedLock = std::shared_lock<std::shared_mutex>;
     /**
-     * \brief defined to `std::unique_lock<std::shared_mutex>` with C++17 or higher,
-     *        otherwise defined to RWSpinLock::WriteHolder.
+     * \brief defined to `std::unique_lock<std::shared_mutex>` with C++17 or
+     *        higher, otherwise defined to RWSpinLock::WriteHolder.
      */
-    using WriteLocker = std::unique_lock<std::shared_mutex>;
+    using UniqueLock = std::unique_lock<std::shared_mutex>;
     /**
      * \brief Type of element managed. `T` for C++11, and
      *        `std::remove_extent_t<T>` for C++17.
@@ -163,15 +163,15 @@ public:
      */
     using ReadWriteLock = RWSpinLock;
     /**
-     * \brief defined to `std::shared_lock<std::shared_mutex>` with C++17 or higher,
-     *        otherwise defined to RWSpinLock::ReadHolder.
+     * \brief defined to `std::shared_lock<std::shared_mutex>` with C++17 or
+     *        higher, otherwise defined to RWSpinLock::ReadHolder.
      */
-    using ReadLocker = RWSpinLock::ReadHolder;
+    using SharedLock = RWSpinLock::ReadHolder;
     /**
-     * \brief defined to `std::unique_lock<std::shared_mutex>` with C++17 or higher,
-     *        otherwise defined to RWSpinLock::WriteHolder.
+     * \brief defined to `std::unique_lock<std::shared_mutex>` with C++17 or
+     *        higher, otherwise defined to RWSpinLock::WriteHolder.
      */
-    using WriteLocker = RWSpinLock::WriteHolder;
+    using UniqueLock = RWSpinLock::WriteHolder;
     /**
      * \brief Type of element managed. `T` for C++11, and
      *        `std::remove_extent_t<T>` for C++17.
@@ -190,7 +190,7 @@ public:
      *   called if an exception occurs.
      */
     constexpr SafeSharedPtr()
-        : lock(std::make_shared<ReadWriteLock>())
+        : lck(std::make_shared<ReadWriteLock>())
     {}
 
     /**
@@ -203,7 +203,7 @@ public:
      *   called if an exception occurs.
      */
     constexpr SafeSharedPtr(std::nullptr_t p)
-        : lock(std::make_shared<ReadWriteLock>()),
+        : lck(std::make_shared<ReadWriteLock>()),
           ptr(p)
     {}
 
@@ -222,7 +222,7 @@ public:
      */
     template<typename Y>
     explicit SafeSharedPtr(Y* p)
-        : lock(std::make_shared<ReadWriteLock>()),
+        : lck(std::make_shared<ReadWriteLock>()),
           ptr(p)
     {}
 
@@ -246,7 +246,7 @@ public:
      */
     template<typename Y, typename Deleter>
     SafeSharedPtr(Y* p, Deleter d)
-        : lock(std::make_shared<ReadWriteLock>()),
+        : lck(std::make_shared<ReadWriteLock>()),
           ptr(p, d)
     {}
 
@@ -269,7 +269,7 @@ public:
      */
     template<typename Deleter>
     SafeSharedPtr(std::nullptr_t p, Deleter d)
-        : lock(std::make_shared<ReadWriteLock>()),
+        : lck(std::make_shared<ReadWriteLock>()),
           ptr(p, d)
     {}
 
@@ -296,7 +296,7 @@ public:
      */
     template<typename Y, typename Deleter, typename Alloc>
     SafeSharedPtr(Y* p, Deleter d, Alloc alloc)
-        : lock(std::allocate_shared<ReadWriteLock>(alloc)),
+        : lck(std::allocate_shared<ReadWriteLock>(alloc)),
           ptr(p, d, alloc)
     {}
 
@@ -322,7 +322,7 @@ public:
      */
     template<typename Deleter, typename Alloc>
     SafeSharedPtr(std::nullptr_t p, Deleter d, Alloc alloc)
-        : lock(std::allocate_shared<ReadWriteLock>(alloc)),
+        : lck(std::allocate_shared<ReadWriteLock>(alloc)),
           ptr(p, d, alloc)
     {}
 
@@ -345,7 +345,7 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(const SafeSharedPtr<Y>& other, T* p) noexcept
-        : lock(other.lock), ptr(other.ptr, p)
+        : lck(other.lck), ptr(other.ptr, p)
     {}
 
     /**
@@ -367,7 +367,7 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(const std::shared_ptr<Y>& other, T* p) noexcept
-        : lock(std::make_shared<ReadWriteLock>()), ptr(other, p)
+        : lck(std::make_shared<ReadWriteLock>()), ptr(other, p)
     {}
 
     /**
@@ -377,7 +377,7 @@ public:
      * \param other Another shared pointer to share the ownership to.
      */
     SafeSharedPtr(const SafeSharedPtr<T>& other) noexcept
-        : lock(other.lock), ptr(other.ptr)
+        : lck(other.lck), ptr(other.ptr)
     {}
 
     /**
@@ -389,7 +389,7 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(const SafeSharedPtr<Y>& other) noexcept
-        : lock(other.lock), ptr(other.ptr)
+        : lck(other.lck), ptr(other.ptr)
     {}
 
     /**
@@ -399,7 +399,7 @@ public:
      * \param other Another shared pointer to acquire the ownership from.
      */
     SafeSharedPtr(SafeSharedPtr<T>&& other) noexcept
-        : lock(std::forward<std::shared_ptr<ReadWriteLock>>(other.lock)),
+        : lck(std::forward<std::shared_ptr<ReadWriteLock>>(other.lck)),
           ptr(std::forward<std::shared_ptr<T>>(other.ptr))
     {}
 
@@ -412,7 +412,7 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(SafeSharedPtr<Y>&& other) noexcept
-        : lock(std::forward<std::shared_ptr<ReadWriteLock>>(other.lock)),
+        : lck(std::forward<std::shared_ptr<ReadWriteLock>>(other.lck)),
           ptr(std::forward<std::shared_ptr<Y>>(other.ptr))
     {}
 
@@ -432,7 +432,7 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(const SafeWeakPtr<Y>& other)
-        : lock(other.lck), ptr(other.ptr)
+        : lck(other.lck), ptr(other.ptr)
     {}
 
     /**
@@ -451,7 +451,7 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(const std::shared_ptr<Y>& other)
-        : lock(std::make_shared<ReadWriteLock>()), ptr(other)
+        : lck(std::make_shared<ReadWriteLock>()), ptr(other)
     {}
 
     /**
@@ -467,7 +467,7 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(std::shared_ptr<Y>&& other)
-        : lock(std::make_shared<ReadWriteLock>()),
+        : lck(std::make_shared<ReadWriteLock>()),
           ptr(std::forward<std::shared_ptr<Y>>(other))
     {}
 
@@ -494,7 +494,7 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(const std::weak_ptr<Y>& other)
-        : lock(std::make_shared<ReadWriteLock>()), ptr(other)
+        : lck(std::make_shared<ReadWriteLock>()), ptr(other)
     {}
 
 
@@ -616,7 +616,7 @@ public:
     template<typename Y>
     SafeSharedPtr<T>& operator=(const std::shared_ptr<Y>& other)
     {
-        lock = std::make_shared<ReadWriteLock>();
+        lck = std::make_shared<ReadWriteLock>();
         ptr = other;
         return *this;
     }
@@ -643,7 +643,7 @@ public:
     template<typename Y>
     SafeSharedPtr<T>& operator=(std::shared_ptr<Y>&& other)
     {
-        lock = std::make_shared<ReadWriteLock>();
+        lck = std::make_shared<ReadWriteLock>();
         ptr = std::forward(other);
         return *this;
     }
@@ -773,7 +773,7 @@ public:
      */
     void swap(SafeSharedPtr<T>& other) noexcept
     {
-        lock.swap(other.lock);
+        lck.swap(other.lck);
         ptr.swap(other.ptr);
     }
 
@@ -784,8 +784,8 @@ public:
      *       pointer to another object. `get()` returns the stored pointer, not
      *       the managed pointer.
      * \warning Thread safety is not gauranteed with this method, call
-     *          lockForRead() / lockForWrite() before get(), and call
-     *          unlockRead() / unlockWrite() when finished.
+     *          lock_shared() / lock() before get(), and call
+     *          unlock_shared() / unlock() when finished.
      * \sa operator*, operator->
      */
     T* get() const noexcept
@@ -795,7 +795,7 @@ public:
      * \brief Dereferences the stored pointer, guard it with **write lock**. The
      *        behavior is undefined if the stored pointer is null.
      * \result A temporary object provides proxy to dereferencing the stored
-     *         pointer, with lockForWrite() on construction and unlockWrite() on
+     *         pointer, with lock() on construction and unlock() on
      *         destruction.
      * \note This method is thread-safe.
      * \sa get
@@ -807,7 +807,7 @@ public:
      * \brief Dereferences the stored pointer, guard it with **read lock**. The
      *        behavior is undefined if the stored pointer is null.
      * \result A temporary object provides proxy to dereferencing the stored
-     *         pointer, with lockForRead() on construction and unlockRead() on
+     *         pointer, with lock_shared() on construction and unlock_shared() on
      *         destruction.
      * \note This method is thread-safe.
      * \sa get
@@ -819,7 +819,7 @@ public:
      * \brief Dereferences the stored pointer, guard it with **write lock**. The
      *        behavior is undefined if the stored pointer is null.
      * \result A temporary object provides proxy to the stored pointer, with
-     *         lockForWrite() on construction and unlockWrite() on destruction.
+     *         lock() on construction and unlock() on destruction.
      * \note This method is thread-safe.
      * \sa get
      */
@@ -830,7 +830,7 @@ public:
      * \brief Dereferences the stored pointer, guard it with **read lock**. The
      *        behavior is undefined if the stored pointer is null.
      * \result A temporary object provides proxy to the stored pointer, with
-     *         lockForRead() on construction and unlockRead() on destruction.
+     *         lock_shared() on construction and unlock_shared() on destruction.
      * \note This method is thread-safe.
      * \sa get
      */
@@ -843,7 +843,7 @@ public:
      *        **write lock**.
      * \param idx The array index .
      * \result A temporary object provides proxy to the idx-th element of the
-     *         array, with lockForWrite() on construction and unlockWrite() on
+     *         array, with lock() on construction and unlock() on
      *         destruction.
      * \details
      *   The behavior is undefined if the stored pointer is null or if `idx` is
@@ -865,7 +865,7 @@ public:
      *        **read lock**.
      * \param idx The array index .
      * \result A temporary object provides proxy to the idx-th element of the
-     *         array, with lockForRead() on construction and unlockRead() on
+     *         array, with lock_shared() on construction and unlock_shared() on
      *         destruction.
      * \details
      *   The behavior is undefined if the stored pointer is null or if `idx` is
@@ -963,16 +963,16 @@ public:
      * \brief Locks the lock for reading. This function will block the current
      *        thread if another thread has locked for writing.
      * \details
-     *   Multiply readers in different thread can lockForRead at same time.\n
+     *   Multiply readers in different thread can lock_shared at same time.\n
      *   It is not possible to lock for read if the thread already has locked
      *   for write.
      * \note This method is thread-safe.
      * \warning Read-write lock is `NOT` recursive, locking multiply times in
      *          same thread will cause block.
-     * \sa unlockRead
+     * \sa unlock_shared
      */
-    void lockForRead() const
-    { lock->lock_shared(); }
+    void lock_shared() const
+    { lck->lock_shared(); }
 
     /**
      * \brief Unlocks the read lock.
@@ -980,26 +980,26 @@ public:
      *   Attempting to unlock a lock that is not locked is an error, and will
      *   result in undefined behaviour.
      * \note This method is thread-safe.
-     * \sa lockForRead
+     * \sa lock_shared
      */
-    void unlockRead() const
-    { lock->unlock_shared(); }
+    void unlock_shared() const
+    { lck->unlock_shared(); }
 
     /**
      * \brief Locks the lock for writing. This function will block the current
      *        thread if another thread (including the current) has locked for
      *        reading or writing.
      * \details
-     *   Only `one` write can lockForWrite at same time.\n
+     *   Only `one` write can lock at same time.\n
      *   It is not possible to lock for read if the thread already has locked
      *   for write.
      * \note This method is thread-safe.
      * \warning Read-write lock is `NOT` recursive, locking multiply times in
      *          same thread will cause block.
-     * \sa unlockWrite
+     * \sa unlock
      */
-    void lockForWrite()
-    { lock->lock(); }
+    void lock()
+    { lck->lock(); }
 
     /**
      * \brief Unlocks the write lock.
@@ -1007,45 +1007,45 @@ public:
      *   Attempting to unlock a lock that is not locked is an error, and will
      *   result in undefined behaviour.
      * \note This method is thread-safe.
-     * \sa lockForWrite
+     * \sa lock
      */
-    void unlockWrite() const
-    { lock->unlock(); }
+    void unlock() const
+    { lck->unlock(); }
 
     /**
-     * \brief Generate a RAII guard for read lock, it will call lockForRead() on
-     *        construction and unlockRead() on destruction.
+     * \brief Generate a RAII guard for read lock, it will call lock_shared() on
+     *        construction and unlock_shared() on destruction.
      * \return RAII guard for read lock
      * \note This method is thread-safe.
-     * \sa lockForRead, unlockRead
+     * \sa lock_shared, unlock_shared
      */
-    ReadLocker&& readLocker() const
-    { return std::move(ReadLocker(lock)); }
+    SharedLock&& shared_lock() const
+    { return std::move(SharedLock(lck)); }
 
     /**
-     * \brief Generate a RAII guard for write lock, it will call lockForWrite()
-     *        on construction and unlockWrite() on destruction.
+     * \brief Generate a RAII guard for write lock, it will call lock()
+     *        on construction and unlock() on destruction.
      * \return RAII write for read lock
      * \note This method is thread-safe.
-     * \sa lockForWrite, unlockWrite
+     * \sa lock, unlock
      */
-    WriteLocker&& writeLocker() const
-    { return std::move(WriteLocker(lock)); }
+    UniqueLock&& unique_lock() const
+    { return std::move(UniqueLock(lck)); }
 
     /**
      * \brief Proxy class for operator* and operator-> in SafeSharedPtr, behave
-     *        like underlying object, and provide RAII read-write lock for thread
-     *        safety.
+     *        like underlying object, and provide RAII read-write lock for
+     *        thread safety.
      * \details
-     *   If constructed as constant, it will call SafeSharedPtr::lockForRead() on
-     *   construction and SafeSharedPtr::unlockRead() on destruction.\n
-     *   If constructed as mutable, it will call SafeSharedPtr::lockForWrite() on
-     *   construction and SafeSharedPtr::unlockWrite() on destruction.
+     *   If constructed as constant, it will call SafeSharedPtr::lock_shared()
+     *   on construction and SafeSharedPtr::unlock_shared() on destruction.\n
+     *   If constructed as mutable, it will call SafeSharedPtr::lock() on
+     *   construction and SafeSharedPtr::unlock() on destruction.
      * \note
-     *   Copy constructor and copy assignment are deleted to prevent multiply locks,
-     *   use `std::move` with move constructor and move assignment to transport it's
-     *   ownership, or simply use it like type T* or T&.
-         * \sa SafeSharedPtr
+     *   Copy constructor and copy assignment are deleted to prevent multiply
+     *   locks, use `std::move` with move constructor and move assignment to
+     *   transport it's ownership, or simply use it like type T* or T&.
+     * \sa SafeSharedPtr
      */
     class SafeSharedPtrHelper
     {
@@ -1063,23 +1063,23 @@ public:
          * \brief Constructor a constant SafeSharedPtrHelper to gain access to
          *        underlying object of SafeSharedPtr.
          * \details
-         *   Will call SafeSharedPtr::lockForRead() on construction.
+         *   Will call SafeSharedPtr::lock_shared() on construction.
          * \param p SafeSharedPtr to access from.
          */
         explicit SafeSharedPtrHelper(SafeSharedPtr<T>& p)
             : ptr(&p)
-        { ptr->lockForWrite(); }
+        { ptr->lock(); }
 
         /**
          * \brief Constructor a mutable SafeSharedPtrHelper to gain access to
          *        underlying object of SafeSharedPtr.
          * \details
-         *   Will call SafeSharedPtr::lockForWrite() on construction.
+         *   Will call SafeSharedPtr::lock() on construction.
          * \param p SafeSharedPtr to access from.
          */
         explicit SafeSharedPtrHelper(const SafeSharedPtr<T>& p)
             : constPtr(&p)
-        { constPtr->lockForRead(); }
+        { constPtr->lock_shared(); }
 
         /**
          * \brief Move constructor, transport ownership to another
@@ -1093,14 +1093,14 @@ public:
         }
 
         /**
-         * \brief Destructor, call SafeSharedPtr::unlockRead() if constructed as
-         *        constant, otherwise call SafeSharedPtr::lockForWrite() if
+         * \brief Destructor, call SafeSharedPtr::unlock_shared() if constructed
+         *        as constant, otherwise call SafeSharedPtr::lock() if
          *        constructed as mutable.
          */
         ~SafeSharedPtrHelper()
         {
-            if (ptr) ptr->unlockWrite();
-            if (constPtr) constPtr->unlockRead();
+            if (ptr) ptr->unlock();
+            if (constPtr) constPtr->unlock_shared();
         }
 
         /**
@@ -1187,18 +1187,18 @@ public:
 
     #if __cplusplus >= 201703L
     /**
-     * \brief Proxy class for operator[] in SafeSharedPtr, behave like array element
-     *        of underlying array object, and provide RAII read-write lock for
-     *        thread safety.
+     * \brief Proxy class for operator[] in SafeSharedPtr, behave like array
+     *        element of underlying array object, and provide RAII read-write
+     *        lock for thread safety.
      * \details
-     *   If constructed as constant, it will call SafeSharedPtr::lockForRead() on
-     *   construction and SafeSharedPtr::unlockRead() on destruction.\n
-     *   If constructed as mutable, it will call SafeSharedPtr::lockForWrite() on
-     *   construction and SafeSharedPtr::unlockWrite() on destruction.
+     *   If constructed as constant, it will call SafeSharedPtr::lock_shared()
+     *   on construction and SafeSharedPtr::unlock_shared() on destruction.\n
+     *   If constructed as mutable, it will call SafeSharedPtr::lock() on
+     *   construction and SafeSharedPtr::unlock() on destruction.
      * \note
-     *   Copy constructor and copy assignment are deleted to prevent multiply locks,
-     *   use `std::move` with move constructor and move assignment to transport it's
-     *   ownership, or simply use it like type T* or T&.
+     *   Copy constructor and copy assignment are deleted to prevent multiply
+     *   locks, use `std::move` with move constructor and move assignment to
+     *   transport it's ownership, or simply use it like type T* or T&.
      * \warning
      *   Behavior is undefined if `T` is not array type.
          * \sa SafeSharedPtr
@@ -1218,28 +1218,28 @@ public:
         using const_reference = const element_type&;
 
         /**
-         * \brief Constructor a constant SafeSharedArrayPtrHelper to gain access to
-         *        element of object managed by SafeSharedPtr.
+         * \brief Constructor a constant SafeSharedArrayPtrHelper to gain access
+         *        to element of object managed by SafeSharedPtr.
          * \details
-         *   Will call SafeSharedPtr::lockForRead() on construction.
+         *   Will call SafeSharedPtr::lock_shared() on construction.
          * \param p     SafeSharedPtr to access from.
          * \param idx   Index for element in array to access from.
          */
         SafeSharedArrayPtrHelper(SafeSharedPtr<T>& p, std::ptrdiff_t idx)
             : ptr(&p), index(idx)
-        { ptr->lockForWrite(); }
+        { ptr->lock(); }
 
         /**
-         * \brief Constructor a mutable SafeSharedArrayPtrHelper to gain access to
-         *        element of object managed by SafeSharedPtr.
+         * \brief Constructor a mutable SafeSharedArrayPtrHelper to gain access
+         *        to element of object managed by SafeSharedPtr.
          * \details
-         *   Will call SafeSharedPtr::lockForWrite() on construction.
+         *   Will call SafeSharedPtr::lock() on construction.
          * \param p     SafeSharedPtr to access from.
          * \param idx   Index for element in array to access from.
          */
         SafeSharedArrayPtrHelper(const SafeSharedPtr<T>& p, std::ptrdiff_t idx)
             : constPtr(&p), index(idx)
-        { constPtr->lockForRead(); }
+        { constPtr->lock_shared(); }
 
         /**
          * \brief Move constructor, transport ownership to another
@@ -1254,14 +1254,14 @@ public:
         }
 
         /**
-         * \brief Destructor, call SafeSharedPtr::unlockRead() if constructed as
-         *        constant, otherwise call SafeSharedPtr::lockForWrite() if
+         * \brief Destructor, call SafeSharedPtr::unlock_shared() if constructed
+         *        as constant, otherwise call SafeSharedPtr::lock() if
          *        constructed as mutable.
          */
         ~SafeSharedArrayPtrHelper()
         {
-            if (ptr) ptr->unlockWrite();
-            if (constPtr) constPtr->unlockRead();
+            if (ptr) ptr->unlock();
+            if (constPtr) constPtr->unlock_shared();
         }
 
         /**
@@ -1351,10 +1351,10 @@ public:
 
 private:
     SafeSharedPtr(std::shared_ptr<ReadWriteLock> l, std::shared_ptr<T> p)
-        : lock(l), ptr(p)
+        : lck(l), ptr(p)
     {}
 
-    mutable std::shared_ptr<ReadWriteLock> lock;
+    mutable std::shared_ptr<ReadWriteLock> lck;
     std::shared_ptr<T> ptr;
 };
 
@@ -1605,8 +1605,8 @@ inline SafeSharedPtr<T> const_pointer_cast(const SafeSharedPtr<U>& r) noexcept
  *   The behavior is undefined unless `reinterpret_cast<T*>((U*)nullptr)` is well
  *   formed.
  * \note
- *   The expression `SafeSharedPtr<T>(reinterpret_cast<T*>(r.get()))` might seem to
- *   have the same effect, but they all will likely result in undefined
+ *   The expression `SafeSharedPtr<T>(reinterpret_cast<T*>(r.get()))` might seem
+ *   to have the same effect, but they all will likely result in undefined
  *   behavior, attempting to delete the same object twice!
  */
 template<typename T, typename U>
@@ -1677,8 +1677,8 @@ inline bool operator==(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs)
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T, typename U>
 inline bool operator!=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
@@ -1702,8 +1702,8 @@ inline bool operator!=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs)
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T, typename U>
 inline bool operator<(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
@@ -1725,8 +1725,8 @@ inline bool operator<(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) 
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T, typename U>
 inline bool operator>(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
@@ -1748,8 +1748,8 @@ inline bool operator>(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) 
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T, class U>
 inline bool operator<=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
@@ -1771,8 +1771,8 @@ inline bool operator<=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs)
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T, class U>
 inline bool operator>=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
@@ -1794,8 +1794,8 @@ inline bool operator>=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs)
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T>
 inline bool operator==(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
@@ -1817,8 +1817,8 @@ inline bool operator==(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T>
 inline bool operator==(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
@@ -1840,8 +1840,8 @@ inline bool operator==(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T>
 inline bool operator!=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
@@ -1863,8 +1863,8 @@ inline bool operator!=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtr created using the aliasing constructor.
  */
 template<typename T>
 inline bool operator!=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
@@ -1886,8 +1886,8 @@ inline bool operator!=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtrcreated using the aliasing constructor.
  */
 template<typename T>
 inline bool operator<(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
@@ -1909,8 +1909,8 @@ inline bool operator<(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtrcreated using the aliasing constructor.
  */
 template<typename T>
 inline bool operator<(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
@@ -1932,8 +1932,8 @@ inline bool operator<(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtrcreated using the aliasing constructor.
  */
 template<typename T>
 inline bool operator>(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
@@ -1955,8 +1955,8 @@ inline bool operator>(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtrcreated using the aliasing constructor.
  */
 template<typename T>
 inline bool operator>(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
@@ -1978,8 +1978,8 @@ inline bool operator>(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtrcreated using the aliasing constructor.
  */
 template<typename T>
 inline bool operator<=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
@@ -2001,8 +2001,8 @@ inline bool operator<=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtrcreated using the aliasing constructor.
  */
 template<typename T>
 inline bool operator<=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
@@ -2024,8 +2024,8 @@ inline bool operator<=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtrcreated using the aliasing constructor.
  */
 template<typename T>
 inline bool operator>=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
@@ -2047,8 +2047,8 @@ inline bool operator>=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
- *   when use_count goes to zero). The two pointers may differ in a SafeSharedPtr
- *   created using the aliasing constructor.
+ *   when use_count goes to zero). The two pointers may differ in a
+ *   SafeSharedPtrcreated using the aliasing constructor.
  * \sa get
  */
 template<typename T>
