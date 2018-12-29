@@ -30,4 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Doxygen files
 /docs/latex
