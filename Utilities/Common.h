@@ -6,34 +6,42 @@
  *
  * \section repository_introduction Introduction
  * The Utilities repository provides many useful functionalities.\n
- * All codes are written header-only, so no compile-export-import-link is needed,
- * just use `git-submodule` to add to your project and include whatever `.hpp`
- * files you need.
+ * All codes are written header-only, so no compile-export-import-link is
+ * needed, just use `git-submodule` to add to your project and include whatever
+ * `.hpp` files you need.
  *
  * \section repository_modules Modules
  * \ref DimensionalAnalysis \n
- * Helpr classes, typedefs and functions for dimensional analyse.
+ * Helpr classes, typedefs and functions for dimensional analyse.\n
+ * \ref MemorySafety\n
+ * Helper classes, typedefs and functions for memroy safety.
  *
  * \section repository_files Files
  * - \ref Common.h Macros defined for utilities.
- * - \ref DimensionalAnalysis/
+ * - DimensionalAnalysis/
  *   - \ref DimensionalAnalysis.hpp Functionalities for dimensional analysis,
- *     guaranteed by strong type, and provides zero-cost abstraction.
+ *      guaranteed by strong type, and provides zero-cost abstraction.
  *   - \ref Ratios.hpp Functionalities for ratio calculation, such as
  *     generating approximiate fraction from decimals.
+ * - MemorySafety/
+ *   - \ref RWSpinLock.hpp A extremely high-performance read-write-spinlock
+ *     imported from folly library.
+ *   - \ref SafeShardPtr.hpp Classes wrapped from `std::shared_ptr` /
+ *     `std::weak_ptr` and `std::enable_shared_from_this` to provide thread-safety
+ *     while operating the underlying pointer.
  */
 
 /**
  * \file Common.h
  * \brief Macros defined for utilities.
  * \details
- * This file provides macros defined for all utilites.\n
- * If macro `UTILITIES_NAMESPACE` is defined to a specific symbol name, all
- * utility symbols will be defined in this namespace.\n
- * **Example:**
- * ```cpp
- * #define UTILITIES_NAMESPACE Utilities
- * ```
+ *   This file provides macros defined for all utilites.\n
+ *   If macro `UTILITIES_NAMESPACE` is defined to a specific symbol name, all
+ *   utility symbols will be defined in this namespace.\n
+ *   **Example:**
+ *   ```cpp
+ *   #define UTILITIES_NAMESPACE Utilities
+ *   ```
  */
 
 /**

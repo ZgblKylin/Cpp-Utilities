@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.0.2</span>
+   &#160;<span id="projectnumber">1.0.3</span>
    </div>
   </td>
  </tr>
@@ -87,8 +87,8 @@ Namespaces</h2></td></tr>
  <b>Add/subtract</b> with <b>same</b> unit is allowed, whereas with different units will cause compile error.<br />
  <b>Multiply/divide</b> values with <b>any</b> units is safe, a new value with <b>new unit</b> will be generated.<br />
  <b>User defined unit</b> is supported. Helper types is provided to derive new unit from existsing units.<br />
-<br />
-<b>Sample Code</b><br />
+ <br />
+ <b>Sample Code</b><br />
 </p><div class="fragment"><div class="line"><span class="keyword">using</span> <a class="code" href="class_dimensional_1_1_quantity.html">Dimensional::Quantity</a>;</div><div class="line"><span class="keyword">using</span> <a class="code" href="namespace_dimensional.html#a9bc0764af85e10a73dd0e699a1ba91d3">Dimensional::quantity_cast</a>;</div><div class="line">Quantity&lt;double, Dimensional::length&gt; meters(1);</div><div class="line">Quantity&lt;double, Dimensional::length, Dimensional::ratio_yard&gt; yards(1.0);</div><div class="line">meters += yards;</div><div class="line">yards = meters;</div><div class="line"><span class="comment">// 2.09361mile 1.9144meter 1.9144meter</span></div><div class="line">std::cout &lt;&lt; yards.value() &lt;&lt; <span class="stringliteral">&quot;mile &quot;</span></div><div class="line">          &lt;&lt; yards.standard_value() &lt;&lt; <span class="stringliteral">&quot;meter &quot;</span></div><div class="line">          &lt;&lt; meters.value() &lt;&lt; <span class="stringliteral">&quot;meter&quot;</span> &lt;&lt; std::endl;</div><div class="line"><span class="keyword">auto</span> speed = yards / Quantity&lt;double, Dimensional::time&gt;(1);</div><div class="line"><span class="keyword">using</span> ratio_km_per_h = std::ratio_divide&lt;std::ratio&lt;1000&gt;, std::ratio&lt;3600&gt;&gt;;</div><div class="line"><span class="keyword">using</span> ratio_mile_per_h = std::ratio_divide&lt;Dimensional::ratio_mile, std::ratio&lt;3600&gt;&gt;;</div><div class="line"><span class="comment">// 0.836127m/s 3.01006km/h 1.87036mile/h</span></div><div class="line">std::cout &lt;&lt; speed.value() &lt;&lt; <span class="stringliteral">&quot;m/s &quot;</span></div><div class="line">          &lt;&lt; <a class="code" href="class_dimensional_1_1_quantity.html#a6a71b12c7ca38fddda916be9b5deb574">quantity_cast</a>&lt;ratio_km_per_h&gt;(speed).value() &lt;&lt; <span class="stringliteral">&quot;km/h &quot;</span></div><div class="line">          &lt;&lt; <a class="code" href="class_dimensional_1_1_quantity.html#a6a71b12c7ca38fddda916be9b5deb574">quantity_cast</a>&lt;ratio_mile_per_h&gt;(speed).value() &lt;&lt; <span class="stringliteral">&quot;mile/h&quot;</span></div><div class="line">          &lt;&lt; std::endl;</div></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

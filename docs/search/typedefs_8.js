@@ -70,5 +70,8 @@ var searchData=
   ['ratio_5fxun',['ratio_xun',['../class_dimensional_1_1_quantity.html#a6bf547fc1c4dd349e21d04434da13702',1,'Dimensional::Quantity']]],
   ['ratio_5fyard',['ratio_yard',['../class_dimensional_1_1_quantity.html#aff961ba1d6460cf2278c50bc7db5ad7c',1,'Dimensional::Quantity']]],
   ['ratio_5fyin',['ratio_yin',['../class_dimensional_1_1_quantity.html#a28b156f346515e4cf987735d8809d7b7',1,'Dimensional::Quantity']]],
-  ['ratio_5fzhang',['ratio_zhang',['../class_dimensional_1_1_quantity.html#ac285657d72548268a5fae28108cbd8d0',1,'Dimensional::Quantity']]]
+  ['ratio_5fzhang',['ratio_zhang',['../class_dimensional_1_1_quantity.html#ac285657d72548268a5fae28108cbd8d0',1,'Dimensional::Quantity']]],
+  ['readlocker',['ReadLocker',['../class_memory_1_1_safe_shared_ptr.html#ab47f6c4ec58e9ef768a6c07d9c090647',1,'Memory::SafeSharedPtr']]],
+  ['readwritelock',['ReadWriteLock',['../class_memory_1_1_safe_shared_ptr.html#afee9452fe9852f8e57a86cf8f3124b89',1,'Memory::SafeSharedPtr']]],
+  ['reference',['reference',['../class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#a8d156458ef7f8400878c5e3eb5e78e1d',1,'Memory::SafeSharedPtr::SafeSharedPtrHelper::reference()'],['../class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#ae152444d4e4bea20f6c214af20f7cde7',1,'Memory::SafeSharedPtr::SafeSharedArrayPtrHelper::reference()']]]
 ];

@@ -1,5 +1,4 @@
-#ifndef UTILITIES_RATIOS_HPP
-#define UTILITIES_RATIOS_HPP
+#pragma once
 
 #include <utility>
 #include <cstdint>
@@ -54,5 +53,3 @@ std::pair<intmax_t, intmax_t> approximateRatio(long double value, int n)
 /** @} */
 
 UTILITIES_NAMESPACE_END
-
-#endif // UTILITIES_RATIOS_HPP

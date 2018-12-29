@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pow',['pow',['../class_dimensional_1_1_quantity.html#a4d6941bd4f7a697e730b0e2fb2355096',1,'Dimensional::Quantity']]]
+  ['const_5fpointer_5fcast',['const_pointer_cast',['../class_memory_1_1_safe_shared_ptr.html#a856963fe8204761ebecfebdcc793c041',1,'Memory::SafeSharedPtr']]]
 ];

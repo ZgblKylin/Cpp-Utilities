@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['length',['Length',['../struct_dimensional_1_1_unit.html#af779ef69e622c35d24fee1e947161903',1,'Dimensional::Unit']]],
-  ['luminous',['Luminous',['../struct_dimensional_1_1_unit.html#a7393ed41aaf3662939eb4105f3c6aa17',1,'Dimensional::Unit']]],
-  ['luminousintensity',['LuminousIntensity',['../struct_dimensional_1_1_unit.html#a5c12a7af0dd71e20365b0769d5b78fb0',1,'Dimensional::Unit']]]
+  ['get',['get',['../class_memory_1_1_safe_shared_ptr.html#a48098ba0e412f851599fb73fb07bba82',1,'Memory::SafeSharedPtr']]],
+  ['get_5fdeleter',['get_deleter',['../class_memory_1_1_safe_shared_ptr.html#ace42ca49c33d5133308a117c1c6ad2b5',1,'Memory::SafeSharedPtr']]]
 ];

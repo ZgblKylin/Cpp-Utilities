@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.0.2</span>
+   &#160;<span id="projectnumber">1.0.3</span>
    </div>
   </td>
  </tr>
@@ -73,14 +73,21 @@ All codes are written header-only, so no compile-export-import-link is needed, j
 <h1><a class="anchor" id="repository_modules"></a>
 Modules</h1>
 <p><a class="el" href="group___dimensional_analysis.html">Dimensional Analysis</a> <br />
-Helpr classes, typedefs and functions for dimensional analyse.</p>
+Helpr classes, typedefs and functions for dimensional analyse.<br />
+<a class="el" href="group___memory_safety.html">Memory Safety</a><br />
+Helper classes, typedefs and functions for memroy safety.</p>
 <h1><a class="anchor" id="repository_files"></a>
 Files</h1>
 <ul>
 <li><a class="el" href="_common_8h.html">Common.h</a> Macros defined for utilities.</li>
-<li><a class="el" href="group___dimensional_analysis.html">Dimensional Analysis</a>/<ul>
+<li>DimensionalAnalysis/<ul>
 <li><a class="el" href="_dimensional_analysis_8hpp.html">DimensionalAnalysis.hpp</a> Functionalities for dimensional analysis, guaranteed by strong type, and provides zero-cost abstraction.</li>
-<li><a class="el" href="_ratios_8hpp.html">Ratios.hpp</a> Functionalities for ratio calculation, such as generating approximiate fraction from decimals. </li>
+<li><a class="el" href="_ratios_8hpp.html">Ratios.hpp</a> Functionalities for ratio calculation, such as generating approximiate fraction from decimals.</li>
+</ul>
+</li>
+<li>MemorySafety/<ul>
+<li><a class="el" href="_r_w_spin_lock_8hpp.html">RWSpinLock.hpp</a> A extremely high-performance read-write-spinlock imported from folly library.</li>
+<li><a class="el" href="_safe_shard_ptr_8hpp.html">SafeShardPtr.hpp</a> Classes wrapped from <code>std::shared_ptr</code> / <code>std::weak_ptr</code> and <code>std::enable_shared_from_this</code> to provide thread-safety while operating the underlying pointer. </li>
 </ul>
 </li>
 </ul>

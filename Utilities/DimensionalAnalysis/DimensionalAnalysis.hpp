@@ -1,5 +1,4 @@
-#ifndef UTILITIES_DIMENSIONALANALYSIS_HPP
-#define UTILITIES_DIMENSIONALANALYSIS_HPP
+#pragma once
 
 #include <tuple>
 #include <ratio>
@@ -9,51 +8,53 @@
 /**
  * \defgroup DimensionalAnalysis Dimensional Analysis
  * \brief Helper classes, typedefs and functions for dimensional analyse.
- * \details Provide helperful functionalities for dimensional analysis with
- *          pros:\n
- *          **Zero-cost abstraction** Using template to encapsulate
- *          functionalities, grants same memory-layout and runtime performance
- *          as primitive types.\n
- *          **Strong typed** All values in dimensional objects has its unique
-            **unit**, calculation between them is guaranteed by compiler
- *          warning and **error**.\n
- *          **Non-standard unit** of same "type", like `yard` vs `meter`, is
- *          supported, and will be regarded like **same** unit, `std::ratio` is
- *          used for modifier of the unit. Calculations between same unit with
- *          different ratio is safe, ratios of each operand will be performed
- *          into the calculation.\n
- *          **Add/subtract** with **same** unit is allowed, whereas with
- *          different units will cause compile error.\n
- *          **Multiply/divide** values with **any** units is safe, a new value
- *          with **new unit** will be generated.\n
- *          **User defined unit** is supported. Helper types is provided to
- *          derive new unit from existsing units.\n
- * \n
- * **Sample Code**\n
- * ```cpp
- * using Dimensional::Quantity;
- * using Dimensional::quantity_cast;
- * Quantity<double, Dimensional::length> meters(1);
- * Quantity<double, Dimensional::length, Dimensional::ratio_yard> yards(1.0);
- * meters += yards;
- * yards = meters;
- * // 2.09361mile 1.9144meter 1.9144meter
- * std::cout << yards.value() << "mile "
- *           << yards.standard_value() << "meter "
- *           << meters.value() << "meter" << std::endl;
- * auto speed = yards / Quantity<double, Dimensional::time>(1);
- * using ratio_km_per_h = std::ratio_divide<std::ratio<1000>, std::ratio<3600>>;
- * using ratio_mile_per_h = std::ratio_divide<Dimensional::ratio_mile, std::ratio<3600>>;
- * // 0.836127m/s 3.01006km/h 1.87036mile/h
- * std::cout << speed.value() << "m/s "
- *           << quantity_cast<ratio_km_per_h>(speed).value() << "km/h "
- *           << quantity_cast<ratio_mile_per_h>(speed).value() << "mile/h"
- *           << std::endl;
- * ```
+ * \details
+ *   Provide helperful functionalities for dimensional analysis with
+ *   pros:\n
+ *   **Zero-cost abstraction** Using template to encapsulate
+ *   functionalities, grants same memory-layout and runtime performance
+ *   as primitive types.\n
+ *   **Strong typed** All values in dimensional objects has its unique
+     **unit**, calculation between them is guaranteed by compiler
+ *   warning and **error**.\n
+ *   **Non-standard unit** of same "type", like `yard` vs `meter`, is
+ *   supported, and will be regarded like **same** unit, `std::ratio` is
+ *   used for modifier of the unit. Calculations between same unit with
+ *   different ratio is safe, ratios of each operand will be performed
+ *   into the calculation.\n
+ *   **Add/subtract** with **same** unit is allowed, whereas with
+ *   different units will cause compile error.\n
+ *   **Multiply/divide** values with **any** units is safe, a new value
+ *   with **new unit** will be generated.\n
+ *   **User defined unit** is supported. Helper types is provided to
+ *   derive new unit from existsing units.\n
+ *   \n
+ *   **Sample Code**\n
+ *   ```cpp
+ *   using Dimensional::Quantity;
+ *   using Dimensional::quantity_cast;
+ *   Quantity<double, Dimensional::length> meters(1);
+ *   Quantity<double, Dimensional::length, Dimensional::ratio_yard> yards(1.0);
+ *   meters += yards;
+ *   yards = meters;
+ *   // 2.09361mile 1.9144meter 1.9144meter
+ *   std::cout << yards.value() << "mile "
+ *             << yards.standard_value() << "meter "
+ *             << meters.value() << "meter" << std::endl;
+ *   auto speed = yards / Quantity<double, Dimensional::time>(1);
+ *   using ratio_km_per_h = std::ratio_divide<std::ratio<1000>, std::ratio<3600>>;
+ *   using ratio_mile_per_h = std::ratio_divide<Dimensional::ratio_mile, std::ratio<3600>>;
+ *   // 0.836127m/s 3.01006km/h 1.87036mile/h
+ *   std::cout << speed.value() << "m/s "
+ *             << quantity_cast<ratio_km_per_h>(speed).value() << "km/h "
+ *             << quantity_cast<ratio_mile_per_h>(speed).value() << "mile/h"
+ *             << std::endl;
+ *   ```
  * @{
  */
 
 UTILITIES_NAMESPACE_BEGIN
+
 /**
  * \namespace Dimensional
  * \brief Namespace for all classes, typedefs and functions of dimensional
@@ -67,12 +68,12 @@ namespace Dimensional {
 /**
  * \brief The Unit struct is used to describe physical units.
  * \details
- * This template use 7 international base units to describe all physical units,
- * to guarantee strong-typed unit analysis.\n
- * Directly use this struct is not suggested, use `UnitMultiply`,
- * `UnitDivide`, `UnitPower` and `UnitRoot` with `typedef/using` to
- * generate derived unit with exisiting units.\n
- * See \ref DimensionalAnalysis for samples.
+ *   This template use 7 international base units to describe all physical units,
+ *   to guarantee strong-typed unit analysis.\n
+ *   Directly use this struct is not suggested, use `UnitMultiply`,
+ *   `UnitDivide`, `UnitPower` and `UnitRoot` with `typedef/using` to
+ *   generate derived unit with exisiting units.\n
+ *   \sa DimensionalAnalysis, Quantity
  * \tparam length               Power factor of length unit.
  * \tparam mass                 Power factor of length mass unit.
  * \tparam time                 Power factor of length time unit.
@@ -346,13 +347,13 @@ Quantity<T, U, NewRatio> quantity_cast(Quantity<T, U, Ratio> x);
 /**
  * \brief The Quantity struct is used to describe arithmetic values with units.
  * \details
- * This template guarantee strong-typed safe calculation of physical values.\n
- * Variables with different unit cannot add, subtract and compare with each
- * other. Multiply, divide, power, root calculation will generate value with
- * unit.\n
- * Value is allowd to be described with different Ratio. Calculation with
- * different ratios is safe, and result has same Ratio of first operand.\n
- * See \ref DimensionalAnalysis for samples.
+ *   This template guarantee strong-typed safe calculation of physical values.\n
+ *   Variables with different unit cannot add, subtract and compare with each
+ *   other. Multiply, divide, power, root calculation will generate value with
+ *   unit.\n
+ *   Value is allowd to be described with different Ratio. Calculation with
+ *   different ratios is safe, and result has same Ratio of first operand.\n
+ *   \sa DimensionalAnalysis, Unit
  * \tparam T        Arithmetic type for value.
  * \tparam U        Unit type for this physical quantity.
  * \tparam Ratio    Conversion ratio for nonstandard units such as feet or yard.
@@ -526,16 +527,16 @@ private:
  * \tparam  U       Unit of operands.
  * \tparam  Ratio1  Ratio of first operand.
  * \tparam  Ratio2  Ratio of second operand.
- * \param   x       First operand.
- * \param   y       Second operand.
+ * \param   lhs     First operand.
+ * \param   rhs     Second operand.
  * \return Calculation result represened with `Ratio1.`
  */
 template<typename T, typename U, typename Ratio1, typename Ratio2>
 inline Quantity<T, U, Ratio1>
-operator+(Quantity<T, U, Ratio1> x, Quantity<T, U, Ratio2> y)
+operator+(Quantity<T, U, Ratio1> lhs, Quantity<T, U, Ratio2> rhs)
 {
-    return Quantity<T, U, Ratio1>(x.value()
-                                  + quantity_cast<Ratio1>(y).value());
+    return Quantity<T, U, Ratio1>(lhs.value()
+                                  + quantity_cast<Ratio1>(rhs).value());
 }
 
 /**
@@ -547,16 +548,16 @@ operator+(Quantity<T, U, Ratio1> x, Quantity<T, U, Ratio2> y)
  * \tparam  U       Unit of operands.
  * \tparam  Ratio1  Ratio of first operand.
  * \tparam  Ratio2  Ratio of second operand.
- * \param   x       First operand.
- * \param   y       Second operand.
+ * \param   lhs      First operand.
+ * \param   rhs      Second operand.
  * \return Calculation result represened with `Ratio1.`
  */
 template<typename T, typename U, typename Ratio1, typename Ratio2>
 inline Quantity<T, U, Ratio1>
-operator-(Quantity<T, U, Ratio1>& x, Quantity<T, U, Ratio2> y)
+operator-(Quantity<T, U, Ratio1>& lhs, Quantity<T, U, Ratio2> rhs)
 {
-    return Quantity<T, U, Ratio1>(x.value()
-                                  - quantity_cast<Ratio1>(y).value());
+    return Quantity<T, U, Ratio1>(lhs.value()
+                                  - quantity_cast<Ratio1>(rhs).value());
 }
 
 /**
@@ -569,17 +570,17 @@ operator-(Quantity<T, U, Ratio1>& x, Quantity<T, U, Ratio2> y)
  * \tparam  Ratio1  Ratio of first operand.
  * \tparam  Unit2   Unit of second operand.
  * \tparam  Ratio2  Ratio of second operand.
- * \param   x       First operand.
- * \param   y       Second operand.
+ * \param   lhs     First operand.
+ * \param   rhs     Second operand.
  * \return Calculation result represened with `Ratio1.`
  */
 template<typename T, typename Unit1, typename Ratio1, typename Unit2, typename Ratio2>
 inline Quantity<T, UnitMultiply<Unit1, Unit2>, Ratio1>
-operator*(Quantity<T, Unit1, Ratio1> x, Quantity<T, Unit2, Ratio2> y)
+operator*(Quantity<T, Unit1, Ratio1> lhs, Quantity<T, Unit2, Ratio2> rhs)
 {
     using dim = UnitMultiply<Unit1, Unit2>;
-    return Quantity<T, dim, Ratio1>(x.value()
-                                    * quantity_cast<Ratio1>(y).value());
+    return Quantity<T, dim, Ratio1>(lhs.value()
+                                    * quantity_cast<Ratio1>(rhs).value());
 }
 
 /**
@@ -592,17 +593,17 @@ operator*(Quantity<T, Unit1, Ratio1> x, Quantity<T, Unit2, Ratio2> y)
  * \tparam  Ratio1  Ratio of first operand.
  * \tparam  Unit2   Unit of second operand.
  * \tparam  Ratio2  Ratio of second operand.
- * \param   x       First operand.
- * \param   y       Second operand.
+ * \param   lhs     First operand.
+ * \param   rhs     Second operand.
  * \return Calculation result represened with `Ratio1.`
  */
 template<typename T, typename Unit1, typename Ratio1, typename Unit2, typename Ratio2>
 inline Quantity<T, UnitDivide<Unit1, Unit2>, Ratio1>
-operator/(Quantity<T, Unit1, Ratio1> x, Quantity<T, Unit2, Ratio2> y)
+operator/(Quantity<T, Unit1, Ratio1> lhs, Quantity<T, Unit2, Ratio2> rhs)
 {
     using dim = UnitDivide<Unit1, Unit2>;
-    return Quantity<T, dim, Ratio1>(x.value()
-                                    / quantity_cast<Ratio1>(y).value());
+    return Quantity<T, dim, Ratio1>(lhs.value()
+                                    / quantity_cast<Ratio1>(rhs).value());
 }
 
 /**
@@ -1060,5 +1061,3 @@ typedef std::ratio_multiply<ratio_us_dry_peck, std::ratio<4>> ratio_us_bushel;
 UTILITIES_NAMESPACE_END
 
 /** @} */
-
-#endif // UTILITIES_DIMENSIONALANALYSIS_HPP
