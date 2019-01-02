@@ -497,7 +497,6 @@ public:
         : lck(std::make_shared<ReadWriteLock>()), ptr(other)
     {}
 
-
     /**
      * \brief Destructor, destructs the owned object if no more SafeSharedPtr
      *        link to it.
