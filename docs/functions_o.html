@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.0.3</span>
+   &#160;<span id="projectnumber">1.1.0</span>
    </div>
   </td>
  </tr>
@@ -68,23 +68,27 @@ $(function() {
 <li>operator bool()
 : <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ab4f3d84c401dc5458ddb7b2409ab1a95">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
+<li>operator const_pointer()
+: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a3371e46c33a259671fa1eba8f7d52893">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
+</li>
 <li>operator const_reference()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#aab08a8f65e3829bb9bc7ed1e02742c28">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedArrayPtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#a8e669c0449b1e2e149db276936dee774">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedPtrHelper</a>
+: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#aa51919315c2258d8bcd59472f06bee27">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a1787b8904f8867b8fce893928de08243">Memory::SafeSharedPtr&lt; T &gt;::RefHelper</a>
+</li>
+<li>operator pointer()
+: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#ac466113e7ecbf25bd8bfad9cfd83cba1">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
 </li>
 <li>operator reference()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#ab1e3ae62d3b4b75420937987a4290e8d">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedArrayPtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#ac637063731617d6c2948fde8ddefccd9">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedPtrHelper</a>
+: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a19fc3cd1a7bab8ad2297d5aa720565d5">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a7f95e2ec478775b1850303aac0de0607">Memory::SafeSharedPtr&lt; T &gt;::RefHelper</a>
 </li>
 <li>operator!=()
 : <a class="el" href="class_dimensional_1_1_quantity.html#aebe2b34f87e01d71d7d1d77ac38cdfef">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a20be7a051613d73357f1f37567584af5">Memory::SafeSharedPtr&lt; T &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#af0747db920a97bbfc4b8f8e6b087126d">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>operator*()
 : <a class="el" href="class_dimensional_1_1_quantity.html#ad129be6aadefea0016e47d71dc3aaf94">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a7136e2d6e1ee1d9629216210c5f0993c">Memory::SafeSharedPtr&lt; T &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#ac114bca5a0da6c6467f3bd25ad42cf43">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedArrayPtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#a382c68cb713b7a828302e52e9dd72684">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedPtrHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a08a2df8f83a90fa26353a9c220c4eedd">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>operator+()
 : <a class="el" href="class_dimensional_1_1_quantity.html#a2cb2a57bae59e96d9894b877d0a46b04">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
@@ -96,9 +100,8 @@ $(function() {
 : <a class="el" href="class_dimensional_1_1_quantity.html#a18c90a00a9838498b5f2846fd25ffc27">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
 </li>
 <li>operator-&gt;()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ac80dad3f01950ca3295bd45565f01ea1">Memory::SafeSharedPtr&lt; T &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#a2b36d59abe9f2620b1ed21fdaa345791">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedArrayPtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#aba3589b4391e3a1c40cf5ea7e35510b8">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedPtrHelper</a>
+: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a279d36432aa9b9a9875a45a1dcbbd158">Memory::SafeSharedPtr&lt; T &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a996a7d5cc17112a5f55b5401f581d425">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
 </li>
 <li>operator/()
 : <a class="el" href="class_dimensional_1_1_quantity.html#aefd6bb39884379afb271ef2776d333c1">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
@@ -121,14 +124,15 @@ $(function() {
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html#a7f6dc136683edf16c662ca4083f09b4c">Memory::RWSpinLock::ReadHolder</a>
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a3328c954aafe9c1c7e69872e1a22965f">Memory::RWSpinLock::UpgradedHolder</a>
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html#ab922b03e727fcd8d93bc3585a3851593">Memory::RWSpinLock::WriteHolder</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a38fd5594f4062ed48ad5a03df76ebf96">Memory::SafeSharedPtr&lt; T &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#a7537a002453877014445bd739e72f409">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedArrayPtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#ac511e6e5ed26b8f2696bde0318ef8224">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedPtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a77d7a4f9918e1526a5b634ea72ae264c">Memory::SafeWeakPtr&lt; T &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a80d05c856bdb49c43a61892972ef83dd">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ac7bf58f3bb1d7220bf5f52c7cd65a721">Memory::SafeSharedPtr&lt; T &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a7a3bcfa8c27986ad4c93613fe4c11a2c">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a59b5a7214273fa90e0b5e07856e1e03f">Memory::SafeSharedPtr&lt; T &gt;::RefHelper</a>
+, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#af4d50920bfce372761c1efbba4fc9b73">Memory::SafeWeakPtr&lt; T &gt;</a>
 </li>
 <li>operator==()
 : <a class="el" href="class_dimensional_1_1_quantity.html#a3561837402ddff080205e06e4e3a834d">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a61aa5232247537b3f4a3763477a2f642">Memory::SafeSharedPtr&lt; T &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ac53e07f9f4e07d2d8b4a1a5d85cb3b47">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>operator&gt;()
 : <a class="el" href="class_dimensional_1_1_quantity.html#a4c809b1c85ae8152e543e16290b095a3">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
@@ -139,11 +143,11 @@ $(function() {
 , <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a87c1fe1f0b57138c0e5081406056d348">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>operator[]()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a66769b0ecebcf1afd6af0dc22ab84199">Memory::SafeSharedPtr&lt; T &gt;</a>
+: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a5ea86c8dcc5ad23decbddc4cf0fa3772">Memory::SafeSharedPtr&lt; T &gt;</a>
 </li>
 <li>owner_before()
 : <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a13bcc785c0d40055626647380c03c5be">Memory::SafeSharedPtr&lt; T &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a0960e7fe2910f396054972c39dec8882">Memory::SafeWeakPtr&lt; T &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#abebb765253b4be0a7e0632932f7f5e75">Memory::SafeWeakPtr&lt; T &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->

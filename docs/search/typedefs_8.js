@@ -72,5 +72,5 @@ var searchData=
   ['ratio_5fyin',['ratio_yin',['../class_dimensional_1_1_quantity.html#a28b156f346515e4cf987735d8809d7b7',1,'Dimensional::Quantity']]],
   ['ratio_5fzhang',['ratio_zhang',['../class_dimensional_1_1_quantity.html#ac285657d72548268a5fae28108cbd8d0',1,'Dimensional::Quantity']]],
   ['readwritelock',['ReadWriteLock',['../class_memory_1_1_safe_shared_ptr.html#afee9452fe9852f8e57a86cf8f3124b89',1,'Memory::SafeSharedPtr']]],
-  ['reference',['reference',['../class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#a8d156458ef7f8400878c5e3eb5e78e1d',1,'Memory::SafeSharedPtr::SafeSharedPtrHelper::reference()'],['../class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#ae152444d4e4bea20f6c214af20f7cde7',1,'Memory::SafeSharedPtr::SafeSharedArrayPtrHelper::reference()']]]
+  ['reference',['reference',['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a063314acbebdf26217bfd3e2e2188c3d',1,'Memory::SafeSharedPtr::PtrHelper::reference()'],['../class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a0042aff40abefb9fa5d716734e3bd7f5',1,'Memory::SafeSharedPtr::RefHelper::reference()'],['../class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a5d02c7cc273e5ea5adfaa4759023ae9d',1,'Memory::SafeSharedPtr::ArrayHelper::reference()']]]
 ];

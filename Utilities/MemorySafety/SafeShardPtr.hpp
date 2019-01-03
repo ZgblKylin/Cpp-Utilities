@@ -132,8 +132,9 @@ template<typename T>
 class SafeSharedPtr
 {
 public:
-    class SafeSharedPtrHelper;
-    class SafeSharedArrayPtrHelper;
+    class PtrHelper;
+    class RefHelper;
+    class ArrayHelper;
 
 #if __cplusplus >= 201703L
     /**
@@ -799,8 +800,8 @@ public:
      * \note This method is thread-safe.
      * \sa get
      */
-    SafeSharedPtrHelper operator*() noexcept
-    { return std::move(SafeSharedPtrHelper(*this)); }
+    RefHelper operator*() noexcept
+    { return std::move(RefHelper(*this)); }
 
     /**
      * \brief Dereferences the stored pointer, guard it with **read lock**. The
@@ -811,8 +812,8 @@ public:
      * \note This method is thread-safe.
      * \sa get
      */
-    const SafeSharedPtrHelper operator*() const noexcept
-    { return std::move(SafeSharedPtrHelper(*this)); }
+    const RefHelper operator*() const noexcept
+    { return std::move(RefHelper(*this)); }
 
     /**
      * \brief Dereferences the stored pointer, guard it with **write lock**. The
@@ -822,8 +823,8 @@ public:
      * \note This method is thread-safe.
      * \sa get
      */
-    SafeSharedPtrHelper operator->() noexcept
-    { return std::move(SafeSharedPtrHelper(*this)); }
+    PtrHelper operator->() noexcept
+    { return std::move(PtrHelper(*this)); }
 
     /**
      * \brief Dereferences the stored pointer, guard it with **read lock**. The
@@ -833,8 +834,8 @@ public:
      * \note This method is thread-safe.
      * \sa get
      */
-    const SafeSharedPtrHelper operator->() const noexcept
-    { return std::move(SafeSharedPtrHelper(*this)); }
+    const PtrHelper operator->() const noexcept
+    { return std::move(PtrHelper(*this)); }
 
 #if __cplusplus >= 201703L
     /**
@@ -856,8 +857,8 @@ public:
      * \note This method is thread-safe.
      * \sa get
      */
-    SafeSharedArrayPtrHelper operator[](std::ptrdiff_t idx)
-    { return std::move(SafeSharedArrayPtrHelper(*this, idx)); }
+    ArrayHelper operator[](std::ptrdiff_t idx)
+    { return std::move(ArrayHelper(*this, idx)); }
 
     /**
      * \brief Provides indexed access to the stored array, guard it with
@@ -877,8 +878,8 @@ public:
      *   the definition) of the function is guaranteed to be legal.
      * \sa get
      */
-    const SafeSharedArrayPtrHelper& operator[](std::ptrdiff_t idx) const
-    { return std::move(SafeSharedArrayPtrHelper(*this, idx)); }
+    const ArrayHelper& operator[](std::ptrdiff_t idx) const
+    { return std::move(ArrayHelper(*this, idx)); }
 #endif
 
     /**
@@ -1032,8 +1033,8 @@ public:
     { return std::move(UniqueLock(lck)); }
 
     /**
-     * \brief Proxy class for operator* and operator-> in SafeSharedPtr, behave
-     *        like underlying object, and provide RAII read-write lock for
+     * \brief Proxy class for operator-> in SafeSharedPtr, behave like
+     *        underlying object, and provide RAII read-write lock for
      *        thread safety.
      * \details
      *   If constructed as constant, it will call SafeSharedPtr::lock_shared()
@@ -1046,7 +1047,7 @@ public:
      *   transport it's ownership, or simply use it like type T* or T&.
      * \sa SafeSharedPtr
      */
-    class SafeSharedPtrHelper
+    class PtrHelper
     {
     public:
         /** \brief Pointer type of element. */
@@ -1059,33 +1060,33 @@ public:
         using const_reference = const T&;
 
         /**
-         * \brief Constructor a constant SafeSharedPtrHelper to gain access to
-         *        underlying object of SafeSharedPtr.
+         * \brief Constructor a constant PtrHelper to gain access to underlying
+         *        object of SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock_shared() on construction.
          * \param p SafeSharedPtr to access from.
          */
-        explicit SafeSharedPtrHelper(SafeSharedPtr<T>& p)
+        explicit PtrHelper(SafeSharedPtr<T>& p)
             : ptr(&p)
         { ptr->lock(); }
 
         /**
-         * \brief Constructor a mutable SafeSharedPtrHelper to gain access to
-         *        underlying object of SafeSharedPtr.
+         * \brief Constructor a mutable PtrHelper to gain access to underlying
+         *        object of SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock() on construction.
          * \param p SafeSharedPtr to access from.
          */
-        explicit SafeSharedPtrHelper(const SafeSharedPtr<T>& p)
+        explicit PtrHelper(const SafeSharedPtr<T>& p)
             : constPtr(&p)
         { constPtr->lock_shared(); }
 
         /**
-         * \brief Move constructor, transport ownership to another
-         *        SafeSharedPtrHelper, keep existing lock state.
-         * \param other Another SafeSharedPtrHelper to move to.
+         * \brief Move constructor, transport ownership to another PtrHelper,
+         *        keep existing lock state.
+         * \param other Another PtrHelper to move to.
          */
-        SafeSharedPtrHelper(SafeSharedPtrHelper&& other)
+        PtrHelper(PtrHelper&& other)
         {
             std::swap(ptr, other.ptr);
             std::swap(constPtr, other.constPtr);
@@ -1096,19 +1097,137 @@ public:
          *        as constant, otherwise call SafeSharedPtr::lock() if
          *        constructed as mutable.
          */
-        ~SafeSharedPtrHelper()
+        ~PtrHelper()
         {
             if (ptr) ptr->unlock();
             if (constPtr) constPtr->unlock_shared();
         }
 
         /**
-         * \brief Move assigment, transport ownership to another
-         *        SafeSharedPtrHelper, keep existing lock state.
-         * \param other Another SafeSharedPtrHelper to move to.
+         * \brief Move assigment, transport ownership to another PtrHelper, keep
+         *        existing lock state.
+         * \param other Another PtrHelper to move to.
          * \return `*this` with empty content.
          */
-        SafeSharedPtrHelper& operator=(SafeSharedPtrHelper&& other)
+        PtrHelper& operator=(PtrHelper&& other)
+        {
+            std::swap(ptr, other.ptr);
+            std::swap(constPtr, other.constPtr);
+            return *this;
+        }
+
+        /**
+         * \brief Operator overload to act as `T*`.
+         * \return `T&`.
+         */
+        operator pointer()
+        { return ptr->get(); }
+
+        /**
+         * \brief Operator overload to act as `const T*`.
+         * \return `const T&`.
+         */
+        operator const_pointer() const
+        { return ptr->get(); }
+
+        /**
+         * \brief Operator overload to act as `T*`.
+         * \return `T*`.
+         */
+        pointer operator->()
+        { return ptr->get(); }
+
+        /**
+         * \brief Operator overload to act as `const T*`.
+         * \return `const T*`.
+         */
+        const_pointer operator->() const
+        { return ptr->get(); }
+
+    private:
+        SafeSharedPtr<T>* ptr = nullptr;
+        const SafeSharedPtr<T>* constPtr = nullptr;
+
+        PtrHelper(const PtrHelper&) = delete;
+        PtrHelper& operator=(const PtrHelper&) = delete;
+    };
+
+    /**
+     * \brief Proxy class for operator* in SafeSharedPtr, behave like underlying
+     *        object, and provide RAII read-write lock for
+     *        thread safety.
+     * \details
+     *   If constructed as constant, it will call SafeSharedPtr::lock_shared()
+     *   on construction and SafeSharedPtr::unlock_shared() on destruction.\n
+     *   If constructed as mutable, it will call SafeSharedPtr::lock() on
+     *   construction and SafeSharedPtr::unlock() on destruction.
+     * \note
+     *   Copy constructor and copy assignment are deleted to prevent multiply
+     *   locks, use `std::move` with move constructor and move assignment to
+     *   transport it's ownership, or simply use it like type T* or T&.\n
+     *   Because operator. cannot be overloaded, `*pPoint.x` cannot compile, use
+     *   `pPoint->x` instead. Sorry for that.
+     * \sa SafeSharedPtr
+     */
+    class RefHelper
+    {
+    public:
+        /** \brief Reference type of element. */
+        using reference = T&;
+        /** \brief Const eference type of element. */
+        using const_reference = const T&;
+
+        /**
+         * \brief Constructor a constant RefHelper to gain access to underlying
+         *        object of SafeSharedPtr.
+         * \details
+         *   Will call SafeSharedPtr::lock_shared() on construction.
+         * \param p SafeSharedPtr to access from.
+         */
+        explicit RefHelper(SafeSharedPtr<T>& p)
+            : ptr(&p)
+        { ptr->lock(); }
+
+        /**
+         * \brief Constructor a mutable RefHelper to gain access to underlying
+         *        object of SafeSharedPtr.
+         * \details
+         *   Will call SafeSharedPtr::lock() on construction.
+         * \param p SafeSharedPtr to access from.
+         */
+        explicit RefHelper(const SafeSharedPtr<T>& p)
+            : constPtr(&p)
+        { constPtr->lock_shared(); }
+
+        /**
+         * \brief Move constructor, transport ownership to another RefHelper,
+         *        keep existing lock state.
+         * \param other Another RefHelper to move to.
+         */
+        RefHelper(RefHelper&& other)
+        {
+            std::swap(ptr, other.ptr);
+            std::swap(constPtr, other.constPtr);
+        }
+
+        /**
+         * \brief Destructor, call SafeSharedPtr::unlock_shared() if constructed
+         *        as constant, otherwise call SafeSharedPtr::lock() if
+         *        constructed as mutable.
+         */
+        ~RefHelper()
+        {
+            if (ptr) ptr->unlock();
+            if (constPtr) constPtr->unlock_shared();
+        }
+
+        /**
+         * \brief Move assigment, transport ownership to another RefHelper, keep
+         *        existing lock state.
+         * \param other Another RefHelper to move to.
+         * \return `*this` with empty content.
+         */
+        RefHelper& operator=(RefHelper&& other)
         {
             std::swap(ptr, other.ptr);
             std::swap(constPtr, other.constPtr);
@@ -1130,34 +1249,6 @@ public:
         { return *(ptr->get()); }
 
         /**
-         * \brief Operator overload to act as `T*`.
-         * \return `T*`.
-         */
-        pointer operator->()
-        { return &(operator reference()); }
-
-        /**
-         * \brief Operator overload to act as `const T*`.
-         * \return `const T*`.
-         */
-        const_pointer operator->() const
-        { return &(operator const_reference()); }
-
-        /**
-         * \brief Operator overload to act as `T&`.
-         * \return `T&`.
-         */
-        reference operator*()
-        { return operator reference(); }
-
-        /**
-         * \brief Operator overload to act as `const T&`.
-         * \return `const T&`.
-         */
-        const_reference operator*() const
-        { return operator const_reference(); }
-
-        /**
          * \brief Assign operator to assign from another value.
          * \tparam  X       Type of input, `X&` must be implicitly convertible to
          *                  `T&`.
@@ -1170,7 +1261,7 @@ public:
          *   ```
          */
         template<typename X>
-        SafeSharedPtrHelper& operator=(const X& other)
+        RefHelper& operator=(const X& other)
         {
             operator reference() = other;
             return *this;
@@ -1180,8 +1271,8 @@ public:
         SafeSharedPtr<T>* ptr = nullptr;
         const SafeSharedPtr<T>* constPtr = nullptr;
 
-        SafeSharedPtrHelper(const SafeSharedPtrHelper&) = delete;
-        SafeSharedPtrHelper& operator=(const SafeSharedPtrHelper&) = delete;
+        RefHelper(const RefHelper&) = delete;
+        RefHelper& operator=(const RefHelper&) = delete;
     };
 
     #if __cplusplus >= 201703L
@@ -1197,12 +1288,14 @@ public:
      * \note
      *   Copy constructor and copy assignment are deleted to prevent multiply
      *   locks, use `std::move` with move constructor and move assignment to
-     *   transport it's ownership, or simply use it like type T* or T&.
+     *   transport it's ownership, or simply use it like type T* or T&.\n
+     *   Because operator. cannot be overloaded, `pPoints[0].x` cannot compile,
+     *   use `Point(pPoints[0]).x` instead. Sorry for that.
      * \warning
      *   Behavior is undefined if `T` is not array type.
          * \sa SafeSharedPtr
      */
-    class SafeSharedArrayPtrHelper
+    class ArrayHelper
     {
     public:
         /** \brief Element type of array `T`. */
@@ -1217,35 +1310,35 @@ public:
         using const_reference = const element_type&;
 
         /**
-         * \brief Constructor a constant SafeSharedArrayPtrHelper to gain access
-         *        to element of object managed by SafeSharedPtr.
+         * \brief Constructor a constant ArrayHelper to gain access to element
+         *        of object managed by SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock_shared() on construction.
          * \param p     SafeSharedPtr to access from.
          * \param idx   Index for element in array to access from.
          */
-        SafeSharedArrayPtrHelper(SafeSharedPtr<T>& p, std::ptrdiff_t idx)
+        ArrayHelper(SafeSharedPtr<T>& p, std::ptrdiff_t idx)
             : ptr(&p), index(idx)
         { ptr->lock(); }
 
         /**
-         * \brief Constructor a mutable SafeSharedArrayPtrHelper to gain access
-         *        to element of object managed by SafeSharedPtr.
+         * \brief Constructor a mutable ArrayHelper to gain access to element
+         *        of object managed by SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock() on construction.
          * \param p     SafeSharedPtr to access from.
          * \param idx   Index for element in array to access from.
          */
-        SafeSharedArrayPtrHelper(const SafeSharedPtr<T>& p, std::ptrdiff_t idx)
+        ArrayHelper(const SafeSharedPtr<T>& p, std::ptrdiff_t idx)
             : constPtr(&p), index(idx)
         { constPtr->lock_shared(); }
 
         /**
-         * \brief Move constructor, transport ownership to another
-         *        SafeSharedArrayPtrHelper, keep existing lock state.
-         * \param other Another SafeSharedArrayPtrHelper to move to.
+         * \brief Move constructor, transport ownership to another ArrayHelper,
+         *        keep existing lock state.
+         * \param other Another ArrayHelper to move to.
          */
-        SafeSharedArrayPtrHelper(SafeSharedArrayPtrHelper&& other)
+        ArrayHelper(ArrayHelper&& other)
         {
             std::swap(ptr, other.ptr);
             std::swap(constPtr, other.constPtr);
@@ -1257,19 +1350,19 @@ public:
          *        as constant, otherwise call SafeSharedPtr::lock() if
          *        constructed as mutable.
          */
-        ~SafeSharedArrayPtrHelper()
+        ~ArrayHelper()
         {
             if (ptr) ptr->unlock();
             if (constPtr) constPtr->unlock_shared();
         }
 
         /**
-         * \brief Move assigment, transport ownership to another
-         *        SafeSharedArrayPtrHelper, keep existing lock state.
-         * \param other Another SafeSharedArrayPtrHelper to move to.
+         * \brief Move assigment, transport ownership to another ArrayHelper,
+         *        keep existing lock state.
+         * \param other Another ArrayHelper to move to.
          * \return `*this` with empty content.
          */
-        SafeSharedArrayPtrHelper& operator=(SafeSharedArrayPtrHelper&& other)
+        ArrayHelper& operator=(ArrayHelper&& other)
         {
             std::swap(ptr, other.ptr);
             std::swap(constPtr, other.constPtr);
@@ -1292,34 +1385,6 @@ public:
         { return (ptr->get())[index]; }
 
         /**
-         * \brief Operator overload to act as `element_type*`.
-         * \return `element_type*`.
-         */
-        pointer operator->()
-        { return &(operator reference()); }
-
-        /**
-         * \brief Operator overload to act as `const element_type*`.
-         * \return `const element_type*`.
-         */
-        const_pointer operator->() const
-        { return &(operator const_reference()); }
-
-        /**
-         * \brief Operator overload to act as `element_type&`.
-         * \return `element_type&`.
-         */
-        reference operator*()
-        { return operator reference(); }
-
-        /**
-         * \brief Operator overload to act as `const element_type&`.
-         * \return `const element_type&`.
-         */
-        const_reference operator*() const
-        { return operator const_reference(); }
-
-        /**
          * \brief Assign operator to assign from another value.
          * \tparam  X       Type of input, `X&` must be implicitly convertible to
          *                  `element_type&`.
@@ -1332,7 +1397,7 @@ public:
          *   ```
          */
         template<typename X>
-        SafeSharedArrayPtrHelper& operator=(const X& other)
+        ArrayHelper& operator=(const X& other)
         {
             operator reference() = other;
             return *this;
@@ -1343,8 +1408,8 @@ public:
         const SafeSharedPtr<T>* constPtr = nullptr;
         std::ptrdiff_t index = 0;
 
-        SafeSharedArrayPtrHelper(const SafeSharedArrayPtrHelper&) = delete;
-        SafeSharedArrayPtrHelper& operator=(const SafeSharedArrayPtrHelper&) = delete;
+        ArrayHelper(const ArrayHelper&) = delete;
+        ArrayHelper& operator=(const ArrayHelper&) = delete;
     };
 #endif
 
