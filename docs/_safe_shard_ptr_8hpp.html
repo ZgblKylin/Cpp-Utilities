@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.0.3</span>
+   &#160;<span id="projectnumber">1.1.0</span>
    </div>
   </td>
  </tr>
@@ -88,11 +88,14 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper to <code>std::shared_ptr</code> to provide thread-safety while operating the underlying pointer.  <a href="class_memory_1_1_safe_shared_ptr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedPtrHelper</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proxy class for operator* and operator-&gt; in <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>, behave like underlying object, and provide RAII read-write lock for thread safety.  <a href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proxy class for operator-&gt; in <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>, behave like underlying object, and provide RAII read-write lock for thread safety.  <a href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html">Memory::SafeSharedPtr&lt; T &gt;::SafeSharedArrayPtrHelper</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proxy class for operator[] in <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>, behave like array element of underlying array object, and provide RAII read-write lock for thread safety.  <a href="class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html">Memory::SafeSharedPtr&lt; T &gt;::RefHelper</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proxy class for operator* in <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>, behave like underlying object, and provide RAII read-write lock for thread safety.  <a href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proxy class for operator[] in <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>, behave like array element of underlying array object, and provide RAII read-write lock for thread safety.  <a href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">Memory::SafeWeakPtr&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper to <code>std::weak_ptr</code> to provide weak reference for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>.  <a href="class_memory_1_1_safe_weak_ptr.html#details">More...</a><br /></td></tr>

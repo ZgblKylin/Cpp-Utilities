@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quantity',['Quantity',['../class_dimensional_1_1_quantity.html',1,'Dimensional']]]
+  ['enablesafesharedfromthis',['EnableSafeSharedFromThis',['../class_memory_1_1_enable_safe_shared_from_this.html',1,'Memory']]]
 ];

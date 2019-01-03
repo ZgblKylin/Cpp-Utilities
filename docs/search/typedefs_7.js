@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pointer',['pointer',['../class_memory_1_1_safe_shared_ptr_1_1_safe_shared_ptr_helper.html#aa9a1513057d675a8e8692419c2681d00',1,'Memory::SafeSharedPtr::SafeSharedPtrHelper::pointer()'],['../class_memory_1_1_safe_shared_ptr_1_1_safe_shared_array_ptr_helper.html#a1e6ca992ea86a8dd159f6f62e2785081',1,'Memory::SafeSharedPtr::SafeSharedArrayPtrHelper::pointer()']]],
+  ['pointer',['pointer',['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a41a84db9d394c7ae48b72adf600fb070',1,'Memory::SafeSharedPtr::PtrHelper::pointer()'],['../class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a7c29adefb979b8a50b0a286c249ebe9b',1,'Memory::SafeSharedPtr::ArrayHelper::pointer()']]],
   ['power',['Power',['../struct_dimensional_1_1_unit.html#a62bb3aa7042c094c841c9f2c1702b43e',1,'Dimensional::Unit']]],
   ['pressure',['Pressure',['../struct_dimensional_1_1_unit.html#a811a9c6202076db547347f54c364ca01',1,'Dimensional::Unit']]]
 ];
