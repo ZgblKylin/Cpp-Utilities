@@ -2,4 +2,4 @@ See [./docs/index.html](./docs/index.html)(offline) or [GitHub Pages](https://zg
 
 
 
-TODO: Add SequencialMap which behaviors like std::vector, but supports key-value insert and look-up.
+TODO: Add SequencialMap which behaviors like std::vector, but supports key-value operation.
