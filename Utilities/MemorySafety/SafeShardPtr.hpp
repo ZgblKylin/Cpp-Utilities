@@ -896,16 +896,16 @@ public:
      * \brief Returns the number of SafeSharedPtr objects referring to the same
      *        managed object.
      * \return The number of SafeSharedPtr instances managing the current object
-     *         or ​0​ if there is no managed object.
+     *         or 0 if there is no managed object.
      * \details
      *   Returns the number of different SafeSharedPtr instances (this included)
-     *   managing the current object. If there is no managed object, ​0​ is
+     *   managing the current object. If there is no managed object, 0 is
      *   returned.\n
      *   In multithreaded environment, the value returned by use_count is
      *   approximate (typical implementations use a `memory_order_relaxed` load)
      * \note
      *   Common use cases include:\n
-     *     - Comparison with ​0​. If use_count returns zero, the shared pointer is
+     *     - Comparison with 0. If use_count returns zero, the shared pointer is
      *       empty and manages no objects (whether or not its stored pointer is
      *       null). In multithreaded environment, this does not imply that the
      *       destructor of the managed object has completed.
@@ -2266,7 +2266,7 @@ public:
 
     /**
      * \brief Returns the number of SafeSharedPtr instances that share ownership
-     *        of the managed object, or ​0​ if the managed object has already been
+     *        of the managed object, or 0 if the managed object has already been
      *        deleted, i.e. `*this` is empty.
      * \return The number of SafeSharedPtr instances sharing the ownership of
      *         the managed object at the instant of the call.
