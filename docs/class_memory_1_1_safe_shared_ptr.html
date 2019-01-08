@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.1.0</span>
+   &#160;<span id="projectnumber">1.1.1</span>
    </div>
   </td>
  </tr>
@@ -437,6 +437,7 @@ class Memory::SafeSharedPtr&lt; T &gt;</h3>
 <dl class="section note"><dt>Note</dt><dd><b>Before C++17</b>, for the purposes of the description below, a pointer type <code>Y*</code> requires that <code>Y*</code> must be implicitly convertible to <code>T*</code>.<br />
  <b>Since C++17</b>, for the purposes of the description below, a pointer type <code>Y*</code> is said to be <b>compatible</b> with a pointer type <code>T*</code> if either <code>Y*</code> is convertible to <code>T*</code> or <code>Y</code> is the array type <code>U[N]</code> and <code>T</code> is <code>U cv []</code> (where cv is some set of cv-qualifiers).<br />
  <b>Since C++17</b>, default deleter called on destructor will use <code>delete[]</code> if <code>T</code> is an arry type; </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Read-write lock used in this class is <b>NOT</b> recursive, so <b>DO NOT</b> call <code>operator.</code> <code>operator-&gt;</code> or <code>operator[]</code> multiply times in single line/expression, otherwise a deadlock will happen. Sorry for the inconvenience. <div class="fragment"><div class="line"><span class="comment">// deadlock happens</span></div><div class="line">std::cout &lt;&lt; point-&gt;x() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; point-&gt;y() &lt;&lt; std::endl;</div></div><!-- fragment --></dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr...">EnableSafeSharedFromThis</a> </dd></dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="afee9452fe9852f8e57a86cf8f3124b89"></a>

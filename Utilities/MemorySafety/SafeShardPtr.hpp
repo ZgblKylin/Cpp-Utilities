@@ -1,13 +1,13 @@
 #pragma once
 
 #include <memory>
+#include <utility>
 #include "../Common.h"
 #if __cplusplus >= 201703L
 #include <shared_mutex>
 #else
 #include "RWSpinLock.hpp"
 #endif
-#include <utility>
 
 /**
  * \defgroup MemorySafety Memory Safety
@@ -126,6 +126,16 @@ template<typename T> class SafeWeakPtr;
  *   cv is some set of cv-qualifiers).\n
  *   **Since C++17**, default deleter called on destructor will use `delete[]` if
  *   `T` is an arry type;
+ * \warning
+ *   Read-write lock used in this class is **NOT** recursive, so **DO NOT** call
+ *   `operator.` `operator->` or `operator[]` multiply times in single
+ *   line/expression, otherwise a deadlock will happen. Sorry for the
+ *   inconvenience.
+ *   ```cpp
+ *   // deadlock happens
+ *   std::cout << point->x() << " " << point->y() << std::endl;
+ *   ```
+ *
  * \sa SafeWeakPtr, EnableSafeSharedFromThis
  */
 template<typename T>
@@ -1128,7 +1138,7 @@ public:
          * \return `const T&`.
          */
         operator const_pointer() const
-        { return ptr->get(); }
+        { return constPtr->get(); }
 
         /**
          * \brief Operator overload to act as `T*`.
@@ -1142,7 +1152,7 @@ public:
          * \return `const T*`.
          */
         const_pointer operator->() const
-        { return ptr->get(); }
+        { return constPtr->get(); }
 
     private:
         SafeSharedPtr<T>* ptr = nullptr;
@@ -1246,7 +1256,7 @@ public:
          * \return `const T&`.
          */
         operator const_reference() const
-        { return *(ptr->get()); }
+        { return *(constPtr->get()); }
 
         /**
          * \brief Assign operator to assign from another value.
@@ -1382,7 +1392,7 @@ public:
          * \return `const element_type&`.
          */
         operator const_reference() const
-        { return (ptr->get())[index]; }
+        { return (constPtr->get())[index]; }
 
         /**
          * \brief Assign operator to assign from another value.
