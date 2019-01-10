@@ -6,9 +6,8 @@ environment:
   BUILD_DIR: '%APPVEYOR_BUILD_FOLDER%\\build'
 
 before_build:
-- cmd: >-
-    cd %BUILD_DIR%
-    cmake .. -DBUILD_TESTING=ON -G"Visual Studio 15 2017"
+  - cd %BUILD_DIR%
+  - cmake .. -DBUILD_TESTING=ON -G"Visual Studio 15 2017"
 
 build:
   parallel: true
