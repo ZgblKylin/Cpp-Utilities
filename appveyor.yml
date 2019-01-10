@@ -11,4 +11,5 @@ before_build:
 
 build:
   parallel: true
+  project: build/Utilities.sln
   verbosity: minimal
