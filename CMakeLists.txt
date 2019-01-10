@@ -159,4 +159,6 @@ add_custom_target(
     SOURCES
         LICENSE
         README.md
+        appveyor.yml
+        .travis.yml
 )
