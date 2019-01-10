@@ -5,6 +5,12 @@
 UTILITIES_USING_NAMESPACE;
 using namespace Dimensional;
 
+template<typename Ratio>
+double decimal()
+{
+    return static_cast<double>(Ratio::num) / Ratio::den;
+}
+
 TEST(Unit, Unit)
 {
     using Type1 = Unit<0, 0, 0, 0, 0, 0, 0>;
@@ -196,12 +202,6 @@ TEST(Quantity, Quantity)
     auto length = root<2>(area);
     EXPECT_EQ(length.value(), 0.01);
     EXPECT_EQ(typeid(decltype(length)::unit_type), typeid(Length));
-}
-
-template<typename Ratio>
-double decimal()
-{
-    return static_cast<double>(Ratio::num) / Ratio::den;
 }
 
 TEST(Quantity, ChineseUnits)

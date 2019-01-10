@@ -87,27 +87,40 @@ struct Unit
 {
     /** \brief Type of the struct itself. */
     using type = Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>;
+#if __cplusplus >= 201402L
     /** \brief Power factors of 7 base units. */
     static constexpr std::tuple<int, int, int, int, int, int, int> factors{
         length, mass, time, current, temperature, amountOfSubstance, luminousIntensity
     };
+#else
+    /** \brief Power factors of 7 base units. */
+    static const std::tuple<int, int, int, int, int, int, int> factors;
+#endif
     /** \brief Power factor of length unit. */
-    static constexpr int factorLength               = std::get<0>(factors);
+    static constexpr int factorLength               = length;
     /** \brief Power factor of length mass unit. */
-    static constexpr int factorMass                 = std::get<1>(factors);
+    static constexpr int factorMass                 = mass;
     /** \brief Power factor of length time unit. */
-    static constexpr int factorTime                 = std::get<2>(factors);
+    static constexpr int factorTime                 = time;
     /** \brief Power factor of length current unit. */
-    static constexpr int factorCurrent              = std::get<3>(factors);
+    static constexpr int factorCurrent              = current;
     /** \brief Power factor of length temperature unit. */
-    static constexpr int factorTemperature          = std::get<4>(factors);
+    static constexpr int factorTemperature          = temperature;
     /** \brief Power factor of amount_of_substance unit unit. */
-    static constexpr int factorAmountOfSubstance    = std::get<5>(factors);
+    static constexpr int factorAmountOfSubstance    = amountOfSubstance;
     /** \brief Power factor of luminous_intensity unit unit. */
-    static constexpr int factorLuminousIntensity    = std::get<6>(factors);
+    static constexpr int factorLuminousIntensity    = luminousIntensity;
 };
+#if __cplusplus < 201703L // Definition of static constexpr member is deprecated since C++17.
+#if __cplusplus >= 201402L
 template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
 constexpr std::tuple<int, int, int, int, int, int, int> Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factors;
+#else
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+const std::tuple<int, int, int, int, int, int, int> Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factors{
+    length, mass, time, current, temperature, amountOfSubstance, luminousIntensity
+};
+#endif
 template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
 constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorLength;
 template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
@@ -122,6 +135,7 @@ template<int length, int mass, int time, int current, int temperature, int amoun
 constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorAmountOfSubstance;
 template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
 constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorLuminousIntensity;
+#endif
 
 /**
  * \name Unit Conversion
