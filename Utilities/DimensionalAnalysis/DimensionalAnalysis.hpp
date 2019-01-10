@@ -106,6 +106,22 @@ struct Unit
     /** \brief Power factor of luminous_intensity unit unit. */
     static constexpr int factorLuminousIntensity    = std::get<6>(factors);
 };
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+constexpr std::tuple<int, int, int, int, int, int, int> Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factors;
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorLength;
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorMass;
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorTime;
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorCurrent;
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorTemperature;
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorAmountOfSubstance;
+template<int length, int mass, int time, int current, int temperature, int amountOfSubstance, int luminousIntensity>
+constexpr int Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorLuminousIntensity;
 
 /**
  * \name Unit Conversion
@@ -262,7 +278,7 @@ typedef UnitDivide<Force, Area> Pressure;
 typedef UnitMultiply<Force, Length> Energy;
 /**
  * \brief Power unit, called **watt**, with symbol `W`, derived from \f$J/s\f$
- *        or \f$kg \cdot m^{-2} \cdot s^{-3}\f$.
+ *        or \f$kg \cdot m^{2} \cdot s^{-3}\f$.
  */
 typedef UnitDivide<Energy, Time> Power;
 /**
@@ -274,7 +290,7 @@ typedef UnitMultiply<Time, Current> Charge;
  * \brief Voltage unit, called **volt**, with symbol `V`, derived from \f$W/A\f$
  *        or \f$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-1}\f$.
  */
-typedef UnitDivide<Power, Charge> Voltage;
+typedef UnitDivide<Power, Current> Voltage;
 /**
  * \brief Elelctric capacitance unit, called **farad**, with symbol `F`, derived
  *        from \f$C/V\f$ or \f$kg^{-1} \cdot m^{-2} \cdot s^{4} \cdot A^{2}\f$.
@@ -295,7 +311,7 @@ typedef UnitDivide<Scala, ElectricResistance> ElelctricConductance;
  * \brief Magnetic flux unit, called **webber**, with symbol Wb**, derived from
  *        \f$V \cdot s\f$ or \f$kg \cdot m^{2} \cdot s^{-2} \cdot A^{-1}\f$.
  */
-typedef UnitMultiply<Charge, Time> MagneticFlux;
+typedef UnitMultiply<Voltage, Time> MagneticFlux;
 /**
  * \brief Magnet flux density unit, called **tesla**, with symbol `T`, derived
  *        from \f$Wb/m^{2}\f$ or \f$kg \cdot s^{-2} \cdot A^{-1}\f$.
@@ -407,12 +423,28 @@ public:
     { return v; }
 
     /**
+     * \brief Set underlying value of the quantity.
+     * \param value Value represented by `Ratio`.
+     * \warning `value` is under the `Ratio` and may not be standard value.
+     */
+    inline void set_value(T value)
+    { v = value;; }
+
+    /**
      * \brief Get standard value of the quantity, `Ratio` is reverted to
      *        `std::ratio<1>`.
      * \return Standard value with `Ratio` reverted to `std::ratio<1>`.
      */
     inline T standard_value() const
     { return quantity_cast<std::ratio<1>>(*this).value(); }
+
+    /**
+     * \brief Get standard value of the quantity, `Ratio` is reverted to
+     *        `std::ratio<1>`.
+     * \return Standard value with `Ratio` reverted to `std::ratio<1>`.
+     */
+    inline void set_standard_value(T value)
+    { v = quantity_cast<Ratio>(Quantity<T, U>(value)).value(); }
 
     /**
      * \brief Add & assignment operator overload, add value from same type with
@@ -608,7 +640,8 @@ operator/(Quantity<T, Unit1, Ratio1> lhs, Quantity<T, Unit2, Ratio2> rhs)
 
 /**
  * \relates Quantity
- * \brief Power calculation, performed both on value and unit.
+ * \brief Power calculation, performed both on value and unit, ratio will be
+ *        casted to `std::ratio<1>`.
  * \tparam  factor  Factor of power calculation.
  * \tparam  T       Value type of operands.
  * \tparam  U       Unit of operand.
@@ -630,7 +663,8 @@ pow(const Quantity<T, U, Ratio>& x)
 
 /**
  * \relates Quantity
- * \brief Root calculation, performed both on value and unit.
+ * \brief Root calculation, performed both on value and unit, ratio will be
+ *        casted to `std::ratio<1>`.
  * \tparam  factor  Factor of root calculation.
  * \tparam  T       Value type of operands.
  * \tparam  U       Unit of operand.
@@ -697,14 +731,14 @@ typedef std::ratio_divide<ratio_PI, std::ratio<180>> ratio_degree;
   */
 /**
  * \brief Ratio to convert to meter.
- *        \f$1 li = 10 yin = \frac{1}{3} km\f$.
+ *        \f$1 li = 15 yin = 500 m\f$.
  */
-typedef std::ratio<1000, 3> ratio_length_li;
+typedef std::ratio<500, 1> ratio_length_li;
 /**
  * \brief Ratio to convert to meter.
- *        \f$1 yin = \frac{1}{10} li = 10 zhang = 333.\overline{3} m\f$.
+ *        \f$1 yin = \frac{1}{15} li = 10 zhang = 33.\overline{3} m\f$.
  */
-typedef std::ratio_divide<ratio_length_li, std::ratio<10>> ratio_yin;
+typedef std::ratio_divide<ratio_length_li, std::ratio<15>> ratio_yin;
 /**
  * \brief Ratio to convert to meter.
  *        \f$1 zhang = \frac{1}{10} yin = 10 chi = 3.\overline{3} m\f$.
@@ -757,12 +791,12 @@ typedef std::ratio_divide<ratio_length_si, std::ratio<10>> ratio_length_hu;
 typedef std::ratio<200000, 3> ratio_qing;
 /**
  * \brief Ratio to convert to suqaremeter.
- *        \f$1 mu = 60 zhang^{2} = 666.\overline{6} m^{2}\f$.
+ *        \f$1 mu = 240 gong = 666.\overline{6} m^{2}\f$.
  */
 typedef std::ratio<2000, 3> ratio_mu;
 /**
  * \brief Ratio to convert to suqaremeter.
- *        \f$1 gong = \frac{1}{240} mu = 277.\overline{7} m^{2}\f$.
+ *        \f$1 gong = 1 xun^{2} = 2.\overline{7} m^{2}\f$.
  */
 typedef std::ratio_divide<ratio_mu, std::ratio<240>> ratio_gong;
 /**
@@ -830,7 +864,7 @@ typedef std::ratio_multiply<std::ratio<1609344ll, 1000000ll>, std::kilo> ratio_m
 typedef std::ratio_divide<ratio_mile, std::ratio<8>> ratio_furlong;
 /**
  * \brief Ratio to convert to meter.
- *        \f$1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 18.0825168539326 m\f$.
+ *        \f$1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 20.1168 m\f$.
  */
 typedef std::ratio_divide<ratio_furlong, std::ratio<10>> ratio_chain;
 /**
@@ -865,7 +899,7 @@ typedef std::ratio_divide<ratio_inch, std::ratio<6>> ratio_pica;
 typedef std::ratio_divide<ratio_pica, std::ratio<12>> ratio_point;
 /**
  * \brief Ratio to convert to kilogram.
- *        \f$1 longton = 2240 pound = 1016.0469088kg\f$.
+ *        \f$1 longton = 2240 pound = 1016.0469088 kg\f$.
  */
 typedef std::ratio<10160469088, 10000000> ratio_longton;
 /**
@@ -902,7 +936,7 @@ typedef std::ratio_divide<ratio_ounce, std::ratio<16>> ratio_drachm;
  * \brief Ratio to convert to kilogram.
  *        \f$1 grain = 64.79891 mg\f$.
  */
-typedef std::ratio<6479891, 100000> ratio_grain;
+typedef std::ratio_multiply<std::ratio<6479891, 100000ll>, std::micro> ratio_grain;
 /** @} */
 
 /**
@@ -928,47 +962,47 @@ typedef std::ratio_multiply<ratio_pound, std::ratio<28>> ratio_en_quarter;
 typedef std::ratio_multiply<ratio_pound, std::ratio<14>> ratio_en_stone;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 fluid\ dram = 3.5516328125 ml\f$.
+ *        \f$1 fluid\ dram = 3.5516328125 mL\f$.
  */
 typedef std::ratio_multiply<std::ratio<35516328125ll, 10000000000ll>, std::micro> ratio_en_fluid_dram;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 fluid\ ounce = 8 fluind\ dram\f$.
+ *        \f$1 fluid\ ounce = 8 fluind\ dram = 28.4130625 mL\f$.
  */
 typedef std::ratio_multiply<ratio_en_fluid_dram, std::ratio<8>> ratio_en_fluid_ounce;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 gill = 5 fluid\ ounce\f$.
+ *        \f$1 gill = 5 fluid\ ounce = 142.0653125 mL\f$.
  */
 typedef std::ratio_multiply<ratio_en_fluid_ounce, std::ratio<5>> ratio_en_gill;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 cup = 2 gill\f$.
+ *        \f$1 cup = 2 gill = 284.130625 mL\f$.
  */
 typedef std::ratio_multiply<ratio_en_gill, std::ratio<2>> ratio_en_cup;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 pint = cup\f$.
+ *        \f$1 pint = 2 cup = 568.26125 mL\f$.
  */
 typedef std::ratio_multiply<ratio_en_cup, std::ratio<2>> ratio_en_pint;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 quart = 2 pint\f$.
+ *        \f$1 quart = 2 pint = 1.1365225 L\f$.
  */
 typedef std::ratio_multiply<ratio_en_pint, std::ratio<2>> ratio_en_quart;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 gallon = 4 quart\f$.
+ *        \f$1 gallon = 4 quart = 4.54609 L\f$.
  */
 typedef std::ratio_multiply<ratio_en_quart, std::ratio<4>> ratio_en_gallon;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 peck = 2 gallon\f$.
+ *        \f$1 peck = 2 gallon = 9.09218 L\f$.
  */
 typedef std::ratio_multiply<ratio_en_gallon, std::ratio<2>> ratio_en_peck;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 bushel = 4 peck\f$.
+ *        \f$1 bushel = 4 peck = 36.36872 L\f$.
  */
 typedef std::ratio_multiply<ratio_en_peck, std::ratio<4>> ratio_en_bushel;
 /** @} */
@@ -986,72 +1020,72 @@ typedef std::ratio_multiply<ratio_en_peck, std::ratio<4>> ratio_en_bushel;
 typedef ratio_short_hundredweight ratio_us_hundredweight;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 fluid\ dram = 3.6966911953125 ml\f$.
+ *        \f$1 fluid\ dram = 3.6966911953125 mL\f$.
  */
 typedef std::ratio_multiply<std::ratio<36966911953125ll, 10000000000000ll>, std::micro> ratio_us_fluid_dram;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 fluid\ ounce = 8 fluid\ dram\f$.
+ *        \f$1 fluid\ ounce = 8 fluid\ dram = 29.5735295625 mL\f$.
  */
 typedef std::ratio_multiply<ratio_us_fluid_dram, std::ratio<8>> ratio_us_fluid_ounce;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 teaspoons = \frac{1}{6} fluid\ ounce\f$.
+ *        \f$1 teaspoons = \frac{1}{6} fluid\ ounce = 4.92892159375 mL\f$.
  */
 typedef std::ratio_divide<ratio_us_fluid_ounce, std::ratio<6>> ratio_us_teaspoons;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 tablespoons = \frac{1}{2} fluid\ ounce\f$.
+ *        \f$1 tablespoons = \frac{1}{2} fluid\ ounce = 14.78676478125 mL\f$.
  */
 typedef std::ratio_divide<ratio_us_fluid_ounce, std::ratio<2>> ratio_us_tablespoons;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 gill = 4 fluid\ ounce\f$.
+ *        \f$1 gill = 4 fluid\ ounce = 118.29411825 mL\f$.
  */
 typedef std::ratio_multiply<ratio_us_fluid_ounce, std::ratio<4>> ratio_us_gill;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 cup = 2 gill\f$.
+ *        \f$1 cup = 2 gill = 236.5882365 mL\f$.
  */
 typedef std::ratio_multiply<ratio_us_gill, std::ratio<2>> ratio_us_cup;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 pint = 2 cup\f$.
+ *        \f$1 pint = 2 cup = 473.176473 mL\f$.
  */
 typedef std::ratio_multiply<ratio_us_cup, std::ratio<2>> ratio_us_pint;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 quart = 2 pint\f$.
+ *        \f$1 quart = 2 pint = 946.352946 mL\f$.
  */
 typedef std::ratio_multiply<ratio_us_pint, std::ratio<2>> ratio_us_quart;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 gallon = 4 quart\f$.
+ *        \f$1 gallon = 4 quart = 3.785411784 L\f$.
  */
 typedef std::ratio_multiply<ratio_us_quart, std::ratio<4>> ratio_us_gallon;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 dry\ pint = 0.5506104713575 l\f$.
+ *        \f$1 dry\ pint = 0.5506104713575 L\f$.
  */
 typedef std::ratio_multiply<std::ratio<5506104713575ll, 10000000000000ll>, std::milli> ratio_us_dry_pint;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 dry\ quart = 2 dry\ pint\f$.
+ *        \f$1 dry\ quart = 2 dry\ pint = 1.101220942715 L\f$.
  */
 typedef std::ratio_multiply<ratio_us_dry_pint, std::ratio<2>> ratio_us_dry_quart;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 dry\ gallon = 4 dry\ quart\f$.
+ *        \f$1 dry\ gallon = 4 dry\ quart = 4.40488377086 L\f$.
  */
 typedef std::ratio_multiply<ratio_us_dry_quart, std::ratio<4>> ratio_us_dry_gallon;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 dry\ peck = 2 dry\ gallon\f$.
+ *        \f$1 dry\ peck = 2 dry\ gallon = 8.80976754172 L\f$.
  */
 typedef std::ratio_multiply<ratio_us_dry_gallon, std::ratio<2>> ratio_us_dry_peck;
 /**
  * \brief Ratio to convert to cubicmeter.
- *        \f$1 bushel = 4 dry\ peck\f$.
+ *        \f$1 bushel = 4 dry\ peck = 35.23907016688 L\f$.
  */
 typedef std::ratio_multiply<ratio_us_dry_peck, std::ratio<4>> ratio_us_bushel;
 /** @} */
