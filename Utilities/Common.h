@@ -45,6 +45,18 @@
  */
 
 /**
+ * \def UTILITIES_USING_NAMESPACE
+ * \brief Define for using namespace declaration, nothing will be generated if
+ *        `UTILITIES_NAMESPACE` isn't defined.
+ */
+
+/**
+ * \def UTILITIES_NAMESPACE_PREFIX
+ * \brief Define for namespace:: declaration, nothing will be generated if
+ *        `UTILITIES_NAMESPACE` isn't defined.
+ */
+
+/**
  * \def UTILITIES_NAMESPACE_BEGIN
  * \brief Define for begin namespace declaration, nothing will be generated if
  *        `UTILITIES_NAMESPACE` isn't defined.
@@ -57,9 +69,13 @@
  */
 
 #ifdef UTILITIES_NAMESPACE
+#  define UTILITIES_USING_NAMESPACE using namespace UTILITIES_NAMESPACE
+#  define UTILITIES_NAMESPACE_PREFIX UTILITIES_NAMESPACE::
 #  define UTILITIES_NAMESPACE_BEGIN namespace UTILITIES_NAMESPACE {
 #  define UTILITIES_NAMESPACE_END }
 #else
+#  define UTILITIES_USING_NAMESPACE
+#  define UTILITIES_NAMESPACE_PREFIX
 #  define UTILITIES_NAMESPACE_BEGIN
 #  define UTILITIES_NAMESPACE_END
 #endif
