@@ -177,6 +177,8 @@ TEST(SequencialMap, mid)
     EXPECT_TRUE(Map.mid(1, 0).empty());
 }
 
+TEST(SequencialMap, push_back)
+{
 #define PUSH_BACK_SUCCESS(map, pair) \
 EXPECT_TRUE(pair.second); \
 EXPECT_EQ(map.size(), 4); \
@@ -191,8 +193,6 @@ EXPECT_EQ(pair.first, map.begin() + 1); \
 EXPECT_EQ(pair.first->first, k2); \
 EXPECT_EQ(pair.first->second, 2)
 
-TEST(SequencialMap, push_back)
-{
     // std::pair<iterator, bool> push_back(const_reference value)
     {
         auto map = Map;
@@ -348,6 +348,8 @@ TEST(SequencialMap, plus)
     EXPECT_EQ(map6.at(3).second, 4);
 }
 
+TEST(SequencialMap, insert)
+{
 #define INSERT_SUCCESS(map, it) \
 EXPECT_EQ(map.size(), 4); \
 EXPECT_EQ(it, map.begin() + 1); \
@@ -360,8 +362,6 @@ EXPECT_EQ(it, map.begin() + 2); \
 EXPECT_EQ(it->first, k2); \
 EXPECT_EQ(it->second, 2)
 
-TEST(SequencialMap, insert)
-{
     SequencialMap<std::string, int> map = {
         { "c", 1 }, { "a", 2 }, { "b", 3 }
     };
@@ -622,154 +622,96 @@ TEST(SequencialMap, ArithmeticKey)
 
 TEST(SequencialMap, iterators)
 {
+#define VALUE_FOR_COMPARE
+#define IT2_KEY it2->first
+#define IT2_VALUE it2->second
+#define MAP_KEY .first
+#define MAP_VALUE .second
+
+#define ITERATOR_TEST(it2_ptr, index_0, index_1, index_2) \
+auto it2(it); \
+EXPECT_EQ(*it2, map.at(index_0)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_0)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_0)MAP_VALUE); \
+ \
+it2 = it; \
+EXPECT_EQ(*it2, map.at(index_0)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_0)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_0)MAP_VALUE); \
+ \
+EXPECT_TRUE(it == it2); \
+EXPECT_FALSE(it != it2); \
+EXPECT_TRUE(it >= it2); \
+EXPECT_TRUE(it <= it2); \
+EXPECT_FALSE(it > it2); \
+EXPECT_FALSE(it < it2); \
+ \
+++it2; \
+EXPECT_EQ(*it2, map.at(index_1)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_1)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_1)MAP_VALUE); \
+EXPECT_FALSE(it == it2); \
+EXPECT_TRUE(it != it2); \
+EXPECT_TRUE(it < it2); \
+EXPECT_TRUE(it <= it2); \
+EXPECT_FALSE(it > it2); \
+EXPECT_FALSE(it >= it2); \
+EXPECT_EQ(it2 - it, 1); \
+EXPECT_EQ(it - it2, -1); \
+ \
+it2++; \
+EXPECT_EQ(*it2, map.at(index_2)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_2)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_2)MAP_VALUE); \
+ \
+--it2; \
+EXPECT_EQ(*it2, map.at(index_1)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_1)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_1)MAP_VALUE); \
+ \
+it2--; \
+EXPECT_EQ(*it2, map.at(index_0)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_0)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_0)MAP_VALUE); \
+ \
+it2 += 1; \
+EXPECT_EQ(*it2, map.at(index_1)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_1)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_1)MAP_VALUE); \
+ \
+it2 = it2 + 1; \
+EXPECT_EQ(*it2, map.at(index_2)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_2)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_2)MAP_VALUE); \
+ \
+it2 -= 1; \
+EXPECT_EQ(*it2, map.at(index_1)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_1)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_1)MAP_VALUE); \
+ \
+it2 = it2 - 1; \
+EXPECT_EQ(*it2, map.at(index_0)VALUE_FOR_COMPARE); \
+EXPECT_EQ(IT2_KEY, map.at(index_0)MAP_KEY); \
+EXPECT_EQ(IT2_VALUE, map.at(index_0)MAP_VALUE)
+
     // begin
     {
         auto map = Map;
         auto it = map.begin();
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-        EXPECT_TRUE(std::is_const<decltype(it2->first)>::value);
-        it2->second = 10;
+        it->second = 10;
         EXPECT_EQ(map.at(0).second, 10);
-        it2->second = 1;
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
+        it->second = 1;
+        ITERATOR_TEST(it2, 0, 1, 2);
     }
 
     // end
     {
         auto map = Map;
         auto it = map.end() - int(map.size());
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-        EXPECT_TRUE(std::is_const<decltype(it2->first)>::value);
-        it2->second = 10;
+        it->second = 10;
         EXPECT_EQ(map.at(0).second, 10);
-        it2->second = 1;
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
+        it->second = 1;
+        ITERATOR_TEST(it2, 0, 1, 2);
     }
 
     // cbegin
@@ -778,72 +720,7 @@ TEST(SequencialMap, iterators)
         auto temp = Map.begin();
         auto it = map.cbegin();
         EXPECT_EQ(typeid(decltype(temp)), typeid(decltype(it)));
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-        EXPECT_TRUE(std::is_const<decltype(it2->first)>::value);
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
+        ITERATOR_TEST(it2, 0, 1, 2);
     }
 
     // cend
@@ -852,222 +729,27 @@ TEST(SequencialMap, iterators)
         auto temp = Map.begin();
         auto it = map.cend() - int(map.size());
         EXPECT_EQ(typeid(decltype(temp)), typeid(decltype(it)));
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-        EXPECT_TRUE(std::is_const<decltype(it2->first)>::value);
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
+        ITERATOR_TEST(it2, 0, 1, 2);
     }
 
     // rbegin
     {
         auto map = Map;
         auto it = map.rbegin();
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-        EXPECT_TRUE(std::is_const<decltype(it2->first)>::value);
-        it2->second = 10;
+        it->second = 10;
         EXPECT_EQ(map.at(2).second, 10);
-        it2->second = 1;
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
+        it->second = 1;
+        ITERATOR_TEST(it2, 2, 1, 0);
     }
 
     // rend
     {
         auto map = Map;
         auto it = map.rend() - int(map.size());
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-        EXPECT_TRUE(std::is_const<decltype(it2->first)>::value);
-        it2->second = 10;
+        it->second = 10;
         EXPECT_EQ(map.at(2).second, 10);
-        it2->second = 1;
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
+        it->second = 1;
+        ITERATOR_TEST(it2, 2, 1, 0);
     }
 
     // crbegin
@@ -1076,72 +758,7 @@ TEST(SequencialMap, iterators)
         auto temp = Map.rbegin();
         auto it = map.crbegin();
         EXPECT_EQ(typeid(decltype(temp)), typeid(decltype(it)));
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-        EXPECT_TRUE(std::is_const<decltype(it2->first)>::value);
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
+        ITERATOR_TEST(it2, 2, 1, 0);
     }
 
     // crend
@@ -1150,136 +767,45 @@ TEST(SequencialMap, iterators)
         auto temp = Map.rbegin();
         auto it = map.crend() - int(map.size());
         EXPECT_EQ(typeid(decltype(temp)), typeid(decltype(it)));
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-        EXPECT_TRUE(std::is_const<decltype(it2->first)>::value);
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(0));
-        EXPECT_EQ(it2->first, map.at(0).first);
-        EXPECT_EQ(it2->second, map.at(0).second);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1));
-        EXPECT_EQ(it2->first, map.at(1).first);
-        EXPECT_EQ(it2->second, map.at(1).second);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(2));
-        EXPECT_EQ(it2->first, map.at(2).first);
-        EXPECT_EQ(it2->second, map.at(2).second);
+        ITERATOR_TEST(it2, 2, 1, 0);
     }
+
+#undef VALUE_FOR_COMPARE
+#define VALUE_FOR_COMPARE .first
+#undef IT2_KEY
+#define IT2_KEY *it2
+#undef IT2_VALUE
+#define IT2_VALUE *it2
+#undef MAP_VALUE
+#define MAP_VALUE .first
 
     // key_begin
     {
         auto map = Map;
         auto it = map.key_begin();
-
-        auto it2(it);
-        EXPECT_EQ(*it2, map.at(0).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(0).first);
-
-        it2 = it;
-        EXPECT_EQ(*it2, map.at(0).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(0).first);
-
-        EXPECT_TRUE(it == it2);
-        EXPECT_FALSE(it != it2);
-        EXPECT_TRUE(it >= it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it < it2);
-
-        ++it2;
-        EXPECT_EQ(*it2, map.at(1).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(1).first);
-        EXPECT_FALSE(it == it2);
-        EXPECT_TRUE(it != it2);
-        EXPECT_TRUE(it < it2);
-        EXPECT_TRUE(it <= it2);
-        EXPECT_FALSE(it > it2);
-        EXPECT_FALSE(it >= it2);
-        EXPECT_EQ(it2 - it, 1);
-        EXPECT_EQ(it - it2, -1);
-
-        it2++;
-        EXPECT_EQ(*it2, map.at(2).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(2).first);
-
-        --it2;
-        EXPECT_EQ(*it2, map.at(1).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(1).first);
-
-        it2--;
-        EXPECT_EQ(*it2, map.at(0).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(0).first);
-
-        it2 += 1;
-        EXPECT_EQ(*it2, map.at(1).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(1).first);
-
-        it2 = it2 + 1;
-        EXPECT_EQ(*it2, map.at(2).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(2).first);
-
-        it2 -= 1;
-        EXPECT_EQ(*it2, map.at(1).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(1).first);
-
-        it2 = it2 - 1;
-        EXPECT_EQ(*it2, map.at(0).first);
-        EXPECT_EQ(*(it2.operator->()), map.at(0).first);
+        ITERATOR_TEST(*it2, 0, 1, 2);
     }
 
     // key_end
+    {
+        auto map = Map;
+        auto it = map.key_end() - int(map.size());
+        ITERATOR_TEST(*it2, 0, 1, 2);
+    }
+
+    // key_rbegin
+    {
+        auto map = Map;
+        auto it = map.key_rbegin();
+        ITERATOR_TEST(*it2, 2, 1, 0);
+    }
+
+    // key_rend
+    {
+        auto map = Map;
+        auto it = map.key_rend() - int(map.size());
+        ITERATOR_TEST(*it2, 2, 1, 0);
+    }
 }
 
 TEST(SequencialMap, compare)

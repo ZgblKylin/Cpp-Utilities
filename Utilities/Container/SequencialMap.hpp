@@ -593,13 +593,13 @@ public:
         { ++n; return *this; }
 
         inline iterator_base operator++(int)
-        { node_type* node = n; ++n; return node; }
+        { node_type* node = n; ++n; return iterator_base(node); }
 
         inline iterator_base& operator--()
         { --n; return *this; }
 
         inline iterator_base operator--(int)
-        { node_type* node = n; --n; return node; }
+        { node_type* node = n; --n; return iterator_base(node); }
 
         inline iterator_base& operator+=(difference_type j)
         { n += j; return *this; }
@@ -620,7 +620,7 @@ public:
         { return difference_type(n - j.n); }
 
     protected:
-        inline iterator_base(const node_type* node)
+        inline explicit iterator_base(const node_type* node)
             : n(const_cast<node_type*>(node))
         {
         }
@@ -630,20 +630,87 @@ public:
         friend struct iterator_base<!constant>;
     };
 
-    struct key_iterator : public iterator_base<true>
+    struct key_iterator
     {
+        using iterator_category = std::random_access_iterator_tag;
+        using difference_type = typename SequencialMap::difference_type;
+        using node_type = typename SequencialMap::vector_type::value_type;
         using value_type = Key;
         using reference = const value_type&;
         using pointer = const value_type*;
-        using iterator_base<true>::iterator_base;
-        using iterator_base<true>::operator=;
+
+        inline key_iterator() = default;
+
+        inline key_iterator(const key_iterator& other)
+            : n(other.n)
+        {
+        }
+
+        inline reference operator*() const
+        { return n->operator*().first; }
+
+        inline pointer operator->() const
+        { return &(n->operator->()->first); }
+
+        inline key_iterator& operator=(const key_iterator& other)
+        { n = other.n; return *this; }
+
+        inline bool operator==(const key_iterator& other) const
+        { return (n == other.n); }
+
+        inline bool operator!=(const key_iterator& other) const
+        { return n != other.n; }
+
+        inline bool operator<(const key_iterator& other) const
+        { return n < other.n; }
+
+        inline bool operator<=(const key_iterator& other) const
+        { return n <= other.n; }
+
+        inline bool operator>(const key_iterator& other) const
+        { return n > other.n; }
+
+        inline bool operator>=(const key_iterator& other) const
+        { return n >= other.n; }
+
+        inline key_iterator& operator++()
+        { ++n; return *this; }
+
+        inline key_iterator operator++(int)
+        { const node_type* node = n; ++n; return key_iterator(node); }
+
+        inline key_iterator& operator--()
+        { --n; return *this; }
+
+        inline key_iterator operator--(int)
+        { const node_type* node = n; --n; return key_iterator(node); }
+
+        inline key_iterator& operator+=(difference_type j)
+        { n += j; return *this; }
+
+        inline key_iterator& operator-=(difference_type j)
+        { n -= j; return *this; }
+
+        inline key_iterator operator+(difference_type j) const
+        { return key_iterator(n + j); }
+
+        friend inline key_iterator operator+(difference_type j, key_iterator& it)
+        { return it + j; }
+
+        inline key_iterator operator-(difference_type j) const
+        { return key_iterator(n - j); }
+
+        inline difference_type operator-(key_iterator j) const
+        { return difference_type(n - j.n); }
+
+    private:
+        inline explicit key_iterator(const node_type* node)
+            : n(node)
+        {
+        }
+
+        const node_type* n = nullptr;
         friend class SequencialMap;
-
-        reference operator*() const
-        { return const_iterator::operator*().first; }
-
-        pointer operator->() const
-        { return &const_iterator::operator->()->first; }
     };
 
 private:
