@@ -13,3 +13,6 @@ build:
   parallel: true
   project: build/Utilities.sln
   verbosity: minimal
+  
+test_script:
+  - ctest -R Utilities --output-on-failure
