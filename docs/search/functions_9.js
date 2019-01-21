@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['pow',['pow',['../class_dimensional_1_1_quantity.html#a4d6941bd4f7a697e730b0e2fb2355096',1,'Dimensional::Quantity']]],
-  ['ptrhelper',['PtrHelper',['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a8bd9fc3fe75b88f98f5f64ee893e9dd9',1,'Memory::SafeSharedPtr::PtrHelper::PtrHelper(SafeSharedPtr&lt; T &gt; &amp;p)'],['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a2bf76c83dfcd00e0d74d3a5f28592b30',1,'Memory::SafeSharedPtr::PtrHelper::PtrHelper(const SafeSharedPtr&lt; T &gt; &amp;p)'],['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a72700a04ad7d0d8f1fe13a3fab634686',1,'Memory::SafeSharedPtr::PtrHelper::PtrHelper(PtrHelper &amp;&amp;other)']]]
+  ['lock',['lock',['../class_memory_1_1_r_w_spin_lock.html#a8910cf79fa5d02530a57b239f15749a1',1,'Memory::RWSpinLock::lock()'],['../class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3',1,'Memory::SafeSharedPtr::lock()'],['../class_memory_1_1_safe_weak_ptr.html#a288477018d372f0888f60815328769d9',1,'Memory::SafeWeakPtr::lock()']]],
+  ['lock_5fshared',['lock_shared',['../class_memory_1_1_r_w_spin_lock.html#afd7f0984624001c03258bee4354e8388',1,'Memory::RWSpinLock::lock_shared()'],['../class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69',1,'Memory::SafeSharedPtr::lock_shared()']]],
+  ['lock_5fupgrade',['lock_upgrade',['../class_memory_1_1_r_w_spin_lock.html#a318a4d4b4f3dc8f6fb4d8c07f15956e7',1,'Memory::RWSpinLock']]]
 ];

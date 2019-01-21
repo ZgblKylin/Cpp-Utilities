@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ptrhelper',['PtrHelper',['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html',1,'Memory::SafeSharedPtr']]]
+  ['iterator_5fbase',['iterator_base',['../struct_container_1_1_sequencial_map_1_1iterator__base.html',1,'Container::SequencialMap']]],
+  ['iterator_5fbase_3c_20true_20_3e',['iterator_base&lt; true &gt;',['../struct_container_1_1_sequencial_map_1_1iterator__base.html',1,'Container::SequencialMap']]]
 ];

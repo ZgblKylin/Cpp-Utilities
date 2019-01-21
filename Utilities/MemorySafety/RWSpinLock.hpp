@@ -362,8 +362,8 @@ public:
             }
         }
 
-        void swap(ReadHolder* other) {
-            std::swap(lock_, other->lock_);
+        void swap(ReadHolder& other) {
+            std::swap(lock_, other.lock_);
         }
 
     private:
@@ -428,9 +428,9 @@ public:
             }
         }
 
-        void swap(UpgradedHolder* other) {
+        void swap(UpgradedHolder& other) {
             using std::swap;
-            swap(lock_, other->lock_);
+            swap(lock_, other.lock_);
         }
 
     private:

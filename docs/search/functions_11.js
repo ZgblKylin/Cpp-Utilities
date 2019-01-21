@@ -1,12 +1,13 @@
 var searchData=
 [
-  ['_7earrayhelper',['~ArrayHelper',['../class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#ad4b65e494eedb9c665f1d8c8cd8d6b50',1,'Memory::SafeSharedPtr::ArrayHelper']]],
-  ['_7eenablesafesharedfromthis',['~EnableSafeSharedFromThis',['../class_memory_1_1_enable_safe_shared_from_this.html#aca1125b4e40996f02e3911ca18ec0d2d',1,'Memory::EnableSafeSharedFromThis']]],
-  ['_7eptrhelper',['~PtrHelper',['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a72e8ec17f51824abfeb083e473b7a399',1,'Memory::SafeSharedPtr::PtrHelper']]],
-  ['_7ereadholder',['~ReadHolder',['../class_memory_1_1_r_w_spin_lock_1_1_read_holder.html#a64b4fbc9b41048f913bc402f7e207632',1,'Memory::RWSpinLock::ReadHolder']]],
-  ['_7erefhelper',['~RefHelper',['../class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#ae66d924fbd050b124420be80473f0370',1,'Memory::SafeSharedPtr::RefHelper']]],
-  ['_7esafesharedptr',['~SafeSharedPtr',['../class_memory_1_1_safe_shared_ptr.html#aa7382cdc4495e3a92acbe7dbde40a70c',1,'Memory::SafeSharedPtr']]],
-  ['_7esafeweakptr',['~SafeWeakPtr',['../class_memory_1_1_safe_weak_ptr.html#ace9b5b0d5261e017733746f7e8aea7f3',1,'Memory::SafeWeakPtr']]],
-  ['_7eupgradedholder',['~UpgradedHolder',['../class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a452a2267803e2befbb58aac8f19ef26b',1,'Memory::RWSpinLock::UpgradedHolder']]],
-  ['_7ewriteholder',['~WriteHolder',['../class_memory_1_1_r_w_spin_lock_1_1_write_holder.html#af775577630611c2677d638e805f7db36',1,'Memory::RWSpinLock::WriteHolder']]]
+  ['unique_5flock',['unique_lock',['../class_memory_1_1_safe_shared_ptr.html#a49b16495f58c9d1c30f2a14d54d5a98c',1,'Memory::SafeSharedPtr']]],
+  ['unlock',['unlock',['../class_memory_1_1_r_w_spin_lock.html#ae3aca9f278ce35c12300c8159e9e898e',1,'Memory::RWSpinLock::unlock()'],['../class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b',1,'Memory::SafeSharedPtr::unlock()']]],
+  ['unlock_5fand_5flock_5fshared',['unlock_and_lock_shared',['../class_memory_1_1_r_w_spin_lock.html#aae71af29b49eb7345131fb967eb56ee5',1,'Memory::RWSpinLock']]],
+  ['unlock_5fand_5flock_5fupgrade',['unlock_and_lock_upgrade',['../class_memory_1_1_r_w_spin_lock.html#a98e4cd1a12789d684c22c1c116bbfe0f',1,'Memory::RWSpinLock']]],
+  ['unlock_5fshared',['unlock_shared',['../class_memory_1_1_r_w_spin_lock.html#a8ce7c822fdb5e9c3b5997e77186ef2ad',1,'Memory::RWSpinLock::unlock_shared()'],['../class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2',1,'Memory::SafeSharedPtr::unlock_shared()']]],
+  ['unlock_5fupgrade',['unlock_upgrade',['../class_memory_1_1_r_w_spin_lock.html#a0fefc1cc0184d89dc778b5a63903923e',1,'Memory::RWSpinLock']]],
+  ['unlock_5fupgrade_5fand_5flock',['unlock_upgrade_and_lock',['../class_memory_1_1_r_w_spin_lock.html#a8f4d78fbd649daabb0aaf47cb0386578',1,'Memory::RWSpinLock']]],
+  ['unlock_5fupgrade_5fand_5flock_5fshared',['unlock_upgrade_and_lock_shared',['../class_memory_1_1_r_w_spin_lock.html#ad5aeb650d708607c0326c6378108bb74',1,'Memory::RWSpinLock']]],
+  ['upgradedholder',['UpgradedHolder',['../class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#acdf4619e13a4ff73e3babf7e21c859fa',1,'Memory::RWSpinLock::UpgradedHolder::UpgradedHolder(RWSpinLock *lock)'],['../class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a5dba0dda7825da7c391560602883c014',1,'Memory::RWSpinLock::UpgradedHolder::UpgradedHolder(RWSpinLock &amp;lock)'],['../class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a9f5ad84c75820a0f6be49d2487a8b4a7',1,'Memory::RWSpinLock::UpgradedHolder::UpgradedHolder(WriteHolder &amp;&amp;writer)'],['../class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#aa357df8e120289d0ded2ecc167fbf634',1,'Memory::RWSpinLock::UpgradedHolder::UpgradedHolder(UpgradedHolder &amp;&amp;other) noexcept'],['../class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#ac705369f4a821a31b1fc99851b18d4f2',1,'Memory::RWSpinLock::UpgradedHolder::UpgradedHolder(const UpgradedHolder &amp;other)=delete']]],
+  ['use_5fcount',['use_count',['../class_memory_1_1_safe_shared_ptr.html#aa0193148c36b6146d578eda25f501995',1,'Memory::SafeSharedPtr::use_count()'],['../class_memory_1_1_safe_weak_ptr.html#ac952f464ff4a44f02ac11b7de4b64625',1,'Memory::SafeWeakPtr::use_count()']]]
 ];

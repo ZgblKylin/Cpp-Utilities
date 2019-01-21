@@ -36,3 +36,5 @@ endmacro()
 
 ADD_Utilities_TEST(DimensionalAnalysis.Ratios DimensionalAnalysis/Ratios.cpp)
 ADD_Utilities_TEST(DimensionalAnalysis.DimensionalAnalysis DimensionalAnalysis/DimensionalAnalysis.cpp)
+ADD_Utilities_TEST(MemorySafety.SafeSharedPtr MemorySafety/SafeSharedPtr.cpp)
+ADD_Utilities_TEST(Container.SequencialMap Container/SequencialMap.cpp)

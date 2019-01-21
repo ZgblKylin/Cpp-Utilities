@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <utility>
+#include <type_traits>
 #include "../Common.h"
 #if __cplusplus >= 201703L
 #include <shared_mutex>
@@ -35,6 +36,7 @@ UTILITIES_NAMESPACE_BEGIN
 namespace Memory {
 // Forward declaration
 template<typename T> class SafeWeakPtr;
+template<typename T> class EnableSafeSharedFromThis;
 
 /**
  * \brief Wrapper to `std::shared_ptr` to provide thread-safety while operating
@@ -43,9 +45,9 @@ template<typename T> class SafeWeakPtr;
  * \details
  *   Same API as `std::shared_ptr`, but operator* and operator() are guarded by
  *   read-write lock to guarantee thread-safety.\n
- *   When SafeSharedPtr is a constant object, operations with underlying pointer
- *   will be guarded by read lock.\n
- *   When SafeSharedPtr is a mutable object, operations with underlying pointer
+ *   When `SafeSharedPtr` is a constant object, operations with underlying
+ *   pointer will be guarded by read lock.\n
+ *   When `SafeSharedPtr` is a mutable object, operations with underlying pointer
  *   will be guarded by write lock.\n
  *   \n
  *   **Sample Code**\n
@@ -128,8 +130,8 @@ template<typename T> class SafeWeakPtr;
  *   `T` is an arry type;
  * \warning
  *   Read-write lock used in this class is **NOT** recursive, so **DO NOT** call
- *   `operator.` `operator->` or `operator[]` multiply times in single
- *   line/expression, otherwise a deadlock will happen. Sorry for the
+ *   `operator.` `operator->` or `operator[]` multiply times in a single
+ *   line/expression, otherwise a **deadlock** will happen. Sorry for the
  *   inconvenience.
  *   ```cpp
  *   // deadlock happens
@@ -193,7 +195,7 @@ public:
     using weak_type = SafeWeakPtr<T>;
 
     /**
-     * \brief Default constructor, construct a SafeSharedPtr with no managed
+     * \brief Default constructor, construct a `SafeSharedPtr` with no managed
      *        object, i.e. empty SafeSharedPtr.
      * \exception std::bad_alloc
      *   If read-write lock could not be obtained. May throw
@@ -205,7 +207,7 @@ public:
     {}
 
     /**
-     * \brief Construct a SafeSharedPtr with no managed object, i.e. empty
+     * \brief Construct a `SafeSharedPtr` with no managed object, i.e. empty
      *        SafeSharedPtr.
      * \param p nullptr.
      * \exception std::bad_alloc
@@ -219,7 +221,7 @@ public:
     {}
 
     /**
-     * \brief Constructs a SafeSharedPtr with a managed object.
+     * \brief Constructs a `SafeSharedPtr` with a managed object.
      * \tparam  Y Type of input pointer.
      * \param   p Pointer to an object to manage.
      * \exception std::bad_alloc
@@ -232,13 +234,20 @@ public:
      *   exception occurs.
      */
     template<typename Y>
-    explicit SafeSharedPtr(Y* p)
+    explicit SafeSharedPtr(Y* p,
+                           typename std::enable_if<!std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
         : lck(std::make_shared<ReadWriteLock>()),
           ptr(p)
-    {}
+    {
+    }
+    template<typename Y>
+    explicit SafeSharedPtr(Y* p,
+                           typename std::enable_if<std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
+        : ptr(p)
+    { lck = ptr->__safeSharedLock; }
 
     /**
-     * \brief Constructs a SafeSharedPtr with a managed object of specified
+     * \brief Constructs a `SafeSharedPtr` with a managed object of specified
      *        deleter.
      * \tparam  Y       Type of input pointer.
      * \tparam  Deleter Type of specified deleter.
@@ -256,13 +265,20 @@ public:
      *   an exception occurs.
      */
     template<typename Y, typename Deleter>
-    SafeSharedPtr(Y* p, Deleter d)
+    SafeSharedPtr(Y* p, Deleter d,
+                  typename std::enable_if<!std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
         : lck(std::make_shared<ReadWriteLock>()),
           ptr(p, d)
-    {}
+    {
+    }
+    template<typename Y, typename Deleter>
+    SafeSharedPtr(Y* p, Deleter d,
+                  typename std::enable_if<std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
+        : ptr(p, d)
+    { lck = ptr->__safeSharedLock; }
 
     /**
-     * \brief Constructs a SafeSharedPtr with with no managed but has specified
+     * \brief Constructs a `SafeSharedPtr` with with no managed but has specified
      *        deleter.
      * \tparam  Deleter Type of specified deleter.
      * \param   p       nullptr.
@@ -285,7 +301,7 @@ public:
     {}
 
     /**
-     * \brief Constructs a SafeSharedPtr with a managed object of specified
+     * \brief Constructs a `SafeSharedPtr` with a managed object of specified
      *        deleter and allocator.
      * \tparam  Y       Type of input pointer.
      * \tparam  Deleter Type of specified deleter.
@@ -306,13 +322,19 @@ public:
      *   an exception occurs.
      */
     template<typename Y, typename Deleter, typename Alloc>
-    SafeSharedPtr(Y* p, Deleter d, Alloc alloc)
-        : lck(std::allocate_shared<ReadWriteLock>(alloc)),
+    SafeSharedPtr(Y* p, Deleter d, Alloc alloc,
+                  typename std::enable_if<!std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
+        : lck(std::make_shared<ReadWriteLock>()),
           ptr(p, d, alloc)
     {}
+    template<typename Y, typename Deleter, typename Alloc>
+    SafeSharedPtr(Y* p, Deleter d, Alloc alloc,
+                  typename std::enable_if<std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
+        : ptr(p, d, alloc)
+    { lck = ptr->__safeSharedLock; }
 
     /**
-     * \brief Constructs a SafeSharedPtr with no managed but has specified
+     * \brief Constructs a `SafeSharedPtr` with no managed but has specified
      *        deleter and allocator.
      * \tparam  Deleter Type of specified deleter.
      * \tparam  Alloc   Type of specified allocator.
@@ -333,70 +355,78 @@ public:
      */
     template<typename Deleter, typename Alloc>
     SafeSharedPtr(std::nullptr_t p, Deleter d, Alloc alloc)
-        : lck(std::allocate_shared<ReadWriteLock>(alloc)),
+        : lck(std::make_shared<ReadWriteLock>()),
           ptr(p, d, alloc)
     {}
 
     /**
-     * \brief The aliasing constructor: constructs a SafeSharedPtr which shares
+     * \brief The aliasing constructor: constructs a `SafeSharedPtr` which shares
      *        ownership information with the initial value of `other`, but holds
      *        an unrelated and unmanaged pointer `p`.
-     * \tparam  Y       Type of input pointer.
-     * \param   other   Input SafeSharedPtr to share ownership from.
+     * \tparam  Y       Type of input shared pointer.
+       \tparam  U       Type of input object, U must implicitly convertible to T.
+     * \param   other   Input `SafeSharedPtr` to share ownership from.
      * \param   p       Pointer to an object to manage.
      * \details
-     *   If this SafeSharedPtr is the last of the group to go out of scope, it
+     *   If this `SafeSharedPtr` is the last of the group to go out of scope, it
      *   will call the stored deleter for the object originally managed by
-     *   other. However, calling get() on this SafeSharedPtr will always return
+     *   other. However, calling get() on this `SafeSharedPtr` will always return
      *   a copy of `p`. It is the responsibility of the programmer to make sure
-     *   that this pointer remains valid as long as this SafeSharedPtr exists,
+     *   that this pointer remains valid as long as this `SafeSharedPtr` exists,
      *   such as in the typical use cases where 'p' is a member of the object
      *   managed by `other` or is an alias (e.g., downcast) of `other.get()` after
      *   the call.
      */
-    template<typename Y>
-    SafeSharedPtr(const SafeSharedPtr<Y>& other, T* p) noexcept
+    template<typename Y, typename U>
+    SafeSharedPtr(const SafeSharedPtr<Y>& other, U* p) noexcept
         : lck(other.lck), ptr(other.ptr, p)
     {}
 
     /**
-     * \brief The aliasing constructor: constructs a SafeSharedPtr which shares
+     * \brief The aliasing constructor: constructs a `SafeSharedPtr` which shares
      *        ownership information with the initial value of `other`, but holds
      *        an unrelated and unmanaged pointer `p`.
-     * \tparam  Y       Type of input pointer.
-     * \param   other   Input SafeSharedPtr to share ownership from.
+     * \tparam  Y       Type of input shared pointer.
+     * \param   other   Input `SafeSharedPtr` to share ownership from.
      * \param   p       Pointer to an object to manage.
      * \details
-     *   If this SafeSharedPtr is the last of the group to go out of scope, it
+     *   If this `SafeSharedPtr` is the last of the group to go out of scope, it
      *   will call the stored deleter for the object originally managed by
-     *   other. However, calling get() on this SafeSharedPtr will always return
+     *   other. However, calling get() on this `SafeSharedPtr` will always return
      *   a copy of `p`. It is the responsibility of the programmer to make sure
-     *   that this pointer remains valid as long as this SafeSharedPtr exists,
+     *   that this pointer remains valid as long as this `SafeSharedPtr` exists,
      *   such as in the typical use cases where 'p' is a member of the object
      *   managed by `other` or is an alias (e.g., downcast) of `other.get()` after
      *   the call.
      */
     template<typename Y>
-    SafeSharedPtr(const std::shared_ptr<Y>& other, T* p) noexcept
+    SafeSharedPtr(const std::shared_ptr<Y>& other, T* p,
+                  typename std::enable_if<!std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr) noexcept
         : lck(std::make_shared<ReadWriteLock>()), ptr(other, p)
     {}
+    template<typename Y>
+    SafeSharedPtr(const std::shared_ptr<Y>& other, T* p,
+                  typename std::enable_if<std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr) noexcept
+        : lck(other->__safeSharedLock), ptr(other, p)
+    {
+    }
 
     /**
-     * \brief Copy constructor, constructs a SafeSharedPtr which shares
+     * \brief Copy constructor, constructs a `SafeSharedPtr` which shares
      *        ownership of the object managed by `other`. If `other` manages no
      *        object, `*this` manages no object too.
-     * \param other Another shared pointer to share the ownership to.
+     * \param other Another shared pointer to share the ownership from.
      */
     SafeSharedPtr(const SafeSharedPtr<T>& other) noexcept
         : lck(other.lck), ptr(other.ptr)
     {}
 
     /**
-     * \brief Copy constructor, constructs a SafeSharedPtr which shares
+     * \brief Copy constructor, constructs a `SafeSharedPtr` which shares
      *        ownership of the object managed by `other`. If `other` manages no
      *        object, `*this` manages no object too.
      * \tparam  Y       Type of input pointer.
-     * \param   other   Another shared pointer to share the ownership to.
+     * \param   other   Another shared pointer to share the ownership from.
      */
     template<typename Y>
     SafeSharedPtr(const SafeSharedPtr<Y>& other) noexcept
@@ -404,7 +434,7 @@ public:
     {}
 
     /**
-     * \brief Move constructor, move-constructs a SafeSharedPtr from `other`.
+     * \brief Move constructor, move-constructs a `SafeSharedPtr` from `other`.
      *        After the construction, `*this` contains a copy of the previous
      *        state of `other`, `other` is empty and its stored pointer is null.
      * \param other Another shared pointer to acquire the ownership from.
@@ -415,7 +445,7 @@ public:
     {}
 
     /**
-     * \brief Move constructor, move-constructs a SafeSharedPtr from `other`.
+     * \brief Move constructor, move-constructs a `SafeSharedPtr` from `other`.
      *        After the construction, `*this` contains a copy of the previous
      *        state of `other`, `other` is empty and its stored pointer is null.
      * \tparam  Y       Type of input pointer.
@@ -428,7 +458,7 @@ public:
     {}
 
     /**
-     * \brief Constructs a SafeSharedPtr which shares ownership of the object
+     * \brief Constructs a `SafeSharedPtr` which shares ownership of the object
      *        managed by `other`. If `other` manages no object, `*this` manages no
      *        object too.
      * \tparam  Y       Type of input pointer.
@@ -447,13 +477,13 @@ public:
     {}
 
     /**
-     * \brief Constructs a SafeSharedPtr which shares ownership of the object
+     * \brief Constructs a `SafeSharedPtr` which shares ownership of the object
      *        managed by `other`, and provide read-write lock guard for memory
      *        safety. If `other` manages no object, `*this` manages no object too.
      * \tparam  Y       Type of input pointer.
      * \param   other   Another `std::shared` pointer to share the ownership to.
      * \warning
-     *   Only pointer operations with SafeSharedPtr are gauranteed memory safe,
+     *   Only pointer operations with `SafeSharedPtr` are gauranteed memory safe,
      *   operations with existing `std::shared_ptr` are still without gaurantee.
      * \exception std::bad_alloc
      *   If read-write lock could not be obtained. May throw
@@ -461,12 +491,18 @@ public:
      *   called if an exception occurs.
      */
     template<typename Y>
-    SafeSharedPtr(const std::shared_ptr<Y>& other)
+    SafeSharedPtr(const std::shared_ptr<Y>& other,
+                  typename std::enable_if<!std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
         : lck(std::make_shared<ReadWriteLock>()), ptr(other)
     {}
+    template<typename Y>
+    SafeSharedPtr(const std::shared_ptr<Y>& other,
+                  typename std::enable_if<std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
+        : ptr(other)
+    { lck = ptr->__safeSharedLock; }
 
     /**
-     * \brief Move-constructs a SafeSharedPtr from `other`. After the
+     * \brief Move-constructs a `SafeSharedPtr` from `other`. After the
      *        construction, `*this` contains a copy of the previous state of
      *        `other`, `other` is empty and its stored pointer is null.
      * \tparam  Y       Type of input pointer.
@@ -477,19 +513,25 @@ public:
      *   called if an exception occurs.
      */
     template<typename Y>
-    SafeSharedPtr(std::shared_ptr<Y>&& other)
+    SafeSharedPtr(std::shared_ptr<Y>&& other,
+                  typename std::enable_if<!std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
         : lck(std::make_shared<ReadWriteLock>()),
           ptr(std::forward<std::shared_ptr<Y>>(other))
     {}
+    template<typename Y>
+    SafeSharedPtr(std::shared_ptr<Y>&& other,
+                  typename std::enable_if<std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
+        : ptr(std::forward<std::shared_ptr<Y>>(other))
+    { lck = ptr->__safeSharedLock; }
 
     /**
-     * \brief Constructs a SafeSharedPtr which shares ownership of the object
+     * \brief Constructs a `SafeSharedPtr` which shares ownership of the object
      *        managed by `other`. and provide read-write lock guard for memory
      *        safety. If `other` manages no object, `*this` manages no object too.
      * \tparam  Y       Type of input pointer.
      * \param   other   Another weak pointer to share the ownership to.
      * \warning
-     *   Only pointer operations with SafeSharedPtr are gauranteed memory safe,
+     *   Only pointer operations with `SafeSharedPtr` are gauranteed memory safe,
      *   operations with existing `std::shared_ptr` are still without gaurantee.
      * \note `other.lock()` may be used for the same purpose: the difference is
      *       that this constructor throws an exception if the argument is empty,
@@ -505,14 +547,14 @@ public:
      */
     template<typename Y>
     SafeSharedPtr(const std::weak_ptr<Y>& other)
-        : lck(std::make_shared<ReadWriteLock>()), ptr(other)
+        : SafeSharedPtr(other.lock())
     {}
 
     /**
      * \brief Destructor, destructs the owned object if no more SafeSharedPtr
      *        link to it.
      * \details
-     *   If `*this` owns an object and it is the last SafeSharedPtr owning it,
+     *   If `*this` owns an object and it is the last `SafeSharedPtr` owning it,
      *   the object is destroyed through the owned deleter. After the
      *   destruction, the shared pointers that shared ownership with `*this`, if
      *   any, will report a use_count() that is one less than its previous
@@ -528,7 +570,7 @@ public:
      *   Equivalent to `SafeSharedPtr<T>(other).swap(*this)`.\n
      *   If `other` manages no object, `*this` manages no object too.\n
      *   Replaces the managed object with the one managed by `other`. If *this
-     *   already owns an object and it is the last SafeSharedPtr owning it, and
+     *   already owns an object and it is the last `SafeSharedPtr` owning it, and
      *   `other` is not the same as `*this`, the object is destroyed through the
      *   owned deleter.
      * \sa reset
@@ -540,7 +582,7 @@ public:
     }
 
     /**
-     * \brief Move-assigns a SafeSharedPtr from `other`.
+     * \brief Move-assigns a `SafeSharedPtr` from `other`.
      * \param other Another shared pointer to acquire the ownership from.
      * \return `*this` with same object managed by `other`.
      * \details
@@ -548,7 +590,7 @@ public:
      *   After the assignment, `*this` contains a copy of the previous state of
      *   `other`, and `other` is empty.\n
      *   Replaces the managed object with the one managed by `other`. If *this
-     *   already owns an object and it is the last SafeSharedPtr owning it, and
+     *   already owns an object and it is the last `SafeSharedPtr` owning it, and
      *   `other` is not the same as `*this`, the object is destroyed through the
      *   owned deleter.
      * \sa reset
@@ -568,7 +610,7 @@ public:
      *   Equivalent to `SafeSharedPtr<T>(other).swap(*this)`.\n
      *   If `other` manages no object, `*this` manages no object too.\n
      *   Replaces the managed object with the one managed by `other`. If *this
-     *   already owns an object and it is the last SafeSharedPtr owning it, and
+     *   already owns an object and it is the last `SafeSharedPtr` owning it, and
      *   `other` is not the same as `*this`, the object is destroyed through the
      *   owned deleter.
      * \sa reset
@@ -581,7 +623,7 @@ public:
     }
 
     /**
-     * \brief Move-assigns a SafeSharedPtr from `other`.
+     * \brief Move-assigns a `SafeSharedPtr` from `other`.
      * \tparam  Y       Type of input pointer.
      * \param   other   Another shared pointer to acquire the ownership from.
      * \return `*this` with same object managed by `other`.
@@ -590,7 +632,7 @@ public:
      *   After the assignment, `*this` contains a copy of the previous state of
      *   `other`, and `other` is empty.\n
      *   Replaces the managed object with the one managed by `other`. If *this
-     *   already owns an object and it is the last SafeSharedPtr owning it, and
+     *   already owns an object and it is the last `SafeSharedPtr` owning it, and
      *   `other` is not the same as `*this`, the object is destroyed through the
      *   owned deleter.
      * \sa reset
@@ -611,11 +653,11 @@ public:
      * \details
      *   If `other` manages no object, `*this` manages no object too.\n
      *   Replaces the managed object with the one managed by `other`. If *this
-     *   already owns an object and it is the last SafeSharedPtr owning it, and
+     *   already owns an object and it is the last `SafeSharedPtr` owning it, and
      *   `other` is not the same as `*this`, the object is destroyed through the
      *   owned deleter.
      * \warning
-     *   Only pointer operations with SafeSharedPtr are gauranteed memory safe,
+     *   Only pointer operations with `SafeSharedPtr` are gauranteed memory safe,
      *   operations with existing `std::shared_ptr` are still without gaurantee.
      * \exception std::bad_alloc
      *   If read-write lock could not be obtained. May throw
@@ -626,13 +668,12 @@ public:
     template<typename Y>
     SafeSharedPtr<T>& operator=(const std::shared_ptr<Y>& other)
     {
-        lck = std::make_shared<ReadWriteLock>();
-        ptr = other;
+        SafeSharedPtr<T>(other).swap(*this);
         return *this;
     }
 
     /**
-     * \brief Move-assigns a SafeSharedPtr from `other`, provide read-write lock
+     * \brief Move-assigns a `SafeSharedPtr` from `other`, provide read-write lock
      *        guard for memory safety.
      * \tparam  Y       Type of input pointer.
      * \param   other   Another shared pointer to acquire the ownership from.
@@ -641,7 +682,7 @@ public:
      *   After the assignment, `*this` contains a copy of the previous state of
      *   `other`, and `other` is empty.\n
      *   Replaces the managed object with the one managed by `other`. If *this
-     *   already owns an object and it is the last SafeSharedPtr owning it, and
+     *   already owns an object and it is the last `SafeSharedPtr` owning it, and
      *   `other` is not the same as `*this`, the object is destroyed through the
      *   owned deleter.
      * \exception std::bad_alloc
@@ -653,8 +694,7 @@ public:
     template<typename Y>
     SafeSharedPtr<T>& operator=(std::shared_ptr<Y>&& other)
     {
-        lck = std::make_shared<ReadWriteLock>();
-        ptr = std::forward(other);
+        SafeSharedPtr<T>(std::move(other)).swap(*this);
         return *this;
     }
 
@@ -720,7 +760,7 @@ public:
      *   Equivalent to `SafeSharedPtr<T>(ptr, d).swap(*this)`.\n
      *   Replaces the managed object with an object pointed to by `ptr`. Optional
      *   deleter `d` is supplied, which is later used to destroy the new object
-     *   when no SafeSharedPtr objects own it.\n
+     *   when no `SafeSharedPtr` objects own it.\n
      *   If `*this` already owns an object and it is the last SafeSharedPtr
      *   owning it, the object is destroyed through the owned deleter.\n
      *   If the object pointed to by `ptr` is already owned, the function results
@@ -759,7 +799,7 @@ public:
      *   Equivalent to `SafeSharedPtr<T>(ptr, d, alloc).swap(*this)`.\n
      *   Replaces the managed object with an object pointed to by `ptr`. Optional
      *   deleter `d` is supplied, which is later used to destroy the new object
-     *   when no SafeSharedPtr objects own it.\n
+     *   when no `SafeSharedPtr` objects own it.\n
      *   If `*this` already owns an object and it is the last SafeSharedPtr
      *   owning it, the object is destroyed through the owned deleter.\n
      *   If the object pointed to by `ptr` is already owned, the function results
@@ -790,7 +830,7 @@ public:
     /**
      * \brief Returns the stored pointer.
      * \return The stored pointer.
-     * \note A SafeSharedPtr may share ownership of an object while storing a
+     * \note A `SafeSharedPtr` may share ownership of an object while storing a
      *       pointer to another object. `get()` returns the stored pointer, not
      *       the managed pointer.
      * \warning Thread safety is not gauranteed with this method, call
@@ -798,7 +838,7 @@ public:
      *          unlock_shared() / unlock() when finished.
      * \sa operator*, operator->
      */
-    T* get() const noexcept
+    element_type* get() const noexcept
     { return ptr.get(); }
 
     /**
@@ -811,7 +851,7 @@ public:
      * \sa get
      */
     RefHelper operator*() noexcept
-    { return std::move(RefHelper(*this)); }
+    { return RefHelper(*this); }
 
     /**
      * \brief Dereferences the stored pointer, guard it with **read lock**. The
@@ -823,7 +863,7 @@ public:
      * \sa get
      */
     const RefHelper operator*() const noexcept
-    { return std::move(RefHelper(*this)); }
+    { return RefHelper(*this); }
 
     /**
      * \brief Dereferences the stored pointer, guard it with **write lock**. The
@@ -834,7 +874,7 @@ public:
      * \sa get
      */
     PtrHelper operator->() noexcept
-    { return std::move(PtrHelper(*this)); }
+    { return PtrHelper(*this); }
 
     /**
      * \brief Dereferences the stored pointer, guard it with **read lock**. The
@@ -845,7 +885,7 @@ public:
      * \sa get
      */
     const PtrHelper operator->() const noexcept
-    { return std::move(PtrHelper(*this)); }
+    { return PtrHelper(*this); }
 
 #if __cplusplus >= 201703L
     /**
@@ -868,7 +908,7 @@ public:
      * \sa get
      */
     ArrayHelper operator[](std::ptrdiff_t idx)
-    { return std::move(ArrayHelper(*this, idx)); }
+    { return ArrayHelper(*this, idx); }
 
     /**
      * \brief Provides indexed access to the stored array, guard it with
@@ -889,16 +929,16 @@ public:
      * \sa get
      */
     const ArrayHelper& operator[](std::ptrdiff_t idx) const
-    { return std::move(ArrayHelper(*this, idx)); }
+    { return ArrayHelper(*this, idx); }
 #endif
 
     /**
-     * \brief Returns the number of SafeSharedPtr objects referring to the same
+     * \brief Returns the number of `SafeSharedPtr` objects referring to the same
      *        managed object.
-     * \return The number of SafeSharedPtr instances managing the current object
+     * \return The number of `SafeSharedPtr` instances managing the current object
      *         or 0 if there is no managed object.
      * \details
-     *   Returns the number of different SafeSharedPtr instances (this included)
+     *   Returns the number of different `SafeSharedPtr` instances (this included)
      *   managing the current object. If there is no managed object, 0 is
      *   returned.\n
      *   In multithreaded environment, the value returned by use_count is
@@ -923,19 +963,19 @@ public:
      * \brief Checks if *this stores a non-null pointer, i.e. whether
      *        `get() != nullptr`.
      * \return `true` if `*this` stores a pointer, `false` otherwise.
-     * \note An empty SafeSharedPtr (where `use_count() == 0`) may store a
+     * \note An empty `SafeSharedPtr` (where `use_count() == 0`) may store a
      *       non-null pointer accessible by get(), e.g. if it were created using
      *       the aliasing constructor.
      * \sa get
      */
     explicit operator bool() const noexcept
-    { return ptr; }
+    { return get() != nullptr; }
 
     /**
-     * \brief Checks whether this SafeSharedPtr precedes other in implementation
+     * \brief Checks whether this `SafeSharedPtr` precedes other in implementation
      *        defined owner-based (as opposed to value-based) order.
      * \tparam  Y       The type of input operand.
-     * \param   other   the SafeSharedPtr to be compared.
+     * \param   other   the `SafeSharedPtr` to be compared.
      * \return `true` if `*this` precedes other, `false` otherwise. Common
      *         implementations compare the addresses of the control blocks.
      * \details
@@ -951,7 +991,7 @@ public:
     { return ptr.owner_before(other.ptr); }
 
     /**
-     * \brief Checks whether this SafeSharedPtr precedes other in implementation
+     * \brief Checks whether this `SafeSharedPtr` precedes other in implementation
      *        defined owner-based (as opposed to value-based) order.
      * \tparam  Y       The type of input operand.
      * \param   other   the SafeWeakPtr to be compared.
@@ -1029,8 +1069,8 @@ public:
      * \note This method is thread-safe.
      * \sa lock_shared, unlock_shared
      */
-    SharedLock&& shared_lock() const
-    { return std::move(SharedLock(lck)); }
+    SharedLock shared_lock() const
+    { return SharedLock(*lck); }
 
     /**
      * \brief Generate a RAII guard for write lock, it will call lock()
@@ -1039,8 +1079,8 @@ public:
      * \note This method is thread-safe.
      * \sa lock, unlock
      */
-    UniqueLock&& unique_lock() const
-    { return std::move(UniqueLock(lck)); }
+    UniqueLock unique_lock() const
+    { return UniqueLock(*lck); }
 
     /**
      * \brief Proxy class for operator-> in SafeSharedPtr, behave like
@@ -1074,7 +1114,7 @@ public:
          *        object of SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock_shared() on construction.
-         * \param p SafeSharedPtr to access from.
+         * \param p `SafeSharedPtr` to access from.
          */
         explicit PtrHelper(SafeSharedPtr<T>& p)
             : ptr(&p)
@@ -1085,7 +1125,7 @@ public:
          *        object of SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock() on construction.
-         * \param p SafeSharedPtr to access from.
+         * \param p `SafeSharedPtr` to access from.
          */
         explicit PtrHelper(const SafeSharedPtr<T>& p)
             : constPtr(&p)
@@ -1096,7 +1136,7 @@ public:
          *        keep existing lock state.
          * \param other Another PtrHelper to move to.
          */
-        PtrHelper(PtrHelper&& other)
+        PtrHelper(PtrHelper&& other) noexcept
         {
             std::swap(ptr, other.ptr);
             std::swap(constPtr, other.constPtr);
@@ -1152,7 +1192,10 @@ public:
          * \return `const T*`.
          */
         const_pointer operator->() const
-        { return constPtr->get(); }
+        {
+            if (constPtr) return constPtr->get();
+            else return ptr->get();
+        }
 
     private:
         SafeSharedPtr<T>* ptr = nullptr;
@@ -1192,7 +1235,7 @@ public:
          *        object of SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock_shared() on construction.
-         * \param p SafeSharedPtr to access from.
+         * \param p `SafeSharedPtr` to access from.
          */
         explicit RefHelper(SafeSharedPtr<T>& p)
             : ptr(&p)
@@ -1203,7 +1246,7 @@ public:
          *        object of SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock() on construction.
-         * \param p SafeSharedPtr to access from.
+         * \param p `SafeSharedPtr` to access from.
          */
         explicit RefHelper(const SafeSharedPtr<T>& p)
             : constPtr(&p)
@@ -1214,7 +1257,7 @@ public:
          *        keep existing lock state.
          * \param other Another RefHelper to move to.
          */
-        RefHelper(RefHelper&& other)
+        RefHelper(RefHelper&& other) noexcept
         {
             std::swap(ptr, other.ptr);
             std::swap(constPtr, other.constPtr);
@@ -1256,7 +1299,10 @@ public:
          * \return `const T&`.
          */
         operator const_reference() const
-        { return *(constPtr->get()); }
+        {
+            if (constPtr) return *(constPtr->get());
+            else return *(ptr->get());
+        }
 
         /**
          * \brief Assign operator to assign from another value.
@@ -1324,7 +1370,7 @@ public:
          *        of object managed by SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock_shared() on construction.
-         * \param p     SafeSharedPtr to access from.
+         * \param p     `SafeSharedPtr` to access from.
          * \param idx   Index for element in array to access from.
          */
         ArrayHelper(SafeSharedPtr<T>& p, std::ptrdiff_t idx)
@@ -1336,7 +1382,7 @@ public:
          *        of object managed by SafeSharedPtr.
          * \details
          *   Will call SafeSharedPtr::lock() on construction.
-         * \param p     SafeSharedPtr to access from.
+         * \param p     `SafeSharedPtr` to access from.
          * \param idx   Index for element in array to access from.
          */
         ArrayHelper(const SafeSharedPtr<T>& p, std::ptrdiff_t idx)
@@ -1348,7 +1394,7 @@ public:
          *        keep existing lock state.
          * \param other Another ArrayHelper to move to.
          */
-        ArrayHelper(ArrayHelper&& other)
+        ArrayHelper(ArrayHelper&& other) noexcept
         {
             std::swap(ptr, other.ptr);
             std::swap(constPtr, other.constPtr);
@@ -1392,7 +1438,10 @@ public:
          * \return `const element_type&`.
          */
         operator const_reference() const
-        { return (constPtr->get())[index]; }
+        {
+            if (constPtr) return (constPtr->get())[index];
+            else return (ptr->get())[index];
+        }
 
         /**
          * \brief Assign operator to assign from another value.
@@ -1440,13 +1489,13 @@ private:
  * \param   args    List of arguments with which an instance of `T` will be
  *                  constructed.
  * \details
- *   Constructs an object of type `T` and wraps it in a SafeSharedPtr using `args`
+ *   Constructs an object of type `T` and wraps it in a `SafeSharedPtr` using `args`
  *   as the parameter list for the constructor of `T`. The object is constructed
  *   as if by the expression `::new (pv) T(std::forward<Args>(args)...)`, where
  *   pv is an internal `void*` pointer to storage suitable to hold an object of
  *   type `T`. The storage is typically larger than `sizeof(T)` in order to use
  *   one allocation for both the control block of the shared pointer and the `T`
- *   object. The SafeSharedPtr constructor called by this function enables
+ *   object. The `SafeSharedPtr` constructor called by this function enables
  *   ``shared_from_this` with a pointer to the newly constructed object of
  *   type `T`.\n
  *   The object will be destroyed by `p->~X()`, where p is a pointer to the
@@ -1487,7 +1536,7 @@ private:
  *     - `SafeSharedPtr<T>(new T(args...))` may call a non-public constructor of
  *       `T` if executed in context where it is accessible, while make_shared
  *       requires public access to the selected constructor.\n
- *     - Unlike the SafeSharedPtr constructors, make_shared does not allow a
+ *     - Unlike the `SafeSharedPtr` constructors, make_shared does not allow a
  *       custom deleter.\n
  *     - make_shared uses `::new`, so if any special behavior has been set up
  *       using a class-specific operator new, it will differ from
@@ -1498,7 +1547,7 @@ template<typename T, typename... Args>
 inline SafeSharedPtr<T> make_shared(Args&&... args)
 {
     std::shared_ptr<T> p = std::make_shared<T>(std::forward<Args>(args)...);
-    return SafeSharedPtr<T>(p, p.get());
+    return SafeSharedPtr<T>(p);
 }
 
 /**
@@ -1512,14 +1561,14 @@ inline SafeSharedPtr<T> make_shared(Args&&... args)
  * \param   args    List of arguments with which an instance of `T` will be
  *                  constructed.
  * \details
- *   Constructs an object of type `T` and wraps it in a SafeSharedPtr using args
+ *   Constructs an object of type `T` and wraps it in a `SafeSharedPtr` using args
  *   as the parameter list for the constructor of `T`. The object is constructed
  *   as if by the expression `std::allocator_traits<A2>::construct(a, pv, v)`,
  *   where `pv` is an internal `void*` pointer to storage suitable to hold an
  *   object of type `T` and a is a copy of the allocator rebound to
  *   `std::remove_cv_t<T>`. The storage is typically larger than `sizeof(T)` in
  *   order to use one allocation for both the control block of the shared
- *   pointer and the `T` object. The SafeSharedPtr constructor called by this
+ *   pointer and the `T` object. The `SafeSharedPtr` constructor called by this
  *   function enables `shared_from_this` with a pointer to the newly constructed
  *   object of type `T`. All memory allocation is done using a copy of alloc,
  *   which must satisfy the Allocator requirements.\n
@@ -1537,7 +1586,7 @@ inline SafeSharedPtr<T> make_shared(Args&&... args)
  *   implementations do this). A copy of alloc is stored as part of the control
  *   block so that it can be used to deallocate it once both shared and weak
  *   reference counts reach zero. \n
- *   Unlike the SafeSharedPtr constructors, allocate_shared does not accept a
+ *   Unlike the `SafeSharedPtr` constructors, allocate_shared does not accept a
  *   separate custom deleter: the supplied allocator is used for destruction of
  *   the control block and the `T` object, and for deallocation of their shared
  *   memory block.\n
@@ -1554,7 +1603,7 @@ inline SafeSharedPtr<T> make_shared(Args&&... args)
  *   `std::shared_from_this`. The assignment to the `weak_this` member is not
  *   atomic and conflicts with any potentially concurrent access to the same
  *   object. This ensures that future calls to `shared_from_this()` would share
- *   ownership with the SafeSharedPtr created by this raw pointer constructor.\n
+ *   ownership with the `SafeSharedPtr` created by this raw pointer constructor.\n
  *   The test `ptr->weak_this.expired()` in the exposition code above makes sure
  *   that `weak_this` is not reassigned if it already indicates an owner. This
  *   test is required as of C++17.
@@ -1575,10 +1624,10 @@ inline SafeSharedPtr<T> allocate_shared(const Alloc& alloc, Args&&... args)
  * \param   r   The pointer to convert.
  * \result SafeSharedPtr<T> casted from type `U`.
  * \details
- *   Creates a new instance of SafeSharedPtr whose stored pointer is obtained
+ *   Creates a new instance of `SafeSharedPtr` whose stored pointer is obtained
  *   from `r`'s stored pointer using a cast expression.\n
- *   If `r` is empty, so is the new SafeSharedPtr (but its stored pointer is not
- *   necessarily null). Otherwise, the new SafeSharedPtr will share ownership
+ *   If `r` is empty, so is the new `SafeSharedPtr` (but its stored pointer is not
+ *   necessarily null). Otherwise, the new `SafeSharedPtr` will share ownership
  *   with the initial value of `r`.\n
  *   Let `Y` be `typename std::shared_ptr<T>::element_type`, then the resulting
  *   SafeSharedPtr's stored pointer will be obtained by evaluating,
@@ -1593,7 +1642,7 @@ inline SafeSharedPtr<T> allocate_shared(const Alloc& alloc, Args&&... args)
 template<typename T, typename U>
 inline SafeSharedPtr<T> static_pointer_cast(const SafeSharedPtr<U>& r) noexcept
 {
-    auto p = static_cast<T*>(r.get());
+    auto p = static_cast<typename std::shared_ptr<T>::element_type*>(r.get());
     return SafeSharedPtr<T>(r, p);
 }
 
@@ -1605,16 +1654,16 @@ inline SafeSharedPtr<T> static_pointer_cast(const SafeSharedPtr<U>& r) noexcept
  * \param   r   The pointer to convert.
  * \result SafeSharedPtr<T> casted from type `U`.
  * \details
- *   Creates a new instance of SafeSharedPtr whose stored pointer is obtained
+ *   Creates a new instance of `SafeSharedPtr` whose stored pointer is obtained
  *   from `r`'s stored pointer using a cast expression.\n
- *   If `r` is empty, so is the new SafeSharedPtr (but its stored pointer is not
- *   necessarily null). Otherwise, the new SafeSharedPtr will share ownership
+ *   If `r` is empty, so is the new `SafeSharedPtr` (but its stored pointer is not
+ *   necessarily null). Otherwise, the new `SafeSharedPtr` will share ownership
  *   with the initial value of `r`, except that it is empty if the `dynamic_cast`
  *   performed by dynamic_pointer_cast returns a null pointer.\n
  *   Let `Y` be `typename std::shared_ptr<T>::element_type`, then the resulting
  *   SafeSharedPtr's stored pointer will be obtained by evaluating,
  *   respectively: `dynamic_cast<Y*>(r.get())` (If the result of the
- *   `dynamic_cast` is a null pointer value, the returned SafeSharedPtr will be
+ *   `dynamic_cast` is a null pointer value, the returned `SafeSharedPtr` will be
  *   empty).
  *   The behavior is undefined unless `dynamic_cast<T*>((U*)nullptr)` is well
  *   formed.
@@ -1626,7 +1675,7 @@ inline SafeSharedPtr<T> static_pointer_cast(const SafeSharedPtr<U>& r) noexcept
 template<typename T, typename U>
 inline SafeSharedPtr<T> dynamic_pointer_cast(const SafeSharedPtr<U>& r) noexcept
 {
-    auto p = dynamic_cast<T*>(r.get());
+    auto p = dynamic_cast<typename std::shared_ptr<T>::element_type*>(r.get());
     return SafeSharedPtr<T>(r, p);
 }
 
@@ -1638,10 +1687,10 @@ inline SafeSharedPtr<T> dynamic_pointer_cast(const SafeSharedPtr<U>& r) noexcept
  * \param   r   The pointer to convert.
  * \result SafeSharedPtr<T> casted from type `U`.
  * \details
- *   Creates a new instance of SafeSharedPtr whose stored pointer is obtained
+ *   Creates a new instance of `SafeSharedPtr` whose stored pointer is obtained
  *   from `r`'s stored pointer using a cast expression.\n
- *   If `r` is empty, so is the new SafeSharedPtr (but its stored pointer is not
- *   necessarily null). Otherwise, the new SafeSharedPtr will share ownership
+ *   If `r` is empty, so is the new `SafeSharedPtr` (but its stored pointer is not
+ *   necessarily null). Otherwise, the new `SafeSharedPtr` will share ownership
  *   with the initial value of `r`.\n
  *   Let `Y` be `typename std::shared_ptr<T>::element_type`, then the resulting
  *   SafeSharedPtr's stored pointer will be obtained by evaluating,
@@ -1656,7 +1705,7 @@ inline SafeSharedPtr<T> dynamic_pointer_cast(const SafeSharedPtr<U>& r) noexcept
 template<typename T, typename U>
 inline SafeSharedPtr<T> const_pointer_cast(const SafeSharedPtr<U>& r) noexcept
 {
-    auto p = const_cast<T*>(r.get());
+    auto p = const_cast<typename std::shared_ptr<T>::element_type*>(r.get());
     return SafeSharedPtr<T>(r, p);
 }
 
@@ -1668,10 +1717,10 @@ inline SafeSharedPtr<T> const_pointer_cast(const SafeSharedPtr<U>& r) noexcept
  * \param   r   The pointer to convert.
  * \result SafeSharedPtr<T> casted from type `U`.
  * \details
- *   Creates a new instance of SafeSharedPtr whose stored pointer is obtained
+ *   Creates a new instance of `SafeSharedPtr` whose stored pointer is obtained
  *   from `r`'s stored pointer using a cast expression.\n
- *   If `r` is empty, so is the new SafeSharedPtr (but its stored pointer is not
- *   necessarily null). Otherwise, the new SafeSharedPtr will share ownership
+ *   If `r` is empty, so is the new `SafeSharedPtr` (but its stored pointer is not
+ *   necessarily null). Otherwise, the new `SafeSharedPtr` will share ownership
  *   with the initial value of `r`.\n
  *   Let `Y` be `typename std::shared_ptr<T>::element_type`, then the resulting
  *   SafeSharedPtr's stored pointer will be obtained by evaluating,
@@ -1686,7 +1735,7 @@ inline SafeSharedPtr<T> const_pointer_cast(const SafeSharedPtr<U>& r) noexcept
 template<typename T, typename U>
 inline SafeSharedPtr<T> reinterpret_pointer_cast(const SafeSharedPtr<U>& r) noexcept
 {
-    auto p = reinterpret_cast<T*>(r.get());
+    auto p = reinterpret_cast<typename std::shared_ptr<T>::element_type*>(r.get());
     return SafeSharedPtr<T>(r, p);
 }
 
@@ -1705,25 +1754,26 @@ inline SafeSharedPtr<T> reinterpret_pointer_cast(const SafeSharedPtr<U>& r) noex
  *   constructors that take a deleter as a parameter), then returns a pointer to
  *   the deleter. Otherwise, returns a null pointer.
  * \note
- *   The returned pointer may outlive the last SafeSharedPtr if, for example,
+ *   The returned pointer may outlive the last `SafeSharedPtr` if, for example,
  *   SafeWeakPtrs remain and the implementation doesn't destroy the deleter
  *   until the entire control block is destroyed.
  */
 template<typename Deleter, typename T>
-inline Deleter* get_deleter(const SafeSharedPtr<T>& p) noexcept;
+inline Deleter* get_deleter(const SafeSharedPtr<T>& p) noexcept
+{ return std::get_deleter<Deleter>(p.ptr); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `lhs.get() == rhs.get()`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -1733,229 +1783,229 @@ inline Deleter* get_deleter(const SafeSharedPtr<T>& p) noexcept;
  */
 template<typename T, typename U>
 inline bool operator==(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
-{ return lhs == rhs; }
+{ return lhs.ptr == rhs.ptr; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!(lhs == rhs)`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T, typename U>
 inline bool operator!=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
-{ return lhs != rhs; }
+{ return !(lhs == rhs); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `std::less<V>()(lhs.get(), rhs.get())`, where V is the composite
  *         pointer type of std::SafeSharedPtr<T>::element_type* and
  *         `std::shared_ptr<U>::element_type*`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T, typename U>
 inline bool operator<(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
-{ return lhs < rhs; }
+{ return lhs.ptr < rhs.ptr; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `rhs < lhs`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T, typename U>
 inline bool operator>(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
-{ return lhs > rhs; }
+{ return lhs.ptr > rhs.ptr; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!(rhs < lhs)`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T, class U>
 inline bool operator<=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
-{ return lhs <= rhs; }
+{ return !(lhs > rhs); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!(lhs < rhs)`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T, class U>
 inline bool operator>=(const SafeSharedPtr<T>& lhs, const SafeSharedPtr<U>& rhs) noexcept
-{ return lhs >= rhs; }
+{ return !(lhs < rhs); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!lhs`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T>
 inline bool operator==(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
-{ return lhs == rhs; }
+{ return lhs.ptr == rhs; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!rhs`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T>
 inline bool operator==(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
-{ return lhs == rhs; }
+{ return lhs == rhs.ptr; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `(bool)lhs`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T>
 inline bool operator!=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
-{ return lhs != rhs; }
+{ return !(lhs.ptr == rhs); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `(bool)rhs`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
  *   compared, rather than the managed pointer (the one passed to the deleter
  *   when use_count goes to zero). The two pointers may differ in a
- *   SafeSharedPtr created using the aliasing constructor.
+ *   `SafeSharedPtr` created using the aliasing constructor.
  */
 template<typename T>
 inline bool operator!=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
-{ return lhs != rhs; }
+{ return !(lhs == rhs.ptr); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `std::less<SafeSharedPtr<T>::element_type*>()(lhs.get(), nullptr)`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -1965,20 +2015,20 @@ inline bool operator!=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  */
 template<typename T>
 inline bool operator<(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
-{ return lhs < rhs; }
+{ return lhs.ptr < rhs; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `std::less<SafeSharedPtr<T>::element_type*>()(nullptr, rhs.get())`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -1988,20 +2038,20 @@ inline bool operator<(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  */
 template<typename T>
 inline bool operator<(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
-{ return lhs < rhs; }
+{ return lhs < rhs.ptr; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `nullptr < lhs`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -2011,20 +2061,20 @@ inline bool operator<(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  */
 template<typename T>
 inline bool operator>(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
-{ return lhs > rhs; }
+{ return lhs.ptr > rhs; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `rhs < nullptr`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -2034,20 +2084,20 @@ inline bool operator>(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  */
 template<typename T>
 inline bool operator>(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
-{ return lhs > rhs; }
+{ return lhs > rhs.ptr; }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!(nullptr < lhs)`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -2057,20 +2107,20 @@ inline bool operator>(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  */
 template<typename T>
 inline bool operator<=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
-{ return lhs <= rhs; }
+{ return !(lhs > rhs); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!(rhs < nullptr)`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -2080,20 +2130,20 @@ inline bool operator<=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  */
 template<typename T>
 inline bool operator<=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
-{ return lhs <= rhs; }
+{ return !(lhs > rhs); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!(lhs < nullptr)`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -2103,20 +2153,20 @@ inline bool operator<=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
  */
 template<typename T>
 inline bool operator>=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
-{ return lhs >= rhs; }
+{ return !(lhs < rhs); }
 
 /**
  * \relates SafeSharedPtr
- * \brief Compare SafeSharedPtr object with another input.
+ * \brief Compare `SafeSharedPtr` object with another input.
  * \tparam  T   Type of lhs.
  * \tparam  U   Type of rhs.
- * \param   lhs The left-hand SafeSharedPtr to compare.
- * \param   rhs The right-hand SafeSharedPtr to compare.
+ * \param   lhs The left-hand `SafeSharedPtr` to compare.
+ * \param   rhs The right-hand `SafeSharedPtr` to compare.
  * \return `!(nullptr < rhs)`.
  * \details
- *   The comparison operators for SafeSharedPtr simply compare pointer values;
+ *   The comparison operators for `SafeSharedPtr` simply compare pointer values;
  *   the actual objects pointed to are not compared. Having operator< defined
- *   for SafeSharedPtr allows SafeSharedPtr to be used as keys in associative
+ *   for `SafeSharedPtr` allows `SafeSharedPtr` to be used as keys in associative
  *   containers, like `std::map` and `std::set`.
  * \note
  *   In all cases, it is the stored pointer (the one returned by get()) that is
@@ -2127,7 +2177,7 @@ inline bool operator>=(const SafeSharedPtr<T>& lhs, std::nullptr_t rhs) noexcept
  */
 template<typename T>
 inline bool operator>=(std::nullptr_t lhs, const SafeSharedPtr<T>& rhs) noexcept
-{ return lhs >= rhs; }
+{ return !(lhs < rhs); }
 
 /**
  * \relates SafeSharedPtr
@@ -2243,7 +2293,7 @@ public:
     template<typename Y>
     SafeWeakPtr<T>& operator=(const SafeWeakPtr<Y>& other) noexcept
     {
-        SafeWeakPtr<T>(std::move(other)).swap(*this);
+        SafeWeakPtr<T>(other).swap(*this);
         return *this;
     }
 
@@ -2265,10 +2315,10 @@ public:
     }
 
     /**
-     * \brief Returns the number of SafeSharedPtr instances that share ownership
+     * \brief Returns the number of `SafeSharedPtr` instances that share ownership
      *        of the managed object, or 0 if the managed object has already been
      *        deleted, i.e. `*this` is empty.
-     * \return The number of SafeSharedPtr instances sharing the ownership of
+     * \return The number of `SafeSharedPtr` instances sharing the ownership of
      *         the managed object at the instant of the call.
      * \note
      *   expired() may be faster than use_count(). This function is inherently
@@ -2300,19 +2350,19 @@ public:
     { return ptr.expired(); }
 
     /**
-     * \brief Creates a SafeSharedPtr that manages the referenced object.
-     * \return A SafeSharedPtr which shares ownership of the owned object if
+     * \brief Creates a `SafeSharedPtr` that manages the referenced object.
+     * \return A `SafeSharedPtr` which shares ownership of the owned object if
      *         expired returns `false`. Else returns default-constructed
-     *         SafeSharedPtr of type `T`.
+     *         `SafeSharedPtr` of type `T`.
      * \details
-     *   Creates a new SafeSharedPtr that shares ownership of the managed
+     *   Creates a new `SafeSharedPtr` that shares ownership of the managed
      *   object. If there is no managed object, i.e. `*this` is empty, then the
-     *   returned SafeSharedPtr also is empty.\\n
+     *   returned `SafeSharedPtr` also is empty.\\n
      *   Effectively returns
      *   `expired() ? SafeSharedPtr<T>() : SafeSharedPtr<T>(*this)`, executed
      *   atomically.
      * \note
-     *   Both this function and the constructor of SafeSharedPtr may be used to
+     *   Both this function and the constructor of `SafeSharedPtr` may be used to
      *   acquire temporary ownership of the managed object referred to by a
      *   SafeWeakPtr. The difference is that the constructor of SafeSharedPtr
      *   throws an exception when its SafeWeakPtr argument is empty, while
@@ -2341,12 +2391,12 @@ public:
      */
     template<typename Y>
     bool owner_before(const SafeWeakPtr<Y>& other) const
-    { return ptr.owner_before(other); }
+    { return ptr.owner_before(other.ptr); }
 
     /**
      * \brief Provides owner-based ordering of weak pointers.
      * \tparam  Y       Element type of input pointer.
-     * \param   other   The SafeSharedPtr to be compared.
+     * \param   other   The `SafeSharedPtr` to be compared.
      * \return `true` if `*this` precedes other, `false` otherwise. Common
      *         implementations compare the addresses of the control blocks.
      * \details
@@ -2388,7 +2438,9 @@ public:
      *        `std::weak_ptr<T>` member is empty-initialized.
      * \sa SafeSharedPtr
      */
-    constexpr EnableSafeSharedFromThis() noexcept = default;
+    constexpr EnableSafeSharedFromThis() noexcept
+        : __safeSharedLock(std::make_shared<typename SafeSharedPtr<T>::ReadWriteLock>())
+    {}
 
     /**
      * \brief Constructs a new EnableSafeSharedFromThis object. The private
@@ -2400,7 +2452,8 @@ public:
      * \sa SafeSharedPtr
      */
     EnableSafeSharedFromThis(const EnableSafeSharedFromThis<T>& other) noexcept
-        : std::enable_shared_from_this<T>(other)
+        : std::enable_shared_from_this<T>(other),
+          __safeSharedLock(other.__safeSharedLock)
     {}
 
     /**
@@ -2413,7 +2466,8 @@ public:
      * \sa SafeSharedPtr
      */
     EnableSafeSharedFromThis(const std::enable_shared_from_this<T>& other) noexcept
-        : std::enable_shared_from_this<T>(other)
+        : std::enable_shared_from_this<T>(other),
+          __safeSharedLock(std::make_shared<SafeSharedPtr<T>::ReadWriteLock>())
     {}
 
     /**
@@ -2435,6 +2489,7 @@ public:
     {
         static_cast<std::enable_shared_from_this<T>&>(*this)
                 = static_cast<std::enable_shared_from_this<T>&>(other);
+        __safeSharedLock = other.__safeSharedLock;
         return *this;
     }
 
@@ -2450,12 +2505,13 @@ public:
     EnableSafeSharedFromThis<T>& operator=(const std::enable_shared_from_this<T>& other) noexcept
     {
         static_cast<std::enable_shared_from_this<T>&>(*this) = other;
+        __safeSharedLock = std::make_shared<typename SafeSharedPtr<T>::ReadWriteLock>();
         return *this;
     }
 
     /**
      * \brief Returns a `SafeSharedPtr<T>` that shares ownership of `*this` with
-     *        all existing SafeSharedPtr that refer to `*this`.
+     *        all existing `SafeSharedPtr` that refer to `*this`.
      * \return `SafeSharedPtr<T>` that shares ownership of `*this` with
      *         pre-existing `SafeSharedPtr`s.
      * \details
@@ -2464,7 +2520,7 @@ public:
      *   `std::enable_shared_from_this` base class.
      * \note
      *   It is permitted to call shared_from_this only on a previously shared
-     *   object, i.e. on an object managed by SafeSharedPtr (in particular,
+     *   object, i.e. on an object managed by `SafeSharedPtr` (in particular,
      *   shared_from_this cannot be called in a constructor).\n
      *   Ohterwise:\n
      *     - **Until C++17**: The behavior is undefined.
@@ -2472,19 +2528,19 @@ public:
      *   constructor from a default-constructed weak_this).
      * \exception std::bad_weak_ptr
      *   **Since C++17**: When enable_shared_from_this called in constructor,
-     *   exception will be thrown by the SafeSharedPtr constructor from a
+     *   exception will be thrown by the `SafeSharedPtr` constructor from a
      *   default-constructed weak_this.
      * \sa SafeSharedPtr
      */
     SafeSharedPtr<T> shared_from_this()
     {
-        return SafeSharedPtr<T>(std::make_shared<typename SafeSharedPtr<T>::ReadWriteLock>(),
+        return SafeSharedPtr<T>(__safeSharedLock,
                                 std::enable_shared_from_this<T>::shared_from_this());
     }
 
     /**
      * \brief Returns a `SafeSharedPtr<T const>` that shares ownership of `*this`
-     *        with all existing SafeSharedPtr that refer to `*this`.
+     *        with all existing `SafeSharedPtr` that refer to `*this`.
      * \return `SafeSharedPtr<T const>` that shares ownership of `*this` with
      *         pre-existing `SafeSharedPtr`s.
      * \details
@@ -2493,7 +2549,7 @@ public:
      *   `std::enable_shared_from_this` base class.
      * \note
      *   It is permitted to call shared_from_this only on a previously shared
-     *   object, i.e. on an object managed by SafeSharedPtr (in particular,
+     *   object, i.e. on an object managed by `SafeSharedPtr` (in particular,
      *   shared_from_this cannot be called in a constructor).\n
      *   Ohterwise:\n
      *     - **Until C++17**: The behavior is undefined.
@@ -2501,19 +2557,19 @@ public:
      *   constructor from a default-constructed weak_this).
      * \exception std::bad_weak_ptr
      *   **Since C++17**: When enable_shared_from_this called in constructor,
-     *   exception will be thrown by the SafeSharedPtr constructor from a
+     *   exception will be thrown by the `SafeSharedPtr` constructor from a
      *   default-constructed weak_this.
      * \sa SafeSharedPtr
      */
     SafeSharedPtr<T const> shared_from_this() const
     {
-        return SafeSharedPtr<T const>(std::make_shared<typename SafeSharedPtr<T>::ReadWriteLock>(),
+        return SafeSharedPtr<T const>(__safeSharedLock,
                                       std::enable_shared_from_this<T>::shared_from_this());
     }
 
     /**
      * \brief Returns a `SafeWeakPtr<T>` that tracks ownership of `*this` by all
-     *        existing SafeSharedPtr that refer to `*this`.
+     *        existing `SafeSharedPtr` that refer to `*this`.
      * \return `SafeWeakPtr<T>` that shares ownership of `*this` with pre-existing
      *         `SafeSharedPtr`s;
      * \note
@@ -2526,7 +2582,7 @@ public:
 
     /**
      * \brief Returns a `SafeWeakPtr<T const>` that tracks ownership of `*this` by
-     *        all existing SafeSharedPtr that refer to `*this`.
+     *        all existing `SafeSharedPtr` that refer to `*this`.
      * \return `SafeWeakPtr<T const>` that shares ownership of `*this` with
      *         pre-existing `SafeSharedPtr`s;
      * \note
@@ -2536,6 +2592,10 @@ public:
      */
     SafeWeakPtr<T const> weak_from_this() const
     { return shared_from_this(); }
+
+private:
+    friend class SafeSharedPtr<T>;
+    std::shared_ptr<typename SafeSharedPtr<T>::ReadWriteLock> __safeSharedLock;
 };
 } // namespace Memory
 /** @} end of namespace Memory*/
@@ -2573,6 +2633,6 @@ inline void swap(Memory::SafeSharedPtr<T>& lhs, Memory::SafeSharedPtr<T>& rhs) n
 template<typename T>
 void swap(Memory::SafeWeakPtr<T>& lhs, Memory::SafeWeakPtr<T>& rhs) noexcept
 { lhs.swap(rhs); }
-}
+} // namespace std
 
 /** @} end of group MemorySafety*/

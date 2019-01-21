@@ -21,7 +21,7 @@ namespace Dimensional {
  *              product fraction with higher precision.
  * \return Numerator and denominator of the fraction with type `intmax_t`.
  */
-std::pair<intmax_t, intmax_t> approximateRatio(long double value, int n)
+inline std::pair<intmax_t, intmax_t> approximateRatio(long double value, int n)
 {
     // Modulo operation for floating point
     auto mod = [](long double a, long double b) -> long double {

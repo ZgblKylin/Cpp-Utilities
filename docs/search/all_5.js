@@ -8,6 +8,8 @@ var searchData=
   ['factors',['factors',['../struct_dimensional_1_1_unit.html#a8666366931b3c834df1531a5ac1c2c26',1,'Dimensional::Unit']]],
   ['factortemperature',['factorTemperature',['../struct_dimensional_1_1_unit.html#a5ca9ed5745370dcbc4690e58b0e464ef',1,'Dimensional::Unit']]],
   ['factortime',['factorTime',['../struct_dimensional_1_1_unit.html#ae663bbbde99350bb783ec91237e06503',1,'Dimensional::Unit']]],
+  ['find',['find',['../class_container_1_1_sequencial_map.html#a2ed22123549126ebab18333bfe27350a',1,'Container::SequencialMap::find(const key_type &amp;key)'],['../class_container_1_1_sequencial_map.html#ac2fed678f1ad1cdffc9d5443dc22f340',1,'Container::SequencialMap::find(const key_type &amp;key) const']]],
   ['force',['Force',['../struct_dimensional_1_1_unit.html#a7ea5d902cfd0a1d1dc63eaf77e2800ce',1,'Dimensional::Unit']]],
-  ['frenquency',['Frenquency',['../struct_dimensional_1_1_unit.html#a82bf54bd48d0aac2ccc92ca604af24f7',1,'Dimensional::Unit']]]
+  ['frenquency',['Frenquency',['../struct_dimensional_1_1_unit.html#a82bf54bd48d0aac2ccc92ca604af24f7',1,'Dimensional::Unit']]],
+  ['front',['front',['../class_container_1_1_sequencial_map.html#a66dfa719b3a57e06e00570ee418709d6',1,'Container::SequencialMap::front()'],['../class_container_1_1_sequencial_map.html#a1bd8f7e51ccbd91a9eee4dbc19b5027b',1,'Container::SequencialMap::front() const']]]
 ];

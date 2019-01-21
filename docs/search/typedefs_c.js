@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['value_5ftype',['value_type',['../class_dimensional_1_1_quantity.html#a0ac30a56fc7237d45c8b19d7d0b946d6',1,'Dimensional::Quantity']]],
-  ['voltage',['Voltage',['../struct_dimensional_1_1_unit.html#a807f24f5acb870ce9edd2e16bb3157cc',1,'Dimensional::Unit']]],
-  ['volume',['Volume',['../struct_dimensional_1_1_unit.html#a34956d832952f77cf675d4bcbfedd7b3',1,'Dimensional::Unit']]]
+  ['scala',['Scala',['../struct_dimensional_1_1_unit.html#aaae0e8ae65b46289af1378c88a397917',1,'Dimensional::Unit']]],
+  ['sharedlock',['SharedLock',['../class_memory_1_1_safe_shared_ptr.html#a94dd72f327e72c8aff63ab8a97b0895e',1,'Memory::SafeSharedPtr']]],
+  ['size_5ftype',['size_type',['../class_container_1_1_sequencial_map.html#ac3543f1423752cb8833894b51791b1f9',1,'Container::SequencialMap']]],
+  ['speed',['Speed',['../struct_dimensional_1_1_unit.html#a2778245cc18590fcf814160ae0c93ced',1,'Dimensional::Unit']]]
 ];

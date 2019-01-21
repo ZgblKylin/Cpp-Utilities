@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.2.0</span>
    </div>
   </td>
  </tr>
@@ -62,16 +62,64 @@ $(function() {
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">std Namespace Reference<div class="ingroups"><a class="el" href="group___memory_safety.html">Memory Safety</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Contains std::swap function overload for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">Memory::SafeSharedPtr</a> and <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">Memory::SafeWeakPtr</a>, cannot hide in doxygen, just ignore it.  
+<p>Contains <a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a> function overload for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">Memory::SafeSharedPtr</a> and <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">Memory::SafeWeakPtr</a>, cannot hide in doxygen, just ignore it.  
 <a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a4f9e28755f3c4aba3d58049818780775"><td class="memTemplParams" colspan="2">template&lt;typename Key , typename T , typename Compare  = std::less&lt;Key&gt;, typename Allocator  = std::allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a4f9e28755f3c4aba3d58049818780775"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">swap</a> (<a class="el" href="class_container_1_1_sequencial_map.html">Container::SequencialMap</a>&lt; Key, T, Compare, Allocator &gt; &amp;lhs, <a class="el" href="class_container_1_1_sequencial_map.html">Container::SequencialMap</a>&lt; Key, T, Compare, Allocator &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a4f9e28755f3c4aba3d58049818780775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains std::swap function overload for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">Memory::SafeSharedPtr</a> and <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">Memory::SafeWeakPtr</a>, cannot hide in doxygen, just ignore it. </p>
-</div></div><!-- contents -->
+<div class="textblock"><p>Contains <a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a> function overload for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">Memory::SafeSharedPtr</a> and <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">Memory::SafeWeakPtr</a>, cannot hide in doxygen, just ignore it. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a4f9e28755f3c4aba3d58049818780775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f9e28755f3c4aba3d58049818780775">&#9670;&nbsp;</a></span>swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Key , typename T , typename Compare  = std::less&lt;Key&gt;, typename Allocator  = std::allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void std::swap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_container_1_1_sequencial_map.html">Container::SequencialMap</a>&lt; Key, T, Compare, Allocator &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_container_1_1_sequencial_map.html">Container::SequencialMap</a>&lt; Key, T, Compare, Allocator &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

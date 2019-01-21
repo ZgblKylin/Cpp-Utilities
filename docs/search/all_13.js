@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['_7earrayhelper',['~ArrayHelper',['../class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#ad4b65e494eedb9c665f1d8c8cd8d6b50',1,'Memory::SafeSharedPtr::ArrayHelper']]],
-  ['_7eenablesafesharedfromthis',['~EnableSafeSharedFromThis',['../class_memory_1_1_enable_safe_shared_from_this.html#aca1125b4e40996f02e3911ca18ec0d2d',1,'Memory::EnableSafeSharedFromThis']]],
-  ['_7eptrhelper',['~PtrHelper',['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a72e8ec17f51824abfeb083e473b7a399',1,'Memory::SafeSharedPtr::PtrHelper']]],
-  ['_7ereadholder',['~ReadHolder',['../class_memory_1_1_r_w_spin_lock_1_1_read_holder.html#a64b4fbc9b41048f913bc402f7e207632',1,'Memory::RWSpinLock::ReadHolder']]],
-  ['_7erefhelper',['~RefHelper',['../class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#ae66d924fbd050b124420be80473f0370',1,'Memory::SafeSharedPtr::RefHelper']]],
-  ['_7esafesharedptr',['~SafeSharedPtr',['../class_memory_1_1_safe_shared_ptr.html#aa7382cdc4495e3a92acbe7dbde40a70c',1,'Memory::SafeSharedPtr']]],
-  ['_7esafeweakptr',['~SafeWeakPtr',['../class_memory_1_1_safe_weak_ptr.html#ace9b5b0d5261e017733746f7e8aea7f3',1,'Memory::SafeWeakPtr']]],
-  ['_7eupgradedholder',['~UpgradedHolder',['../class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a452a2267803e2befbb58aac8f19ef26b',1,'Memory::RWSpinLock::UpgradedHolder']]],
-  ['_7ewriteholder',['~WriteHolder',['../class_memory_1_1_r_w_spin_lock_1_1_write_holder.html#af775577630611c2677d638e805f7db36',1,'Memory::RWSpinLock::WriteHolder']]]
+  ['value',['value',['../class_container_1_1_sequencial_map.html#afe8a2abbaaf0c139a03744be09a27271',1,'Container::SequencialMap::value()'],['../class_dimensional_1_1_quantity.html#aa9dbd91147f54862f9d9fc5249ab9590',1,'Dimensional::Quantity::value()']]],
+  ['value_5fcomp',['value_comp',['../class_container_1_1_sequencial_map.html#a74870be561b4907ac985f21d62419d29',1,'Container::SequencialMap']]],
+  ['value_5fcompare',['value_compare',['../class_container_1_1_sequencial_map.html#a5175f2a97a1cdf02bdcd65130410d428',1,'Container::SequencialMap']]],
+  ['value_5ftype',['value_type',['../class_container_1_1_sequencial_map.html#aab11dbc368501e7063836895044e3c6d',1,'Container::SequencialMap::value_type()'],['../struct_container_1_1_sequencial_map_1_1iterator__base.html#a120e08e97abea71b379aecd3090f3434',1,'Container::SequencialMap::iterator_base::value_type()'],['../struct_container_1_1_sequencial_map_1_1key__iterator.html#a0e418f8c7d499ac472a77e051118b263',1,'Container::SequencialMap::key_iterator::value_type()'],['../class_dimensional_1_1_quantity.html#a0ac30a56fc7237d45c8b19d7d0b946d6',1,'Dimensional::Quantity::value_type()']]],
+  ['vector_5ftype',['vector_type',['../class_container_1_1_sequencial_map.html#a220604b02cf35b542050f191c65d76d1',1,'Container::SequencialMap']]],
+  ['voltage',['Voltage',['../struct_dimensional_1_1_unit.html#ad474eec75d789b2656b5ec7d1f51d3e1',1,'Dimensional::Unit']]],
+  ['volume',['Volume',['../struct_dimensional_1_1_unit.html#a34956d832952f77cf675d4bcbfedd7b3',1,'Dimensional::Unit']]]
 ];

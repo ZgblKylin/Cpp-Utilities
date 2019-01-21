@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['value',['value',['../class_dimensional_1_1_quantity.html#aa9dbd91147f54862f9d9fc5249ab9590',1,'Dimensional::Quantity']]],
-  ['value_5ftype',['value_type',['../class_dimensional_1_1_quantity.html#a0ac30a56fc7237d45c8b19d7d0b946d6',1,'Dimensional::Quantity']]],
-  ['voltage',['Voltage',['../struct_dimensional_1_1_unit.html#a807f24f5acb870ce9edd2e16bb3157cc',1,'Dimensional::Unit']]],
-  ['volume',['Volume',['../struct_dimensional_1_1_unit.html#a34956d832952f77cf675d4bcbfedd7b3',1,'Dimensional::Unit']]]
+  ['temperature',['Temperature',['../struct_dimensional_1_1_unit.html#a7ec670efa91aa11e50b52a2f9f5720ce',1,'Dimensional::Unit']]],
+  ['time',['Time',['../struct_dimensional_1_1_unit.html#aa7754249da62cbb75a165f0ad77bb158',1,'Dimensional::Unit']]],
+  ['try_5flock',['try_lock',['../class_memory_1_1_r_w_spin_lock.html#a5324c83b8a6830e61b852cb511212649',1,'Memory::RWSpinLock']]],
+  ['try_5flock_5fshared',['try_lock_shared',['../class_memory_1_1_r_w_spin_lock.html#a4b51f06eae6d86ac12324b4d06334e5b',1,'Memory::RWSpinLock']]],
+  ['try_5flock_5fupgrade',['try_lock_upgrade',['../class_memory_1_1_r_w_spin_lock.html#ab71e6893bbe5d5aaa04c861e61059bc6',1,'Memory::RWSpinLock']]],
+  ['try_5funlock_5fupgrade_5fand_5flock',['try_unlock_upgrade_and_lock',['../class_memory_1_1_r_w_spin_lock.html#ab47cfb0f09949a579afcfc6018b04297',1,'Memory::RWSpinLock']]],
+  ['type',['type',['../struct_dimensional_1_1_unit.html#a1c087c087b7783eeedd45d48239cb314',1,'Dimensional::Unit::type()'],['../class_dimensional_1_1_quantity.html#a962fac6d9cd445719282bd40e6410364',1,'Dimensional::Quantity::type()']]]
 ];

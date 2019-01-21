@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.2.0</span>
    </div>
   </td>
  </tr>
@@ -79,7 +79,7 @@ $(function() {
 <p>Wrapper to <code>std::weak_ptr</code> to provide weak reference for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>.  
  <a href="class_memory_1_1_safe_weak_ptr.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_safe_shard_ptr_8hpp_source.html">SafeShardPtr.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_safe_shared_ptr_8hpp_source.html">SafeSharedPtr.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -117,13 +117,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5b9e11cffd0c5c06b2e14417e966899e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exchanges the contents of <code>*this</code> and <code>other</code>.  <a href="#a5b9e11cffd0c5c06b2e14417e966899e">More...</a><br /></td></tr>
 <tr class="separator:a5b9e11cffd0c5c06b2e14417e966899e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac952f464ff4a44f02ac11b7de4b64625"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_weak_ptr.html#ac952f464ff4a44f02ac11b7de4b64625">use_count</a> () const noexcept</td></tr>
-<tr class="memdesc:ac952f464ff4a44f02ac11b7de4b64625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> instances that share ownership of the managed object, or ​0​ if the managed object has already been deleted, i.e. <code>*this</code> is empty.  <a href="#ac952f464ff4a44f02ac11b7de4b64625">More...</a><br /></td></tr>
+<tr class="memdesc:ac952f464ff4a44f02ac11b7de4b64625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> instances that share ownership of the managed object, or 0 if the managed object has already been deleted, i.e. <code>*this</code> is empty.  <a href="#ac952f464ff4a44f02ac11b7de4b64625">More...</a><br /></td></tr>
 <tr class="separator:ac952f464ff4a44f02ac11b7de4b64625"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47dd34108747535acdbb1f7c41ac0b1a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_weak_ptr.html#a47dd34108747535acdbb1f7c41ac0b1a">expired</a> () const noexcept</td></tr>
 <tr class="memdesc:a47dd34108747535acdbb1f7c41ac0b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the referenced object was already deleted.  <a href="#a47dd34108747535acdbb1f7c41ac0b1a">More...</a><br /></td></tr>
 <tr class="separator:a47dd34108747535acdbb1f7c41ac0b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a288477018d372f0888f60815328769d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_weak_ptr.html#a288477018d372f0888f60815328769d9">lock</a> () const noexcept</td></tr>
-<tr class="memdesc:a288477018d372f0888f60815328769d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that manages the referenced object.  <a href="#a288477018d372f0888f60815328769d9">More...</a><br /></td></tr>
+<tr class="memdesc:a288477018d372f0888f60815328769d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that manages the referenced object.  <a href="#a288477018d372f0888f60815328769d9">More...</a><br /></td></tr>
 <tr class="separator:a288477018d372f0888f60815328769d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abebb765253b4be0a7e0632932f7f5e75"><td class="memTemplParams" colspan="2">template&lt;typename Y &gt; </td></tr>
 <tr class="memitem:abebb765253b4be0a7e0632932f7f5e75"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_weak_ptr.html#abebb765253b4be0a7e0632932f7f5e75">owner_before</a> (const <a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt; Y &gt; &amp;other) const</td></tr>
@@ -140,7 +140,7 @@ Related Functions</h2></td></tr>
 </td></tr>
 <tr class="memitem:aedbed73379f54743a014c5521ce98f5d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aedbed73379f54743a014c5521ce98f5d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_weak_ptr.html#aedbed73379f54743a014c5521ce98f5d">swap</a> (<a class="el" href="class_memory_1_1_safe_weak_ptr.html">Memory::SafeWeakPtr</a>&lt; T &gt; &amp;lhs, <a class="el" href="class_memory_1_1_safe_weak_ptr.html">Memory::SafeWeakPtr</a>&lt; T &gt; &amp;rhs) noexcept</td></tr>
-<tr class="memdesc:aedbed73379f54743a014c5521ce98f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specializes the <code>std::swap</code> algorithm.  <a href="#aedbed73379f54743a014c5521ce98f5d">More...</a><br /></td></tr>
+<tr class="memdesc:aedbed73379f54743a014c5521ce98f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm.  <a href="#aedbed73379f54743a014c5521ce98f5d">More...</a><br /></td></tr>
 <tr class="separator:aedbed73379f54743a014c5521ce98f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -503,8 +503,8 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the number of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> instances that share ownership of the managed object, or ​0​ if the managed object has already been deleted, i.e. <code>*this</code> is empty. </p>
-<dl class="section return"><dt>Returns</dt><dd>The number of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> instances sharing the ownership of the managed object at the instant of the call. </dd></dl>
+<p>Returns the number of <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> instances that share ownership of the managed object, or 0 if the managed object has already been deleted, i.e. <code>*this</code> is empty. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> instances sharing the ownership of the managed object at the instant of the call. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd><a class="el" href="class_memory_1_1_safe_weak_ptr.html#a47dd34108747535acdbb1f7c41ac0b1a" title="Checks whether the referenced object was already deleted. ">expired()</a> may be faster than <a class="el" href="class_memory_1_1_safe_weak_ptr.html#ac952f464ff4a44f02ac11b7de4b64625" title="Returns the number of SafeSharedPtr instances that share ownership of the managed object...">use_count()</a>. This function is inherently racy, if the managed object is shared among threads that might be creating and destroying copies of the <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>: then, the result is reliable only if it matches the number of copies uniquely owned by the calling thread, or zero; any other value may become stale before it can be used. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_weak_ptr.html#a47dd34108747535acdbb1f7c41ac0b1a" title="Checks whether the referenced object was already deleted. ">expired</a> </dd></dl>
 
@@ -567,9 +567,9 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Creates a <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that manages the referenced object. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> which shares ownership of the owned object if expired returns <code>false</code>. Else returns default-constructed <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> of type <code>T</code>.</dd></dl>
-<p>Creates a new <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that shares ownership of the managed object. If there is no managed object, i.e. <code>*this</code> is empty, then the returned <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> also is empty.\n Effectively returns <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html#a47dd34108747535acdbb1f7c41ac0b1a" title="Checks whether the referenced object was already deleted. ">expired()</a> ? <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;() : <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;(*this)</code>, executed atomically. </p><dl class="section note"><dt>Note</dt><dd>Both this function and the constructor of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> may be used to acquire temporary ownership of the managed object referred to by a <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>. The difference is that the constructor of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> throws an exception when its <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a> argument is empty, while <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html#a288477018d372f0888f60815328769d9" title="Creates a SafeSharedPtr that manages the referenced object. ">lock()</a></code> constructs an empty SafeSharedPtr&lt;T&gt;. </dd></dl>
+<p>Creates a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that manages the referenced object. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> which shares ownership of the owned object if expired returns <code>false</code>. Else returns default-constructed <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> of type <code>T</code>.</dd></dl>
+<p>Creates a new <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that shares ownership of the managed object. If there is no managed object, i.e. <code>*this</code> is empty, then the returned <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> also is empty.\n Effectively returns <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html#a47dd34108747535acdbb1f7c41ac0b1a" title="Checks whether the referenced object was already deleted. ">expired()</a> ? <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;() : <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;(*this)</code>, executed atomically. </p><dl class="section note"><dt>Note</dt><dd>Both this function and the constructor of <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> may be used to acquire temporary ownership of the managed object referred to by a <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>. The difference is that the constructor of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> throws an exception when its <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a> argument is empty, while <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html#a288477018d372f0888f60815328769d9" title="Creates a SafeSharedPtr that manages the referenced object. ">lock()</a></code> constructs an empty SafeSharedPtr&lt;T&gt;. </dd></dl>
 
 </div>
 </div>
@@ -657,7 +657,7 @@ template&lt;typename Y &gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>The <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to be compared. </td></tr>
+    <tr><td class="paramname">other</td><td>The <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> to be compared. </td></tr>
   </table>
   </dd>
 </dl>
@@ -704,7 +704,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Specializes the <code>std::swap</code> algorithm. </p>
+<p>Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Element type of input shared pointers. </td></tr>
@@ -718,12 +718,12 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
-<p>Specializes the <code>std::swap</code> algorithm for <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">Memory::SafeWeakPtr</a>. Swaps the pointers of <code>lhs</code> and <code>rhs</code>. Calls <code>lhs.swap(rhs)</code>. </p>
+<p>Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm for <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">Memory::SafeWeakPtr</a>. Swaps the pointers of <code>lhs</code> and <code>rhs</code>. Calls <code>lhs.swap(rhs)</code>. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Utilities/MemorySafety/<a class="el" href="_safe_shard_ptr_8hpp_source.html">SafeShardPtr.hpp</a></li>
+<li>Utilities/MemorySafety/<a class="el" href="_safe_shared_ptr_8hpp_source.html">SafeSharedPtr.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

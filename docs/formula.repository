@@ -9,7 +9,7 @@
 \form#8:$N \cdot m$
 \form#9:$kg \cdot m^{2} \cdot s^{-2}$
 \form#10:$J/s$
-\form#11:$kg \cdot m^{-2} \cdot s^{-3}$
+\form#11:$kg \cdot m^{2} \cdot s^{-3}$
 \form#12:$s \cdot A$
 \form#13:$W/A$
 \form#14:$kg \cdot m^{2} \cdot s^{-3} \cdot A^{-1}$
@@ -33,8 +33,8 @@
 \form#32:$mol \cdot s^{-1}$
 \form#33:$3.14159266096017653069$
 \form#34:$degree = rad * \frac{pi}{180}$
-\form#35:$1 li = 10 yin = \frac{1}{3} km$
-\form#36:$1 yin = \frac{1}{10} li = 10 zhang = 333.\overline{3} m$
+\form#35:$1 li = 15 yin = 500 m$
+\form#36:$1 yin = \frac{1}{15} li = 10 zhang = 33.\overline{3} m$
 \form#37:$1 zhang = \frac{1}{10} yin = 10 chi = 3.\overline{3} m$
 \form#38:$1 xun = 1/2 zhang = 5 chi = 1.\overline{6} m$
 \form#39:$1 chi = 33.\overline{3} cm$
@@ -45,8 +45,8 @@
 \form#44:$1 si = \frac{1}{10} hao = 3.\overline{3} um$
 \form#45:$1 hu = \frac{1}{10} si = 333.\overline{3} nm$
 \form#46:$1 qing = 100 mu = 66666.\overline{6} m^{2}$
-\form#47:$1 mu = 60 zhang^{2} = 666.\overline{6} m^{2}$
-\form#48:$1 gong = \frac{1}{240} mu = 277.\overline{7} m^{2}$
+\form#47:$1 mu = 240 gong = 666.\overline{6} m^{2}$
+\form#48:$1 gong = 1 xun^{2} = 2.\overline{7} m^{2}$
 \form#49:$1 dan = 50 kg$
 \form#50:$1 jin = 500 g catty$
 \form#51:$1 liang = \frac{1}{10} jin = 50 g$
@@ -58,14 +58,14 @@
 \form#57:$1 hu = \frac{1}{10} si = 50 ug$
 \form#58:$1 mile = 1.609344 km$
 \form#59:$1 furlong = 201.168 m$
-\form#60:$1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 18.0825168539326 m$
+\form#60:$1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 20.1168 m$
 \form#61:$1 yard = \frac{1}{22} chain = \frac{1}{1760} mile = 0.9144 m$
 \form#62:$1 nail = \frac{1}{16} yard = \frac{9}{4} inch = 5.715 cm$
 \form#63:$1 feet = \frac{1}{3} yard = 30.48 cm$
 \form#64:$1 inch = \frac{1}{12} feet = 2.54 cm$
 \form#65:$1 pica = \frac{1}{6} inch = 4.2\overline{3} mm$
 \form#66:$1 point = \frac{1}{12} pica = 0.352\overline{7} mm$
-\form#67:$1 longton = 2240 pound = 1016.0469088kg$
+\form#67:$1 longton = 2240 pound = 1016.0469088 kg$
 \form#68:$1 shortton = 2000 pound = 907.18474 kg$
 \form#69:$1 long\ hundredweight = 112 pound = 50.80234544 kg$
 \form#70:$1 short\ hundredweight = 100 pound = 45.359237 kg$
@@ -76,24 +76,27 @@
 \form#75:$1 Imperial\ hundredweight = 8 stone = 112 pound = 50.80234544 kg$
 \form#76:$1 quarter = 2 stone = 28 pound = 12.70058636 kg$
 \form#77:$1 stone = 14 pound = 6.35029318 kg$
-\form#78:$1 fluid\ dram = 3.5516328125 ml$
-\form#79:$1 fluid\ ounce = 8 fluind\ dram$
-\form#80:$1 gill = 5 fluid\ ounce$
-\form#81:$1 cup = 2 gill$
-\form#82:$1 pint = cup$
-\form#83:$1 quart = 2 pint$
-\form#84:$1 gallon = 4 quart$
-\form#85:$1 peck = 2 gallon$
-\form#86:$1 bushel = 4 peck$
+\form#78:$1 fluid\ dram = 3.5516328125 mL$
+\form#79:$1 fluid\ ounce = 8 fluind\ dram = 28.4130625 mL$
+\form#80:$1 gill = 5 fluid\ ounce = 142.0653125 mL$
+\form#81:$1 cup = 2 gill = 284.130625 mL$
+\form#82:$1 pint = 2 cup = 568.26125 mL$
+\form#83:$1 quart = 2 pint = 1.1365225 L$
+\form#84:$1 gallon = 4 quart = 4.54609 L$
+\form#85:$1 peck = 2 gallon = 9.09218 L$
+\form#86:$1 bushel = 4 peck = 36.36872 L$
 \form#87:$1 US hundredweight = 100 pound = 45.359237 kg$
-\form#88:$1 fluid\ dram = 3.6966911953125 ml$
-\form#89:$1 fluid\ ounce = 8 fluid\ dram$
-\form#90:$1 teaspoons = \frac{1}{6} fluid\ ounce$
-\form#91:$1 tablespoons = \frac{1}{2} fluid\ ounce$
-\form#92:$1 gill = 4 fluid\ ounce$
-\form#93:$1 pint = 2 cup$
-\form#94:$1 dry\ pint = 0.5506104713575 l$
-\form#95:$1 dry\ quart = 2 dry\ pint$
-\form#96:$1 dry\ gallon = 4 dry\ quart$
-\form#97:$1 dry\ peck = 2 dry\ gallon$
-\form#98:$1 bushel = 4 dry\ peck$
+\form#88:$1 fluid\ dram = 3.6966911953125 mL$
+\form#89:$1 fluid\ ounce = 8 fluid\ dram = 29.5735295625 mL$
+\form#90:$1 teaspoons = \frac{1}{6} fluid\ ounce = 4.92892159375 mL$
+\form#91:$1 tablespoons = \frac{1}{2} fluid\ ounce = 14.78676478125 mL$
+\form#92:$1 gill = 4 fluid\ ounce = 118.29411825 mL$
+\form#93:$1 cup = 2 gill = 236.5882365 mL$
+\form#94:$1 pint = 2 cup = 473.176473 mL$
+\form#95:$1 quart = 2 pint = 946.352946 mL$
+\form#96:$1 gallon = 4 quart = 3.785411784 L$
+\form#97:$1 dry\ pint = 0.5506104713575 L$
+\form#98:$1 dry\ quart = 2 dry\ pint = 1.101220942715 L$
+\form#99:$1 dry\ gallon = 4 dry\ quart = 4.40488377086 L$
+\form#100:$1 dry\ peck = 2 dry\ gallon = 8.80976754172 L$
+\form#101:$1 bushel = 4 dry\ peck = 35.23907016688 L$

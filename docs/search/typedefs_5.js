@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['length',['Length',['../struct_dimensional_1_1_unit.html#af779ef69e622c35d24fee1e947161903',1,'Dimensional::Unit']]],
-  ['luminous',['Luminous',['../struct_dimensional_1_1_unit.html#a7393ed41aaf3662939eb4105f3c6aa17',1,'Dimensional::Unit']]],
-  ['luminousintensity',['LuminousIntensity',['../struct_dimensional_1_1_unit.html#a5c12a7af0dd71e20365b0769d5b78fb0',1,'Dimensional::Unit']]]
+  ['illuminance',['Illuminance',['../struct_dimensional_1_1_unit.html#a8071b6ff261a06e90062c333559f9cf6',1,'Dimensional::Unit']]],
+  ['inductance',['Inductance',['../struct_dimensional_1_1_unit.html#a51214909e540b8a4a0aa775d9acddbff',1,'Dimensional::Unit']]],
+  ['iterator',['iterator',['../class_container_1_1_sequencial_map.html#ac26b4383280110894eef4f9d9b234cc0',1,'Container::SequencialMap']]],
+  ['iterator_5fcategory',['iterator_category',['../struct_container_1_1_sequencial_map_1_1iterator__base.html#a972f1214cb28b41fe74a682d4ce77fef',1,'Container::SequencialMap::iterator_base']]]
 ];

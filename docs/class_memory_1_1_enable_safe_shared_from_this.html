@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.2.0</span>
    </div>
   </td>
  </tr>
@@ -68,6 +68,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_memory_1_1_enable_safe_shared_from_this-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Memory::EnableSafeSharedFromThis&lt; T &gt; Class Template Reference</div>  </div>
@@ -77,7 +78,7 @@ $(function() {
 <p>A proxy class from <code>std::enable_shared_from_this</code> to provide same functionality for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>.  
  <a href="class_memory_1_1_enable_safe_shared_from_this.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_safe_shard_ptr_8hpp_source.html">SafeShardPtr.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_safe_shared_ptr_8hpp_source.html">SafeSharedPtr.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Memory::EnableSafeSharedFromThis&lt; T &gt;:</div>
 <div class="dyncontent">
@@ -89,9 +90,9 @@ Inheritance diagram for Memory::EnableSafeSharedFromThis&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac52005e0cec6cd3c604e45a97a271f88"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ac52005e0cec6cd3c604e45a97a271f88">EnableSafeSharedFromThis</a> () noexcept=default</td></tr>
-<tr class="memdesc:ac52005e0cec6cd3c604e45a97a271f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr...">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is empty-initialized.  <a href="#ac52005e0cec6cd3c604e45a97a271f88">More...</a><br /></td></tr>
-<tr class="separator:ac52005e0cec6cd3c604e45a97a271f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af319013f89bab2525010231cb150f664"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#af319013f89bab2525010231cb150f664">EnableSafeSharedFromThis</a> () noexcept</td></tr>
+<tr class="memdesc:af319013f89bab2525010231cb150f664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr...">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is empty-initialized.  <a href="#af319013f89bab2525010231cb150f664">More...</a><br /></td></tr>
+<tr class="separator:af319013f89bab2525010231cb150f664"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4ebb4d1f45a730b87bee5277209e9ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ab4ebb4d1f45a730b87bee5277209e9ed">EnableSafeSharedFromThis</a> (const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T &gt; &amp;other) noexcept</td></tr>
 <tr class="memdesc:ab4ebb4d1f45a730b87bee5277209e9ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr...">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is value-initialized.  <a href="#ab4ebb4d1f45a730b87bee5277209e9ed">More...</a><br /></td></tr>
 <tr class="separator:ab4ebb4d1f45a730b87bee5277209e9ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,17 +109,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a802ae25c02666af3a16e672a47ebce96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does nothing; returns *this.  <a href="#a802ae25c02666af3a16e672a47ebce96">More...</a><br /></td></tr>
 <tr class="separator:a802ae25c02666af3a16e672a47ebce96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07f4df51ee3b29aa930181582bc0b954"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a07f4df51ee3b29aa930181582bc0b954">shared_from_this</a> ()</td></tr>
-<tr class="memdesc:a07f4df51ee3b29aa930181582bc0b954"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;</code> that shares ownership of <code>*this</code> with all existing <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that refer to <code>*this</code>.  <a href="#a07f4df51ee3b29aa930181582bc0b954">More...</a><br /></td></tr>
+<tr class="memdesc:a07f4df51ee3b29aa930181582bc0b954"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;</code> that shares ownership of <code>*this</code> with all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#a07f4df51ee3b29aa930181582bc0b954">More...</a><br /></td></tr>
 <tr class="separator:a07f4df51ee3b29aa930181582bc0b954"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3d7ba5ecad32ebd6ddc147b0ae695b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ae3d7ba5ecad32ebd6ddc147b0ae695b6">shared_from_this</a> () const</td></tr>
-<tr class="memdesc:ae3d7ba5ecad32ebd6ddc147b0ae695b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T const&gt;</code> that shares ownership of <code>*this</code> with all existing <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that refer to <code>*this</code>.  <a href="#ae3d7ba5ecad32ebd6ddc147b0ae695b6">More...</a><br /></td></tr>
+<tr class="memdesc:ae3d7ba5ecad32ebd6ddc147b0ae695b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T const&gt;</code> that shares ownership of <code>*this</code> with all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#ae3d7ba5ecad32ebd6ddc147b0ae695b6">More...</a><br /></td></tr>
 <tr class="separator:ae3d7ba5ecad32ebd6ddc147b0ae695b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9de82f9fd7428b4f907dce381d1c8c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ae9de82f9fd7428b4f907dce381d1c8c2">weak_from_this</a> ()</td></tr>
-<tr class="memdesc:ae9de82f9fd7428b4f907dce381d1c8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T&gt;</code> that tracks ownership of <code>*this</code> by all existing <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that refer to <code>*this</code>.  <a href="#ae9de82f9fd7428b4f907dce381d1c8c2">More...</a><br /></td></tr>
+<tr class="memdesc:ae9de82f9fd7428b4f907dce381d1c8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T&gt;</code> that tracks ownership of <code>*this</code> by all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#ae9de82f9fd7428b4f907dce381d1c8c2">More...</a><br /></td></tr>
 <tr class="separator:ae9de82f9fd7428b4f907dce381d1c8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a710dcf75869b5bfa6318a7d4de0f41db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt; T const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a710dcf75869b5bfa6318a7d4de0f41db">weak_from_this</a> () const</td></tr>
-<tr class="memdesc:a710dcf75869b5bfa6318a7d4de0f41db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T const&gt;</code> that tracks ownership of <code>*this</code> by all existing <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that refer to <code>*this</code>.  <a href="#a710dcf75869b5bfa6318a7d4de0f41db">More...</a><br /></td></tr>
+<tr class="memdesc:a710dcf75869b5bfa6318a7d4de0f41db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T const&gt;</code> that tracks ownership of <code>*this</code> by all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#a710dcf75869b5bfa6318a7d4de0f41db">More...</a><br /></td></tr>
 <tr class="separator:a710dcf75869b5bfa6318a7d4de0f41db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a989307c45de44c9d7767e8e005ba4b85"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a989307c45de44c9d7767e8e005ba4b85">SafeSharedPtr&lt; T &gt;</a></td></tr>
+<tr class="separator:a989307c45de44c9d7767e8e005ba4b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
@@ -134,13 +140,13 @@ class Memory::EnableSafeSharedFromThis&lt; T &gt;</h3>
 <p>This class has no member values, so could be <code>static_cast</code> from <code>std::enable_shared_from_this</code> directly.<br />
  See <a href="https://en.cppreference.com/w/cpp/memory/enable_shared_from_this">https://en.cppreference.com/w/cpp/memory/enable_shared_from_this</a> for more details. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac52005e0cec6cd3c604e45a97a271f88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac52005e0cec6cd3c604e45a97a271f88">&#9670;&nbsp;</a></span>EnableSafeSharedFromThis() <span class="overload">[1/3]</span></h2>
+<a id="af319013f89bab2525010231cb150f664"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af319013f89bab2525010231cb150f664">&#9670;&nbsp;</a></span>EnableSafeSharedFromThis() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -154,7 +160,7 @@ template&lt;typename T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -170,7 +176,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -208,7 +214,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -246,7 +252,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -277,7 +283,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -316,7 +322,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -355,7 +361,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -374,9 +380,9 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;</code> that shares ownership of <code>*this</code> with all existing <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that refer to <code>*this</code>. </p>
+<p>Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;</code> that shares ownership of <code>*this</code> with all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that refer to <code>*this</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;</code> that shares ownership of <code>*this</code> with pre-existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code>s.</dd></dl>
-<p>Effectively executes <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;(weak_this)</code>, where <code>weak_this</code> is the private <code>mutable std::weak_ptr&lt;T&gt;</code> member of <code>std::enable_shared_from_this</code> base class. </p><dl class="section note"><dt>Note</dt><dd>It is permitted to call shared_from_this only on a previously shared object, i.e. on an object managed by <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> (in particular, shared_from_this cannot be called in a constructor).<br />
+<p>Effectively executes <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;(weak_this)</code>, where <code>weak_this</code> is the private <code>mutable std::weak_ptr&lt;T&gt;</code> member of <code>std::enable_shared_from_this</code> base class. </p><dl class="section note"><dt>Note</dt><dd>It is permitted to call shared_from_this only on a previously shared object, i.e. on an object managed by <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> (in particular, shared_from_this cannot be called in a constructor).<br />
  Ohterwise:<br />
 <ul>
 <li><b>Until C++17</b>: The behavior is undefined.</li>
@@ -385,7 +391,7 @@ template&lt;typename T&gt; </div>
 </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::bad_weak_ptr</td><td><b>Since C++17</b>: When enable_shared_from_this called in constructor, exception will be thrown by the <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> constructor from a default-constructed weak_this. </td></tr>
+    <tr><td class="paramname">std::bad_weak_ptr</td><td><b>Since C++17</b>: When enable_shared_from_this called in constructor, exception will be thrown by the <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> constructor from a default-constructed weak_this. </td></tr>
   </table>
   </dd>
 </dl>
@@ -399,7 +405,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -418,9 +424,9 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T const&gt;</code> that shares ownership of <code>*this</code> with all existing <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that refer to <code>*this</code>. </p>
+<p>Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T const&gt;</code> that shares ownership of <code>*this</code> with all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that refer to <code>*this</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T const&gt;</code> that shares ownership of <code>*this</code> with pre-existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code>s.</dd></dl>
-<p>Effectively executes <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;(weak_this)</code>, where <code>weak_this</code> is the private <code>mutable std::weak_ptr&lt;T&gt;</code> member of <code>std::enable_shared_from_this</code> base class. </p><dl class="section note"><dt>Note</dt><dd>It is permitted to call shared_from_this only on a previously shared object, i.e. on an object managed by <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> (in particular, shared_from_this cannot be called in a constructor).<br />
+<p>Effectively executes <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>&lt;T&gt;(weak_this)</code>, where <code>weak_this</code> is the private <code>mutable std::weak_ptr&lt;T&gt;</code> member of <code>std::enable_shared_from_this</code> base class. </p><dl class="section note"><dt>Note</dt><dd>It is permitted to call shared_from_this only on a previously shared object, i.e. on an object managed by <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> (in particular, shared_from_this cannot be called in a constructor).<br />
  Ohterwise:<br />
 <ul>
 <li><b>Until C++17</b>: The behavior is undefined.</li>
@@ -429,7 +435,7 @@ template&lt;typename T&gt; </div>
 </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::bad_weak_ptr</td><td><b>Since C++17</b>: When enable_shared_from_this called in constructor, exception will be thrown by the <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> constructor from a default-constructed weak_this. </td></tr>
+    <tr><td class="paramname">std::bad_weak_ptr</td><td><b>Since C++17</b>: When enable_shared_from_this called in constructor, exception will be thrown by the <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> constructor from a default-constructed weak_this. </td></tr>
   </table>
   </dd>
 </dl>
@@ -443,7 +449,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -462,7 +468,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T&gt;</code> that tracks ownership of <code>*this</code> by all existing <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that refer to <code>*this</code>. </p>
+<p>Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T&gt;</code> that tracks ownership of <code>*this</code> by all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that refer to <code>*this</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T&gt;</code> that shares ownership of <code>*this</code> with pre-existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code>s; </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This is a copy of the the private mutable <code>std::weak_ptr</code> member that is part of <code>std::enable_shared_from_this</code>. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> </dd></dl>
@@ -475,7 +481,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -494,15 +500,40 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T const&gt;</code> that tracks ownership of <code>*this</code> by all existing <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> that refer to <code>*this</code>. </p>
+<p>Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T const&gt;</code> that tracks ownership of <code>*this</code> by all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> that refer to <code>*this</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr. ">SafeWeakPtr</a>&lt;T const&gt;</code> that shares ownership of <code>*this</code> with pre-existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code>s; </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This is a copy of the the private mutable <code>std::weak_ptr</code> member that is part of <code>std::enable_shared_from_this</code>. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> </dd></dl>
 
 </div>
 </div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="a989307c45de44c9d7767e8e005ba4b85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a989307c45de44c9d7767e8e005ba4b85">&#9670;&nbsp;</a></span>SafeSharedPtr&lt; T &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Utilities/MemorySafety/<a class="el" href="_safe_shard_ptr_8hpp_source.html">SafeShardPtr.hpp</a></li>
+<li>Utilities/MemorySafety/<a class="el" href="_safe_shared_ptr_8hpp_source.html">SafeSharedPtr.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

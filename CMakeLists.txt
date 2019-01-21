@@ -2,7 +2,7 @@
 # Utilities
 #
 
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.8)
 
 #
 # Building in-tree is not allowed (we take care of your craziness).
@@ -13,10 +13,16 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
 endif()
 
 #
+# Enable if want to see more compile details
+#
+
+# set(CMAKE_VERBOSE_MAKEFILE ON)
+
+#
 # Project configuration
 #
 
-project(Utilities VERSION 1.1.1)
+project(Utilities VERSION 1.2.0)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
@@ -30,13 +36,23 @@ message("* ${PROJECT_NAME} v${PROJECT_VERSION} (${CMAKE_BUILD_TYPE})")
 message("* Copyright (c) ${PROJECT_AUTHOR} <${PROJECT_AUTHOR_EMAIL}>")
 message("*")
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+include(CheckCXXCompilerFlag)
 if(NOT MSVC)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -DDEBUG")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -DRELEASE")
+    CHECK_CXX_COMPILER_FLAG("-std=c++17" _cpp_17_flag_supported)
+else()
+    add_compile_options("/Zc:__cplusplus")
+    CHECK_CXX_COMPILER_FLAG("/std:c++17" _cpp_17_flag_supported)
 endif()
+
+if(_cpp_17_flag_supported)
+    set(CMAKE_CXX_STANDARD 17)
+else()
+    set(CMAKE_CXX_STANDARD 11)
+endif()
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #
 # CMake configuration

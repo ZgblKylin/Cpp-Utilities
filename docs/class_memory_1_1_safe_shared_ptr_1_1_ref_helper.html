@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Utilities
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.2.0</span>
    </div>
   </td>
  </tr>
@@ -78,7 +78,7 @@ $(function() {
 <p>Proxy class for operator* in <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>, behave like underlying object, and provide RAII read-write lock for thread safety.  
  <a href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_safe_shard_ptr_8hpp_source.html">SafeShardPtr.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_safe_shared_ptr_8hpp_source.html">SafeSharedPtr.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -97,9 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ce26a2dae5fc10fcb8ea9ec0367e2ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a7ce26a2dae5fc10fcb8ea9ec0367e2ef">RefHelper</a> (const <a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt; &amp;p)</td></tr>
 <tr class="memdesc:a7ce26a2dae5fc10fcb8ea9ec0367e2ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor a mutable <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html" title="Proxy class for operator* in SafeSharedPtr, behave like underlying object, and provide RAII read-writ...">RefHelper</a> to gain access to underlying object of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>.  <a href="#a7ce26a2dae5fc10fcb8ea9ec0367e2ef">More...</a><br /></td></tr>
 <tr class="separator:a7ce26a2dae5fc10fcb8ea9ec0367e2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa409efec29f49e3a30f74ac52e60c44c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#aa409efec29f49e3a30f74ac52e60c44c">RefHelper</a> (<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html">RefHelper</a> &amp;&amp;other)</td></tr>
-<tr class="memdesc:aa409efec29f49e3a30f74ac52e60c44c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor, transport ownership to another <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html" title="Proxy class for operator* in SafeSharedPtr, behave like underlying object, and provide RAII read-writ...">RefHelper</a>, keep existing lock state.  <a href="#aa409efec29f49e3a30f74ac52e60c44c">More...</a><br /></td></tr>
-<tr class="separator:aa409efec29f49e3a30f74ac52e60c44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a346eb9bbe4c9ab0a6d7652e037be76a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a346eb9bbe4c9ab0a6d7652e037be76a0">RefHelper</a> (<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html">RefHelper</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="memdesc:a346eb9bbe4c9ab0a6d7652e037be76a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor, transport ownership to another <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html" title="Proxy class for operator* in SafeSharedPtr, behave like underlying object, and provide RAII read-writ...">RefHelper</a>, keep existing lock state.  <a href="#a346eb9bbe4c9ab0a6d7652e037be76a0">More...</a><br /></td></tr>
+<tr class="separator:a346eb9bbe4c9ab0a6d7652e037be76a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66d924fbd050b124420be80473f0370"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#ae66d924fbd050b124420be80473f0370">~RefHelper</a> ()</td></tr>
 <tr class="memdesc:ae66d924fbd050b124420be80473f0370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock. ">SafeSharedPtr::unlock_shared()</a> if constructed as constant, otherwise call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">SafeSharedPtr::lock()</a> if constructed as mutable.  <a href="#ae66d924fbd050b124420be80473f0370">More...</a><br /></td></tr>
 <tr class="separator:ae66d924fbd050b124420be80473f0370"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,7 +193,7 @@ template&lt;typename T&gt; </div>
 <p>Constructor a constant <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html" title="Proxy class for operator* in SafeSharedPtr, behave like underlying object, and provide RAII read-writ...">RefHelper</a> to gain access to underlying object of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>. </p>
 <p>Will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">SafeSharedPtr::lock_shared()</a> on construction. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to access from. </td></tr>
+    <tr><td class="paramname">p</td><td><code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> to access from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -229,15 +229,15 @@ template&lt;typename T&gt; </div>
 <p>Constructor a mutable <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html" title="Proxy class for operator* in SafeSharedPtr, behave like underlying object, and provide RAII read-writ...">RefHelper</a> to gain access to underlying object of <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a>. </p>
 <p>Will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">SafeSharedPtr::lock()</a> on construction. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a> to access from. </td></tr>
+    <tr><td class="paramname">p</td><td><code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer...">SafeSharedPtr</a></code> to access from. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="aa409efec29f49e3a30f74ac52e60c44c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa409efec29f49e3a30f74ac52e60c44c">&#9670;&nbsp;</a></span>RefHelper() <span class="overload">[3/3]</span></h2>
+<a id="a346eb9bbe4c9ab0a6d7652e037be76a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a346eb9bbe4c9ab0a6d7652e037be76a0">&#9670;&nbsp;</a></span>RefHelper() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -257,7 +257,7 @@ template&lt;typename T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -444,7 +444,7 @@ template&lt;typename X &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Utilities/MemorySafety/<a class="el" href="_safe_shard_ptr_8hpp_source.html">SafeShardPtr.hpp</a></li>
+<li>Utilities/MemorySafety/<a class="el" href="_safe_shared_ptr_8hpp_source.html">SafeSharedPtr.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
