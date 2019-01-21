@@ -151,6 +151,10 @@ TEST(SequencialMap, value)
     EXPECT_EQ(map[key], 3);
     EXPECT_EQ(cmap[key], 3);
 
+    std::string k = "z";
+    EXPECT_EQ(cmap[k], int());
+    EXPECT_EQ(cmap["z"], int());
+
     std::pair<const std::string, int> front = { "c", 1 };
     EXPECT_EQ(map.front(), front);
     EXPECT_EQ(cmap.front(), front);
