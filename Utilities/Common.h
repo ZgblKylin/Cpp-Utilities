@@ -13,7 +13,7 @@
  * \section repository_modules Modules
  * \ref DimensionalAnalysis \n
  * Helpr classes, typedefs and functions for dimensional analyse.\n
- * \ref MemorySafety\n
+ * \ref MemorySafety \n
  * Helper classes, typedefs and functions for memroy safety.
  *
  * \section repository_files Files
@@ -26,11 +26,18 @@
  * - MemorySafety/
  *   - \ref RWSpinLock.hpp A extremely high-performance read-write-spinlock
  *     imported from folly library.
- *   - \ref SafeShardPtr.hpp Classes wrapped from `std::shared_ptr` /
+ *   - \ref SafeSharedPtr.hpp Classes wrapped from `std::shared_ptr` /
  *     `std::weak_ptr` and `std::enable_shared_from_this` to provide thread-safety
  *     while operating the underlying pointer.
+ *
+ * \section repository_license License
+ * The Utilities repository is dual-licensed under [MIT](https://mit-license.org/)
+ * and [996ICU 1.0 (or any later version)]
+ * (https://github.com/996icu/996.ICU/blob/master/LICENSE). \n
+ * You must follow **BOTH** of them if you use this work. \n
+ * See file \ref md_LICENSE for details.
  */
-
+ 
 /**
  * \file Common.h
  * \brief Macros defined for utilities.
