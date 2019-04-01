@@ -32,7 +32,7 @@
  *
  * \section repository_license License
  * The Utilities repository is dual-licensed under [MIT](https://mit-license.org/)
- * and [996ICU 1.0 (or any later version)]
+ * and [Anti996 1.0 (or any later version)]
  * (https://github.com/996icu/996.ICU/blob/master/LICENSE). \n
  * You must follow **BOTH** of them if you use this work. \n
  * See file \ref md_LICENSE for details.
