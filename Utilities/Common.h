@@ -5,7 +5,7 @@
  * \mainpage Utilities
  *
  * \section repository_introduction Introduction
- * The Utilities repository provides many useful functionalities.\n
+ * The Cpp Utilities repository provides many useful functionalities.\n
  * All codes are written header-only, so no compile-export-import-link is
  * needed, just use `git-submodule` to add to your project and include whatever
  * `.hpp` files you need.
