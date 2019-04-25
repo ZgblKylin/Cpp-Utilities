@@ -1,10 +1,10 @@
-#include <gtest/gtest.h>
+﻿#include <gtest/gtest.h>
 #include <string>
 #include <sstream>
 #include <fstream>
 #include <list>
 #define private public
-#include <Container/SequencialMap.hpp>
+#include <Containers/SequencialMap.hpp>
 
 UTILITIES_USING_NAMESPACE
 using Container::SequencialMap;
@@ -132,6 +132,9 @@ TEST(SequencialMap, key)
 
 TEST(SequencialMap, value)
 {
+    std::vector<int> values = { 1, 2, 3 };
+    EXPECT_EQ(Map.values(), values);
+
     auto map = Map;
     const SequencialMap<std::string, int>& cmap = map;
 
@@ -268,28 +271,6 @@ EXPECT_EQ(pair.first->second, 2)
         EXPECT_EQ(map[k2], 2);
         EXPECT_EQ(map.at(3).second, 12);
         EXPECT_EQ(map.at(4).second, 13);
-    }
-
-    // std::pair<iterator, bool> insert(const_reference value)
-    {
-        auto map = Map;
-        // success
-        auto pair = map.insert(value1);
-        PUSH_BACK_SUCCESS(map, pair);
-        // fail
-        pair = map.insert(value2);
-        PUSH_BACK_FAIL(map, pair);
-    }
-
-    // std::pair<iterator, bool> insert(value_type&& value);
-    {
-        auto map = Map;
-        // success
-        auto pair = map.insert(std::make_pair(std::string("d"), 4));
-        PUSH_BACK_SUCCESS(map, pair);
-        // fail
-        pair = map.insert(std::make_pair(std::string("a"), 5));
-        PUSH_BACK_FAIL(map, pair);
     }
 
     // template<typename... Args>

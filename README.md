@@ -5,14 +5,15 @@
 [![LICENSE](https://img.shields.io/badge/license-MIT-green.svg)](https://mit-license.org/)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
-## License
-This work is dual-licensed under [MIT](https://mit-license.org/) and 
-[Anti996 1.0 (or any later version)](https://github.com/996icu/996.ICU/blob/master/LICENSE).
-
-You must follow **BOTH** of them if you use this work.
-
 ## Details
 See [./docs/index.html](./docs/index.html)(offline) or [GitHub Pages](https://zgblkylin.github.io/Cpp-Utilities)(online) for details.
 
 TODO: 
   - Add doc for SequencialMap.
+
+## License
+This work is dual-licensed under [Anti 996 License & Mozilla Public License](LICENSE).
+
+Click here for more info about [Anti 996 Project](https://996.icu/#/en_US).
+
+Copyright (c) 2019 Fei Chong.
