@@ -1,4 +1,4 @@
-language: cpp
+﻿language: cpp
 dist: trusty
 sudo: false
 

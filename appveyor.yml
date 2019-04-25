@@ -1,4 +1,4 @@
-version: 1.0.{build}
+﻿version: 1.0.{build}
 
 image: Visual Studio 2017
 
@@ -13,8 +13,8 @@ before_build:
 
 build:
   parallel: true
-  project: build/Utilities.sln
+  project: build/Cpp-Utilities.sln
   verbosity: minimal
-  
+
 test_script:
   - ctest -C debug -R Utilities --output-on-failure

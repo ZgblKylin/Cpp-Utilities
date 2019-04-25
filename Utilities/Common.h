@@ -1,8 +1,8 @@
-#ifndef UTILITIES_COMMON_HPP
+﻿#ifndef UTILITIES_COMMON_HPP
 #define UTILITIES_COMMON_HPP
 
 /**
- * \mainpage Utilities
+ * \mainpage Cpp Utilities
  *
  * \section repository_introduction Introduction
  * The Cpp Utilities repository provides many useful functionalities.\n

@@ -16,5 +16,6 @@ var searchData=
   ['contains',['contains',['../class_container_1_1_sequencial_map.html#a953b176f0e005d7076cfb790c9f2c1f3',1,'Container::SequencialMap']]],
   ['crbegin',['crbegin',['../class_container_1_1_sequencial_map.html#a9de19811bfac99acea78d980ccb51347',1,'Container::SequencialMap']]],
   ['crend',['crend',['../class_container_1_1_sequencial_map.html#a3781a9637382321983fe00744eb5cf6a',1,'Container::SequencialMap']]],
-  ['current',['Current',['../struct_dimensional_1_1_unit.html#ac9e9ecdb18277bb42343e311e537c962',1,'Dimensional::Unit']]]
+  ['current',['Current',['../struct_dimensional_1_1_unit.html#ac9e9ecdb18277bb42343e311e537c962',1,'Dimensional::Unit']]],
+  ['cpp_20utilities',['Cpp Utilities',['../index.html',1,'']]]
 ];

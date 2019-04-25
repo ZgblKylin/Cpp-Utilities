@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['utilities',['Utilities',['../index.html',1,'']]],
   ['unique_5flock',['unique_lock',['../class_memory_1_1_safe_shared_ptr.html#a49b16495f58c9d1c30f2a14d54d5a98c',1,'Memory::SafeSharedPtr']]],
   ['uniquelock',['UniqueLock',['../class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52',1,'Memory::SafeSharedPtr']]],
   ['unit',['Unit',['../struct_dimensional_1_1_unit.html',1,'Dimensional']]],
