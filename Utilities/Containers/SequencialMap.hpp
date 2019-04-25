@@ -1694,7 +1694,7 @@ public:
          * \sa deserialize.
          */
         template<typename Stream>
-        friend Stream& operator>>(Stream& in, SerializeManipulator& manip)
+        friend Stream& operator>>(Stream& in, SerializeManipulator manip)
         {
             manip.map.clear();
             size_t size;
