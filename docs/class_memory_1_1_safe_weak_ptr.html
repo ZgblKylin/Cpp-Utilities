@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Cpp Utilities
-   &#160;<span id="projectnumber">1.2.0</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
   </td>
  </tr>
@@ -140,7 +140,7 @@ Related Functions</h2></td></tr>
 </td></tr>
 <tr class="memitem:aedbed73379f54743a014c5521ce98f5d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aedbed73379f54743a014c5521ce98f5d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_weak_ptr.html#aedbed73379f54743a014c5521ce98f5d">swap</a> (<a class="el" href="class_memory_1_1_safe_weak_ptr.html">Memory::SafeWeakPtr</a>&lt; T &gt; &amp;lhs, <a class="el" href="class_memory_1_1_safe_weak_ptr.html">Memory::SafeWeakPtr</a>&lt; T &gt; &amp;rhs) noexcept</td></tr>
-<tr class="memdesc:aedbed73379f54743a014c5521ce98f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm.  <a href="#aedbed73379f54743a014c5521ce98f5d">More...</a><br /></td></tr>
+<tr class="memdesc:aedbed73379f54743a014c5521ce98f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specializes the <code>std::swap</code> algorithm.  <a href="#aedbed73379f54743a014c5521ce98f5d">More...</a><br /></td></tr>
 <tr class="separator:aedbed73379f54743a014c5521ce98f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -471,10 +471,12 @@ template&lt;class T&gt; </div>
 <p>Exchanges the contents of <code>*this</code> and <code>other</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>Weak pointer to exchange the contents with. </td></tr>
+    <tr><td class="paramname">other</td><td>Another weak pointer to exchange the contents with.</td></tr>
   </table>
   </dd>
 </dl>
+<p><b>Complexity</b><br />
+ Constant. </p>
 
 </div>
 </div>
@@ -704,7 +706,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm. </p>
+<p>Specializes the <code>std::swap</code> algorithm. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Element type of input shared pointers. </td></tr>
@@ -714,11 +716,13 @@ template&lt;typename T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lhs</td><td>Shared pointer whose contents to swap. </td></tr>
-    <tr><td class="paramname">rhs</td><td>Shared pointer whose contents to swap.</td></tr>
+    <tr><td class="paramname">rhs</td><td>Another shared pointer whose contents to swap.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm for <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr.">Memory::SafeWeakPtr</a>. Swaps the pointers of <code>lhs</code> and <code>rhs</code>. Calls <code>lhs.swap(rhs)</code>. </p>
+<p>Specializes the <code>std::swap</code> algorithm for <a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr.">Memory::SafeWeakPtr</a>. Swaps the pointers of <code>lhs</code> and <code>rhs</code>. Calls <code>lhs.swap(rhs)</code>.</p>
+<p><b>Complexity</b><br />
+ Constant. </p>
 
 </div>
 </div>

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Cpp Utilities
-   &#160;<span id="projectnumber">1.2.0</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
   </td>
  </tr>
@@ -97,13 +97,13 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:afee9452fe9852f8e57a86cf8f3124b89"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#afee9452fe9852f8e57a86cf8f3124b89">ReadWriteLock</a> = std::shared_mutex</td></tr>
-<tr class="memdesc:afee9452fe9852f8e57a86cf8f3124b89"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined to <code>std::shared_mutex</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock.html" title="High-performance read-write-spinlock, see RWSpinLock.hpp for details.">RWSpinLock</a>.  <a href="#afee9452fe9852f8e57a86cf8f3124b89">More...</a><br /></td></tr>
+<tr class="memdesc:afee9452fe9852f8e57a86cf8f3124b89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined to <code>std::shared_mutex</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock.html" title="High-performance read-write-spinlock, see RWSpinLock.hpp for details.">RWSpinLock</a>.  <a href="#afee9452fe9852f8e57a86cf8f3124b89">More...</a><br /></td></tr>
 <tr class="separator:afee9452fe9852f8e57a86cf8f3124b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94dd72f327e72c8aff63ab8a97b0895e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a94dd72f327e72c8aff63ab8a97b0895e">SharedLock</a> = std::shared_lock&lt; std::shared_mutex &gt;</td></tr>
-<tr class="memdesc:a94dd72f327e72c8aff63ab8a97b0895e"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined to <code>std::shared_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html" title="RAII guard for read lock with RWSpinLock::lock_shared() on construction and RWSpinLock::unlock_shared...">RWSpinLock::ReadHolder</a>.  <a href="#a94dd72f327e72c8aff63ab8a97b0895e">More...</a><br /></td></tr>
+<tr class="memdesc:a94dd72f327e72c8aff63ab8a97b0895e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined to <code>std::shared_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html" title="RAII guard for read lock with RWSpinLock::lock_shared() on construction and RWSpinLock::unlock_shared...">RWSpinLock::ReadHolder</a>.  <a href="#a94dd72f327e72c8aff63ab8a97b0895e">More...</a><br /></td></tr>
 <tr class="separator:a94dd72f327e72c8aff63ab8a97b0895e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3073aba790f930cb0036209d01c74e52"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52">UniqueLock</a> = std::unique_lock&lt; std::shared_mutex &gt;</td></tr>
-<tr class="memdesc:a3073aba790f930cb0036209d01c74e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined to <code>std::unique_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html" title="RAII guard for write lock with RWSpinLock::lock() on construction and RWSpinLock::unlock() on destruc...">RWSpinLock::WriteHolder</a>.  <a href="#a3073aba790f930cb0036209d01c74e52">More...</a><br /></td></tr>
+<tr class="memdesc:a3073aba790f930cb0036209d01c74e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined to <code>std::unique_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html" title="RAII guard for write lock with RWSpinLock::lock() on construction and RWSpinLock::unlock() on destruc...">RWSpinLock::WriteHolder</a>.  <a href="#a3073aba790f930cb0036209d01c74e52">More...</a><br /></td></tr>
 <tr class="separator:a3073aba790f930cb0036209d01c74e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22607aa4670e8d5b16ec3b4055a6f424"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a22607aa4670e8d5b16ec3b4055a6f424">element_type</a> = std::remove_extent_t&lt; T &gt;</td></tr>
 <tr class="memdesc:a22607aa4670e8d5b16ec3b4055a6f424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of element managed. <code>T</code> for C++11, and <code>std::remove_extent_t&lt;T&gt;</code> for C++17.  <a href="#a22607aa4670e8d5b16ec3b4055a6f424">More...</a><br /></td></tr>
@@ -126,6 +126,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a212533e3a46e15649ac9105afc9099f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af58de0adf9393bd19dddf3d6ce2b96e0"><td class="memTemplParams" colspan="2">template&lt;typename Y &gt; </td></tr>
 <tr class="memitem:af58de0adf9393bd19dddf3d6ce2b96e0"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#af58de0adf9393bd19dddf3d6ce2b96e0">SafeSharedPtr</a> (Y *p, typename std::enable_if&lt; std::is_base_of&lt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; Y &gt;, Y &gt;::value &gt;::type *=nullptr)</td></tr>
+<tr class="memdesc:af58de0adf9393bd19dddf3d6ce2b96e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> with a managed object.  <a href="#af58de0adf9393bd19dddf3d6ce2b96e0">More...</a><br /></td></tr>
 <tr class="separator:af58de0adf9393bd19dddf3d6ce2b96e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e8111206d7ff77b1b3231f3414a99e2"><td class="memTemplParams" colspan="2">template&lt;typename Y , typename Deleter &gt; </td></tr>
 <tr class="memitem:a1e8111206d7ff77b1b3231f3414a99e2"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a1e8111206d7ff77b1b3231f3414a99e2">SafeSharedPtr</a> (Y *p, Deleter d, typename std::enable_if&lt;!std::is_base_of&lt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; Y &gt;, Y &gt;::value &gt;::type *=nullptr)</td></tr>
@@ -133,6 +134,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1e8111206d7ff77b1b3231f3414a99e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20ed2f605d04c95000fd13909f44e90e"><td class="memTemplParams" colspan="2">template&lt;typename Y , typename Deleter &gt; </td></tr>
 <tr class="memitem:a20ed2f605d04c95000fd13909f44e90e"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a20ed2f605d04c95000fd13909f44e90e">SafeSharedPtr</a> (Y *p, Deleter d, typename std::enable_if&lt; std::is_base_of&lt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; Y &gt;, Y &gt;::value &gt;::type *=nullptr)</td></tr>
+<tr class="memdesc:a20ed2f605d04c95000fd13909f44e90e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> with a managed object of specified deleter.  <a href="#a20ed2f605d04c95000fd13909f44e90e">More...</a><br /></td></tr>
 <tr class="separator:a20ed2f605d04c95000fd13909f44e90e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aced93a1f713203e8e918bbe0de053563"><td class="memTemplParams" colspan="2">template&lt;typename Deleter &gt; </td></tr>
 <tr class="memitem:aced93a1f713203e8e918bbe0de053563"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#aced93a1f713203e8e918bbe0de053563">SafeSharedPtr</a> (std::nullptr_t p, Deleter d)</td></tr>
@@ -403,7 +405,7 @@ Related Functions</h2></td></tr>
 <tr class="separator:a4faa671666b25d861a5ef54ac1ab6eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d4444a22b9071062486cbc47d26a114"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a3d4444a22b9071062486cbc47d26a114"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr.html#a3d4444a22b9071062486cbc47d26a114">swap</a> (<a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt; &amp;lhs, <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt; &amp;rhs) noexcept</td></tr>
-<tr class="memdesc:a3d4444a22b9071062486cbc47d26a114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm.  <a href="#a3d4444a22b9071062486cbc47d26a114">More...</a><br /></td></tr>
+<tr class="memdesc:a3d4444a22b9071062486cbc47d26a114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specializes the <code>std::swap</code> algorithm.  <a href="#a3d4444a22b9071062486cbc47d26a114">More...</a><br /></td></tr>
 <tr class="separator:a3d4444a22b9071062486cbc47d26a114"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -472,7 +474,7 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>defined to <code>std::shared_mutex</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock.html" title="High-performance read-write-spinlock, see RWSpinLock.hpp for details.">RWSpinLock</a>. </p>
+<p>Defined to <code>std::shared_mutex</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock.html" title="High-performance read-write-spinlock, see RWSpinLock.hpp for details.">RWSpinLock</a>. </p>
 
 </div>
 </div>
@@ -490,7 +492,7 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>defined to <code>std::shared_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html" title="RAII guard for read lock with RWSpinLock::lock_shared() on construction and RWSpinLock::unlock_shared...">RWSpinLock::ReadHolder</a>. </p>
+<p>Defined to <code>std::shared_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html" title="RAII guard for read lock with RWSpinLock::lock_shared() on construction and RWSpinLock::unlock_shared...">RWSpinLock::ReadHolder</a>. </p>
 
 </div>
 </div>
@@ -508,7 +510,7 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>defined to <code>std::unique_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html" title="RAII guard for write lock with RWSpinLock::lock() on construction and RWSpinLock::unlock() on destruc...">RWSpinLock::WriteHolder</a>. </p>
+<p>Defined to <code>std::unique_lock&lt;std::shared_mutex&gt;</code> with C++17 or higher, otherwise defined to <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html" title="RAII guard for write lock with RWSpinLock::lock() on construction and RWSpinLock::unlock() on destruc...">RWSpinLock::WriteHolder</a>. </p>
 
 </div>
 </div>
@@ -725,6 +727,27 @@ template&lt;typename Y &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> with a managed object. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Y</td><td>Type of input pointer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Pointer to an object to manage. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::bad_alloc</td><td>If read-write lock could not be obtained. May throw implementation-defined exception for other errors. <code>delete lck</code> is called if an exception occurs.<br />
+ If required additional memory could not be obtained. May throw implementation-defined exception for other errors. <code>delete p</code> (if T is not an array type, <code>delete[] p</code> otherwise) (since C++17) is called if an exception occurs. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a1e8111206d7ff77b1b3231f3414a99e2"></a>
@@ -839,6 +862,29 @@ template&lt;typename Y , typename Deleter &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> with a managed object of specified deleter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Y</td><td>Type of input pointer. </td></tr>
+    <tr><td class="paramname">Deleter</td><td>Type of specified deleter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Pointer to an object to manage. </td></tr>
+    <tr><td class="paramname">d</td><td>Deleter to use to destroy the object, must be <code>CopyConstructible</code>, and expression d(ptr) must be well formed, have well-defined behavior and not throw any exceptions. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::bad_alloc</td><td>If read-write lock could not be obtained. May throw implementation-defined exception for other errors. <code>delete lck</code> is called if an exception occurs.<br />
+ If required additional memory could not be obtained. May throw implementation-defined exception for other errors. d(p) is called if an exception occurs. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -974,7 +1020,7 @@ template&lt;typename Y , typename Deleter , typename Alloc &gt; </div>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">std::bad_alloc</td><td>If read-write lock could not be obtained. May throw implementation-defined exception for other errors. <code>delete lck</code> is called if an exception occurs.<br />
- If required additional memory could not be obtained. May throw implementation-defined exception for other errors. d(p) is called if an exception occurs. </td></tr>
+ If required additional memory could not be obtained. May throw implementation-defined exception for other errors. <code>d(p)</code> is called if an exception occurs. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2310,10 +2356,12 @@ template&lt;typename T&gt; </div>
 <p>Exchanges the contents of <code>*this</code> and <code>other</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>Shared pointer to exchange the contents with . </td></tr>
+    <tr><td class="paramname">other</td><td>Another shared pointer to exchange the contents with.</td></tr>
   </table>
   </dd>
 </dl>
+<p><b>Complexity</b><br />
+ Constant. </p>
 
 </div>
 </div>
@@ -2507,7 +2555,7 @@ template&lt;typename T&gt; </div>
 <p>Provides indexed access to the stored array, guard it with <b>write lock</b>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">idx</td><td>The array index . </td></tr>
+    <tr><td class="paramname">idx</td><td>The array index. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2548,7 +2596,7 @@ template&lt;typename T&gt; </div>
 <p>Provides indexed access to the stored array, guard it with <b>read lock</b>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">idx</td><td>The array index . </td></tr>
+    <tr><td class="paramname">idx</td><td>The array index. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4387,7 +4435,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm. </p>
+<p>Specializes the <code>std::swap</code> algorithm. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Element type of input shared pointers. </td></tr>
@@ -4397,11 +4445,13 @@ template&lt;typename T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lhs</td><td>Shared pointer whose contents to swap. </td></tr>
-    <tr><td class="paramname">rhs</td><td>Shared pointer whose contents to swap.</td></tr>
+    <tr><td class="paramname">rhs</td><td>Another shared pointer whose contents to swap.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Specializes the <code><a class="el" href="namespacestd.html#a4f9e28755f3c4aba3d58049818780775">std::swap</a></code> algorithm for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">Memory::SafeSharedPtr</a>. Swaps the pointers of <code>lhs</code> and <code>rhs</code>. Calls <code>lhs.swap(rhs)</code>. </p>
+<p>Specializes the <code>std::swap</code> algorithm for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">Memory::SafeSharedPtr</a>. Swaps the pointers of <code>lhs</code> and <code>rhs</code>. Calls <code>lhs.swap(rhs)</code>.</p>
+<p><b>Complexity</b><br />
+ Constant. </p>
 
 </div>
 </div>

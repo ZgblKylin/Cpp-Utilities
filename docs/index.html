@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Cpp Utilities
-   &#160;<span id="projectnumber">1.2.0</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
   </td>
  </tr>
@@ -75,7 +75,9 @@ Modules</h1>
 <p><a class="el" href="group___dimensional_analysis.html">Dimensional Analysis</a> <br />
 Helpr classes, typedefs and functions for dimensional analyse.<br />
 <a class="el" href="group___memory_safety.html">Memory Safety</a> <br />
-Helper classes, typedefs and functions for memroy safety.</p>
+Helper classes, typedefs and functions for memroy safety.<br />
+<a class="el" href="group___containers.html">Containers</a> <br />
+Classes and functions for some convenient containers.</p>
 <h1><a class="anchor" id="repository_files"></a>
 Files</h1>
 <ul>
@@ -88,6 +90,10 @@ Files</h1>
 <li>MemorySafety/<ul>
 <li><a class="el" href="_r_w_spin_lock_8hpp.html">RWSpinLock.hpp</a> A extremely high-performance read-write-spinlock imported from folly library.</li>
 <li><a class="el" href="_safe_shared_ptr_8hpp.html">SafeSharedPtr.hpp</a> Classes wrapped from <code>std::shared_ptr</code> / <code>std::weak_ptr</code> and <code>std::enable_shared_from_this</code> to provide thread-safety while operating the underlying pointer.</li>
+</ul>
+</li>
+<li>Containers/<ul>
+<li><a class="el" href="_sequencial_map_8hpp.html">SequencialMap.hpp</a> Key-value container behaves like std::map, but extended with random-access operations and traverses in the sequence order of value appends like <code>std::vector</code>.</li>
 </ul>
 </li>
 </ul>

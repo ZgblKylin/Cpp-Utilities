@@ -12,6 +12,7 @@ var searchData=
   ['const_5freference',['const_reference',['../class_container_1_1_sequencial_map.html#adaf4af81ffc33e7de86fdbd476845e8c',1,'Container::SequencialMap::const_reference()'],['../class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#abbe924acebc65fb89f9d539b408fa536',1,'Memory::SafeSharedPtr::PtrHelper::const_reference()'],['../class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#abf625e579f6dd527feba36ba0ea879a6',1,'Memory::SafeSharedPtr::RefHelper::const_reference()'],['../class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a99334ba0892601ee179749e195471eff',1,'Memory::SafeSharedPtr::ArrayHelper::const_reference()']]],
   ['const_5freverse_5fiterator',['const_reverse_iterator',['../class_container_1_1_sequencial_map.html#ab2d62710a7513d50add4144e908499a3',1,'Container::SequencialMap']]],
   ['container',['Container',['../namespace_container.html',1,'']]],
+  ['containers',['Containers',['../group___containers.html',1,'']]],
   ['contains',['contains',['../class_container_1_1_sequencial_map.html#a953b176f0e005d7076cfb790c9f2c1f3',1,'Container::SequencialMap']]],
   ['crbegin',['crbegin',['../class_container_1_1_sequencial_map.html#a9de19811bfac99acea78d980ccb51347',1,'Container::SequencialMap']]],
   ['crend',['crend',['../class_container_1_1_sequencial_map.html#a3781a9637382321983fe00744eb5cf6a',1,'Container::SequencialMap']]],

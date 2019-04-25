@@ -13,5 +13,6 @@ var searchData=
   ['energy',['Energy',['../struct_dimensional_1_1_unit.html#a36266eb86ccc8cd7c96da9aac33b9350',1,'Dimensional::Unit']]],
   ['equivalentdose',['EquivalentDose',['../struct_dimensional_1_1_unit.html#a39c2bb948aa7e93a0e560d1301b31343',1,'Dimensional::Unit']]],
   ['erase',['erase',['../class_container_1_1_sequencial_map.html#ad090ad2af2de3754b994334c95b0ae4a',1,'Container::SequencialMap::erase(const key_type &amp;key)'],['../class_container_1_1_sequencial_map.html#a03e77d46c8262ea533eb96cd2d096675',1,'Container::SequencialMap::erase(size_type pos, size_type count=1)'],['../class_container_1_1_sequencial_map.html#a42d1128d6f2cceef29f396fe099079e5',1,'Container::SequencialMap::erase(const_iterator pos)'],['../class_container_1_1_sequencial_map.html#a4d68d6ec7a221315e9eaa97657bfcbb9',1,'Container::SequencialMap::erase(const_iterator first, const_iterator last)']]],
+  ['erase_5fif',['erase_if',['../class_container_1_1_sequencial_map.html#a35bbbdc21a0b30f8b70df82046c65b66',1,'Container::SequencialMap']]],
   ['expired',['expired',['../class_memory_1_1_safe_weak_ptr.html#a47dd34108747535acdbb1f7c41ac0b1a',1,'Memory::SafeWeakPtr']]]
 ];

@@ -14,7 +14,9 @@
  * \ref DimensionalAnalysis \n
  * Helpr classes, typedefs and functions for dimensional analyse.\n
  * \ref MemorySafety \n
- * Helper classes, typedefs and functions for memroy safety.
+ * Helper classes, typedefs and functions for memroy safety.\n
+ * \ref Containers \n
+ * Classes and functions for some convenient containers.
  *
  * \section repository_files Files
  * - \ref Common.h Macros defined for utilities.
@@ -27,17 +29,20 @@
  *   - \ref RWSpinLock.hpp A extremely high-performance read-write-spinlock
  *     imported from folly library.
  *   - \ref SafeSharedPtr.hpp Classes wrapped from `std::shared_ptr` /
- *     `std::weak_ptr` and `std::enable_shared_from_this` to provide thread-safety
- *     while operating the underlying pointer.
- *
- * \section repository_license License
- * The Utilities repository is dual-licensed under [MIT](https://mit-license.org/)
- * and [Anti996 1.0 (or any later version)]
- * (https://github.com/996icu/996.ICU/blob/master/LICENSE). \n
- * You must follow **BOTH** of them if you use this work. \n
- * See file \ref md_LICENSE for details.
+ *     `std::weak_ptr` and `std::enable_shared_from_this` to provide
+ *     thread-safety while operating the underlying pointer.
+ * - Containers/
+ *   - \ref SequencialMap.hpp Key-value container behaves like std::map, but
+ *          extended with random-access operations and traverses in the
+ *          sequence order of value appends like `std::vector`.
  */
- 
+
+/**
+ * \namespace std
+ * \brief Contains std functions overload for classes in Utilities, cannot hide
+ *        in doxygen, just ignore it.
+ */
+
 /**
  * \file Common.h
  * \brief Macros defined for utilities.

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <memory>
 #include <utility>
@@ -15,7 +15,7 @@
  * \brief Helper classes, typedefs and functions for memroy safety.
  * \details
  *   Provide helperful functionalities for memory safety with:
- *     - Memory::RWSpinLock : a extremely high-performance read-write-spinlock
+ *     - Memory::RWSpinLock : A extremely high-performance read-write-spinlock
  *                            imported from folly library.\n
  *     - Memory::SafeSharedPtr : A wrapper to `std::shared_ptr` to provide
  *                               thread-safety while operating the underlying
@@ -40,7 +40,7 @@ template<typename T> class EnableSafeSharedFromThis;
 
 /**
  * \brief Wrapper to `std::shared_ptr` to provide thread-safety while operating
- *       the underlying pointer.
+ *        the underlying pointer.
  * \tparam T type of the object managed by SafeSharedPtr.
  * \details
  *   Same API as `std::shared_ptr`, but operator* and operator() are guarded by
@@ -150,17 +150,17 @@ public:
 
 #if __cplusplus >= 201703L
     /**
-     * \brief defined to `std::shared_mutex` with C++17 or higher, otherwise
+     * \brief Defined to `std::shared_mutex` with C++17 or higher, otherwise
      *        defined to RWSpinLock.
      */
     using ReadWriteLock = std::shared_mutex;
     /**
-     * \brief defined to `std::shared_lock<std::shared_mutex>` with C++17 or
+     * \brief Defined to `std::shared_lock<std::shared_mutex>` with C++17 or
      *        higher, otherwise defined to RWSpinLock::ReadHolder.
      */
     using SharedLock = std::shared_lock<std::shared_mutex>;
     /**
-     * \brief defined to `std::unique_lock<std::shared_mutex>` with C++17 or
+     * \brief Defined to `std::unique_lock<std::shared_mutex>` with C++17 or
      *        higher, otherwise defined to RWSpinLock::WriteHolder.
      */
     using UniqueLock = std::unique_lock<std::shared_mutex>;
@@ -171,17 +171,17 @@ public:
     using element_type = std::remove_extent_t<T>;
 #else
     /**
-     * \brief defined to `std::shared_mutex` with C++17 or higher, otherwise
+     * \brief Defined to `std::shared_mutex` with C++17 or higher, otherwise
      *        defined to RWSpinLock.
      */
     using ReadWriteLock = RWSpinLock;
     /**
-     * \brief defined to `std::shared_lock<std::shared_mutex>` with C++17 or
+     * \brief Defined to `std::shared_lock<std::shared_mutex>` with C++17 or
      *        higher, otherwise defined to RWSpinLock::ReadHolder.
      */
     using SharedLock = RWSpinLock::ReadHolder;
     /**
-     * \brief defined to `std::unique_lock<std::shared_mutex>` with C++17 or
+     * \brief Defined to `std::unique_lock<std::shared_mutex>` with C++17 or
      *        higher, otherwise defined to RWSpinLock::WriteHolder.
      */
     using UniqueLock = RWSpinLock::WriteHolder;
@@ -240,6 +240,20 @@ public:
           ptr(p)
     {
     }
+
+    /**
+     * \brief Constructs a `SafeSharedPtr` with a managed object.
+     * \tparam  Y Type of input pointer.
+     * \param   p Pointer to an object to manage.
+     * \exception std::bad_alloc
+     *   If read-write lock could not be obtained. May throw
+     *   implementation-defined exception for other errors. `delete lck` is
+     *   called if an exception occurs.\n
+     *   If required additional memory could not be obtained. May throw
+     *   implementation-defined exception for other errors. `delete p` (if T is
+     *   not an array type, `delete[] p` otherwise) (since C++17) is called if an
+     *   exception occurs.
+     */
     template<typename Y>
     explicit SafeSharedPtr(Y* p,
                            typename std::enable_if<std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
@@ -271,6 +285,25 @@ public:
           ptr(p, d)
     {
     }
+
+    /**
+     * \brief Constructs a `SafeSharedPtr` with a managed object of specified
+     *        deleter.
+     * \tparam  Y       Type of input pointer.
+     * \tparam  Deleter Type of specified deleter.
+     * \param   p       Pointer to an object to manage.
+     * \param   d       Deleter to use to destroy the object, must be
+     *                  `CopyConstructible`, and expression d(ptr) must be well
+     *                  formed, have well-defined behavior and not throw any
+     *                  exceptions.
+     * \exception std::bad_alloc
+     *   If read-write lock could not be obtained. May throw
+     *   implementation-defined exception for other errors. `delete lck` is
+     *   called if an exception occurs.\n
+     *   If required additional memory could not be obtained. May throw
+     *   implementation-defined exception for other errors. d(p) is called if
+     *   an exception occurs.
+     */
     template<typename Y, typename Deleter>
     SafeSharedPtr(Y* p, Deleter d,
                   typename std::enable_if<std::is_base_of<EnableSafeSharedFromThis<Y>, Y>::value>::type* = nullptr)
@@ -318,7 +351,7 @@ public:
      *   implementation-defined exception for other errors. `delete lck` is
      *   called if an exception occurs.\n
      *   If required additional memory could not be obtained. May throw
-     *   implementation-defined exception for other errors. d(p) is called if
+     *   implementation-defined exception for other errors. `d(p)` is called if
      *   an exception occurs.
      */
     template<typename Y, typename Deleter, typename Alloc>
@@ -819,7 +852,10 @@ public:
 
     /**
      * \brief Exchanges the contents of `*this` and `other`.
-     * \param other Shared pointer to exchange the contents with .
+     * \param other Another shared pointer to exchange the contents with.
+     * \details
+     *   **Complexity**\n
+     *   Constant.
      */
     void swap(SafeSharedPtr<T>& other) noexcept
     {
@@ -891,7 +927,7 @@ public:
     /**
      * \brief Provides indexed access to the stored array, guard it with
      *        **write lock**.
-     * \param idx The array index .
+     * \param idx The array index.
      * \result A temporary object provides proxy to the idx-th element of the
      *         array, with lock() on construction and unlock() on
      *         destruction.
@@ -913,7 +949,7 @@ public:
     /**
      * \brief Provides indexed access to the stored array, guard it with
      *        **read lock**.
-     * \param idx The array index .
+     * \param idx The array index.
      * \result A temporary object provides proxy to the idx-th element of the
      *         array, with lock_shared() on construction and unlock_shared() on
      *         destruction.
@@ -2306,7 +2342,10 @@ public:
 
     /**
      * \brief Exchanges the contents of `*this` and `other`.
-     * \param other Weak pointer to exchange the contents with.
+     * \param other Another weak pointer to exchange the contents with.
+     * \details
+     *   **Complexity**\n
+     *   Constant.
      */
     void swap(SafeWeakPtr<T>& other) noexcept
     {
@@ -2602,20 +2641,19 @@ private:
 
 UTILITIES_NAMESPACE_END
 
-/**
- * \brief Contains std::swap function overload for Memory::SafeSharedPtr and
- *        Memory::SafeWeakPtr, cannot hide in doxygen, just ignore it.
- */
 namespace std {
 /**
  * \relates Memory::SafeSharedPtr
  * \brief Specializes the `std::swap` algorithm.
  * \tparam  T   Element type of input shared pointers.
  * \param   lhs Shared pointer whose contents to swap.
- * \param   rhs Shared pointer whose contents to swap.
+ * \param   rhs Another shared pointer whose contents to swap.
  * \details
  *   Specializes the `std::swap` algorithm for Memory::SafeSharedPtr. Swaps the
  *   pointers of `lhs` and `rhs`. Calls `lhs.swap(rhs)`.
+ * \details
+ *   **Complexity**\n
+ *   Constant.
  */
 template<typename T>
 inline void swap(Memory::SafeSharedPtr<T>& lhs, Memory::SafeSharedPtr<T>& rhs) noexcept
@@ -2625,10 +2663,13 @@ inline void swap(Memory::SafeSharedPtr<T>& lhs, Memory::SafeSharedPtr<T>& rhs) n
  * \brief Specializes the `std::swap` algorithm.
  * \tparam  T   Element type of input shared pointers.
  * \param   lhs Shared pointer whose contents to swap.
- * \param   rhs Shared pointer whose contents to swap.
+ * \param   rhs Another shared pointer whose contents to swap.
  * \details
  *   Specializes the `std::swap` algorithm for Memory::SafeWeakPtr. Swaps the
  *   pointers of `lhs` and `rhs`. Calls `lhs.swap(rhs)`.
+ * \details
+ *   **Complexity**\n
+ *   Constant.
  */
 template<typename T>
 void swap(Memory::SafeWeakPtr<T>& lhs, Memory::SafeWeakPtr<T>& rhs) noexcept
