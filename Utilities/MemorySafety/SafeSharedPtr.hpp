@@ -52,10 +52,10 @@ template<typename T> class EnableSafeSharedFromThis;
  *   \n
  *   **Sample Code**\n
  *   ```cpp
- *   Memory::SafeSharedPtr<int> ptr = make_shared<int>(0);
- *   std::thread thread[](Memory::SafeSharedPtr<int> ptr){
+ *   Memory::SafeSharedPtr<int> ptr = Memory::make_shared<int>(0);
+ *   std::thread thread([](Memory::SafeSharedPtr<int> ptr){
  *       for (int i = 0; i < 1000 * 1000; ++i)
- *           +ptr += 1;
+ *           *ptr += 1;
  *   }, ptr);
  *   for (int i = 0; i < 1000 * 1000; ++i)
  *       *ptr += 1;

@@ -273,27 +273,19 @@ TEST(SafeSharedPtr, owner_before)
 TEST(SafeSharedPtr, concurrent)
 {
     SafeSharedPtr<int> ptr(new int(0));
-    int sum;
-    std::thread thread([&sum](SafeSharedPtr<int> ptr) {
+    std::thread thread([](SafeSharedPtr<int> ptr) {
         for (int i = 0; i < 100 * 1000; ++i)
         {
-            const auto& cPtr = ptr;
-            sum = *cPtr;
-
             for (int j = 0; j < 10; ++j)
             { *ptr += 1; }
         }
     }, ptr);
     for (int i = 0; i < 100 * 1000; ++i)
     {
-        const auto& cPtr = ptr;
-        sum = *cPtr;
-
         for (int j = 0; j < 10; ++j)
         { *ptr += 1; }
     }
     thread.join();
-    EXPECT_TRUE(sum >= 2 * 100 * 1000 * 9);
     EXPECT_EQ(*ptr, 2 * 100 * 1000 * 10);
 }
 
