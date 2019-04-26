@@ -858,7 +858,7 @@ TEST(SequencialMap, utilities)
         {
             char buf[5];
             memset(buf, '\0', 5);
-            sprintf(buf, "%04zu", val);
+            sprintf(buf, "%04zx", val);
             str += std::string(buf);
             i += 4;
             return *this;
@@ -866,7 +866,7 @@ TEST(SequencialMap, utilities)
 
         BinaryStream& operator>>(size_t& val)
         {
-            val = size_t(std::stoi(str.substr(i, 4)));
+            val = std::stoul(str.substr(i, 4), nullptr, 16);
             i += 4;
             return *this;
         }
@@ -875,7 +875,8 @@ TEST(SequencialMap, utilities)
         {
             char buf[5];
             memset(buf, '\0', 5);
-            sprintf(buf, "%04d", val);
+            unsigned int* uval = reinterpret_cast<unsigned int*>(&val);
+            sprintf(buf, "%04x", *uval);
             str += std::string(buf);
             i += 4;
             return *this;
@@ -883,7 +884,9 @@ TEST(SequencialMap, utilities)
 
         BinaryStream& operator>>(int& val)
         {
-            val = std::stoi(str.substr(i, 4));
+            unsigned int uval = std::stoul(str.substr(i, 4), nullptr, 16);
+            int* pval = reinterpret_cast<int*>(&uval);
+            val = *pval;
             i += 4;
             return *this;
         }
