@@ -5,6 +5,9 @@
 #include <list>
 #define private public
 #include <Containers/SequencialMap.hpp>
+#ifdef _MSC_VER
+#pragma warning(disable : 4996)
+#endif
 
 UTILITIES_USING_NAMESPACE
 using Container::SequencialMap;
@@ -855,7 +858,7 @@ TEST(SequencialMap, utilities)
         {
             char buf[5];
             memset(buf, '\0', 5);
-            sprintf(buf, "%04d", val);
+            sprintf(buf, "%04zu", val);
             str += std::string(buf);
             i += 4;
             return *this;

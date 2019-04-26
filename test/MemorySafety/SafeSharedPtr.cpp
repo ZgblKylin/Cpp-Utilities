@@ -388,7 +388,7 @@ TEST(SafeSharedPtr, pointer_cast)
     ASSERT_TRUE(pInt);
     EXPECT_EQ(*pInt, 3);
 
-    float a(3.14);
+    float a = 3.14f;
     int b = *reinterpret_cast<int*>(&a);
     SafeSharedPtr<float> pFloat(new float(a));
     pInt = Memory::reinterpret_pointer_cast<int>(pFloat);
