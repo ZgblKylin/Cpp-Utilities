@@ -25,15 +25,15 @@ struct Delivered : public Base
 TEST(SafeSharedPtr, Constructor)
 {
     auto defaulted = SafeSharedPtr<int>();
-    EXPECT_TRUE(defaulted.lck);
+    EXPECT_TRUE(defaulted.mutex);
     EXPECT_FALSE(defaulted.ptr);
 
     auto nullPtr = SafeSharedPtr<int>(nullptr);
-    EXPECT_TRUE(nullPtr.lck);
+    EXPECT_TRUE(nullPtr.mutex);
     EXPECT_FALSE(nullPtr.ptr);
 
     auto rawPointer = SafeSharedPtr<int>(new int(3));
-    EXPECT_TRUE(rawPointer.lck);
+    EXPECT_TRUE(rawPointer.mutex);
     EXPECT_EQ(*rawPointer.ptr, 3);
 
     bool deleted = false;
@@ -42,7 +42,7 @@ TEST(SafeSharedPtr, Constructor)
             if(p) delete p;
             deleted = true;
         });
-        EXPECT_TRUE(rawDeleter.lck);
+        EXPECT_TRUE(rawDeleter.mutex);
         EXPECT_EQ(*rawDeleter.ptr, 3);
     }
     EXPECT_TRUE(deleted);
@@ -53,7 +53,7 @@ TEST(SafeSharedPtr, Constructor)
             if(p) delete p;
             deleted = true;
         });
-        EXPECT_TRUE(nullDeleter.lck);
+        EXPECT_TRUE(nullDeleter.mutex);
         EXPECT_FALSE(nullDeleter.ptr);
     }
     EXPECT_TRUE(deleted);
@@ -65,7 +65,7 @@ TEST(SafeSharedPtr, Constructor)
                                 [&deleted](int* p){ if(p) { delete p; } deleted = true; },
         std::allocator<int>()
         );
-        EXPECT_TRUE(rawAllocator.lck);
+        EXPECT_TRUE(rawAllocator.mutex);
         EXPECT_EQ(*rawAllocator.ptr, 3);
     }
     EXPECT_TRUE(deleted);
@@ -77,7 +77,7 @@ TEST(SafeSharedPtr, Constructor)
                                  [&deleted](int* p){ if(p) { delete p; } deleted = true; },
                                  std::allocator<int>()
         );
-        EXPECT_TRUE(nullAllocator.lck);
+        EXPECT_TRUE(nullAllocator.mutex);
         EXPECT_FALSE(nullAllocator.ptr);
     }
     EXPECT_TRUE(deleted);
@@ -504,10 +504,10 @@ TEST(SafeSharedPtr, EnableSafeSharedFromThis)
     SafeSharedPtr<Good> gp1 = Memory::make_shared<Good>();
     SafeSharedPtr<Good> gp2 = gp1->getptr();
     EXPECT_EQ(gp2.use_count(), 2);
-    EXPECT_EQ(gp2.lck.use_count(), 3);
+    EXPECT_EQ(gp2.mutex.use_count(), 3);
 
     SafeSharedPtr<Good> ptr(new Good(3));
-    EXPECT_EQ(ptr.lck.use_count(), 2);
+    EXPECT_EQ(ptr.mutex.use_count(), 2);
     EXPECT_EQ(ptr->i, 3);
 
     bool deleted = false;
@@ -515,7 +515,7 @@ TEST(SafeSharedPtr, EnableSafeSharedFromThis)
         delete p;
         deleted = true;
     });
-    EXPECT_EQ(ptr2.lck.use_count(), 2);
+    EXPECT_EQ(ptr2.mutex.use_count(), 2);
     EXPECT_EQ(ptr2->i, 3);
     ptr2.reset();
     EXPECT_TRUE(deleted);
@@ -525,7 +525,7 @@ TEST(SafeSharedPtr, EnableSafeSharedFromThis)
         delete p;
         deleted = true;
     }, std::allocator<Good>());
-    EXPECT_EQ(ptr3.lck.use_count(), 2);
+    EXPECT_EQ(ptr3.mutex.use_count(), 2);
     EXPECT_EQ(ptr3->i, 3);
     ptr3.reset();
     EXPECT_TRUE(deleted);
@@ -534,15 +534,15 @@ TEST(SafeSharedPtr, EnableSafeSharedFromThis)
     Good* good = new Good(4);
     SafeSharedPtr<Good> ptr4(p, good);
     EXPECT_EQ(p->__safeSharedLock.use_count(), 2);
-    EXPECT_EQ(ptr4.lck.use_count(), 2);
+    EXPECT_EQ(ptr4.mutex.use_count(), 2);
     EXPECT_EQ(good->__safeSharedLock.use_count(), 1);
     EXPECT_EQ(ptr4->i, 4);
 
     SafeSharedPtr<Good> ptr5(p);
-    EXPECT_EQ(ptr5.lck.use_count(), 3);
+    EXPECT_EQ(ptr5.mutex.use_count(), 3);
     EXPECT_EQ(ptr5->i, 3);
 
     SafeSharedPtr<Good> ptr6(std::make_shared<Good>(3));
-    EXPECT_EQ(ptr6.lck.use_count(), 2);
+    EXPECT_EQ(ptr6.mutex.use_count(), 2);
     EXPECT_EQ(ptr6->i, 3);
 }

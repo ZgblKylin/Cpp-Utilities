@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cpp Utilities: Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper Class Reference</title>
+<title>Cpp Utilities: Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Cpp Utilities
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
   </td>
  </tr>
@@ -71,7 +71,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_memory_1_1_safe_shared_ptr_1_1_array_helper-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper Class Reference</div>  </div>
+<div class="title">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -82,71 +82,76 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a660b90133309adaf3a0667f63ef63202"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a> = std::remove_extent_t&lt; T &gt;</td></tr>
-<tr class="memdesc:a660b90133309adaf3a0667f63ef63202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element type of array <code>T</code>.  <a href="#a660b90133309adaf3a0667f63ef63202">More...</a><br /></td></tr>
-<tr class="separator:a660b90133309adaf3a0667f63ef63202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c29adefb979b8a50b0a286c249ebe9b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a7c29adefb979b8a50b0a286c249ebe9b">pointer</a> = <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a> *</td></tr>
-<tr class="memdesc:a7c29adefb979b8a50b0a286c249ebe9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer type of element.  <a href="#a7c29adefb979b8a50b0a286c249ebe9b">More...</a><br /></td></tr>
-<tr class="separator:a7c29adefb979b8a50b0a286c249ebe9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad696e641983d41ba8b3a8aa674f0a683"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#ad696e641983d41ba8b3a8aa674f0a683">const_pointer</a> = const <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a> *</td></tr>
-<tr class="memdesc:ad696e641983d41ba8b3a8aa674f0a683"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const pointer type of element.  <a href="#ad696e641983d41ba8b3a8aa674f0a683">More...</a><br /></td></tr>
-<tr class="separator:ad696e641983d41ba8b3a8aa674f0a683"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d02c7cc273e5ea5adfaa4759023ae9d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a5d02c7cc273e5ea5adfaa4759023ae9d">reference</a> = <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a> &amp;</td></tr>
-<tr class="memdesc:a5d02c7cc273e5ea5adfaa4759023ae9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference type of element.  <a href="#a5d02c7cc273e5ea5adfaa4759023ae9d">More...</a><br /></td></tr>
-<tr class="separator:a5d02c7cc273e5ea5adfaa4759023ae9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99334ba0892601ee179749e195471eff"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a99334ba0892601ee179749e195471eff">const_reference</a> = const <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a> &amp;</td></tr>
-<tr class="memdesc:a99334ba0892601ee179749e195471eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const eference type of element.  <a href="#a99334ba0892601ee179749e195471eff">More...</a><br /></td></tr>
-<tr class="separator:a99334ba0892601ee179749e195471eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc29803726014e7edf53ee806a6648ec"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a> = std::remove_extent_t&lt; T &gt;</td></tr>
+<tr class="memdesc:abc29803726014e7edf53ee806a6648ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element type of array <code>T</code>.  <a href="#abc29803726014e7edf53ee806a6648ec">More...</a><br /></td></tr>
+<tr class="separator:abc29803726014e7edf53ee806a6648ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b6a9bb056fd4bd84ed72697c75e0c62"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a1b6a9bb056fd4bd84ed72697c75e0c62">pointer</a> = <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a> *</td></tr>
+<tr class="memdesc:a1b6a9bb056fd4bd84ed72697c75e0c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer type of element.  <a href="#a1b6a9bb056fd4bd84ed72697c75e0c62">More...</a><br /></td></tr>
+<tr class="separator:a1b6a9bb056fd4bd84ed72697c75e0c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50f5be4766ad5ab1178b0d7364937356"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a50f5be4766ad5ab1178b0d7364937356">const_pointer</a> = const <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a> *</td></tr>
+<tr class="memdesc:a50f5be4766ad5ab1178b0d7364937356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const pointer type of element.  <a href="#a50f5be4766ad5ab1178b0d7364937356">More...</a><br /></td></tr>
+<tr class="separator:a50f5be4766ad5ab1178b0d7364937356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d9d9ad875b30cbf6e0ee110f7e91adb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a0d9d9ad875b30cbf6e0ee110f7e91adb">reference</a> = <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a> &amp;</td></tr>
+<tr class="memdesc:a0d9d9ad875b30cbf6e0ee110f7e91adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference type of element.  <a href="#a0d9d9ad875b30cbf6e0ee110f7e91adb">More...</a><br /></td></tr>
+<tr class="separator:a0d9d9ad875b30cbf6e0ee110f7e91adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f688fea3233f74300200920883f3383"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a3f688fea3233f74300200920883f3383">const_reference</a> = const <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a> &amp;</td></tr>
+<tr class="memdesc:a3f688fea3233f74300200920883f3383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const eference type of element.  <a href="#a3f688fea3233f74300200920883f3383">More...</a><br /></td></tr>
+<tr class="separator:a3f688fea3233f74300200920883f3383"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac3f3c2f4af75ba4f607e11589e7c9abd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#ac3f3c2f4af75ba4f607e11589e7c9abd">ArrayHelper</a> (<a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt; &amp;p, std::ptrdiff_t idx)</td></tr>
-<tr class="memdesc:ac3f3c2f4af75ba4f607e11589e7c9abd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor a constant <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a> to gain access to element of object managed by <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>.  <a href="#ac3f3c2f4af75ba4f607e11589e7c9abd">More...</a><br /></td></tr>
-<tr class="separator:ac3f3c2f4af75ba4f607e11589e7c9abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff28a7bf7153a3a548ee3620e867820a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#aff28a7bf7153a3a548ee3620e867820a">ArrayHelper</a> (const <a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt; &amp;p, std::ptrdiff_t idx)</td></tr>
-<tr class="memdesc:aff28a7bf7153a3a548ee3620e867820a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor a mutable <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a> to gain access to element of object managed by <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>.  <a href="#aff28a7bf7153a3a548ee3620e867820a">More...</a><br /></td></tr>
-<tr class="separator:aff28a7bf7153a3a548ee3620e867820a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14cc455fb61a585cfd1f695fd3134cd2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a14cc455fb61a585cfd1f695fd3134cd2">ArrayHelper</a> (<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&amp;other) noexcept</td></tr>
-<tr class="memdesc:a14cc455fb61a585cfd1f695fd3134cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor, transport ownership to another <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a>, keep existing lock state.  <a href="#a14cc455fb61a585cfd1f695fd3134cd2">More...</a><br /></td></tr>
-<tr class="separator:a14cc455fb61a585cfd1f695fd3134cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4b65e494eedb9c665f1d8c8cd8d6b50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#ad4b65e494eedb9c665f1d8c8cd8d6b50">~ArrayHelper</a> ()</td></tr>
-<tr class="memdesc:ad4b65e494eedb9c665f1d8c8cd8d6b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock.">SafeSharedPtr::unlock_shared()</a> if constructed as constant, otherwise call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">SafeSharedPtr::lock()</a> if constructed as mutable.  <a href="#ad4b65e494eedb9c665f1d8c8cd8d6b50">More...</a><br /></td></tr>
-<tr class="separator:ad4b65e494eedb9c665f1d8c8cd8d6b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80d05c856bdb49c43a61892972ef83dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a80d05c856bdb49c43a61892972ef83dd">operator=</a> (<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&amp;other)</td></tr>
-<tr class="memdesc:a80d05c856bdb49c43a61892972ef83dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assigment, transport ownership to another <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a>, keep existing lock state.  <a href="#a80d05c856bdb49c43a61892972ef83dd">More...</a><br /></td></tr>
-<tr class="separator:a80d05c856bdb49c43a61892972ef83dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19fc3cd1a7bab8ad2297d5aa720565d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a19fc3cd1a7bab8ad2297d5aa720565d5">operator reference</a> ()</td></tr>
-<tr class="memdesc:a19fc3cd1a7bab8ad2297d5aa720565d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload to act as <code>element_type&amp;</code>.  <a href="#a19fc3cd1a7bab8ad2297d5aa720565d5">More...</a><br /></td></tr>
-<tr class="separator:a19fc3cd1a7bab8ad2297d5aa720565d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa51919315c2258d8bcd59472f06bee27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#aa51919315c2258d8bcd59472f06bee27">operator const_reference</a> () const</td></tr>
-<tr class="memdesc:aa51919315c2258d8bcd59472f06bee27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload to act as <code>const element_type&amp;</code>.  <a href="#aa51919315c2258d8bcd59472f06bee27">More...</a><br /></td></tr>
-<tr class="separator:aa51919315c2258d8bcd59472f06bee27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7ce0d1daaece30ba02c970eccb0a568"><td class="memTemplParams" colspan="2">template&lt;typename X &gt; </td></tr>
-<tr class="memitem:af7ce0d1daaece30ba02c970eccb0a568"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#af7ce0d1daaece30ba02c970eccb0a568">operator=</a> (const X &amp;other)</td></tr>
-<tr class="memdesc:af7ce0d1daaece30ba02c970eccb0a568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign operator to assign from another value.  <a href="#af7ce0d1daaece30ba02c970eccb0a568">More...</a><br /></td></tr>
-<tr class="separator:af7ce0d1daaece30ba02c970eccb0a568"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a451b464326d14be89299b734923c7d8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a451b464326d14be89299b734923c7d8d">ArrayHelper</a> (const <a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a> &amp;p, std::ptrdiff_t idx)</td></tr>
+<tr class="memdesc:a451b464326d14be89299b734923c7d8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor a constant <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a> to gain access to element of object managed by <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>.  <a href="#a451b464326d14be89299b734923c7d8d">More...</a><br /></td></tr>
+<tr class="separator:a451b464326d14be89299b734923c7d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a0a213a653f6fa9c177c523070bad24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a7a0a213a653f6fa9c177c523070bad24">ArrayHelper</a> (<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="memdesc:a7a0a213a653f6fa9c177c523070bad24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor, transport ownership to another <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a>, keep existing lock state.  <a href="#a7a0a213a653f6fa9c177c523070bad24">More...</a><br /></td></tr>
+<tr class="separator:a7a0a213a653f6fa9c177c523070bad24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51b3b5d8ef05df6c1f8c6891e8860d3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a51b3b5d8ef05df6c1f8c6891e8860d3e">~ArrayHelper</a> ()</td></tr>
+<tr class="memdesc:a51b3b5d8ef05df6c1f8c6891e8860d3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, release Lock if exists.  <a href="#a51b3b5d8ef05df6c1f8c6891e8860d3e">More...</a><br /></td></tr>
+<tr class="separator:a51b3b5d8ef05df6c1f8c6891e8860d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a7917c5e2b17b1408251f18453e8a3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a1a7917c5e2b17b1408251f18453e8a3f">operator=</a> (<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&amp;other)</td></tr>
+<tr class="memdesc:a1a7917c5e2b17b1408251f18453e8a3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assigment, transport ownership to another <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a>, keep existing lock state.  <a href="#a1a7917c5e2b17b1408251f18453e8a3f">More...</a><br /></td></tr>
+<tr class="separator:a1a7917c5e2b17b1408251f18453e8a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a708d80cdaff3266d88c8570e0d8ef1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a0a708d80cdaff3266d88c8570e0d8ef1">operator reference</a> ()</td></tr>
+<tr class="memdesc:a0a708d80cdaff3266d88c8570e0d8ef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload to act as <code>element_type&amp;</code>.  <a href="#a0a708d80cdaff3266d88c8570e0d8ef1">More...</a><br /></td></tr>
+<tr class="separator:a0a708d80cdaff3266d88c8570e0d8ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6cedaa665905cf790959ef6e2c178a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#aa6cedaa665905cf790959ef6e2c178a1">operator const_reference</a> () const</td></tr>
+<tr class="memdesc:aa6cedaa665905cf790959ef6e2c178a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload to act as <code>const element_type&amp;</code>.  <a href="#aa6cedaa665905cf790959ef6e2c178a1">More...</a><br /></td></tr>
+<tr class="separator:aa6cedaa665905cf790959ef6e2c178a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a152b8779e32cc56cfbf5bffdb99de4c9"><td class="memTemplParams" colspan="2">template&lt;typename X &gt; </td></tr>
+<tr class="memitem:a152b8779e32cc56cfbf5bffdb99de4c9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a152b8779e32cc56cfbf5bffdb99de4c9">operator=</a> (const X &amp;other)</td></tr>
+<tr class="memdesc:a152b8779e32cc56cfbf5bffdb99de4c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign operator to assign from another value.  <a href="#a152b8779e32cc56cfbf5bffdb99de4c9">More...</a><br /></td></tr>
+<tr class="separator:a152b8779e32cc56cfbf5bffdb99de4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename T&gt;<br />
-class Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</h3>
+<div class="textblock"><h3>template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt;<br />
+template&lt;typename Lock&gt;<br />
+class Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt;</h3>
 
 <p>Proxy class for operator[] in <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>, behave like array element of underlying array object, and provide RAII read-write lock for thread safety. </p>
-<p>If constructed as constant, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">SafeSharedPtr::lock_shared()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock.">SafeSharedPtr::unlock_shared()</a> on destruction.<br />
- If constructed as mutable, it will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">SafeSharedPtr::lock()</a> on construction and <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a2e8ba57f44e791d30ee35b9b7e368a3b" title="Unlocks the write lock.">SafeSharedPtr::unlock()</a> on destruction. </p><dl class="section note"><dt>Note</dt><dd>Copy constructor and copy assignment are deleted to prevent multiply locks, use <code>std::move</code> with move constructor and move assignment to transport it's ownership, or simply use it like type T* or T&amp;.<br />
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Lock</td><td>Lock type used for protect the object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Copy constructor and copy assignment are deleted to prevent multiply locks, use <code>std::move</code> with move constructor and move assignment to transport it's ownership, or simply use it like type T* or T&amp;.<br />
  Because operator. cannot be overloaded, <code>pPoints[0].x</code> cannot compile, use <code>Point(pPoints[0]).x</code> instead. Sorry for that. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Behavior is undefined if <code>T</code> is not array type. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a> </dd></dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a660b90133309adaf3a0667f63ef63202"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a660b90133309adaf3a0667f63ef63202">&#9670;&nbsp;</a></span>element_type</h2>
+<a id="abc29803726014e7edf53ee806a6648ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc29803726014e7edf53ee806a6648ec">&#9670;&nbsp;</a></span>element_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">ArrayHelper::element_type</a> =  std::remove_extent_t&lt;T&gt;</td>
+          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a> =  std::remove_extent_t&lt;T&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -155,16 +160,18 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a7c29adefb979b8a50b0a286c249ebe9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c29adefb979b8a50b0a286c249ebe9b">&#9670;&nbsp;</a></span>pointer</h2>
+<a id="a1b6a9bb056fd4bd84ed72697c75e0c62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b6a9bb056fd4bd84ed72697c75e0c62">&#9670;&nbsp;</a></span>pointer</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a7c29adefb979b8a50b0a286c249ebe9b">ArrayHelper::pointer</a> =  <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a>*</td>
+          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a1b6a9bb056fd4bd84ed72697c75e0c62">pointer</a> =  <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a>*</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -173,16 +180,18 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="ad696e641983d41ba8b3a8aa674f0a683"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad696e641983d41ba8b3a8aa674f0a683">&#9670;&nbsp;</a></span>const_pointer</h2>
+<a id="a50f5be4766ad5ab1178b0d7364937356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50f5be4766ad5ab1178b0d7364937356">&#9670;&nbsp;</a></span>const_pointer</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#ad696e641983d41ba8b3a8aa674f0a683">ArrayHelper::const_pointer</a> =  const <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a>*</td>
+          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a50f5be4766ad5ab1178b0d7364937356">const_pointer</a> =  const <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a>*</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -191,16 +200,18 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a5d02c7cc273e5ea5adfaa4759023ae9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d02c7cc273e5ea5adfaa4759023ae9d">&#9670;&nbsp;</a></span>reference</h2>
+<a id="a0d9d9ad875b30cbf6e0ee110f7e91adb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d9d9ad875b30cbf6e0ee110f7e91adb">&#9670;&nbsp;</a></span>reference</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a5d02c7cc273e5ea5adfaa4759023ae9d">ArrayHelper::reference</a> =  <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a>&amp;</td>
+          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a0d9d9ad875b30cbf6e0ee110f7e91adb">reference</a> =  <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a>&amp;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -209,16 +220,18 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a99334ba0892601ee179749e195471eff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99334ba0892601ee179749e195471eff">&#9670;&nbsp;</a></span>const_reference</h2>
+<a id="a3f688fea3233f74300200920883f3383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f688fea3233f74300200920883f3383">&#9670;&nbsp;</a></span>const_reference</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a99334ba0892601ee179749e195471eff">ArrayHelper::const_reference</a> =  const <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">element_type</a>&amp;</td>
+          <td class="memname">using <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a3f688fea3233f74300200920883f3383">const_reference</a> =  const <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">element_type</a>&amp;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -228,21 +241,23 @@ template&lt;typename T&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac3f3c2f4af75ba4f607e11589e7c9abd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3f3c2f4af75ba4f607e11589e7c9abd">&#9670;&nbsp;</a></span>ArrayHelper() <span class="overload">[1/3]</span></h2>
+<a id="a451b464326d14be89299b734923c7d8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a451b464326d14be89299b734923c7d8d">&#9670;&nbsp;</a></span>ArrayHelper() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::ArrayHelper::ArrayHelper </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a> &amp;&#160;</td>
           <td class="paramname"><em>p</em>, </td>
         </tr>
         <tr>
@@ -265,7 +280,7 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Constructor a constant <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a> to gain access to element of object managed by <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>. </p>
-<p>Will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a9054feae00b20d15e00879a49e683d69" title="Locks the lock for reading. This function will block the current thread if another thread has locked ...">SafeSharedPtr::lock_shared()</a> on construction. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Will construct Lock object to guard the pointer. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td><code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> to access from. </td></tr>
     <tr><td class="paramname">idx</td><td>Index for element in array to access from. </td></tr>
@@ -275,68 +290,23 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="aff28a7bf7153a3a548ee3620e867820a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff28a7bf7153a3a548ee3620e867820a">&#9670;&nbsp;</a></span>ArrayHelper() <span class="overload">[2/3]</span></h2>
+<a id="a7a0a213a653f6fa9c177c523070bad24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a0a213a653f6fa9c177c523070bad24">&#9670;&nbsp;</a></span>ArrayHelper() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::ArrayHelper::ArrayHelper </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt; &amp;&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::ptrdiff_t&#160;</td>
-          <td class="paramname"><em>idx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Constructor a mutable <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html" title="Proxy class for operator[] in SafeSharedPtr, behave like array element of underlying array object,...">ArrayHelper</a> to gain access to element of object managed by <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>. </p>
-<p>Will call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">SafeSharedPtr::lock()</a> on construction. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p</td><td><code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> to access from. </td></tr>
-    <tr><td class="paramname">idx</td><td>Index for element in array to access from. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a14cc455fb61a585cfd1f695fd3134cd2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14cc455fb61a585cfd1f695fd3134cd2">&#9670;&nbsp;</a></span>ArrayHelper() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::ArrayHelper::ArrayHelper </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt; &amp;&amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td></td>
         </tr>
@@ -358,19 +328,21 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="ad4b65e494eedb9c665f1d8c8cd8d6b50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4b65e494eedb9c665f1d8c8cd8d6b50">&#9670;&nbsp;</a></span>~ArrayHelper()</h2>
+<a id="a51b3b5d8ef05df6c1f8c6891e8860d3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51b3b5d8ef05df6c1f8c6891e8860d3e">&#9670;&nbsp;</a></span>~ArrayHelper()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::ArrayHelper::~ArrayHelper </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::~<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -383,26 +355,28 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Destructor, call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae148778e9c3ac646541964ad048538b2" title="Unlocks the read lock.">SafeSharedPtr::unlock_shared()</a> if constructed as constant, otherwise call <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a0489e2c856bdae027f8a9f58c9b012f3" title="Locks the lock for writing. This function will block the current thread if another thread (including ...">SafeSharedPtr::lock()</a> if constructed as mutable. </p>
+<p>Destructor, release Lock if exists. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a80d05c856bdb49c43a61892972ef83dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80d05c856bdb49c43a61892972ef83dd">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+<a id="a1a7917c5e2b17b1408251f18453e8a3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a7917c5e2b17b1408251f18453e8a3f">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&amp; <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::ArrayHelper::operator= </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&amp; <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::operator= </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a> &amp;&amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt; &amp;&amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td></td>
         </tr>
@@ -425,19 +399,21 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a19fc3cd1a7bab8ad2297d5aa720565d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19fc3cd1a7bab8ad2297d5aa720565d5">&#9670;&nbsp;</a></span>operator reference()</h2>
+<a id="a0a708d80cdaff3266d88c8570e0d8ef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a708d80cdaff3266d88c8570e0d8ef1">&#9670;&nbsp;</a></span>operator reference()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::ArrayHelper::operator <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a5d02c7cc273e5ea5adfaa4759023ae9d">reference</a> </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::operator <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a0d9d9ad875b30cbf6e0ee110f7e91adb">reference</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -455,19 +431,21 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="aa51919315c2258d8bcd59472f06bee27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa51919315c2258d8bcd59472f06bee27">&#9670;&nbsp;</a></span>operator const_reference()</h2>
+<a id="aa6cedaa665905cf790959ef6e2c178a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6cedaa665905cf790959ef6e2c178a1">&#9670;&nbsp;</a></span>operator const_reference()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::ArrayHelper::operator <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a99334ba0892601ee179749e195471eff">const_reference</a> </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::operator <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a3f688fea3233f74300200920883f3383">const_reference</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -485,13 +463,15 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="af7ce0d1daaece30ba02c970eccb0a568"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7ce0d1daaece30ba02c970eccb0a568">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+<a id="a152b8779e32cc56cfbf5bffdb99de4c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a152b8779e32cc56cfbf5bffdb99de4c9">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt; </div>
+<div class="memtemplate">
+template&lt;typename Lock &gt; </div>
 <div class="memtemplate">
 template&lt;typename X &gt; </div>
 <table class="mlabels">
@@ -499,7 +479,7 @@ template&lt;typename X &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&amp; <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T &gt;::ArrayHelper::operator= </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&amp; <a class="el" href="class_memory_1_1_safe_shared_ptr.html">Memory::SafeSharedPtr</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html">ArrayHelper</a>&lt; Lock &gt;::operator= </td>
           <td>(</td>
           <td class="paramtype">const X &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>

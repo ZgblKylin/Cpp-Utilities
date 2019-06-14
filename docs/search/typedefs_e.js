@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['uniquelock',['UniqueLock',['../class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52',1,'Memory::SafeSharedPtr']]],
+  ['unique_5flock_5ft',['unique_lock_t',['../namespace_memory.html#ac07c2782daf84e421b42f78cf31df72a',1,'Memory']]],
+  ['uniquelock',['UniqueLock',['../class_memory_1_1_safe_shared_ptr.html#a307b37022dad9f3be04d444c2552197e',1,'Memory::SafeSharedPtr::UniqueLock()'],['../class_memory_1_1_safe_weak_ptr.html#a9e13568d26dc121b9075e1f3ebdf2643',1,'Memory::SafeWeakPtr::UniqueLock()'],['../class_memory_1_1_enable_safe_shared_from_this.html#a5eca063636677871a120f858c9662ac2',1,'Memory::EnableSafeSharedFromThis::UniqueLock()']]],
   ['unit_5ftype',['unit_type',['../class_dimensional_1_1_quantity.html#aa57e6634876446e1c486df79b207311b',1,'Dimensional::Quantity']]],
   ['unitdivide',['UnitDivide',['../struct_dimensional_1_1_unit.html#a480d403224861d41a81d8c9971c0e396',1,'Dimensional::Unit']]],
   ['unitmultiply',['UnitMultiply',['../struct_dimensional_1_1_unit.html#ab62b0f814065c13ee42a6d0a3fd7ebec',1,'Dimensional::Unit']]],

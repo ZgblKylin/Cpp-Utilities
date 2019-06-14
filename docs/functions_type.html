@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Cpp Utilities
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
   </td>
  </tr>
@@ -95,14 +95,14 @@ $(function() {
 </li>
 <li>const_pointer
 : <a class="el" href="class_container_1_1_sequencial_map.html#a422ded613b3173982d7b303974f76182">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#ad696e641983d41ba8b3a8aa674f0a683">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a7cb5c521b51f93705ca81409999e0558">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a50f5be4766ad5ab1178b0d7364937356">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a12ecfef02c14373536b179289b077ff1">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::PtrHelper&lt; Lock &gt;</a>
 </li>
 <li>const_reference
 : <a class="el" href="class_container_1_1_sequencial_map.html#adaf4af81ffc33e7de86fdbd476845e8c">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a99334ba0892601ee179749e195471eff">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#abbe924acebc65fb89f9d539b408fa536">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#abf625e579f6dd527feba36ba0ea879a6">Memory::SafeSharedPtr&lt; T &gt;::RefHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a3f688fea3233f74300200920883f3383">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#ab156838fdea5a73c8b4272847d7eae54">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::PtrHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a075a198ce813857152a6b9fe635eff26">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::RefHelper&lt; Lock &gt;</a>
 </li>
 <li>const_reverse_iterator
 : <a class="el" href="class_container_1_1_sequencial_map.html#ab2d62710a7513d50add4144e908499a3">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
@@ -133,9 +133,9 @@ $(function() {
 : <a class="el" href="struct_dimensional_1_1_unit.html#a83d31d0073acc8b3220c25132023c02d">Dimensional::Unit&lt; length, mass, time, current, temperature, amountOfSubstance, luminousIntensity &gt;</a>
 </li>
 <li>element_type
-: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a660b90133309adaf3a0667f63ef63202">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a22607aa4670e8d5b16ec3b4055a6f424">Memory::SafeSharedPtr&lt; T &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a732446def12590c812002f4d20452404">Memory::SafeWeakPtr&lt; T &gt;</a>
+: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#abc29803726014e7edf53ee806a6648ec">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ab2c30e7fa5aa2955ec1691a6a38c5f2b">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a537c6fd770770526341af57592e35f24">Memory::SafeWeakPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
 </li>
 <li>Energy
 : <a class="el" href="struct_dimensional_1_1_unit.html#a36266eb86ccc8cd7c96da9aac33b9350">Dimensional::Unit&lt; length, mass, time, current, temperature, amountOfSubstance, luminousIntensity &gt;</a>
@@ -228,8 +228,8 @@ $(function() {
 : <a class="el" href="struct_container_1_1_sequencial_map_1_1iterator__base.html#accbe4e450459b621f9a20dda501366ed">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;::iterator_base&lt; constant &gt;</a>
 , <a class="el" href="struct_container_1_1_sequencial_map_1_1key__iterator.html#ab640e089cbc0cd8919871b07cea91658">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;::key_iterator</a>
 , <a class="el" href="class_container_1_1_sequencial_map.html#a9f8f9891deaafece7e66b44696a6d37b">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a7c29adefb979b8a50b0a286c249ebe9b">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a41a84db9d394c7ae48b72adf600fb070">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a1b6a9bb056fd4bd84ed72697c75e0c62">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#ad551182aae461b500f15195be6e7ade0">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::PtrHelper&lt; Lock &gt;</a>
 </li>
 <li>Power
 : <a class="el" href="struct_dimensional_1_1_unit.html#a62bb3aa7042c094c841c9f2c1702b43e">Dimensional::Unit&lt; length, mass, time, current, temperature, amountOfSubstance, luminousIntensity &gt;</a>
@@ -454,16 +454,13 @@ $(function() {
 <li>ratio_zhang
 : <a class="el" href="class_dimensional_1_1_quantity.html#ac285657d72548268a5fae28108cbd8d0">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
 </li>
-<li>ReadWriteLock
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#afee9452fe9852f8e57a86cf8f3124b89">Memory::SafeSharedPtr&lt; T &gt;</a>
-</li>
 <li>reference
 : <a class="el" href="struct_container_1_1_sequencial_map_1_1iterator__base.html#abc7e0f813564f1916c342434e77fe3cb">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;::iterator_base&lt; constant &gt;</a>
 , <a class="el" href="struct_container_1_1_sequencial_map_1_1key__iterator.html#a785f696ed03155b80406e433a165c39c">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;::key_iterator</a>
 , <a class="el" href="class_container_1_1_sequencial_map.html#afff4523f78165d54760940fd9adb616e">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a5d02c7cc273e5ea5adfaa4759023ae9d">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a063314acbebdf26217bfd3e2e2188c3d">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a0042aff40abefb9fa5d716734e3bd7f5">Memory::SafeSharedPtr&lt; T &gt;::RefHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a0d9d9ad875b30cbf6e0ee110f7e91adb">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#ae9505120da89c52df00d88e9dedbc097">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::PtrHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a027d0cf2bebe31f82f57a709ec639a48">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::RefHelper&lt; Lock &gt;</a>
 </li>
 <li>reverse_iterator
 : <a class="el" href="class_container_1_1_sequencial_map.html#a030f29381886011469fe1cd6543179ca">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
@@ -479,7 +476,14 @@ $(function() {
 : <a class="el" href="struct_dimensional_1_1_unit.html#aaae0e8ae65b46289af1378c88a397917">Dimensional::Unit&lt; length, mass, time, current, temperature, amountOfSubstance, luminousIntensity &gt;</a>
 </li>
 <li>SharedLock
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a94dd72f327e72c8aff63ab8a97b0895e">Memory::SafeSharedPtr&lt; T &gt;</a>
+: <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ac4d1a2e3af6a1a9deb3688b5d68f662f">Memory::EnableSafeSharedFromThis&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#af087e5e01fc2dc8c0f684c3fd44ba01b">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a09101fc26930345b2cf74e95478a7532">Memory::SafeWeakPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+</li>
+<li>SharedMutex
+: <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a3d836f01141aa6cf029dd12f6d226dda">Memory::EnableSafeSharedFromThis&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ad96e006426ca7d988bcfbbc9dd6f7f34">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a861892c155b9417a7b6f313fbb64b33c">Memory::SafeWeakPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
 </li>
 <li>size_type
 : <a class="el" href="class_container_1_1_sequencial_map.html#ac3543f1423752cb8833894b51791b1f9">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
@@ -506,7 +510,9 @@ $(function() {
 
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>UniqueLock
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a3073aba790f930cb0036209d01c74e52">Memory::SafeSharedPtr&lt; T &gt;</a>
+: <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a5eca063636677871a120f858c9662ac2">Memory::EnableSafeSharedFromThis&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a307b37022dad9f3be04d444c2552197e">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a9e13568d26dc121b9075e1f3ebdf2643">Memory::SafeWeakPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
 </li>
 <li>unit_type
 : <a class="el" href="class_dimensional_1_1_quantity.html#aa57e6634876446e1c486df79b207311b">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
@@ -550,7 +556,7 @@ $(function() {
 
 <h3><a id="index_w"></a>- w -</h3><ul>
 <li>weak_type
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#acbab334ebfb41a106bb92359b8a2159a">Memory::SafeSharedPtr&lt; T &gt;</a>
+: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae41f1af6149b685b27c110b19a65a719">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cpp Utilities: Memory::EnableSafeSharedFromThis&lt; T &gt; Class Template Reference</title>
+<title>Cpp Utilities: Memory::EnableSafeSharedFromThis&lt; T, mutex_t, read_lock_t, write_lock_t &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Cpp Utilities
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
   </td>
  </tr>
@@ -67,11 +67,12 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="class_memory_1_1_enable_safe_shared_from_this-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Memory::EnableSafeSharedFromThis&lt; T &gt; Class Template Reference</div>  </div>
+<div class="title">Memory::EnableSafeSharedFromThis&lt; T, mutex_t, read_lock_t, write_lock_t &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -80,77 +81,147 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="_safe_shared_ptr_8hpp_source.html">SafeSharedPtr.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for Memory::EnableSafeSharedFromThis&lt; T &gt;:</div>
+Inheritance diagram for Memory::EnableSafeSharedFromThis&lt; T, mutex_t, read_lock_t, write_lock_t &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_memory_1_1_enable_safe_shared_from_this.png" alt=""/>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a3d836f01141aa6cf029dd12f6d226dda"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a3d836f01141aa6cf029dd12f6d226dda">SharedMutex</a> = mutex_t</td></tr>
+<tr class="memdesc:a3d836f01141aa6cf029dd12f6d226dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for template shared_mutex_t.  <a href="#a3d836f01141aa6cf029dd12f6d226dda">More...</a><br /></td></tr>
+<tr class="separator:a3d836f01141aa6cf029dd12f6d226dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4d1a2e3af6a1a9deb3688b5d68f662f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ac4d1a2e3af6a1a9deb3688b5d68f662f">SharedLock</a> = read_lock_t</td></tr>
+<tr class="memdesc:ac4d1a2e3af6a1a9deb3688b5d68f662f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for template read_lock_t.  <a href="#ac4d1a2e3af6a1a9deb3688b5d68f662f">More...</a><br /></td></tr>
+<tr class="separator:ac4d1a2e3af6a1a9deb3688b5d68f662f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eca063636677871a120f858c9662ac2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a5eca063636677871a120f858c9662ac2">UniqueLock</a> = write_lock_t</td></tr>
+<tr class="memdesc:a5eca063636677871a120f858c9662ac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for template write_lock_t.  <a href="#a5eca063636677871a120f858c9662ac2">More...</a><br /></td></tr>
+<tr class="separator:a5eca063636677871a120f858c9662ac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af319013f89bab2525010231cb150f664"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#af319013f89bab2525010231cb150f664">EnableSafeSharedFromThis</a> () noexcept</td></tr>
-<tr class="memdesc:af319013f89bab2525010231cb150f664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr.">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is empty-initialized.  <a href="#af319013f89bab2525010231cb150f664">More...</a><br /></td></tr>
-<tr class="separator:af319013f89bab2525010231cb150f664"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4ebb4d1f45a730b87bee5277209e9ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ab4ebb4d1f45a730b87bee5277209e9ed">EnableSafeSharedFromThis</a> (const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T &gt; &amp;other) noexcept</td></tr>
-<tr class="memdesc:ab4ebb4d1f45a730b87bee5277209e9ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr.">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is value-initialized.  <a href="#ab4ebb4d1f45a730b87bee5277209e9ed">More...</a><br /></td></tr>
-<tr class="separator:ab4ebb4d1f45a730b87bee5277209e9ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c2b11968771e94175a98100ac606a4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a6c2b11968771e94175a98100ac606a4d">EnableSafeSharedFromThis</a> (const std::enable_shared_from_this&lt; T &gt; &amp;other) noexcept</td></tr>
-<tr class="memdesc:a6c2b11968771e94175a98100ac606a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr.">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is value-initialized.  <a href="#a6c2b11968771e94175a98100ac606a4d">More...</a><br /></td></tr>
-<tr class="separator:a6c2b11968771e94175a98100ac606a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca1125b4e40996f02e3911ca18ec0d2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#aca1125b4e40996f02e3911ca18ec0d2d">~EnableSafeSharedFromThis</a> ()=default</td></tr>
-<tr class="memdesc:aca1125b4e40996f02e3911ca18ec0d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys <code>*this</code>.  <a href="#aca1125b4e40996f02e3911ca18ec0d2d">More...</a><br /></td></tr>
-<tr class="separator:aca1125b4e40996f02e3911ca18ec0d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ca8cbe782212a3deaf561842746398e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a1ca8cbe782212a3deaf561842746398e">operator=</a> (const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T &gt; &amp;other) noexcept</td></tr>
-<tr class="memdesc:a1ca8cbe782212a3deaf561842746398e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does nothing; returns *this.  <a href="#a1ca8cbe782212a3deaf561842746398e">More...</a><br /></td></tr>
-<tr class="separator:a1ca8cbe782212a3deaf561842746398e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a802ae25c02666af3a16e672a47ebce96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a802ae25c02666af3a16e672a47ebce96">operator=</a> (const std::enable_shared_from_this&lt; T &gt; &amp;other) noexcept</td></tr>
-<tr class="memdesc:a802ae25c02666af3a16e672a47ebce96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does nothing; returns *this.  <a href="#a802ae25c02666af3a16e672a47ebce96">More...</a><br /></td></tr>
-<tr class="separator:a802ae25c02666af3a16e672a47ebce96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07f4df51ee3b29aa930181582bc0b954"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a07f4df51ee3b29aa930181582bc0b954">shared_from_this</a> ()</td></tr>
-<tr class="memdesc:a07f4df51ee3b29aa930181582bc0b954"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>&lt;T&gt;</code> that shares ownership of <code>*this</code> with all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#a07f4df51ee3b29aa930181582bc0b954">More...</a><br /></td></tr>
-<tr class="separator:a07f4df51ee3b29aa930181582bc0b954"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3d7ba5ecad32ebd6ddc147b0ae695b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ae3d7ba5ecad32ebd6ddc147b0ae695b6">shared_from_this</a> () const</td></tr>
-<tr class="memdesc:ae3d7ba5ecad32ebd6ddc147b0ae695b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>&lt;T const&gt;</code> that shares ownership of <code>*this</code> with all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#ae3d7ba5ecad32ebd6ddc147b0ae695b6">More...</a><br /></td></tr>
-<tr class="separator:ae3d7ba5ecad32ebd6ddc147b0ae695b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9de82f9fd7428b4f907dce381d1c8c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ae9de82f9fd7428b4f907dce381d1c8c2">weak_from_this</a> ()</td></tr>
-<tr class="memdesc:ae9de82f9fd7428b4f907dce381d1c8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr.">SafeWeakPtr</a>&lt;T&gt;</code> that tracks ownership of <code>*this</code> by all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#ae9de82f9fd7428b4f907dce381d1c8c2">More...</a><br /></td></tr>
-<tr class="separator:ae9de82f9fd7428b4f907dce381d1c8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a710dcf75869b5bfa6318a7d4de0f41db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt; T const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a710dcf75869b5bfa6318a7d4de0f41db">weak_from_this</a> () const</td></tr>
-<tr class="memdesc:a710dcf75869b5bfa6318a7d4de0f41db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr.">SafeWeakPtr</a>&lt;T const&gt;</code> that tracks ownership of <code>*this</code> by all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#a710dcf75869b5bfa6318a7d4de0f41db">More...</a><br /></td></tr>
-<tr class="separator:a710dcf75869b5bfa6318a7d4de0f41db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc95f007eb9b7c254ef8ac6feb79b624"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#abc95f007eb9b7c254ef8ac6feb79b624">EnableSafeSharedFromThis</a> () noexcept</td></tr>
+<tr class="memdesc:abc95f007eb9b7c254ef8ac6feb79b624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr.">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is empty-initialized.  <a href="#abc95f007eb9b7c254ef8ac6feb79b624">More...</a><br /></td></tr>
+<tr class="separator:abc95f007eb9b7c254ef8ac6feb79b624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acced9e203995c238e4265c358806fc73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#acced9e203995c238e4265c358806fc73">EnableSafeSharedFromThis</a> (const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> &amp;other) noexcept</td></tr>
+<tr class="memdesc:acced9e203995c238e4265c358806fc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr.">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is value-initialized.  <a href="#acced9e203995c238e4265c358806fc73">More...</a><br /></td></tr>
+<tr class="separator:acced9e203995c238e4265c358806fc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad808b9603dbe053d1ea3a5ced195fa41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ad808b9603dbe053d1ea3a5ced195fa41">EnableSafeSharedFromThis</a> (const std::enable_shared_from_this&lt; T &gt; &amp;other) noexcept</td></tr>
+<tr class="memdesc:ad808b9603dbe053d1ea3a5ced195fa41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html" title="A proxy class from std::enable_shared_from_this to provide same functionality for SafeSharedPtr.">EnableSafeSharedFromThis</a> object. The private <code>std::weak_ptr&lt;T&gt;</code> member is value-initialized.  <a href="#ad808b9603dbe053d1ea3a5ced195fa41">More...</a><br /></td></tr>
+<tr class="separator:ad808b9603dbe053d1ea3a5ced195fa41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4b73a70f2f24e8af5d68a749e1d60ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#aa4b73a70f2f24e8af5d68a749e1d60ae">~EnableSafeSharedFromThis</a> ()=default</td></tr>
+<tr class="memdesc:aa4b73a70f2f24e8af5d68a749e1d60ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys <code>*this</code>.  <a href="#aa4b73a70f2f24e8af5d68a749e1d60ae">More...</a><br /></td></tr>
+<tr class="separator:aa4b73a70f2f24e8af5d68a749e1d60ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a000426f569981a5f831149dc491510dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a000426f569981a5f831149dc491510dc">operator=</a> (const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> &amp;other) noexcept</td></tr>
+<tr class="memdesc:a000426f569981a5f831149dc491510dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does nothing; returns *this.  <a href="#a000426f569981a5f831149dc491510dc">More...</a><br /></td></tr>
+<tr class="separator:a000426f569981a5f831149dc491510dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90e91392d7e44e999cdd888c3a7c054a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a90e91392d7e44e999cdd888c3a7c054a">operator=</a> (const std::enable_shared_from_this&lt; T &gt; &amp;other) noexcept</td></tr>
+<tr class="memdesc:a90e91392d7e44e999cdd888c3a7c054a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does nothing; returns *this.  <a href="#a90e91392d7e44e999cdd888c3a7c054a">More...</a><br /></td></tr>
+<tr class="separator:a90e91392d7e44e999cdd888c3a7c054a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8025efb451b99d714c678cecfcaf8d66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a3d836f01141aa6cf029dd12f6d226dda">SharedMutex</a>, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ac4d1a2e3af6a1a9deb3688b5d68f662f">SharedLock</a>, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a5eca063636677871a120f858c9662ac2">UniqueLock</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a8025efb451b99d714c678cecfcaf8d66">shared_from_this</a> ()</td></tr>
+<tr class="memdesc:a8025efb451b99d714c678cecfcaf8d66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>&lt;T&gt;</code> that shares ownership of <code>*this</code> with all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#a8025efb451b99d714c678cecfcaf8d66">More...</a><br /></td></tr>
+<tr class="separator:a8025efb451b99d714c678cecfcaf8d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a608e67425e9ac5870b81b2f5e0b172b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a608e67425e9ac5870b81b2f5e0b172b8">shared_from_this</a> () const</td></tr>
+<tr class="memdesc:a608e67425e9ac5870b81b2f5e0b172b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>&lt;T const&gt;</code> that shares ownership of <code>*this</code> with all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#a608e67425e9ac5870b81b2f5e0b172b8">More...</a><br /></td></tr>
+<tr class="separator:a608e67425e9ac5870b81b2f5e0b172b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4e426233dbd4486161d715ae2525ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a8d4e426233dbd4486161d715ae2525ce">weak_from_this</a> ()</td></tr>
+<tr class="memdesc:a8d4e426233dbd4486161d715ae2525ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr.">SafeWeakPtr</a>&lt;T&gt;</code> that tracks ownership of <code>*this</code> by all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#a8d4e426233dbd4486161d715ae2525ce">More...</a><br /></td></tr>
+<tr class="separator:a8d4e426233dbd4486161d715ae2525ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27a562238e177554b98289d79dadafb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt; T const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a27a562238e177554b98289d79dadafb9">weak_from_this</a> () const</td></tr>
+<tr class="memdesc:a27a562238e177554b98289d79dadafb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code><a class="el" href="class_memory_1_1_safe_weak_ptr.html" title="Wrapper to std::weak_ptr to provide weak reference for SafeSharedPtr.">SafeWeakPtr</a>&lt;T const&gt;</code> that tracks ownership of <code>*this</code> by all existing <code><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a></code> that refer to <code>*this</code>.  <a href="#a27a562238e177554b98289d79dadafb9">More...</a><br /></td></tr>
+<tr class="separator:a27a562238e177554b98289d79dadafb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a989307c45de44c9d7767e8e005ba4b85"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a989307c45de44c9d7767e8e005ba4b85">SafeSharedPtr&lt; T &gt;</a></td></tr>
-<tr class="separator:a989307c45de44c9d7767e8e005ba4b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0624e61a69016494217d2fb21ca992ce"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a0624e61a69016494217d2fb21ca992ce">SafeSharedPtr&lt; T, SharedMutex, SharedLock, UniqueLock &gt;</a></td></tr>
+<tr class="separator:a0624e61a69016494217d2fb21ca992ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename T&gt;<br />
-class Memory::EnableSafeSharedFromThis&lt; T &gt;</h3>
+<div class="textblock"><h3>template&lt;typename T, typename mutex_t = shared_mutex_t, typename read_lock_t = shared_lock_t, typename write_lock_t = unique_lock_t&gt;<br />
+class Memory::EnableSafeSharedFromThis&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</h3>
 
 <p>A proxy class from <code>std::enable_shared_from_this</code> to provide same functionality for <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>Object type same as <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>.</td></tr>
+    <tr><td class="paramname">T</td><td>Object type same as <a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a>. </td></tr>
+    <tr><td class="paramname">mutex_t</td><td>Type of the mutex used, default is shared_mutex_t. </td></tr>
+    <tr><td class="paramname">read_lock_t</td><td>Type of the read-lock used, default is shared_lock_t. </td></tr>
+    <tr><td class="paramname">write_lock_t</td><td>Type of the write-lock used, default is unique_lock_t.</td></tr>
   </table>
   </dd>
 </dl>
 <p>This class has no member values, so could be <code>static_cast</code> from <code>std::enable_shared_from_this</code> directly.<br />
  See <a href="https://en.cppreference.com/w/cpp/memory/enable_shared_from_this">https://en.cppreference.com/w/cpp/memory/enable_shared_from_this</a> for more details. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_memory_1_1_safe_shared_ptr.html" title="Wrapper to std::shared_ptr to provide thread-safety while operating the underlying pointer.">SafeSharedPtr</a> </dd></dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af319013f89bab2525010231cb150f664"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af319013f89bab2525010231cb150f664">&#9670;&nbsp;</a></span>EnableSafeSharedFromThis() <span class="overload">[1/3]</span></h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a3d836f01141aa6cf029dd12f6d226dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d836f01141aa6cf029dd12f6d226dda">&#9670;&nbsp;</a></span>SharedMutex</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a3d836f01141aa6cf029dd12f6d226dda">SharedMutex</a> =  mutex_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type alias for template shared_mutex_t. </p>
+
+</div>
+</div>
+<a id="ac4d1a2e3af6a1a9deb3688b5d68f662f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4d1a2e3af6a1a9deb3688b5d68f662f">&#9670;&nbsp;</a></span>SharedLock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ac4d1a2e3af6a1a9deb3688b5d68f662f">SharedLock</a> =  read_lock_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type alias for template read_lock_t. </p>
+
+</div>
+</div>
+<a id="a5eca063636677871a120f858c9662ac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eca063636677871a120f858c9662ac2">&#9670;&nbsp;</a></span>UniqueLock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a5eca063636677871a120f858c9662ac2">UniqueLock</a> =  write_lock_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type alias for template write_lock_t. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abc95f007eb9b7c254ef8ac6feb79b624"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc95f007eb9b7c254ef8ac6feb79b624">&#9670;&nbsp;</a></span>EnableSafeSharedFromThis() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> </td>
+          <td class="memname">constexpr <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -168,21 +239,21 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ab4ebb4d1f45a730b87bee5277209e9ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4ebb4d1f45a730b87bee5277209e9ed">&#9670;&nbsp;</a></span>EnableSafeSharedFromThis() <span class="overload">[2/3]</span></h2>
+<a id="acced9e203995c238e4265c358806fc73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acced9e203995c238e4265c358806fc73">&#9670;&nbsp;</a></span>EnableSafeSharedFromThis() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td></td>
         </tr>
@@ -206,19 +277,19 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a6c2b11968771e94175a98100ac606a4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c2b11968771e94175a98100ac606a4d">&#9670;&nbsp;</a></span>EnableSafeSharedFromThis() <span class="overload">[3/3]</span></h2>
+<a id="ad808b9603dbe053d1ea3a5ced195fa41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad808b9603dbe053d1ea3a5ced195fa41">&#9670;&nbsp;</a></span>EnableSafeSharedFromThis() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> </td>
           <td>(</td>
           <td class="paramtype">const std::enable_shared_from_this&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -244,19 +315,19 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="aca1125b4e40996f02e3911ca18ec0d2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca1125b4e40996f02e3911ca18ec0d2d">&#9670;&nbsp;</a></span>~EnableSafeSharedFromThis()</h2>
+<a id="aa4b73a70f2f24e8af5d68a749e1d60ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4b73a70f2f24e8af5d68a749e1d60ae">&#9670;&nbsp;</a></span>~EnableSafeSharedFromThis()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::~<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::~<a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -275,21 +346,21 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1ca8cbe782212a3deaf561842746398e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ca8cbe782212a3deaf561842746398e">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+<a id="a000426f569981a5f831149dc491510dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a000426f569981a5f831149dc491510dc">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt;T&gt;&amp; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::operator= </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&amp; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td></td>
         </tr>
@@ -314,19 +385,19 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a802ae25c02666af3a16e672a47ebce96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a802ae25c02666af3a16e672a47ebce96">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+<a id="a90e91392d7e44e999cdd888c3a7c054a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90e91392d7e44e999cdd888c3a7c054a">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt;T&gt;&amp; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::operator= </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">EnableSafeSharedFromThis</a>&lt;T&gt;&amp; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::operator= </td>
           <td>(</td>
           <td class="paramtype">const std::enable_shared_from_this&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -353,19 +424,19 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a07f4df51ee3b29aa930181582bc0b954"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07f4df51ee3b29aa930181582bc0b954">&#9670;&nbsp;</a></span>shared_from_this() <span class="overload">[1/2]</span></h2>
+<a id="a8025efb451b99d714c678cecfcaf8d66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8025efb451b99d714c678cecfcaf8d66">&#9670;&nbsp;</a></span>shared_from_this() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt;T&gt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::shared_from_this </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt;T, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a3d836f01141aa6cf029dd12f6d226dda">SharedMutex</a>, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ac4d1a2e3af6a1a9deb3688b5d68f662f">SharedLock</a>, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a5eca063636677871a120f858c9662ac2">UniqueLock</a>&gt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::shared_from_this </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -397,19 +468,19 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ae3d7ba5ecad32ebd6ddc147b0ae695b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3d7ba5ecad32ebd6ddc147b0ae695b6">&#9670;&nbsp;</a></span>shared_from_this() <span class="overload">[2/2]</span></h2>
+<a id="a608e67425e9ac5870b81b2f5e0b172b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a608e67425e9ac5870b81b2f5e0b172b8">&#9670;&nbsp;</a></span>shared_from_this() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt;T const&gt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::shared_from_this </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt;T const&gt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::shared_from_this </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -441,19 +512,19 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ae9de82f9fd7428b4f907dce381d1c8c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9de82f9fd7428b4f907dce381d1c8c2">&#9670;&nbsp;</a></span>weak_from_this() <span class="overload">[1/2]</span></h2>
+<a id="a8d4e426233dbd4486161d715ae2525ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d4e426233dbd4486161d715ae2525ce">&#9670;&nbsp;</a></span>weak_from_this() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt;T&gt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::weak_from_this </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt;T&gt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::weak_from_this </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -473,19 +544,19 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a710dcf75869b5bfa6318a7d4de0f41db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a710dcf75869b5bfa6318a7d4de0f41db">&#9670;&nbsp;</a></span>weak_from_this() <span class="overload">[2/2]</span></h2>
+<a id="a27a562238e177554b98289d79dadafb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a562238e177554b98289d79dadafb9">&#9670;&nbsp;</a></span>weak_from_this() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt;T const&gt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T &gt;::weak_from_this </td>
+          <td class="memname"><a class="el" href="class_memory_1_1_safe_weak_ptr.html">SafeWeakPtr</a>&lt;T const&gt; <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html">Memory::EnableSafeSharedFromThis</a>&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::weak_from_this </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -506,19 +577,19 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a989307c45de44c9d7767e8e005ba4b85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a989307c45de44c9d7767e8e005ba4b85">&#9670;&nbsp;</a></span>SafeSharedPtr&lt; T &gt;</h2>
+<a id="a0624e61a69016494217d2fb21ca992ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0624e61a69016494217d2fb21ca992ce">&#9670;&nbsp;</a></span>SafeSharedPtr&lt; T, SharedMutex, SharedLock, UniqueLock &gt;</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T , typename mutex_t  = shared_mutex_t, typename read_lock_t  = shared_lock_t, typename write_lock_t  = unique_lock_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">friend class <a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T &gt;</td>
+          <td class="memname">friend class <a class="el" href="class_memory_1_1_safe_shared_ptr.html">SafeSharedPtr</a>&lt; T, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a3d836f01141aa6cf029dd12f6d226dda">SharedMutex</a>, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#ac4d1a2e3af6a1a9deb3688b5d68f662f">SharedLock</a>, <a class="el" href="class_memory_1_1_enable_safe_shared_from_this.html#a5eca063636677871a120f858c9662ac2">UniqueLock</a> &gt;</td>
         </tr>
       </table>
   </td>

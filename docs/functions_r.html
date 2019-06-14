@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Cpp Utilities
-   &#160;<span id="projectnumber">1.2.1</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
   </td>
  </tr>
@@ -279,29 +279,26 @@ $(function() {
 : <a class="el" href="class_dimensional_1_1_quantity.html#ac285657d72548268a5fae28108cbd8d0">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
 </li>
 <li>rbegin()
-: <a class="el" href="class_container_1_1_sequencial_map.html#a4cf6f207f8ab3a88ed385b4f6262c6a7">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
+: <a class="el" href="class_container_1_1_sequencial_map.html#a949f75dea4be0ac64f366585def14b2c">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
 </li>
 <li>ReadHolder()
 : <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html#a9d79840d7b3a3bcba67326950e6e7724">Memory::RWSpinLock::ReadHolder</a>
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a9cd3c321918aa92510b511be1c3d4aae">Memory::RWSpinLock::UpgradedHolder</a>
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html#a9cd3c321918aa92510b511be1c3d4aae">Memory::RWSpinLock::WriteHolder</a>
 </li>
-<li>ReadWriteLock
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#afee9452fe9852f8e57a86cf8f3124b89">Memory::SafeSharedPtr&lt; T &gt;</a>
-</li>
 <li>reference
 : <a class="el" href="struct_container_1_1_sequencial_map_1_1iterator__base.html#abc7e0f813564f1916c342434e77fe3cb">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;::iterator_base&lt; constant &gt;</a>
 , <a class="el" href="struct_container_1_1_sequencial_map_1_1key__iterator.html#a785f696ed03155b80406e433a165c39c">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;::key_iterator</a>
 , <a class="el" href="class_container_1_1_sequencial_map.html#afff4523f78165d54760940fd9adb616e">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a5d02c7cc273e5ea5adfaa4759023ae9d">Memory::SafeSharedPtr&lt; T &gt;::ArrayHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#a063314acbebdf26217bfd3e2e2188c3d">Memory::SafeSharedPtr&lt; T &gt;::PtrHelper</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a0042aff40abefb9fa5d716734e3bd7f5">Memory::SafeSharedPtr&lt; T &gt;::RefHelper</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_array_helper.html#a0d9d9ad875b30cbf6e0ee110f7e91adb">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::ArrayHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ptr_helper.html#ae9505120da89c52df00d88e9dedbc097">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::PtrHelper&lt; Lock &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a027d0cf2bebe31f82f57a709ec639a48">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::RefHelper&lt; Lock &gt;</a>
 </li>
 <li>RefHelper()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a346eb9bbe4c9ab0a6d7652e037be76a0">Memory::SafeSharedPtr&lt; T &gt;::RefHelper</a>
+: <a class="el" href="class_memory_1_1_safe_shared_ptr_1_1_ref_helper.html#a4e1d0be25f84612db9353b641be72a39">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;::RefHelper&lt; Lock &gt;</a>
 </li>
 <li>reinterpret_pointer_cast()
-: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a29dfd0c539b8114ba4a245b9d678172d">Memory::SafeSharedPtr&lt; T &gt;</a>
+: <a class="el" href="class_memory_1_1_safe_shared_ptr.html#a393c868824d967df828b4d2b62378497">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
 </li>
 <li>rend()
 : <a class="el" href="class_container_1_1_sequencial_map.html#a4e8e8ac4302206cddadd9732ef4eb929">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
@@ -310,8 +307,8 @@ $(function() {
 : <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_read_holder.html#a72ea795eeb8695b526034c35c800411a">Memory::RWSpinLock::ReadHolder</a>
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder.html#a87034edbd87288b07f80d9008c647f87">Memory::RWSpinLock::UpgradedHolder</a>
 , <a class="el" href="class_memory_1_1_r_w_spin_lock_1_1_write_holder.html#a1f346f9e7532e37ed641d9f16c757510">Memory::RWSpinLock::WriteHolder</a>
-, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ae04ef16994300ab38b8890f617780428">Memory::SafeSharedPtr&lt; T &gt;</a>
-, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#a63f83679563c8bed827391e60cd6eaef">Memory::SafeWeakPtr&lt; T &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_shared_ptr.html#ab86f0aee7fa1ea22d904e02bead06b2c">Memory::SafeSharedPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
+, <a class="el" href="class_memory_1_1_safe_weak_ptr.html#abe32f8c86727a07c0a8d19257bdfc79f">Memory::SafeWeakPtr&lt; T, mutex_t, read_lock_t, write_lock_t &gt;</a>
 </li>
 <li>reverse_iterator
 : <a class="el" href="class_container_1_1_sequencial_map.html#a030f29381886011469fe1cd6543179ca">Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</a>
@@ -323,7 +320,7 @@ $(function() {
 : <a class="el" href="class_dimensional_1_1_quantity.html#a7d020dcc04265c31b45268f324bbd2cc">Dimensional::Quantity&lt; T, U, Ratio &gt;</a>
 </li>
 <li>RWSpinLock()
-: <a class="el" href="class_memory_1_1_r_w_spin_lock.html#a2e3842da240930f0d5ac7932b235b389">Memory::RWSpinLock</a>
+: <a class="el" href="class_memory_1_1_r_w_spin_lock.html#a67238162cd542b57af44cd9b11fd8f2e">Memory::RWSpinLock</a>
 </li>
 </ul>
 </div><!-- contents -->
