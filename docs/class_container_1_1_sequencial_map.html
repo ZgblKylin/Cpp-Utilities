@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Cpp Utilities
-   &#160;<span id="projectnumber">1.2.2</span>
+   &#160;<span id="projectnumber">1.2.3</span>
    </div>
   </td>
  </tr>
@@ -500,7 +500,7 @@ class Container::SequencialMap&lt; Key, T, Compare, Allocator &gt;</h3>
 </p><ul>
 <li>Key lookup: O(log <em>n</em>)</li>
 <li>Index lookup: O(1)</li>
-<li>Insertion/Erase: O(<em>n</em>)</li>
+<li>Insertion/Erase: O(<em>n</em>) (Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node.)</li>
 <li>Appending: O(log <em>n</em>) </li>
 </ul>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -2761,7 +2761,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An iterator to the inserted element, or to the element that prevented the insertion.</dd></dl>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -2818,7 +2819,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An iterator to the inserted element, or to the element that prevented the insertion.</dd></dl>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -2875,7 +2877,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An iterator to the inserted element, or to the element that prevented the insertion.</dd></dl>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -2925,7 +2928,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An iterator to the inserted element, or to the element that prevented the insertion.</dd></dl>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -2975,7 +2979,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An iterator to the inserted element, or to the element that prevented the insertion.</dd></dl>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3032,7 +3037,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An iterator to the inserted element, or to the element that prevented the insertion.</dd></dl>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3089,7 +3095,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An iterator to the inserted element, or to the element that prevented the insertion.</dd></dl>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3153,7 +3160,8 @@ template&lt;typename InputIt &gt; </div>
   </dd>
 </dl>
 <p><b>Complexity</b><br />
- <code>O(N*log(<a class="el" href="class_container_1_1_sequencial_map.html#a556d6bb956b853cd16edb260a0ed6deb" title="Returns the number of elements in the container, i.e. std::distance(begin(), end()).">size()</a> + N))</code>, where N is the number of elements to insert. </p>
+ <code>O(N*log(<a class="el" href="class_container_1_1_sequencial_map.html#a556d6bb956b853cd16edb260a0ed6deb" title="Returns the number of elements in the container, i.e. std::distance(begin(), end()).">size()</a> + N))</code>, where N is the number of elements to insert.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3202,7 +3210,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
   </dd>
 </dl>
 <p><b>Complexity</b><br />
- <code>O(N*log(<a class="el" href="class_container_1_1_sequencial_map.html#a556d6bb956b853cd16edb260a0ed6deb" title="Returns the number of elements in the container, i.e. std::distance(begin(), end()).">size()</a> + N))</code>, where N is the number of elements to insert. </p>
+ <code>O(N*log(<a class="el" href="class_container_1_1_sequencial_map.html#a556d6bb956b853cd16edb260a0ed6deb" title="Returns the number of elements in the container, i.e. std::distance(begin(), end()).">size()</a> + N))</code>, where N is the number of elements to insert.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3266,7 +3275,8 @@ template&lt;typename InputIt &gt; </div>
   </dd>
 </dl>
 <p><b>Complexity</b><br />
- <code>O(N*log(<a class="el" href="class_container_1_1_sequencial_map.html#a556d6bb956b853cd16edb260a0ed6deb" title="Returns the number of elements in the container, i.e. std::distance(begin(), end()).">size()</a> + N))</code>, where N is the number of elements to insert. </p>
+ <code>O(N*log(<a class="el" href="class_container_1_1_sequencial_map.html#a556d6bb956b853cd16edb260a0ed6deb" title="Returns the number of elements in the container, i.e. std::distance(begin(), end()).">size()</a> + N))</code>, where N is the number of elements to insert.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3315,7 +3325,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
   </dd>
 </dl>
 <p><b>Complexity</b><br />
- <code>O(N*log(<a class="el" href="class_container_1_1_sequencial_map.html#a556d6bb956b853cd16edb260a0ed6deb" title="Returns the number of elements in the container, i.e. std::distance(begin(), end()).">size()</a> + N))</code>, where N is the number of elements to insert. </p>
+ <code>O(N*log(<a class="el" href="class_container_1_1_sequencial_map.html#a556d6bb956b853cd16edb260a0ed6deb" title="Returns the number of elements in the container, i.e. std::distance(begin(), end()).">size()</a> + N))</code>, where N is the number of elements to insert.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3384,7 +3395,8 @@ template&lt;typename... Args&gt; </div>
  Invalidates iterators <b>after</b> <code>pos</code>.<br />
  No references are invalidated.</p>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3453,7 +3465,8 @@ template&lt;typename... Args&gt; </div>
  Invalidates iterators <b>after</b> <code>hint</code>.<br />
  No references are invalidated.</p>
 <p><b>Complexity</b><br />
- Linear in the size of the container, i.e., the number of elements. </p>
+ Linear in the size of the container, i.e., the number of elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3527,7 +3540,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
  Invalidates iterators at or <b>after</b> the point of the erase.<br />
  Other references and iterators are not affected.</p>
 <p><b>Complexity</b><br />
- Linear: the number of calls to the destructor of T is the same as the number of elements erased, the assignment operator of T is called the number of times equal to the number of elements in the vector after the erased elements. </p>
+ Linear: the number of calls to the destructor of T is the same as the number of elements erased, the assignment operator of T is called the number of times equal to the number of elements in the vector after the erased elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3579,7 +3593,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
  Invalidates iterators at or <b>after</b> the eraseed elements.<br />
  Other references and iterators are not affected.</p>
 <p><b>Complexity</b><br />
- Linear: the number of calls to the destructor of T is the same as the number of elements erased, the assignment operator of T is called the number of times equal to the number of elements in the vector after the erased elements. </p>
+ Linear: the number of calls to the destructor of T is the same as the number of elements erased, the assignment operator of T is called the number of times equal to the number of elements in the vector after the erased elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3622,7 +3637,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
  Other references and iterators are not affected.<br />
 </p>
 <p><b>Complexity</b><br />
- Linear: the number of calls to the destructor of T is the same as the number of elements erased, the assignment operator of T is called the number of times equal to the number of elements in the vector after the erased elements. </p>
+ Linear: the number of calls to the destructor of T is the same as the number of elements erased, the assignment operator of T is called the number of times equal to the number of elements in the vector after the erased elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>
@@ -3675,7 +3691,8 @@ template&lt;typename Key, typename T, typename Compare = std::less&lt;Key&gt;, t
  Invalidates iterators at or <b>after</b> the eraseed elements.<br />
  Other references and iterators are not affected.</p>
 <p><b>Complexity</b><br />
- Linear: the number of calls to the destructor of T is the same as the number of elements erased, the assignment operator of T is called the number of times equal to the number of elements in the vector after the erased elements. </p>
+ Linear: the number of calls to the destructor of T is the same as the number of elements erased, the assignment operator of T is called the number of times equal to the number of elements in the vector after the erased elements.<br />
+ Much faster than raw <code>std::vector</code>, because moved values are <code>std::map::iterator</code>, not acture <code>T</code> node. </p>
 
 </div>
 </div>

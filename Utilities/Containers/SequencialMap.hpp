@@ -58,7 +58,8 @@ namespace Container {
  *   `std::vector`.\n
  *     - Key lookup: O(log _n_)
  *     - Index lookup: O(1)
- *     - Insertion/Erase: O(_n_)
+ *     - Insertion/Erase: O(_n_) (Much faster than raw `std::vector`, because
+ *       moved values are `std::map::iterator`, not acture `T` node.)
  *     - Appending: O(log _n_)
  */
 template<typename Key,
@@ -861,7 +862,9 @@ public:
      *         prevented the insertion.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator insert(size_t pos, value_type&& value)
     {
@@ -884,7 +887,9 @@ public:
      *         prevented the insertion.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator insert(size_t pos, const key_type& key, const T& value)
     { return insert(pos, std::make_pair(key, value)); }
@@ -900,7 +905,9 @@ public:
      *         prevented the insertion.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator insert(size_t pos, const key_type& key, T&& value)
     { return insert(pos, std::make_pair(key, std::forward<T>(value))); }
@@ -915,7 +922,9 @@ public:
      *         prevented the insertion.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator insert(iterator pos, const_reference value)
     { return insert(pos - begin(), value); }
@@ -930,7 +939,9 @@ public:
      *         prevented the insertion.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator insert(iterator pos, value_type&& value)
     { return insert(pos - begin(), std::forward<value_type>(value)); }
@@ -946,7 +957,9 @@ public:
      *         prevented the insertion.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator insert(iterator pos, const key_type& key, const T& value)
     { return insert(pos, std::make_pair(key, value)); }
@@ -962,7 +975,9 @@ public:
      *         prevented the insertion.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator insert(iterator pos, const key_type& key, T&& value)
     { return insert(pos, std::make_pair(key, std::forward<T>(value))); }
@@ -977,7 +992,9 @@ public:
      * \param last  Iterator after the last element to insert.
      * \details
      *   **Complexity**\n
-     *   `O(N*log(size() + N))`, where N is the number of elements to insert.
+     *   `O(N*log(size() + N))`, where N is the number of elements to insert.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     template<typename InputIt>
     void insert(size_t pos, InputIt first, InputIt last)
@@ -991,7 +1008,9 @@ public:
      * \param ilist Initializer list to insert the values from.
      * \details
      *   **Complexity**\n
-     *   `O(N*log(size() + N))`, where N is the number of elements to insert.
+     *   `O(N*log(size() + N))`, where N is the number of elements to insert.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     void insert(size_t pos, std::initializer_list<value_type> ilist)
     { insert(begin() + pos, ilist); }
@@ -1006,7 +1025,9 @@ public:
      * \param last  Iterator after the last element to insert.
      * \details
      *   **Complexity**\n
-     *   `O(N*log(size() + N))`, where N is the number of elements to insert.
+     *   `O(N*log(size() + N))`, where N is the number of elements to insert.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     template<typename InputIt>
     void insert(iterator pos, InputIt first, InputIt last)
@@ -1028,7 +1049,9 @@ public:
      * \param ilist Initializer list to insert the values from.
      * \details
      *   **Complexity**\n
-     *   `O(N*log(size() + N))`, where N is the number of elements to insert.
+     *   `O(N*log(size() + N))`, where N is the number of elements to insert.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     void insert(iterator pos, std::initializer_list<value_type> ilist)
     { insert(pos, ilist.begin(), ilist.end()); }
@@ -1054,7 +1077,9 @@ public:
      *   No references are invalidated.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     template<typename... Args>
     std::pair<iterator, bool> emplace_at(size_t pos, key_type&& key, Args&&... args)
@@ -1088,7 +1113,9 @@ public:
      *   No references are invalidated.
      * \details
      *   **Complexity**\n
-     *   Linear in the size of the container, i.e., the number of elements.
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     template<typename... Args>
     iterator emplace_hint(const_iterator hint, key_type&& key, Args&&... args)
@@ -1128,7 +1155,9 @@ public:
      *   Linear: the number of calls to the destructor of T is the same as the
      *   number of elements erased, the assignment operator of T is called the
      *   number of times equal to the number of elements in the vector after
-     *   the erased elements.
+     *   the erased elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     void erase(const key_type& key)
     {
@@ -1150,7 +1179,9 @@ public:
      *   Linear: the number of calls to the destructor of T is the same as the
      *   number of elements erased, the assignment operator of T is called the
      *   number of times equal to the number of elements in the vector after
-     *   the erased elements.
+     *   the erased elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     void erase(size_type pos, size_type count = 1)
     {
@@ -1171,7 +1202,9 @@ public:
      *   Linear: the number of calls to the destructor of T is the same as the
      *   number of elements erased, the assignment operator of T is called the
      *   number of times equal to the number of elements in the vector after
-     *   the erased elements.
+     *   the erased elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator erase(const_iterator pos)
     {
@@ -1196,7 +1229,9 @@ public:
      *   Linear: the number of calls to the destructor of T is the same as the
      *   number of elements erased, the assignment operator of T is called the
      *   number of times equal to the number of elements in the vector after
-     *   the erased elements.
+     *   the erased elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
      */
     iterator erase(const_iterator first, const_iterator last)
     {
