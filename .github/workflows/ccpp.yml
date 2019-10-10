@@ -18,7 +18,9 @@ jobs:
         mkdir -p build
         cd build
     - name: cmake
-      run: cmake .. -DBUILD_TESTING=ON
+      run: |
+        ls
+        cmake .. -DBUILD_TESTING=ON
     - name: make
       run: make -j4
     - name: test
