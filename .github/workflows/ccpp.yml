@@ -23,5 +23,5 @@ jobs:
       run: cmake --build .
       working-directory: build
     - name: test
-      run: CTEST_OUTPUT_ON_FAILURE=1 ctest -j4 -R Utilitie
+      run: ctest -j4 -R Utilitie --output-on-failure
       working-directory: build
