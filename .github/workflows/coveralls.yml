@@ -13,7 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install coveralls
-      run: pip3 install --user cpp-coveralls wheel
+      run: |
+        pip install -U pip setuptools
+        pip3 install --user cpp-coveralls wheel
     - name: Create build dir
       run: mkdir build
       continue-on-error: true
