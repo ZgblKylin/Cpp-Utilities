@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install coveralls
-      run: pip install --user cpp-coveralls
+      run: pip install --user cpp-coveralls wheel
     - name: Create build dir
       run: mkdir build
       continue-on-error: true
