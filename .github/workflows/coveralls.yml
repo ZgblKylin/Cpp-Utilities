@@ -1,0 +1,30 @@
+name: coveralls
+
+on: [push]
+
+env:
+  CXXFLAGS: "-O0 --coverage -fno-inline -fno-inline-small-functions -fno-default-inline"
+
+jobs:
+  coveralls:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install coveralls
+      run: pip3 install --user cpp-coveralls wheel
+    - name: Create build dir
+      run: mkdir build
+      continue-on-error: true
+    - name: Cmake
+      run: cmake .. -DBUILD_TESTING=ON
+      working-directory: build
+    - name: Build
+      run: cmake --build .
+      working-directory: build
+    - name: Test
+      run: ctest -C debug -R Utilities --output-on-failure
+      working-directory: build
+    - name: Coveralls
+      run: coveralls --gcov gcov-6 --gcov-options '\-lp' --root ${GITHUB_WORKSPACE} --build-root ${GITHUB_WORKSPACE}/build --extension cpp --extension hpp --exclude deps --include Utilities --exclude Utilities/MemorySafety/RWSpinLock.hpp
