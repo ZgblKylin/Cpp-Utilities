@@ -1,0 +1,25 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+        
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: make build dir
+      run: |
+        mkdir -p build
+        cd build
+    - name: cmake
+      run: cmake .. -DBUILD_TESTING=ON
+    - name: make
+      run: make -j4
+    - name: test
+      run: CTEST_OUTPUT_ON_FAILURE=1 ctest -j4 -R Utilitie
