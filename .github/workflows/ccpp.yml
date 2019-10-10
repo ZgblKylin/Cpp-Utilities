@@ -14,14 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: make build dir
-      run: |
-        mkdir -p build
-        cd build
+      run: mkdir -p build
     - name: cmake
-      run: |
-        ls
-        cmake .. -DBUILD_TESTING=ON
+      run: cmake .. -DBUILD_TESTING=ON
+      working-directory: build
     - name: make
       run: make -j4
+      working-directory: build
     - name: test
       run: CTEST_OUTPUT_ON_FAILURE=1 ctest -j4 -R Utilitie
+      working-directory: build
