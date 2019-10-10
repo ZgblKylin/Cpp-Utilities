@@ -12,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Install coveralls
+      run: pip install --user cpp-coveralls
     - name: Create build dir
       run: mkdir build
       continue-on-error: true
@@ -25,6 +27,4 @@ jobs:
       run: ctest -C debug -R Utilities --output-on-failure
       working-directory: build
     - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
+      run: coveralls --gcov gcov-6 --gcov-options '\-lp' --root ${GITHUB_WORKSPACE} --build-root ${GITHUB_WORKSPACE}/build --extension cpp --extension hpp --exclude deps --include Utilities --exclude Utilities/MemorySafety/RWSpinLock.hpp
