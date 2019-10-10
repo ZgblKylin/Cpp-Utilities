@@ -14,7 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: make build dir
-      run: mkdir -p build
+      run: mkdir build
+      continue-on-error: true
     - name: cmake
       run: cmake .. -DBUILD_TESTING=ON
       working-directory: build
