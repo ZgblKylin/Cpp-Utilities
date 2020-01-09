@@ -191,6 +191,9 @@ template<typename T,
          typename write_lock_t = unique_lock_t>
 class SafeSharedPtr
 {
+    template <typename A, typename B, typename C, typename D>
+    friend class SafeSharedPtr;
+      
 public:
     template<typename Lock> class PtrHelper;
     template<typename Lock> class RefHelper;
