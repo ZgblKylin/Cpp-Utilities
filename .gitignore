@@ -32,4 +32,4 @@
 *.app
 
 # Doxygen files
-/docs/latex
+/docs

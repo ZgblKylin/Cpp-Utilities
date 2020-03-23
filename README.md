@@ -7,10 +7,7 @@
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 ## Details
-See [./docs/index.html](./docs/index.html)(offline) or [GitHub Pages](https://zgblkylin.github.io/Cpp-Utilities)(online) for details.
-
-TODO: 
-  - Add doc for SequencialMap.
+See branch `doc`(offline) or [GitHub Pages](https://zgblkylin.github.io/Cpp-Utilities)(online) for details.
 
 ## License
 This work is dual-licensed under [Anti 996 License & Mozilla Public License](LICENSE).
