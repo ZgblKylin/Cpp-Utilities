@@ -1,4 +1,5 @@
 # Cpp Utilities
+![C/C++ CI](https://github.com/ZgblKylin/Cpp-Utilities/workflows/C/C++%20CI/badge.svg)
 [![Build Status](https://travis-ci.org/ZgblKylin/Cpp-Utilities.svg?branch=master)](https://travis-ci.org/ZgblKylin/Cpp-Utilities)
 [![Build status](https://ci.appveyor.com/api/projects/status/4khwehuu6r28662a?svg=true)](https://ci.appveyor.com/project/ZgblKylin/cpp-utilities)
 [![Coverage Status](https://coveralls.io/repos/github/ZgblKylin/Cpp-Utilities/badge.svg?branch=master)](https://coveralls.io/github/ZgblKylin/Cpp-Utilities?branch=master)
