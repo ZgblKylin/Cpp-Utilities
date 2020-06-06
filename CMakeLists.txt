@@ -60,7 +60,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(PROJECT_CMAKE_IN ${Cpp-Utilities_SOURCE_DIR}/cmake/in)
 set(PROJECT_DEPS_DIR ${Cpp-Utilities_SOURCE_DIR}/deps)
-set(PROJECT_SRC_DIR ${Cpp-Utilities_SOURCE_DIR}/Utilities)
+set(PROJECT_SRC_DIR ${Cpp-Utilities_SOURCE_DIR}/include/Utilities)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY bin)
 
