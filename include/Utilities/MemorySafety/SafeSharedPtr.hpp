@@ -191,7 +191,7 @@ template<typename T,
          typename write_lock_t = unique_lock_t>
 class SafeSharedPtr
 {
-    template <typename A, typename B, typename C, typename D>
+    template <typename Y, typename M, typename R, typename W>
     friend class SafeSharedPtr;
       
 public:
@@ -1489,6 +1489,8 @@ private:
         : mutex(l), ptr(p)
     {}
 
+    template <typename Y, typename M, typename R, typename W>
+    friend class SafeWeakPtr;
     mutable std::shared_ptr<SharedMutex> mutex;
     std::shared_ptr<T> ptr;
 };
@@ -2665,6 +2667,8 @@ public:
     { return ptr.owner_before(other); }
 
 private:
+    template <typename Y, typename M, typename R, typename W>
+    friend class SafeSharedPtr;
     std::weak_ptr<SharedMutex> mutex;
     std::weak_ptr<T> ptr;
 };
@@ -2861,7 +2865,8 @@ public:
     { return shared_from_this(); }
 
 private:
-    friend class SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>;
+    template <typename Y, typename M, typename R, typename W>
+    friend class SafeSharedPtr;
     std::shared_ptr<typename SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>::SharedMutex> __safeSharedLock;
 };
 } // namespace Memory
