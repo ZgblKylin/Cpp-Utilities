@@ -1,5 +1,6 @@
 # Cpp Utilities
 ![C/C++ CI](https://github.com/ZgblKylin/Cpp-Utilities/workflows/C/C++%20CI/badge.svg)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e491773949f64a2ab684c3769b0b4d81)](https://app.codacy.com/gh/ZgblKylin/Cpp-Utilities?utm_source=github.com&utm_medium=referral&utm_content=ZgblKylin/Cpp-Utilities&utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/ZgblKylin/Cpp-Utilities.svg?branch=master)](https://travis-ci.org/ZgblKylin/Cpp-Utilities)
 [![Build status](https://ci.appveyor.com/api/projects/status/4khwehuu6r28662a?svg=true)](https://ci.appveyor.com/project/ZgblKylin/cpp-utilities)
 [![Coverage Status](https://coveralls.io/repos/github/ZgblKylin/Cpp-Utilities/badge.svg?branch=master)](https://coveralls.io/github/ZgblKylin/Cpp-Utilities?branch=master)
