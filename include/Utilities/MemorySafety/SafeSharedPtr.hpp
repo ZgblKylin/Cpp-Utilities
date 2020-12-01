@@ -1,4 +1,5 @@
-﻿#pragma once
+#ifndef CPP_UTILITIES_MEMORYSAFETY_SAFESHAREDPTR_HPP
+#define CPP_UTILITIES_MEMORYSAFETY_SAFESHAREDPTR_HPP
 
 #include <memory>
 #include <utility>
@@ -48,34 +49,59 @@ class EnableSafeSharedFromThis;
 
 #if __cplusplus >= 201703L
     /**
-     * \brief Defined to `std::shared_mutex` with C++17 or higher, otherwise
-     *        defined to RWSpinLock.
+     * \brief Defined to `std::shared_mutex` with C++17 or higher,
+     *        `std::shared_timed_mutex` with C++14,
+     *        otherwise defined to RWSpinLock.
      */
     using shared_mutex_t = std::shared_mutex;
     /**
      * \brief Defined to `std::shared_lock<std::shared_mutex>` with C++17 or
-     *        higher, otherwise defined to RWSpinLock::ReadHolder.
+     *        higher, `std::shared_lock<std::shared_timed_mutex>` with C++14,
+     *        otherwise defined to RWSpinLock::ReadHolder.
      */
     using shared_lock_t = std::shared_lock<shared_mutex_t>;
     /**
      * \brief Defined to `std::unique_lock<std::shared_mutex>` with C++17 or
-     *        higher, otherwise defined to RWSpinLock::WriteHolder.
+     *        higher, `std::unique_lock<std::shared_timed_mutex>` with C++14,
+     *        otherwise defined to RWSpinLock::WriteHolder.
+     */
+    using unique_lock_t = std::unique_lock<shared_mutex_t>;
+#elif __cplusplus >= 201402L
+    /**
+     * \brief Defined to `std::shared_mutex` with C++17 or higher,
+     *        `std::shared_timed_mutex` with C++14,
+     *        otherwise defined to RWSpinLock.
+     */
+    using shared_mutex_t = std::shared_timed_mutex;
+    /**
+     * \brief Defined to `std::shared_lock<std::shared_mutex>` with C++17 or
+     *        higher, `std::shared_lock<std::shared_timed_mutex>` with C++14,
+     *        otherwise defined to RWSpinLock::ReadHolder.
+     */
+    using shared_lock_t = std::shared_lock<shared_mutex_t>;
+    /**
+     * \brief Defined to `std::unique_lock<std::shared_mutex>` with C++17 or
+     *        higher, `std::unique_lock<std::shared_timed_mutex>` with C++14,
+     *        otherwise defined to RWSpinLock::WriteHolder.
      */
     using unique_lock_t = std::unique_lock<shared_mutex_t>;
 #else
     /**
-     * \brief Defined to `std::shared_mutex` with C++17 or higher, otherwise
-     *        defined to RWSpinLock.
+     * \brief Defined to `std::shared_mutex` with C++17 or higher,
+     *        `std::shared_timed_mutex` with C++14,
+     *        otherwise defined to RWSpinLock.
      */
     using shared_mutex_t = RWSpinLock;
     /**
      * \brief Defined to `std::shared_lock<std::shared_mutex>` with C++17 or
-     *        higher, otherwise defined to RWSpinLock::ReadHolder.
+     *        higher, `std::shared_lock<std::shared_timed_mutex>` with C++14,
+     *        otherwise defined to RWSpinLock::ReadHolder.
      */
     using shared_lock_t = RWSpinLock::ReadHolder;
     /**
      * \brief Defined to `std::unique_lock<std::shared_mutex>` with C++17 or
-     *        higher, otherwise defined to RWSpinLock::WriteHolder.
+     *        higher, `std::unique_lock<std::shared_timed_mutex>` with C++14,
+     *        otherwise defined to RWSpinLock::WriteHolder.
      */
     using unique_lock_t = RWSpinLock::WriteHolder;
 #endif
@@ -191,9 +217,9 @@ template<typename T,
          typename write_lock_t = unique_lock_t>
 class SafeSharedPtr
 {
-    template <typename Y, typename M, typename R, typename W>
+    template<typename Y, typename M, typename R, typename W>
     friend class SafeSharedPtr;
-      
+
 public:
     template<typename Lock> class PtrHelper;
     template<typename Lock> class RefHelper;
@@ -1152,7 +1178,7 @@ public:
      * \sa lock, unlock
      */
     UniqueLock unique_lock() const
-    { return UniqueLock(*mutex); }
+    { return std::move(UniqueLock(*mutex)); }
 
     /**
      * \brief Proxy class for operator-> in SafeSharedPtr, behave like
@@ -1489,7 +1515,7 @@ private:
         : mutex(l), ptr(p)
     {}
 
-    template <typename Y, typename M, typename R, typename W>
+    template<typename Y, typename M, typename R, typename W>
     friend class SafeWeakPtr;
     mutable std::shared_ptr<SharedMutex> mutex;
     std::shared_ptr<T> ptr;
@@ -2667,7 +2693,7 @@ public:
     { return ptr.owner_before(other); }
 
 private:
-    template <typename Y, typename M, typename R, typename W>
+    template<typename Y, typename M, typename R, typename W>
     friend class SafeSharedPtr;
     std::weak_ptr<SharedMutex> mutex;
     std::weak_ptr<T> ptr;
@@ -2865,7 +2891,7 @@ public:
     { return shared_from_this(); }
 
 private:
-    template <typename Y, typename M, typename R, typename W>
+    template<typename Y, typename M, typename R, typename W>
     friend class SafeSharedPtr;
     std::shared_ptr<typename SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>::SharedMutex> __safeSharedLock;
 };
@@ -2924,3 +2950,5 @@ void swap(Memory::SafeWeakPtr<T, SharedMutex, SharedLock, UniqueLock>& lhs,
 } // namespace std
 
 /** @} end of group MemorySafety*/
+
+#endif  // CPP_UTILITIES_MEMORYSAFETY_SAFESHAREDPTR_HPP
