@@ -1,4 +1,5 @@
-﻿#pragma once
+#ifndef CPP_UTILITIES_CONTAINERS_SEQUENCIALMAP_HPP
+#define CPP_UTILITIES_CONTAINERS_SEQUENCIALMAP_HPP
 
 #include <cassert>
 #include <utility>
@@ -765,6 +766,29 @@ public:
      *   Logarithmic in the size of the container.
      */
     template<typename... Args>
+    std::pair<iterator, bool> emplace_back(const key_type& key, Args&&... args)
+    {
+        return emplace_at(size(), key, std::forward<Args>(args)...);
+    }
+
+    /**
+     * \brief Appends a new element to the end of the container.
+     * \tparam Args Arguments to forward to the constructor of the element.
+     * \param key  The key of the element to append.
+     * \param args Arguments to forward to the constructor of value.
+     * \return Returns a pair consisting of an iterator to the inserted element
+     *         (or to the element that prevented the insertion) and a `bool`
+     *         denoting whether the insertion took place.
+     * \details
+     *   The element is constructed through `std::allocator_traits::construct`,
+     *   which typically uses placement-new to construct the element in-place at
+     *   the location provided by the container. The arguments `args...` are
+     *   forwarded to the constructor as `std::forward<Args>(args)...`.\n
+     * \details
+     *   **Complexity**\n
+     *   Logarithmic in the size of the container.
+     */
+    template<typename... Args>
     std::pair<iterator, bool> emplace_back(key_type&& key, Args&&... args)
     {
         return emplace_at(size(), std::forward<key_type>(key), std::forward<Args>(args)...);
@@ -1055,6 +1079,42 @@ public:
      */
     void insert(iterator pos, std::initializer_list<value_type> ilist)
     { insert(pos, ilist.begin(), ilist.end()); }
+
+    /**
+     * \brief Inserts a new element to the container as close as possible to
+     *        the position just before hint. The element is constructed
+     *        in-place, i.e. no copy or move operations are performed.
+     * \tparam Args
+     * \param pos  Index to the position before which the new element will be
+     *             inserted.
+     * \param key  Key of element to insert.
+     * \param args Arguments to forward to the constructor of the value.
+     * \return Returns an iterator to the newly inserted element. \n
+     *         If the insertion failed because the element already exists,
+     *         returns an iterator to the already existing element with the
+     *         equivalent key.
+     * \details
+     *   The constructor of the value type (`T`) is called with exactly the
+     *   same arguments as supplied to the function, forwarded with
+     *   `std::forward<Args>(args)...`.\n
+     *   Invalidates iterators **after** `pos`.\n
+     *   No references are invalidated.
+     * \details
+     *   **Complexity**\n
+     *   Linear in the size of the container, i.e., the number of elements.\n
+     *   Much faster than raw `std::vector`, because moved values are
+     *   `std::map::iterator`, not acture `T` node.
+     */
+    template<typename... Args>
+    std::pair<iterator, bool> emplace_at(size_t pos, const key_type& key, Args&&... args)
+    {
+        key_type k = key;
+        auto it = find(k);
+        if (it != end()) return std::make_pair(it, false);
+        auto pair = m.emplace(std::move(k), std::forward<Args>(args)...);
+        v.insert(v.begin() + pos, pair.first);
+        return std::make_pair(begin() + pos, true);
+    }
 
     /**
      * \brief Inserts a new element to the container as close as possible to
@@ -1998,3 +2058,5 @@ void erase_if(Container::SequencialMap<Key, T, Compare, Alloc>& c, Pred pred)
 } // namespace std
 
 /** @} end of group Container*/
+
+#endif  // CPP_UTILITIES_CONTAINERS_SEQUENCIALMAP_HPP
