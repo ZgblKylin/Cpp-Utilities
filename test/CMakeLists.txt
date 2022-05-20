@@ -2,7 +2,6 @@ set(
     COMMON_LINK_LIBS
         CppUtilities
         gtest_main
-        Threads::Threads
 )
 
 macro(ADD_Utilities_TEST TEST_NAME TEST_SOURCE)
