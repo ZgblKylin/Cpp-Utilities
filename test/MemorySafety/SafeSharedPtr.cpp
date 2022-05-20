@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 #define private public
-#include <MemorySafety/SafeSharedPtr.hpp>
+#include <Utilities/MemorySafety/SafeSharedPtr.hpp>
 
 UTILITIES_USING_NAMESPACE;
 using Memory::SafeSharedPtr;

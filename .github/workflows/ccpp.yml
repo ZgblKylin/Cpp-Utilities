@@ -3,25 +3,71 @@ name: C/C++ CI
 on: [push]
 
 jobs:
-  build:
-        
+  build_test:
     runs-on: ${{ matrix.os }}
-    
+
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-    
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
     steps:
-    - uses: actions/checkout@v1
-    - name: create build dir
-      run: mkdir build
+    - uses: actions/checkout@v2
+      with:
+        clean: true
+        lfs: true
+        submodules: true
+
+    - name: Create build dir
+      run: |
+        mkdir build
+        mkdir coverage
       continue-on-error: true
-    - name: cmake
-      run: cmake .. -DBUILD_TESTING=ON
+
+    - name: CMake configure
+      if: ${{ matrix.os != 'ubuntu-latest' }}
+      run: cmake .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON
       working-directory: build
+
+    - name: CMake configure with coverage support
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: |
+        sudo apt update
+        sudo apt install -y lcov
+        cmake .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON -DCMAKE_C_FLAGS="--coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_CXX_FLAGS="--coverage -fno-inline -fno-inline-small-functions -fno-default-inline"
+      working-directory: build
+
     - name: build
-      run: cmake --build .
+      run: cmake --build . --config Debug -j 2
       working-directory: build
+
+    - name: Initialize lcov collection
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: lcov -c -i -d ../build/test
+      working-directory: coverage
+
     - name: test
-      run: ctest -C debug -R Utilities --output-on-failure
+      run: ctest -C debug --output-on-failure -V
       working-directory: build
+
+    - name: lcov collect
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: lcov -c -d ../build/test --include '*Utilities/*.hpp' --exclude '*/RWSpinLock.hpp' --exclude '/usr*' --exclude '*googletest*' -o lcov.info
+      working-directory: coverage
+
+    - name: Coveralls
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        flag-name: ${{ matrix.os }}
+        parallel: true
+
+  finish:
+    needs: build_test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true

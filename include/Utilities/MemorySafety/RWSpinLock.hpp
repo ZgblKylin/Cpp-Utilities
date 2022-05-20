@@ -1,3 +1,5 @@
+#ifndef CPP_UTILITIES_MEMORYSAFETY_RWSPINLOCK_HPP
+#define CPP_UTILITIES_MEMORYSAFETY_RWSPINLOCK_HPP
 /*
  * Copyright 2011-present Facebook, Inc.
  *
@@ -142,7 +144,6 @@
  *  </tr>
  * </table>
  */
-#pragma once
 
 #include <algorithm>
 #include <atomic>
@@ -514,3 +515,5 @@ private:
 /** @} */
 
 UTILITIES_NAMESPACE_END
+
+#endif  // CPP_UTILITIES_MEMORYSAFETY_RWSPINLOCK_HPP

@@ -1,4 +1,4 @@
-#ifndef CPP_UTILITIES_MEMORYSAFETY_SAFESHAREDPTR_HPP
+﻿#ifndef CPP_UTILITIES_MEMORYSAFETY_SAFESHAREDPTR_HPP
 #define CPP_UTILITIES_MEMORYSAFETY_SAFESHAREDPTR_HPP
 
 #include <memory>
@@ -50,58 +50,33 @@ class EnableSafeSharedFromThis;
 #if __cplusplus >= 201703L
     /**
      * \brief Defined to `std::shared_mutex` with C++17 or higher,
-     *        `std::shared_timed_mutex` with C++14,
      *        otherwise defined to RWSpinLock.
      */
     using shared_mutex_t = std::shared_mutex;
     /**
      * \brief Defined to `std::shared_lock<std::shared_mutex>` with C++17 or
-     *        higher, `std::shared_lock<std::shared_timed_mutex>` with C++14,
-     *        otherwise defined to RWSpinLock::ReadHolder.
+     *        higher, otherwise defined to RWSpinLock::ReadHolder.
      */
     using shared_lock_t = std::shared_lock<shared_mutex_t>;
     /**
      * \brief Defined to `std::unique_lock<std::shared_mutex>` with C++17 or
-     *        higher, `std::unique_lock<std::shared_timed_mutex>` with C++14,
-     *        otherwise defined to RWSpinLock::WriteHolder.
-     */
-    using unique_lock_t = std::unique_lock<shared_mutex_t>;
-#elif __cplusplus >= 201402L
-    /**
-     * \brief Defined to `std::shared_mutex` with C++17 or higher,
-     *        `std::shared_timed_mutex` with C++14,
-     *        otherwise defined to RWSpinLock.
-     */
-    using shared_mutex_t = std::shared_timed_mutex;
-    /**
-     * \brief Defined to `std::shared_lock<std::shared_mutex>` with C++17 or
-     *        higher, `std::shared_lock<std::shared_timed_mutex>` with C++14,
-     *        otherwise defined to RWSpinLock::ReadHolder.
-     */
-    using shared_lock_t = std::shared_lock<shared_mutex_t>;
-    /**
-     * \brief Defined to `std::unique_lock<std::shared_mutex>` with C++17 or
-     *        higher, `std::unique_lock<std::shared_timed_mutex>` with C++14,
-     *        otherwise defined to RWSpinLock::WriteHolder.
+     *        higher, otherwise defined to RWSpinLock::WriteHolder.
      */
     using unique_lock_t = std::unique_lock<shared_mutex_t>;
 #else
     /**
      * \brief Defined to `std::shared_mutex` with C++17 or higher,
-     *        `std::shared_timed_mutex` with C++14,
      *        otherwise defined to RWSpinLock.
      */
     using shared_mutex_t = RWSpinLock;
     /**
      * \brief Defined to `std::shared_lock<std::shared_mutex>` with C++17 or
-     *        higher, `std::shared_lock<std::shared_timed_mutex>` with C++14,
-     *        otherwise defined to RWSpinLock::ReadHolder.
+     *        higher, otherwise defined to RWSpinLock::ReadHolder.
      */
     using shared_lock_t = RWSpinLock::ReadHolder;
     /**
      * \brief Defined to `std::unique_lock<std::shared_mutex>` with C++17 or
-     *        higher, `std::unique_lock<std::shared_timed_mutex>` with C++14,
-     *        otherwise defined to RWSpinLock::WriteHolder.
+     *        higher,  otherwise defined to RWSpinLock::WriteHolder.
      */
     using unique_lock_t = RWSpinLock::WriteHolder;
 #endif
@@ -234,19 +209,11 @@ public:
     /** \brief Type alias for template write_lock_t. */
     using UniqueLock = write_lock_t;
 
-#if __cplusplus >= 201703L
     /**
-     * \brief Type of element managed. `T` for C++11, and
-     *        `std::remove_extent_t<T>` for C++17.
+     * \brief Type of element managed.
      */
-    using element_type = std::remove_extent_t<T>;
-#else
-    /**
-     * \brief Type of element managed. `T` for C++11, and
-     *        `std::remove_extent_t<T>` for C++17.
-     */
-    using element_type = T;
-#endif
+    using element_type = typename std::remove_extent<T>::type;
+
     /** \brief Type of weak pointer from this shared pointer. */
     using weak_type = SafeWeakPtr<T, SharedMutex, SharedLock, UniqueLock>;
 

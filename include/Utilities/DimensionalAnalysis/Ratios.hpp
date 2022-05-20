@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPP_UTILITIES_DIMENSIONALANALYSIS_RATIO_HPP
+#define CPP_UTILITIES_DIMENSIONALANALYSIS_RATIO_HPP
 
 #include <utility>
 #include <cstdint>
@@ -53,3 +54,5 @@ inline std::pair<intmax_t, intmax_t> approximateRatio(long double value, int n)
 /** @} */
 
 UTILITIES_NAMESPACE_END
+
+#endif  // CPP_UTILITIES_DIMENSIONALANALYSIS_RATIO_HPP

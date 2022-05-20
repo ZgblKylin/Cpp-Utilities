@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <DimensionalAnalysis/DimensionalAnalysis.hpp>
+#include <Utilities/DimensionalAnalysis/DimensionalAnalysis.hpp>
 #include <typeinfo>
 
 UTILITIES_USING_NAMESPACE;

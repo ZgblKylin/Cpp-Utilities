@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPP_UTILITIES_DIMENSIONALANALYSIS_HPP
+#define CPP_UTILITIES_DIMENSIONALANALYSIS_HPP
 
 #include <tuple>
 #include <ratio>
@@ -731,8 +732,8 @@ inline Quantity<T, U, NewRatio> quantity_cast(Quantity<T, U, Ratio> x)
  */
 typedef std::ratio<80813362, 25723692> ratio_PI;
 /**
- * \brief Ratio to convert radian into degree,
- *        using equation \f$degree = rad * \frac{pi}{180}\f$.
+ * \brief Ratio to convert degree into radian,
+ *        using equation \f$rad = degree * \frac{pi}{180}\f$.
  */
 typedef std::ratio_divide<ratio_PI, std::ratio<180>> ratio_degree;
 /** @} */
@@ -1109,3 +1110,5 @@ typedef std::ratio_multiply<ratio_us_dry_peck, std::ratio<4>> ratio_us_bushel;
 UTILITIES_NAMESPACE_END
 
 /** @} */
+
+#endif  // CPP_UTILITIES_DIMENSIONALANALYSIS_HPP

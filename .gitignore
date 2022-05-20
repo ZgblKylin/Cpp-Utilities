@@ -1,3 +1,10 @@
+# IDE and generated files
+build/*
+*/build/*
+.vscode/*
+bin/*
+coverage/*
+
 # Prerequisites
 *.d
 
