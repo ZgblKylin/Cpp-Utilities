@@ -1,0 +1,91 @@
+\hypertarget{struct_container_1_1_sequencial_map_1_1_serialize_manipulator}{}\doxysection{Container\+::Sequencial\+Map\texorpdfstring{$<$}{<} Key, T, Compare, Allocator \texorpdfstring{$>$}{>}\+::Serialize\+Manipulator Struct Reference}
+\label{struct_container_1_1_sequencial_map_1_1_serialize_manipulator}\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator}}
+
+
+Stream manipulator for serialization and deserialization.  
+
+
+
+
+{\ttfamily \#include $<$Sequencial\+Map.\+hpp$>$}
+
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Stream $>$ }\\Stream \& \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1_serialize_manipulator_a6015343a9d3a5ef45145bb2eae837e16}{operator$<$$<$}} (Stream \&out, const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1_serialize_manipulator}{Serialize\+Manipulator}} \&manip)
+\begin{DoxyCompactList}\small\item\em Output stream operator for serialization. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Stream $>$ }\\Stream \& \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1_serialize_manipulator_a7a6eb9cc0e98505076cb44eae96d1257}{operator$>$$>$}} (Stream \&in, \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1_serialize_manipulator}{Serialize\+Manipulator}} manip)
+\begin{DoxyCompactList}\small\item\em Input stream operator for deserialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Key, typename T, typename Compare = std\+::less$<$\+Key$>$, typename Allocator = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$\newline
+struct Container\+::\+Sequencial\+Map$<$ Key, T, Compare, Allocator $>$\+::\+Serialize\+Manipulator}
+Stream manipulator for serialization and deserialization. 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1_serialize_manipulator_a6015343a9d3a5ef45145bb2eae837e16}\label{struct_container_1_1_sequencial_map_1_1_serialize_manipulator_a6015343a9d3a5ef45145bb2eae837e16}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$typename Stream $>$ \\
+Stream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{Stream \&}]{out,  }\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1_serialize_manipulator}{Serialize\+Manipulator}} \&}]{manip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Output stream operator for serialization. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Stream} & Must support serialization of type {\ttfamily Key} and {\ttfamily T}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Output stream. \\
+\hline
+{\em manip} & Manipulator for \mbox{\hyperlink{class_container_1_1_sequencial_map}{Sequencial\+Map}} to serialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stream\& {\ttfamily out} stream itself. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_container_1_1_sequencial_map_a447011ae320fa1a14c979d18e7848d56}{serialize}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1_serialize_manipulator_a7a6eb9cc0e98505076cb44eae96d1257}\label{struct_container_1_1_sequencial_map_1_1_serialize_manipulator_a7a6eb9cc0e98505076cb44eae96d1257}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::SerializeManipulator}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$}{operator>>}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$typename Stream $>$ \\
+Stream \& operator$>$$>$ (\begin{DoxyParamCaption}\item[{Stream \&}]{in,  }\item[{\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1_serialize_manipulator}{Serialize\+Manipulator}}}]{manip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Input stream operator for deserialization. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Stream} & Must support deserialization of type {\ttfamily Key} and {\ttfamily T}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Input stream. \\
+\hline
+{\em manip} & Manipulator for \mbox{\hyperlink{class_container_1_1_sequencial_map}{Sequencial\+Map}} to deserialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stream\& {\ttfamily in} stream itself. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_container_1_1_sequencial_map_aecf2617bf43cf5dd18f6f2b5b5e0dc93}{deserialize}}. 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Containers/\mbox{\hyperlink{_sequencial_map_8hpp}{Sequencial\+Map.\+hpp}}\end{DoxyCompactItemize}

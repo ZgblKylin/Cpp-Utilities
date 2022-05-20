@@ -1,0 +1,27 @@
+\hypertarget{index_repository_introduction}{}\doxysection{Introduction}\label{index_repository_introduction}
+The Cpp Utilities repository provides many useful functionalities.~\newline
+All codes are written header-\/only, so no compile-\/export-\/import-\/link is needed, just use {\ttfamily git-\/submodule} to add to your project and include whatever {\ttfamily .hpp} files you need.\hypertarget{index_repository_modules}{}\doxysection{Modules}\label{index_repository_modules}
+\mbox{\hyperlink{group___dimensional_analysis}{Dimensional Analysis}} ~\newline
+Helpr classes, typedefs and functions for dimensional analyse.~\newline
+\mbox{\hyperlink{group___memory_safety}{Memory Safety}} ~\newline
+Helper classes, typedefs and functions for memroy safety.~\newline
+\mbox{\hyperlink{group___containers}{Containers}} ~\newline
+Classes and functions for some convenient containers.\hypertarget{index_repository_files}{}\doxysection{Files}\label{index_repository_files}
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{_common_8h}{Common.\+h}} Macros defined for utilities.
+\item Dimensional\+Analysis/
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{_dimensional_analysis_8hpp}{Dimensional\+Analysis.\+hpp}} Functionalities for dimensional analysis, guaranteed by strong type, and provides zero-\/cost abstraction.
+\item \mbox{\hyperlink{_ratios_8hpp}{Ratios.\+hpp}} Functionalities for ratio calculation, such as generating approximiate fraction from decimals.
+\end{DoxyItemize}
+\item Memory\+Safety/
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpin\+Lock.\+hpp}} A extremely high-\/performance read-\/write-\/spinlock imported from folly library.
+\item \mbox{\hyperlink{_safe_shared_ptr_8hpp}{Safe\+Shared\+Ptr.\+hpp}} Classes wrapped from {\ttfamily std\+::shared\+\_\+ptr} / {\ttfamily std\+::weak\+\_\+ptr} and {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} to provide thread-\/safety while operating the underlying pointer.
+\end{DoxyItemize}
+\item Containers/
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{_sequencial_map_8hpp}{Sequencial\+Map.\+hpp}} Key-\/value container behaves like std\+::map, but extended with random-\/access operations and traverses in the sequence order of value appends like {\ttfamily std\+::vector}. 
+\end{DoxyItemize}
+\end{DoxyItemize}

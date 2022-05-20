@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quantity',['Quantity',['../class_dimensional_1_1_quantity.html',1,'Dimensional']]]
+  ['quantity_0',['Quantity',['../class_dimensional_1_1_quantity.html',1,'Dimensional']]]
 ];

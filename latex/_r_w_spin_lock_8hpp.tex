@@ -1,0 +1,107 @@
+\hypertarget{_r_w_spin_lock_8hpp}{}\doxysection{include/\+Utilities/\+Memory\+Safety/\+RWSpin\+Lock.hpp File Reference}
+\label{_r_w_spin_lock_8hpp}\index{include/Utilities/MemorySafety/RWSpinLock.hpp@{include/Utilities/MemorySafety/RWSpinLock.hpp}}
+
+
+Read\+Write lock using spin\+\_\+lock, copied from Folly library under Apache-\/2.\+0 license, see \href{https://github.com/facebook/folly/blob/master/folly/synchronization/RWSpinLock.h}{\texttt{ https\+://github.\+com/facebook/folly/blob/master/folly/synchronization/\+RWSpin\+Lock.\+h}}.  
+
+
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include \char`\"{}../\+Common.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{Memory\+::\+RWSpin\+Lock}}
+\begin{DoxyCompactList}\small\item\em High-\/performance read-\/write-\/spinlock, see \mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpin\+Lock.\+hpp}} for details. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{Memory\+::\+RWSpin\+Lock\+::\+Read\+Holder}}
+\begin{DoxyCompactList}\small\item\em RAII guard for read lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}{RWSpin\+Lock\+::lock\+\_\+shared()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8ce7c822fdb5e9c3b5997e77186ef2ad}{RWSpin\+Lock\+::unlock\+\_\+shared()}} on destruction. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder}}
+\begin{DoxyCompactList}\small\item\em RAII guard for upgrade lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{RWSpin\+Lock\+::lock\+\_\+upgrade()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}{RWSpin\+Lock\+::unlock\+\_\+upgrade()}} on destruction. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder}}
+\begin{DoxyCompactList}\small\item\em RAII guard for write lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{RWSpin\+Lock\+::lock()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{RWSpin\+Lock\+::unlock()}} on destruction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_memory}{Memory}}
+\begin{DoxyCompactList}\small\item\em Namespace for all classes, typedefs and functions of memory safety. See \mbox{\hyperlink{group___memory_safety}{Memory Safety}} for more instrucion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Read\+Write lock using spin\+\_\+lock, copied from Folly library under Apache-\/2.\+0 license, see \href{https://github.com/facebook/folly/blob/master/folly/synchronization/RWSpinLock.h}{\texttt{ https\+://github.\+com/facebook/folly/blob/master/folly/synchronization/\+RWSpin\+Lock.\+h}}. 
+
+\begin{DoxyAuthor}{Author}
+Xin Liu \href{mailto:xliux@fb.com}{\texttt{ xliux@fb.\+com}}
+\end{DoxyAuthor}
+N.\+B. You most likely do {\itshape not} want to use RWSpin\+Lock or any other kind of spinlock. Use Shared\+Mutex instead.
+
+In short, spinlocks in preemptive multi-\/tasking operating systems have serious problems and fast mutexes like Shared\+Mutex are almost certainly the better choice, because letting the OS scheduler put a thread to sleep is better for system responsiveness and throughput than wasting a timeslice repeatedly querying a lock held by a thread that\textquotesingle{}s blocked, and you can\textquotesingle{}t prevent userspace programs blocking.
+
+Spinlocks in an operating system kernel make much more sense than they do in userspace.
+
+\DoxyHorRuler{0}
+
+
+{\bfseries{Read-\/\+Write spin lock implementations.}}
+
+Ref\+: \href{http://locklessinc.com/articles/locks}{\texttt{ http\+://locklessinc.\+com/articles/locks}}
+
+Both locks here are faster than pthread\+\_\+rwlock and have very low overhead (usually 20-\/30ns). They don\textquotesingle{}t use any system mutexes and are very compact (4/8 bytes), so are suitable for per-\/instance based locking, particularly when contention is not expected.
+
+For a spinlock, RWSpin\+Lock is a reasonable choice. (See the note about for why a spin lock is frequently a bad idea generally.) RWSpin\+Lock has minimal overhead, and comparable contention performance when the number of competing threads is less than or equal to the number of logical CPUs. Even as the number of threads gets larger, RWSpin\+Lock can still be very competitive in READ, although it is slower on WRITE, and also inherently unfair to writers.
+
+The lock will not grant any new shared (read) accesses while a thread attempting to acquire the lock in write mode is blocked. (That is, if the lock is held in shared mode by N threads, and a thread attempts to acquire it in write mode, no one else can acquire it in shared mode until these N threads release the lock and then the blocked thread acquires and releases the exclusive lock.) This also applies for attempts to reacquire the lock in shared mode by threads that already hold it in shared mode, making the lock non-\/reentrant.
+
+RWSpin\+Lock handles 2$^\wedge$30 -\/ 1 concurrent readers.
+
+\DoxyHorRuler{0}
+
+
+{\bfseries{Benchmark on (Intel(\+R) Xeon(\+R) CPU L5630 @ 2.\+13\+GHz) 8 cores(16 HTs)}}
+
+
+\begin{DoxyEnumerate}
+\item Single thread benchmark (read/write lock + unlock overhead) \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Benchmark   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Iters   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Total t   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ t/iter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ iter/sec    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Benchmark   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Iters   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Total t   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ t/iter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ iter/sec    }\\\cline{1-5}
+\endhead
+$\ast$ BM\+\_\+\+RWSpin\+Lock\+Read   &\PBS\centering 100000   &\PBS\centering 1.\+786 ms   &\PBS\centering 17.\+86 ns   &\PBS\centering 53.\+4 M    \\\cline{1-5}
++30.\+5\% BM\+\_\+\+RWSpin\+Lock\+Write   &\PBS\centering 100000   &\PBS\centering 2.\+331 ms   &\PBS\centering 23.\+31 ns   &\PBS\centering 40.\+91 M    \\\cline{1-5}
++ 175\% BM\+\_\+\+PThread\+RWMutex\+Read   &\PBS\centering 100000   &\PBS\centering 4.\+917 ms   &\PBS\centering 49.\+17 ns   &\PBS\centering 19.\+4 M    \\\cline{1-5}
++ 166\% BM\+\_\+\+PThread\+RWMutex\+Write   &\PBS\centering 100000   &\PBS\centering 4.\+757 ms   &\PBS\centering 47.\+57 ns   &\PBS\centering 20.\+05 M   \\\cline{1-5}
+\end{longtabu}
+
+\item Contention Benchmark (90\% read, 10\% write) \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Benchmark }&\cellcolor{\tableheadbgcolor}\textbf{ hits }&\cellcolor{\tableheadbgcolor}\textbf{ average }&\cellcolor{\tableheadbgcolor}\textbf{ min }&\cellcolor{\tableheadbgcolor}\textbf{ max }&\cellcolor{\tableheadbgcolor}\textbf{ sigma  }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Benchmark }&\cellcolor{\tableheadbgcolor}\textbf{ hits }&\cellcolor{\tableheadbgcolor}\textbf{ average }&\cellcolor{\tableheadbgcolor}\textbf{ min }&\cellcolor{\tableheadbgcolor}\textbf{ max }&\cellcolor{\tableheadbgcolor}\textbf{ sigma  }\\\cline{1-6}
+\endhead
+\multicolumn{6}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ 8 threads  }}\\\cline{1-6}
+RWSpin\+Lock Write &142666 &220 ns &78 ns &40.\+8 us &269 ns  \\\cline{1-6}
+RWSpin\+Lock Read &1282297 &222 ns &80 ns &37.\+7 us &248 ns  \\\cline{1-6}
+pthread\+\_\+rwlock\+\_\+t Write &84248 &2.\+48 us &99 ns &269 us &8.\+19 us  \\\cline{1-6}
+pthread\+\_\+rwlock\+\_\+t Read &761646 &933 ns &101 ns &374 us &3.\+25 us  \\\cline{1-6}
+\multicolumn{6}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ 16 threads  }}\\\cline{1-6}
+RWSpin\+Lock Write &124236 &237 ns &78 ns &261 us &801 ns  \\\cline{1-6}
+RWSpin\+Lock Read &1115807 &236 ns &78 ns &2.\+27 ms &2.\+17 us  \\\cline{1-6}
+pthread\+\_\+rwlock\+\_\+t Write &83363 &7.\+12 us &99 ns &785 us &28.\+1 us  \\\cline{1-6}
+pthread\+\_\+rwlock\+\_\+t Read &754978 &2.\+18 us &101 ns &1.\+02 ms &14.\+3 us  \\\cline{1-6}
+\multicolumn{6}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ 50 threads  }}\\\cline{1-6}
+RWSpin\+Lock Write &131142 &1.\+37 us &82 ns &7.\+53 ms &68.\+2 us  \\\cline{1-6}
+RWSpin\+Lock Read &1181240 &262 ns &78 ns &6.\+62 ms &12.\+7 us  \\\cline{1-6}
+pthread\+\_\+rwlock\+\_\+t Write &80849 &112 us &103 ns &4.\+52 ms &263 us  \\\cline{1-6}
+pthread\+\_\+rwlock\+\_\+t Read &728698 &24 us &101 ns &7.\+28 ms &194 us  \\\cline{1-6}
+\end{longtabu}
+
+\end{DoxyEnumerate}

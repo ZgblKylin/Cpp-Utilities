@@ -1,0 +1,130 @@
+\hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{}\doxysection{Memory\+::RWSpin\+Lock\+::Upgraded\+Holder Class Reference}
+\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+
+
+RAII guard for upgrade lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{RWSpin\+Lock\+::lock\+\_\+upgrade()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}{RWSpin\+Lock\+::unlock\+\_\+upgrade()}} on destruction.  
+
+
+
+
+{\ttfamily \#include $<$RWSpin\+Lock.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_acdf4619e13a4ff73e3babf7e21c859fa}{Upgraded\+Holder}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} $\ast$\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}})
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a5dba0dda7825da7c391560602883c014}{Upgraded\+Holder}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} \&\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}})
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a9f5ad84c75820a0f6be49d2487a8b4a7}{Upgraded\+Holder}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&\&writer)
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_aa357df8e120289d0ded2ecc167fbf634}{Upgraded\+Holder}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&\&other) noexcept
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_af2cb8281ec81d249e657d3f2557d71f5}{operator=}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&\&other)
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_ac705369f4a821a31b1fc99851b18d4f2}{Upgraded\+Holder}} (const \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&other)=delete
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a311596c25eda7531d13e3f72d780a79f}{operator=}} (const \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&other)=delete
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a452a2267803e2befbb58aac8f19ef26b}{$\sim$\+Upgraded\+Holder}} ()
+\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a87034edbd87288b07f80d9008c647f87}{reset}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} $\ast$\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}=nullptr)
+\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a24ec9845cefe95167719fa9c48f3cbc4}{swap}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_ad907ce8d80cd44ef4446c2831427325f}{Write\+Holder}}
+\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a9cd3c321918aa92510b511be1c3d4aae}{Read\+Holder}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RAII guard for upgrade lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{RWSpin\+Lock\+::lock\+\_\+upgrade()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}{RWSpin\+Lock\+::unlock\+\_\+upgrade()}} on destruction. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_acdf4619e13a4ff73e3babf7e21c859fa}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_acdf4619e13a4ff73e3babf7e21c859fa}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!UpgradedHolder@{UpgradedHolder}}
+\index{UpgradedHolder@{UpgradedHolder}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{UpgradedHolder()}{UpgradedHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::\+Upgraded\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} $\ast$}]{lock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a5dba0dda7825da7c391560602883c014}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a5dba0dda7825da7c391560602883c014}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!UpgradedHolder@{UpgradedHolder}}
+\index{UpgradedHolder@{UpgradedHolder}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{UpgradedHolder()}{UpgradedHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::\+Upgraded\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} \&}]{lock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a9f5ad84c75820a0f6be49d2487a8b4a7}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a9f5ad84c75820a0f6be49d2487a8b4a7}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!UpgradedHolder@{UpgradedHolder}}
+\index{UpgradedHolder@{UpgradedHolder}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{UpgradedHolder()}{UpgradedHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::\+Upgraded\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&\&}]{writer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_aa357df8e120289d0ded2ecc167fbf634}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_aa357df8e120289d0ded2ecc167fbf634}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!UpgradedHolder@{UpgradedHolder}}
+\index{UpgradedHolder@{UpgradedHolder}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{UpgradedHolder()}{UpgradedHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::\+Upgraded\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_ac705369f4a821a31b1fc99851b18d4f2}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_ac705369f4a821a31b1fc99851b18d4f2}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!UpgradedHolder@{UpgradedHolder}}
+\index{UpgradedHolder@{UpgradedHolder}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{UpgradedHolder()}{UpgradedHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::\+Upgraded\+Holder (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a452a2267803e2befbb58aac8f19ef26b}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a452a2267803e2befbb58aac8f19ef26b}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!````~UpgradedHolder@{$\sim$UpgradedHolder}}
+\index{````~UpgradedHolder@{$\sim$UpgradedHolder}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{$\sim$UpgradedHolder()}{~UpgradedHolder()}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::$\sim$\+Upgraded\+Holder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_af2cb8281ec81d249e657d3f2557d71f5}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_af2cb8281ec81d249e657d3f2557d71f5}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \& Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a311596c25eda7531d13e3f72d780a79f}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a311596c25eda7531d13e3f72d780a79f}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \& Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a87034edbd87288b07f80d9008c647f87}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a87034edbd87288b07f80d9008c647f87}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!reset@{reset}}
+\index{reset@{reset}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} $\ast$}]{lock = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a24ec9845cefe95167719fa9c48f3cbc4}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a24ec9845cefe95167719fa9c48f3cbc4}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!swap@{swap}}
+\index{swap@{swap}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::\+Upgraded\+Holder\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_ad907ce8d80cd44ef4446c2831427325f}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_ad907ce8d80cd44ef4446c2831427325f}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!WriteHolder@{WriteHolder}}
+\index{WriteHolder@{WriteHolder}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{WriteHolder}{WriteHolder}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a9cd3c321918aa92510b511be1c3d4aae}\label{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a9cd3c321918aa92510b511be1c3d4aae}} 
+\index{Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}!ReadHolder@{ReadHolder}}
+\index{ReadHolder@{ReadHolder}!Memory::RWSpinLock::UpgradedHolder@{Memory::RWSpinLock::UpgradedHolder}}
+\doxysubsubsection{\texorpdfstring{ReadHolder}{ReadHolder}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{Read\+Holder}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Memory\+Safety/\mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpin\+Lock.\+hpp}}\end{DoxyCompactItemize}

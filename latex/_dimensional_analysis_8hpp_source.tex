@@ -1,0 +1,357 @@
+\hypertarget{_dimensional_analysis_8hpp_source}{}\doxysection{Dimensional\+Analysis.\+hpp}
+\label{_dimensional_analysis_8hpp_source}\index{include/Utilities/DimensionalAnalysis/DimensionalAnalysis.hpp@{include/Utilities/DimensionalAnalysis/DimensionalAnalysis.hpp}}
+\mbox{\hyperlink{_dimensional_analysis_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CPP\_UTILITIES\_DIMENSIONALANALYSIS\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CPP\_UTILITIES\_DIMENSIONALANALYSIS\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <tuple>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ratio>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}../Common.h"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{57 \mbox{\hyperlink{_common_8h_afd939a921079854300ffc21a768560e4}{UTILITIES\_NAMESPACE\_BEGIN}}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{68 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_dimensional}{Dimensional}} \{}
+\DoxyCodeLine{86 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{87 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}}
+\DoxyCodeLine{88 \{}
+\DoxyCodeLine{90     \textcolor{keyword}{using} \mbox{\hyperlink{struct_dimensional_1_1_unit}{type}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>}};}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#if \_\_cplusplus >= 201402L}}
+\DoxyCodeLine{93     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} std::tuple<int, int, int, int, int, int, int> \mbox{\hyperlink{struct_dimensional_1_1_unit_a8666366931b3c834df1531a5ac1c2c26}{factors}}\{}
+\DoxyCodeLine{94         length, mass, time, current, temperature, amountOfSubstance, luminousIntensity}
+\DoxyCodeLine{95     \};}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{98     \textcolor{keyword}{static} \textcolor{keyword}{const} std::tuple<int, int, int, int, int, int, int> \mbox{\hyperlink{struct_dimensional_1_1_unit_a8666366931b3c834df1531a5ac1c2c26}{factors}};}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{101     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_a51ea0da54c2a91564e2f90f45e555f1f}{factorLength}}               = length;}
+\DoxyCodeLine{103     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_a2c4d120e60e400794ce16dec74430885}{factorMass}}                 = mass;}
+\DoxyCodeLine{105     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_ae663bbbde99350bb783ec91237e06503}{factorTime}}                 = time;}
+\DoxyCodeLine{107     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_a30066d103e8c79cd6f620aa88a7797c2}{factorCurrent}}              = current;}
+\DoxyCodeLine{109     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_a5ca9ed5745370dcbc4690e58b0e464ef}{factorTemperature}}          = temperature;}
+\DoxyCodeLine{111     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_af5aad5ff98685dfba3f0f6f82406dccc}{factorAmountOfSubstance}}    = amountOfSubstance;}
+\DoxyCodeLine{113     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_ad6c13b894589debc60d585226e04603c}{factorLuminousIntensity}}    = luminousIntensity;}
+\DoxyCodeLine{114 \};}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#if \_\_cplusplus < 201703L }\textcolor{comment}{// Definition of static constexpr member is deprecated since C++17.}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#if \_\_cplusplus >= 201402L}}
+\DoxyCodeLine{117 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{118 \textcolor{keyword}{constexpr} std::tuple<int, int, int, int, int, int, int> \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factors}};}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{120 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{121 \textcolor{keyword}{const} std::tuple<int, int, int, int, int, int, int> \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factors}}\{}
+\DoxyCodeLine{122     length, mass, time, current, temperature, amountOfSubstance, luminousIntensity}
+\DoxyCodeLine{123 \};}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{125 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{126 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_a51ea0da54c2a91564e2f90f45e555f1f}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorLength}};}
+\DoxyCodeLine{127 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{128 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_a2c4d120e60e400794ce16dec74430885}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorMass}};}
+\DoxyCodeLine{129 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{130 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_ae663bbbde99350bb783ec91237e06503}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorTime}};}
+\DoxyCodeLine{131 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{132 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_a30066d103e8c79cd6f620aa88a7797c2}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorCurrent}};}
+\DoxyCodeLine{133 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{134 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_a5ca9ed5745370dcbc4690e58b0e464ef}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorTemperature}};}
+\DoxyCodeLine{135 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{136 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_af5aad5ff98685dfba3f0f6f82406dccc}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorAmountOfSubstance}};}
+\DoxyCodeLine{137 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} mass, \textcolor{keywordtype}{int} time, \textcolor{keywordtype}{int} current, \textcolor{keywordtype}{int} temperature, \textcolor{keywordtype}{int} amountOfSubstance, \textcolor{keywordtype}{int} luminousIntensity>}
+\DoxyCodeLine{138 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_dimensional_1_1_unit_ad6c13b894589debc60d585226e04603c}{Unit<length, mass, time, current, temperature, amountOfSubstance, luminousIntensity>::factorLuminousIntensity}};}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{153 \textcolor{keyword}{template}<\textcolor{keyword}{typename} Unit1,  \textcolor{keyword}{typename} Unit2>}
+\DoxyCodeLine{154 \textcolor{keyword}{using} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitMultiply}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}<}
+\DoxyCodeLine{155     Unit1::factorLength             + Unit2::factorLength,}
+\DoxyCodeLine{156     Unit1::factorMass               + Unit2::factorMass,}
+\DoxyCodeLine{157     Unit1::factorTime               + Unit2::factorTime,}
+\DoxyCodeLine{158     Unit1::factorCurrent            + Unit2::factorCurrent,}
+\DoxyCodeLine{159     Unit1::factorTemperature        + Unit2::factorTemperature,}
+\DoxyCodeLine{160     Unit1::factorAmountOfSubstance  + Unit2::factorAmountOfSubstance,}
+\DoxyCodeLine{161     Unit1::factorLuminousIntensity  + Unit2::factorLuminousIntensity}
+\DoxyCodeLine{162 >;}
+\DoxyCodeLine{168 \textcolor{keyword}{template}<\textcolor{keyword}{typename} Unit1,  \textcolor{keyword}{typename} Unit2>}
+\DoxyCodeLine{169 \textcolor{keyword}{using} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}<}
+\DoxyCodeLine{170     Unit1::factorLength             -\/ Unit2::factorLength,}
+\DoxyCodeLine{171     Unit1::factorMass               -\/ Unit2::factorMass,}
+\DoxyCodeLine{172     Unit1::factorTime               -\/ Unit2::factorTime,}
+\DoxyCodeLine{173     Unit1::factorCurrent            -\/ Unit2::factorCurrent,}
+\DoxyCodeLine{174     Unit1::factorTemperature        -\/ Unit2::factorTemperature,}
+\DoxyCodeLine{175     Unit1::factorAmountOfSubstance  -\/ Unit2::factorAmountOfSubstance,}
+\DoxyCodeLine{176     Unit1::factorLuminousIntensity  -\/ Unit2::factorLuminousIntensity}
+\DoxyCodeLine{177 >;}
+\DoxyCodeLine{183 \textcolor{keyword}{template}<\textcolor{keyword}{typename} U, \textcolor{keywordtype}{int} n>}
+\DoxyCodeLine{184 \textcolor{keyword}{using} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitPow}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}<}
+\DoxyCodeLine{185     U::factorLength             * n,}
+\DoxyCodeLine{186     U::factorMass               * n,}
+\DoxyCodeLine{187     U::factorTime               * n,}
+\DoxyCodeLine{188     U::factorCurrent            * n,}
+\DoxyCodeLine{189     U::factorTemperature        * n,}
+\DoxyCodeLine{190     U::factorAmountOfSubstance  * n,}
+\DoxyCodeLine{191     U::factorLuminousIntensity  * n}
+\DoxyCodeLine{192 >;}
+\DoxyCodeLine{198 \textcolor{keyword}{template}<\textcolor{keyword}{typename} U, \textcolor{keywordtype}{int} n>}
+\DoxyCodeLine{199 \textcolor{keyword}{using} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitRoot}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}<}
+\DoxyCodeLine{200     U::factorLength             / n,}
+\DoxyCodeLine{201     U::factorMass               / n,}
+\DoxyCodeLine{202     U::factorTime               / n,}
+\DoxyCodeLine{203     U::factorCurrent            / n,}
+\DoxyCodeLine{204     U::factorTemperature        / n,}
+\DoxyCodeLine{205     U::factorAmountOfSubstance  / n,}
+\DoxyCodeLine{206     U::factorLuminousIntensity  / n}
+\DoxyCodeLine{207 >;}
+\DoxyCodeLine{219 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<0, 0, 0, 0, 0, 0, 0>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}};}
+\DoxyCodeLine{223 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<1, 0, 0, 0, 0, 0, 0>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}};}
+\DoxyCodeLine{227 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<0, 1, 0, 0, 0, 0, 0>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}};}
+\DoxyCodeLine{231 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<0, 0, 1, 0, 0, 0, 0>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}};}
+\DoxyCodeLine{235 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<0, 0, 0, 1, 0, 0, 0>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}};}
+\DoxyCodeLine{239 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<0, 0, 0, 0, 1, 0, 0>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a7ec670efa91aa11e50b52a2f9f5720ce}{Temperature}};}
+\DoxyCodeLine{243 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<0, 0, 0, 0, 0, 1, 0>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_af2d5c04939f2dcbd1886cc4d20bedb3c}{AmountOfSubstance}};}
+\DoxyCodeLine{247 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit<0, 0, 0, 0, 0, 0, 1>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}{LuminousIntensity}};}
+\DoxyCodeLine{259 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Length, Time>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a2778245cc18590fcf814160ae0c93ced}{Speed}};}
+\DoxyCodeLine{263 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Speed, Time>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a13945f34cda20835710037b27adee9f8}{Acceleration}};}
+\DoxyCodeLine{268 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Scala, Time>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a82bf54bd48d0aac2ccc92ca604af24f7}{Frenquency}};}
+\DoxyCodeLine{269 \textcolor{comment}{// TODO radian}}
+\DoxyCodeLine{270 \textcolor{comment}{// TODO steradian}}
+\DoxyCodeLine{275 \textcolor{comment}{}\textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitMultiply<Mass, Acceleration>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}{Force}};}
+\DoxyCodeLine{279 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitMultiply<Length, Length>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}};}
+\DoxyCodeLine{283 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitMultiply<Area, Length>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a34956d832952f77cf675d4bcbfedd7b3}{Volume}};}
+\DoxyCodeLine{288 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Force, Area>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a811a9c6202076db547347f54c364ca01}{Pressure}};}
+\DoxyCodeLine{293 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitMultiply<Force, Length>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}};}
+\DoxyCodeLine{298 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Energy, Time>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a62bb3aa7042c094c841c9f2c1702b43e}{Power}};}
+\DoxyCodeLine{303 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitMultiply<Time, Current>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a763b77700b2ac8b41caede559ae0fa1e}{Charge}};}
+\DoxyCodeLine{308 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Power, Current>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}};}
+\DoxyCodeLine{313 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Charge, Voltage>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a7120229a1b8430ce7ec22c005f7031b9}{ElelctricCapacitance}};}
+\DoxyCodeLine{318 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Voltage, Current>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_ae4d3240cbf8bf4922fc10fd84509a920}{ElectricResistance}};}
+\DoxyCodeLine{324 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Scala, ElectricResistance>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a83d31d0073acc8b3220c25132023c02d}{ElelctricConductance}};}
+\DoxyCodeLine{329 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitMultiply<Voltage, Time>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}{MagneticFlux}};}
+\DoxyCodeLine{334 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<MagneticFlux, Area>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a2be6e8299922aea6ae1dcc72066b9a41}{MagnetFluxDensity}};}
+\DoxyCodeLine{339 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<MagneticFlux, Current>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a51214909e540b8a4a0aa775d9acddbff}{Inductance}};}
+\DoxyCodeLine{344 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{LuminousIntensity}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a7393ed41aaf3662939eb4105f3c6aa17}{Luminous}};}
+\DoxyCodeLine{349 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<LuminousIntensity, Area>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a8071b6ff261a06e90062c333559f9cf6}{Illuminance}};}
+\DoxyCodeLine{354 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Scala, Time>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_ad17af70045be41582851db8e6b596154}{Radioactivity}};}
+\DoxyCodeLine{359 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Energy, Mass>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a4ea995aeb49c9a3361c4d50cba384967}{AbsorbedDose}};}
+\DoxyCodeLine{364 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<Energy, Mass>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a39c2bb948aa7e93a0e560d1301b31343}{EquivalentDose}};}
+\DoxyCodeLine{369 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_dimensional_1_1_unit}{UnitDivide<AmountOfSubstance, Time>}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a5b2c627434658dc5c677203bfacf0920}{CatalyticActivity}};}
+\DoxyCodeLine{372 \textcolor{comment}{// Forward declarations}}
+\DoxyCodeLine{373 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} Unit, \textcolor{keyword}{typename} Ratio>}
+\DoxyCodeLine{374 \textcolor{keyword}{class }\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}};}
+\DoxyCodeLine{375 \textcolor{keyword}{template}<\textcolor{keyword}{typename} NewRatio, \textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} Ratio>}
+\DoxyCodeLine{376 \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, NewRatio>}} \mbox{\hyperlink{namespace_dimensional_a9aa8353cb7c7ec824c3a741d3a4df017}{quantity\_cast}}(\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}} x);}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{392 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} Ratio = std::ratio<1>>}
+\DoxyCodeLine{393 \textcolor{keyword}{class }\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}}
+\DoxyCodeLine{394 \{}
+\DoxyCodeLine{395 \textcolor{keyword}{public}:}
+\DoxyCodeLine{397     \textcolor{keyword}{using} \mbox{\hyperlink{class_dimensional_1_1_quantity}{type}} = \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}};}
+\DoxyCodeLine{399     \textcolor{keyword}{using} \mbox{\hyperlink{class_dimensional_1_1_quantity_a0ac30a56fc7237d45c8b19d7d0b946d6}{value\_type}} = T;}
+\DoxyCodeLine{401     \textcolor{keyword}{using} \mbox{\hyperlink{class_dimensional_1_1_quantity_aa57e6634876446e1c486df79b207311b}{unit\_type}} = U;}
+\DoxyCodeLine{403     \textcolor{keyword}{using} \mbox{\hyperlink{class_dimensional_1_1_quantity_a64e222ad44be5d3b46ea35727ced2912}{ratio\_type}} = Ratio;}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{409     \textcolor{keyword}{inline} \textcolor{keyword}{explicit} \mbox{\hyperlink{class_dimensional_1_1_quantity_a1fa6d53c45c5aca1195c968101d066fc}{Quantity}}(T x = 0)}
+\DoxyCodeLine{410         : v(x)}
+\DoxyCodeLine{411     \{\}}
+\DoxyCodeLine{412 }
+\DoxyCodeLine{417     \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity_a0c2bc6fb39abb83c28f1ec34f2659b57}{Quantity}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}}\& other)}
+\DoxyCodeLine{418         : v(other.v)}
+\DoxyCodeLine{419     \{\}}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{426     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{427     \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity_a969f535ceeaaf1785e862d67fcf75561}{Quantity}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)}
+\DoxyCodeLine{428         : v(\mbox{\hyperlink{class_dimensional_1_1_quantity_a6a71b12c7ca38fddda916be9b5deb574}{quantity\_cast}}<Ratio>(other).\mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}}())}
+\DoxyCodeLine{429     \{\}}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{437     \textcolor{keyword}{inline} T \mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{438 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} v; \}}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{445     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_dimensional_1_1_quantity_a44865d241738a9c0fa57630cb7023fb9}{set\_value}}(T \mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}})}
+\DoxyCodeLine{446     \{ v = \mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}};; \}}
+\DoxyCodeLine{447 }
+\DoxyCodeLine{453     \textcolor{keyword}{inline} T \mbox{\hyperlink{class_dimensional_1_1_quantity_abb794e63000de5ff8e4a1e3958e64fc1}{standard\_value}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{454 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} quantity\_cast<std::ratio<1>>(*this).value(); \}}
+\DoxyCodeLine{455 }
+\DoxyCodeLine{461     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_dimensional_1_1_quantity_abfba1ce30645b019884f36f0c8e202b0}{set\_standard\_value}}(T \mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}})}
+\DoxyCodeLine{462     \{ v = quantity\_cast<Ratio>(\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U>}}(\mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}})).value(); \}}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{472     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{473     \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}}\&}
+\DoxyCodeLine{474     \mbox{\hyperlink{class_dimensional_1_1_quantity_a7f29303155e6ea6da99953ca8add4b8e}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)}
+\DoxyCodeLine{475     \{ v += quantity\_cast<Ratio>(other).v; \textcolor{keywordflow}{return} *\textcolor{keyword}{this}; \}}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{482     \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}}\&}
+\DoxyCodeLine{483     \mbox{\hyperlink{class_dimensional_1_1_quantity_ae47d4fb50a00e9e170dc41071b48a75d}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}}\& other)}
+\DoxyCodeLine{484     \{ v = other.v; \textcolor{keywordflow}{return} *\textcolor{keyword}{this}; \}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{494     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{495     \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}}\&}
+\DoxyCodeLine{496     \mbox{\hyperlink{class_dimensional_1_1_quantity_a64e0b8ff0ade6288eb076123856bb1a9}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)}
+\DoxyCodeLine{497     \{ v = quantity\_cast<Ratio>(other).v; \textcolor{keywordflow}{return} *\textcolor{keyword}{this}; \}}
+\DoxyCodeLine{498 }
+\DoxyCodeLine{506     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{507     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_dimensional_1_1_quantity_a3561837402ddff080205e06e4e3a834d}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{508 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} v == quantity\_cast<Ratio>(other).v; \}}
+\DoxyCodeLine{509 }
+\DoxyCodeLine{517     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{518     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_dimensional_1_1_quantity_aebe2b34f87e01d71d7d1d77ac38cdfef}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{519 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} !(*\textcolor{keyword}{this} == other); \}}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{528     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{529     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_dimensional_1_1_quantity_a7891dc9a02d034839e2703d9fabe2958}{operator<}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{530 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} v < quantity\_cast<Ratio>(other).v; \}}
+\DoxyCodeLine{531 }
+\DoxyCodeLine{539     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{540     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_dimensional_1_1_quantity_a88f272b0b2f39a758c555e078dd6af32}{operator<=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{541 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} (*\textcolor{keyword}{this} < other) || (*\textcolor{keyword}{this} == other); \}}
+\DoxyCodeLine{542 }
+\DoxyCodeLine{550     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{551     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_dimensional_1_1_quantity_a4c809b1c85ae8152e543e16290b095a3}{operator>}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{552 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} !(*\textcolor{keyword}{this} <= other); \}}
+\DoxyCodeLine{553 }
+\DoxyCodeLine{561     \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherRatio>}
+\DoxyCodeLine{562     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_dimensional_1_1_quantity_a193aa8b5efdf94068ba11beec2607a29}{operator>=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, OtherRatio>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{563 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} !(*\textcolor{keyword}{this} < other); \}}
+\DoxyCodeLine{564 }
+\DoxyCodeLine{565 \textcolor{keyword}{private}:}
+\DoxyCodeLine{566     T v;}
+\DoxyCodeLine{567 \};}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{581 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} Ratio1, \textcolor{keyword}{typename} Ratio2>}
+\DoxyCodeLine{582 \textcolor{keyword}{inline} Quantity<T, U, Ratio1>}
+\DoxyCodeLine{583 \mbox{\hyperlink{class_dimensional_1_1_quantity_a2cb2a57bae59e96d9894b877d0a46b04}{operator+}}(\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio1>}} lhs, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio2>}} rhs)}
+\DoxyCodeLine{584 \{}
+\DoxyCodeLine{585     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio1>}}(lhs.\mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}}()}
+\DoxyCodeLine{586                                   + quantity\_cast<Ratio1>(rhs).value());}
+\DoxyCodeLine{587 \}}
+\DoxyCodeLine{588 }
+\DoxyCodeLine{602 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} Ratio1, \textcolor{keyword}{typename} Ratio2>}
+\DoxyCodeLine{603 \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio1>}}}
+\DoxyCodeLine{604 \mbox{\hyperlink{class_dimensional_1_1_quantity_a18c90a00a9838498b5f2846fd25ffc27}{operator-\/}}(\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio1>}}\& lhs, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio2>}} rhs)}
+\DoxyCodeLine{605 \{}
+\DoxyCodeLine{606     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio1>}}(lhs.\mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}}()}
+\DoxyCodeLine{607                                   -\/ quantity\_cast<Ratio1>(rhs).value());}
+\DoxyCodeLine{608 \}}
+\DoxyCodeLine{609 }
+\DoxyCodeLine{624 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} Unit1, \textcolor{keyword}{typename} Ratio1, \textcolor{keyword}{typename} Unit2, \textcolor{keyword}{typename} Ratio2>}
+\DoxyCodeLine{625 \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, UnitMultiply<Unit1, Unit2>}}, Ratio1>}
+\DoxyCodeLine{626 \mbox{\hyperlink{class_dimensional_1_1_quantity_ad129be6aadefea0016e47d71dc3aaf94}{operator*}}(\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, Unit1, Ratio1>}} lhs, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, Unit2, Ratio2>}} rhs)}
+\DoxyCodeLine{627 \{}
+\DoxyCodeLine{628     \textcolor{keyword}{using} dim = UnitMultiply<Unit1, Unit2>;}
+\DoxyCodeLine{629     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, dim, Ratio1>}}(lhs.\mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}}()}
+\DoxyCodeLine{630                                     * quantity\_cast<Ratio1>(rhs).value());}
+\DoxyCodeLine{631 \}}
+\DoxyCodeLine{632 }
+\DoxyCodeLine{647 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} Unit1, \textcolor{keyword}{typename} Ratio1, \textcolor{keyword}{typename} Unit2, \textcolor{keyword}{typename} Ratio2>}
+\DoxyCodeLine{648 \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, UnitDivide<Unit1, Unit2>}}, Ratio1>}
+\DoxyCodeLine{649 \mbox{\hyperlink{class_dimensional_1_1_quantity_aefd6bb39884379afb271ef2776d333c1}{operator/}}(\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, Unit1, Ratio1>}} lhs, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, Unit2, Ratio2>}} rhs)}
+\DoxyCodeLine{650 \{}
+\DoxyCodeLine{651     \textcolor{keyword}{using} dim = UnitDivide<Unit1, Unit2>;}
+\DoxyCodeLine{652     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, dim, Ratio1>}}(lhs.\mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}}()}
+\DoxyCodeLine{653                                     / quantity\_cast<Ratio1>(rhs).value());}
+\DoxyCodeLine{654 \}}
+\DoxyCodeLine{655 }
+\DoxyCodeLine{667 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} factor, \textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} Ratio>}
+\DoxyCodeLine{668 \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, UnitPow<U, factor>}}, std::ratio<1>>}
+\DoxyCodeLine{669 \mbox{\hyperlink{class_dimensional_1_1_quantity_a4d6941bd4f7a697e730b0e2fb2355096}{pow}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}}\& x)}
+\DoxyCodeLine{670 \{}
+\DoxyCodeLine{671     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}<}
+\DoxyCodeLine{672                T,}
+\DoxyCodeLine{673                UnitPow<U, factor>,}
+\DoxyCodeLine{674                std::ratio<1>}
+\DoxyCodeLine{675            >(std::pow(\mbox{\hyperlink{namespace_dimensional_a9aa8353cb7c7ec824c3a741d3a4df017}{quantity\_cast}}<std::ratio<1>>(x).value(),}
+\DoxyCodeLine{676                       factor));}
+\DoxyCodeLine{677 \}}
+\DoxyCodeLine{678 }
+\DoxyCodeLine{690 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} factor, \textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} Ratio>}
+\DoxyCodeLine{691 \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, UnitRoot<U, factor>}}, std::ratio<1>>}
+\DoxyCodeLine{692 \mbox{\hyperlink{class_dimensional_1_1_quantity_a7d020dcc04265c31b45268f324bbd2cc}{root}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}}\& x)}
+\DoxyCodeLine{693 \{}
+\DoxyCodeLine{694     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}<}
+\DoxyCodeLine{695                T,}
+\DoxyCodeLine{696                UnitRoot<U, factor>,}
+\DoxyCodeLine{697                std::ratio<1>}
+\DoxyCodeLine{698            >(std::pow(\mbox{\hyperlink{namespace_dimensional_a9aa8353cb7c7ec824c3a741d3a4df017}{quantity\_cast}}<std::ratio<1>>(x).value(),}
+\DoxyCodeLine{699                       1.0 / factor));}
+\DoxyCodeLine{700 \}}
+\DoxyCodeLine{701 }
+\DoxyCodeLine{714 \textcolor{keyword}{template}<\textcolor{keyword}{typename} NewRatio, \textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} Ratio>}
+\DoxyCodeLine{715 \textcolor{keyword}{inline} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, NewRatio>}} \mbox{\hyperlink{class_dimensional_1_1_quantity_a6a71b12c7ca38fddda916be9b5deb574}{quantity\_cast}}(\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, Ratio>}} x)}
+\DoxyCodeLine{716 \{}
+\DoxyCodeLine{717     \textcolor{keyword}{using} ratio\_div = std::ratio\_divide<Ratio, NewRatio>;}
+\DoxyCodeLine{718     T val = x.\mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}}()}
+\DoxyCodeLine{719             * (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long} \textcolor{keywordtype}{double}\textcolor{keyword}{>}(ratio\_div::num) / ratio\_div::den);}
+\DoxyCodeLine{720     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity<T, U, NewRatio>}}(val);}
+\DoxyCodeLine{721 \}}
+\DoxyCodeLine{722 }
+\DoxyCodeLine{733 \textcolor{keyword}{typedef} std::ratio<80813362, 25723692> \mbox{\hyperlink{class_dimensional_1_1_quantity_add238b06de06bc8daa695aab5a39ed02}{ratio\_PI}};}
+\DoxyCodeLine{738 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_PI, std::ratio<180>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a904d8eeeb56c4abbb388ca883269d61a}{ratio\_degree}};}
+\DoxyCodeLine{751 \textcolor{keyword}{typedef} std::ratio<500, 1> \mbox{\hyperlink{class_dimensional_1_1_quantity_ac8b12a64f66fcf4132f3d1d0742e7b98}{ratio\_length\_li}};}
+\DoxyCodeLine{756 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_length\_li, std::ratio<15>> \mbox{\hyperlink{class_dimensional_1_1_quantity_afb4cec1cf4b73ee98cf506c475b7f138}{ratio\_yin}};}
+\DoxyCodeLine{761 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_yin, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}{ratio\_zhang}};}
+\DoxyCodeLine{766 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_zhang, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a6bf547fc1c4dd349e21d04434da13702}{ratio\_xun}};}
+\DoxyCodeLine{771 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_zhang, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_aebc8a06a3788e348ad98cfafd371dff0}{ratio\_chi}};}
+\DoxyCodeLine{776 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_chi, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_ae2388b56d8c398e954e431d5bc70edff}{ratio\_cun}};}
+\DoxyCodeLine{781 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_cun, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a5c35f2c227ab3289032ba9e5e166f9d8}{ratio\_length\_fen}};}
+\DoxyCodeLine{786 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_length\_fen, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_ad2eed4fb38c59b82c165aa5e8cc4bb31}{ratio\_length\_li2}};}
+\DoxyCodeLine{791 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_length\_li2, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_aeff6c2de3e692c0e6b7e3992a5d5410b}{ratio\_length\_hao}};}
+\DoxyCodeLine{796 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_length\_hao, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a830ade483123925e45ca333db4c3861d}{ratio\_length\_si}};}
+\DoxyCodeLine{801 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_length\_si, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a84d1f06061d0b5cf508cd20a8929bb65}{ratio\_length\_hu}};}
+\DoxyCodeLine{806 \textcolor{keyword}{typedef} std::ratio<200000, 3> \mbox{\hyperlink{class_dimensional_1_1_quantity_a70e6834ed7198da22600f10feac7f2f4}{ratio\_qing}};}
+\DoxyCodeLine{811 \textcolor{keyword}{typedef} std::ratio<2000, 3> \mbox{\hyperlink{class_dimensional_1_1_quantity_ad5a1600cf2b4f44c55b09cb589dbf007}{ratio\_mu}};}
+\DoxyCodeLine{816 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_mu, std::ratio<240>> \mbox{\hyperlink{class_dimensional_1_1_quantity_ae153cf54afd64fa565768c7bfa7cdcb3}{ratio\_gong}};}
+\DoxyCodeLine{821 \textcolor{keyword}{typedef} std::ratio<50> \mbox{\hyperlink{class_dimensional_1_1_quantity_aba1ed39ce4e7f0c620075d8254ca5ac3}{ratio\_dan}};}
+\DoxyCodeLine{826 \textcolor{keyword}{typedef} std::ratio<1, 2> \mbox{\hyperlink{class_dimensional_1_1_quantity_a31ecd73c229c83327869c83a81c33942}{ratio\_jin}};}
+\DoxyCodeLine{831 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_jin, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a38e666646e92a80ddd31f3f0e885b432}{ratio\_liang}};}
+\DoxyCodeLine{836 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_liang, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a8580539a4e3d6751eea3b1dcc2a9f4c2}{ratio\_qian}};}
+\DoxyCodeLine{841 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_qian, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_ad52ed66623f187ea119156144f84425e}{ratio\_mass\_fen}};}
+\DoxyCodeLine{846 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_mass\_fen, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a2b20dab65f4bc5b82ed2f93294b0b37a}{ratio\_mass\_li}};}
+\DoxyCodeLine{851 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_mass\_li, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a00a45449864955ab1b9f95aff6d596bb}{ratio\_mass\_hao}};}
+\DoxyCodeLine{856 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_mass\_hao, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_ab61138f11aa230185fad960653502937}{ratio\_mass\_si}};}
+\DoxyCodeLine{861 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_mass\_si, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a884c0b234107e0f709e4e92db3eea00d}{ratio\_mass\_hu}};}
+\DoxyCodeLine{874 \textcolor{keyword}{typedef} std::ratio\_multiply<std::ratio<1609344ll, 1000000ll>, std::kilo> \mbox{\hyperlink{class_dimensional_1_1_quantity_aa0ad6c0caff76254f6f075c5aca11f32}{ratio\_mile}};}
+\DoxyCodeLine{879 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_mile, std::ratio<8>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a6b0b2f3c883c285c88f3ce53fd420b64}{ratio\_furlong}};}
+\DoxyCodeLine{884 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_furlong, std::ratio<10>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a719981abae877612a709bcce290949a5}{ratio\_chain}};}
+\DoxyCodeLine{889 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_chain, std::ratio<22>> \mbox{\hyperlink{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}{ratio\_yard}};}
+\DoxyCodeLine{894 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_yard, std::ratio<16>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a70fd9319fef87c94f78cf41b290164dd}{ratio\_nail}};}
+\DoxyCodeLine{899 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_yard, std::ratio<3>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a2bb3b2fca214fbca6aff2c7c900dac7f}{ratio\_feet}};}
+\DoxyCodeLine{904 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_feet, std::ratio<12>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a2414dba6005eed916a876bd4524a4251}{ratio\_inch}};}
+\DoxyCodeLine{909 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_inch, std::ratio<6>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a153a88b16c0c55f364f0c2fa856848e5}{ratio\_pica}};}
+\DoxyCodeLine{914 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_pica, std::ratio<12>> \mbox{\hyperlink{class_dimensional_1_1_quantity_ab40c734406d8cbd033db420925c619ab}{ratio\_point}};}
+\DoxyCodeLine{919 \textcolor{keyword}{typedef} std::ratio<10160469088, 10000000> \mbox{\hyperlink{class_dimensional_1_1_quantity_aac1fedec435fe50c4ed96002264190a5}{ratio\_longton}};}
+\DoxyCodeLine{924 \textcolor{keyword}{typedef} std::ratio<90718474, 100000> \mbox{\hyperlink{class_dimensional_1_1_quantity_a29d3b77c3d282ee7167001e70351bce1}{ratio\_shortton}};}
+\DoxyCodeLine{929 \textcolor{keyword}{typedef} std::ratio<5080234544, 100000000> \mbox{\hyperlink{class_dimensional_1_1_quantity_aebbfa00900d148a3fe091e8d84561d4e}{ratio\_long\_hundredweight}};}
+\DoxyCodeLine{934 \textcolor{keyword}{typedef} std::ratio<45359237, 1000000> \mbox{\hyperlink{class_dimensional_1_1_quantity_a504accecc554cbb4b570c528d5c420a0}{ratio\_short\_hundredweight}};}
+\DoxyCodeLine{939 \textcolor{keyword}{typedef} std::ratio<45359237, 100000000> \mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\_pound}};}
+\DoxyCodeLine{944 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_pound, std::ratio<16>> \mbox{\hyperlink{class_dimensional_1_1_quantity_af67214972753c0151b0e770974d9bb78}{ratio\_ounce}};}
+\DoxyCodeLine{949 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_ounce, std::ratio<16>> \mbox{\hyperlink{class_dimensional_1_1_quantity_affe8b9383a40c5c910710906989d38cb}{ratio\_drachm}};}
+\DoxyCodeLine{954 \textcolor{keyword}{typedef} std::ratio\_multiply<std::ratio<6479891, 100000ll>, std::micro> \mbox{\hyperlink{class_dimensional_1_1_quantity_aaef9ca651a7ff91fda58767a6f78538d}{ratio\_grain}};}
+\DoxyCodeLine{967 \textcolor{keyword}{typedef} \mbox{\hyperlink{class_dimensional_1_1_quantity_aebbfa00900d148a3fe091e8d84561d4e}{ratio\_long\_hundredweight}} \mbox{\hyperlink{class_dimensional_1_1_quantity_ae8269344350cc3a60336b76c2901181f}{ratio\_en\_hundredweight}};}
+\DoxyCodeLine{972 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_pound, std::ratio<28>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a59254cf6150d82a6275f15b3bc38e486}{ratio\_en\_quarter}};}
+\DoxyCodeLine{977 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_pound, std::ratio<14>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a75de6c6e2d6fb77761337976830d52a5}{ratio\_en\_stone}};}
+\DoxyCodeLine{982 \textcolor{keyword}{typedef} std::ratio\_multiply<std::ratio<35516328125ll, 10000000000ll>, std::micro> \mbox{\hyperlink{class_dimensional_1_1_quantity_a7c6e8e4e855bc9ee42dcf8781c31159c}{ratio\_en\_fluid\_dram}};}
+\DoxyCodeLine{987 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_en\_fluid\_dram, std::ratio<8>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a0a1229aabe760440a7672a7991aa544f}{ratio\_en\_fluid\_ounce}};}
+\DoxyCodeLine{992 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_en\_fluid\_ounce, std::ratio<5>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a92c1d103f4b9e4ef327a8a2d0b3a5e54}{ratio\_en\_gill}};}
+\DoxyCodeLine{997 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_en\_gill, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a8b459a0fff40544a6d6c4f36035b1d53}{ratio\_en\_cup}};}
+\DoxyCodeLine{1002 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_en\_cup, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a3c0826f21e647cd67273e30420735d64}{ratio\_en\_pint}};}
+\DoxyCodeLine{1007 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_en\_pint, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a547c7b250d689cd0c26d91fba5dce5cc}{ratio\_en\_quart}};}
+\DoxyCodeLine{1012 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_en\_quart, std::ratio<4>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a1dbebae7cf4299bf8bcabc16ccda594e}{ratio\_en\_gallon}};}
+\DoxyCodeLine{1017 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_en\_gallon, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_af47d5ef890466385567a61120f8f101c}{ratio\_en\_peck}};}
+\DoxyCodeLine{1022 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_en\_peck, std::ratio<4>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a3659edb6bf36d5bcf65043f873f49b1a}{ratio\_en\_bushel}};}
+\DoxyCodeLine{1035 \textcolor{keyword}{typedef} \mbox{\hyperlink{class_dimensional_1_1_quantity_a504accecc554cbb4b570c528d5c420a0}{ratio\_short\_hundredweight}} \mbox{\hyperlink{class_dimensional_1_1_quantity_a3128f51d085513d0704e52b4213f2cdb}{ratio\_us\_hundredweight}};}
+\DoxyCodeLine{1040 \textcolor{keyword}{typedef} std::ratio\_multiply<std::ratio<36966911953125ll, 10000000000000ll>, std::micro> \mbox{\hyperlink{class_dimensional_1_1_quantity_ac887d76caa939183ff3e3c0651611a1e}{ratio\_us\_fluid\_dram}};}
+\DoxyCodeLine{1045 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_fluid\_dram, std::ratio<8>> \mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\_us\_fluid\_ounce}};}
+\DoxyCodeLine{1050 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_us\_fluid\_ounce, std::ratio<6>> \mbox{\hyperlink{class_dimensional_1_1_quantity_aed05bb5ade36b8a7ccdb4c11b911a8f8}{ratio\_us\_teaspoons}};}
+\DoxyCodeLine{1055 \textcolor{keyword}{typedef} std::ratio\_divide<ratio\_us\_fluid\_ounce, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a559612fd0fef51ae4db5b1326832a315}{ratio\_us\_tablespoons}};}
+\DoxyCodeLine{1060 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_fluid\_ounce, std::ratio<4>> \mbox{\hyperlink{class_dimensional_1_1_quantity_abc22e43966996c178278993415db97f3}{ratio\_us\_gill}};}
+\DoxyCodeLine{1065 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_gill, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_afa624fe455467c4fea8eacfebbd91daa}{ratio\_us\_cup}};}
+\DoxyCodeLine{1070 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_cup, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_affee17e4f6356cc3b56ab2fcf61eca25}{ratio\_us\_pint}};}
+\DoxyCodeLine{1075 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_pint, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_af8eb015f62475c00c084c3a1f1382286}{ratio\_us\_quart}};}
+\DoxyCodeLine{1080 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_quart, std::ratio<4>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a0fa6b379459f14e00c435bd041e7d26f}{ratio\_us\_gallon}};}
+\DoxyCodeLine{1085 \textcolor{keyword}{typedef} std::ratio\_multiply<std::ratio<5506104713575ll, 10000000000000ll>, std::milli> \mbox{\hyperlink{class_dimensional_1_1_quantity_a39d95fe224ba9b9591c7b5c593724afa}{ratio\_us\_dry\_pint}};}
+\DoxyCodeLine{1090 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_dry\_pint, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_abdd83b73d63b2ba65a13cc320c8dac24}{ratio\_us\_dry\_quart}};}
+\DoxyCodeLine{1095 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_dry\_quart, std::ratio<4>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a6d98ec560e5cd288aa2b8a35b95085ae}{ratio\_us\_dry\_gallon}};}
+\DoxyCodeLine{1100 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_dry\_gallon, std::ratio<2>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a6fd6b3532a8a004f77751ac80e68b226}{ratio\_us\_dry\_peck}};}
+\DoxyCodeLine{1105 \textcolor{keyword}{typedef} std::ratio\_multiply<ratio\_us\_dry\_peck, std::ratio<4>> \mbox{\hyperlink{class_dimensional_1_1_quantity_a6515326d2c38ec692b588eb3fc1c6e2b}{ratio\_us\_bushel}};}
+\DoxyCodeLine{1107 \} \textcolor{comment}{// namespace Dimensional}}
+\DoxyCodeLine{1110 \textcolor{comment}{}\mbox{\hyperlink{_common_8h_add21c59d72c4c8b62da5082f77a8d6b9}{UTILITIES\_NAMESPACE\_END}}}
+\DoxyCodeLine{1111 }
+\DoxyCodeLine{1114 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// CPP\_UTILITIES\_DIMENSIONALANALYSIS\_HPP}}
+
+\end{DoxyCode}

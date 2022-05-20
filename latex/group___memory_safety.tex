@@ -1,0 +1,27 @@
+\hypertarget{group___memory_safety}{}\doxysection{Memory Safety}
+\label{group___memory_safety}\index{Memory Safety@{Memory Safety}}
+
+
+Helper classes, typedefs and functions for memroy safety.  
+
+
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_memory}{Memory}}
+\begin{DoxyCompactList}\small\item\em Namespace for all classes, typedefs and functions of memory safety. See \mbox{\hyperlink{group___memory_safety}{Memory Safety}} for more instrucion. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespacestd}{std}}
+\begin{DoxyCompactList}\small\item\em Contains std functions overload for classes in Utilities, cannot hide in doxygen, just ignore it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper classes, typedefs and functions for memroy safety. 
+
+Provide helperful functionalities for memory safety with\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{Memory\+::\+RWSpin\+Lock}} \+: A extremely high-\/performance read-\/write-\/spinlock imported from folly library.~\newline
+
+\item \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}} \+: A wrapper to {\ttfamily std\+::shared\+\_\+ptr} to provide thread-\/safety while operating the underlying pointer.~\newline
+
+\item \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}} \+: A wrapper to {\ttfamily std\+::weak\+\_\+ptr} to cooperate with \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}. 
+\end{DoxyItemize}

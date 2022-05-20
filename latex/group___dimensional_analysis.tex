@@ -1,0 +1,49 @@
+\hypertarget{group___dimensional_analysis}{}\doxysection{Dimensional Analysis}
+\label{group___dimensional_analysis}\index{Dimensional Analysis@{Dimensional Analysis}}
+
+
+Helper classes, typedefs and functions for dimensional analyse.  
+
+
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_dimensional}{Dimensional}}
+\begin{DoxyCompactList}\small\item\em Namespace for all classes, typedefs and functions of dimensional analyse. See \mbox{\hyperlink{group___dimensional_analysis}{Dimensional Analysis}} for more instrucion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper classes, typedefs and functions for dimensional analyse. 
+
+Provide helperful functionalities for dimensional analysis with pros\+:~\newline
+ {\bfseries{Zero-\/cost abstraction}} Using template to encapsulate functionalities, grants same memory-\/layout and runtime performance as primitive types.~\newline
+ {\bfseries{Strong typed}} All values in dimensional objects has its unique unit$\ast$$\ast$, calculation between them is guaranteed by compiler warning and {\bfseries{error}}.~\newline
+ {\bfseries{Non-\/standard unit}} of same \char`\"{}type\char`\"{}, like {\ttfamily yard} vs {\ttfamily meter}, is supported, and will be regarded like {\bfseries{same}} unit, {\ttfamily std\+::ratio} is used for modifier of the unit. Calculations between same unit with different ratio is safe, ratios of each operand will be performed into the calculation.~\newline
+ {\bfseries{Add/subtract}} with {\bfseries{same}} unit is allowed, whereas with different units will cause compile error.~\newline
+ {\bfseries{Multiply/divide}} values with {\bfseries{any}} units is safe, a new value with {\bfseries{new unit}} will be generated.~\newline
+ {\bfseries{User defined unit}} is supported. Helper types is provided to derive new unit from existsing units.~\newline
+ ~\newline
+ {\bfseries{Sample Code}}~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using} \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional::Quantity}};}
+\DoxyCodeLine{\textcolor{keyword}{using} \mbox{\hyperlink{namespace_dimensional_a9aa8353cb7c7ec824c3a741d3a4df017}{Dimensional::quantity\_cast}};}
+\DoxyCodeLine{Quantity<double, Dimensional::length> meters(1);}
+\DoxyCodeLine{Quantity<double, Dimensional::length, Dimensional::ratio\_yard> yards(1.0);}
+\DoxyCodeLine{meters += yards;}
+\DoxyCodeLine{yards = meters;}
+\DoxyCodeLine{\textcolor{comment}{// 2.09361yard 1.9144meter 1.9144meter}}
+\DoxyCodeLine{std::cout << yards.value() << \textcolor{stringliteral}{"{}yard "{}}}
+\DoxyCodeLine{          << yards.standard\_value() << \textcolor{stringliteral}{"{}meter "{}}}
+\DoxyCodeLine{          << meters.value() << \textcolor{stringliteral}{"{}meter"{}} << std::endl;}
+\DoxyCodeLine{\textcolor{keyword}{auto} speed = yards / Quantity<double, Dimensional::time>(1);}
+\DoxyCodeLine{\textcolor{keyword}{using} ratio\_km\_per\_h = std::ratio\_divide<std::ratio<1000>, std::ratio<3600>>;}
+\DoxyCodeLine{\textcolor{keyword}{using} ratio\_mile\_per\_h = std::ratio\_divide<Dimensional::ratio\_mile, std::ratio<3600>>;}
+\DoxyCodeLine{\textcolor{comment}{// 0.836127m/s 3.01006km/h 1.87036mile/h}}
+\DoxyCodeLine{std::cout << speed.value() << \textcolor{stringliteral}{"{}m/s "{}}}
+\DoxyCodeLine{          << quantity\_cast<ratio\_km\_per\_h>(speed).value() << \textcolor{stringliteral}{"{}km/h "{}}}
+\DoxyCodeLine{          << quantity\_cast<ratio\_mile\_per\_h>(speed).value() << \textcolor{stringliteral}{"{}mile/h"{}}}
+\DoxyCodeLine{          << std::endl;}
+
+\end{DoxyCode}
+ 

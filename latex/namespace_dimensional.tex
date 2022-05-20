@@ -1,0 +1,59 @@
+\hypertarget{namespace_dimensional}{}\doxysection{Dimensional Namespace Reference}
+\label{namespace_dimensional}\index{Dimensional@{Dimensional}}
+
+
+Namespace for all classes, typedefs and functions of dimensional analyse. See \mbox{\hyperlink{group___dimensional_analysis}{Dimensional Analysis}} for more instrucion.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}} struct is used to describe arithmetic values with units. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} struct is used to describe physical units. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename New\+Ratio , typename T , typename U , typename Ratio $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, New\+Ratio $>$ \mbox{\hyperlink{namespace_dimensional_a9aa8353cb7c7ec824c3a741d3a4df017}{quantity\+\_\+cast}} (\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ x)
+\item 
+std\+::pair$<$ intmax\+\_\+t, intmax\+\_\+t $>$ \mbox{\hyperlink{namespace_dimensional_ae6e41c295a433c7afaddbd1d290ebf6f}{approximate\+Ratio}} (long double value, int n)
+\begin{DoxyCompactList}\small\item\em Calculate approximate fraction from input decimal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Namespace for all classes, typedefs and functions of dimensional analyse. See \mbox{\hyperlink{group___dimensional_analysis}{Dimensional Analysis}} for more instrucion. 
+
+\begin{DoxyWarning}{Warning}
+{\ttfamily using namespace} is not recommend, because some classes and typedefs will duplicate with existing symbols. Consider {\ttfamily using} keyword with specific symbol like {\ttfamily using \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}} instead. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_dimensional_a9aa8353cb7c7ec824c3a741d3a4df017}\label{namespace_dimensional_a9aa8353cb7c7ec824c3a741d3a4df017}} 
+\index{Dimensional@{Dimensional}!quantity\_cast@{quantity\_cast}}
+\index{quantity\_cast@{quantity\_cast}!Dimensional@{Dimensional}}
+\doxysubsubsection{\texorpdfstring{quantity\_cast()}{quantity\_cast()}}
+{\footnotesize\ttfamily template$<$typename New\+Ratio , typename T , typename U , typename Ratio $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, New\+Ratio $>$ Dimensional\+::quantity\+\_\+cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+\mbox{\Hypertarget{namespace_dimensional_ae6e41c295a433c7afaddbd1d290ebf6f}\label{namespace_dimensional_ae6e41c295a433c7afaddbd1d290ebf6f}} 
+\index{Dimensional@{Dimensional}!approximateRatio@{approximateRatio}}
+\index{approximateRatio@{approximateRatio}!Dimensional@{Dimensional}}
+\doxysubsubsection{\texorpdfstring{approximateRatio()}{approximateRatio()}}
+{\footnotesize\ttfamily std\+::pair$<$ intmax\+\_\+t, intmax\+\_\+t $>$ Dimensional\+::approximate\+Ratio (\begin{DoxyParamCaption}\item[{long double}]{value,  }\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate approximate fraction from input decimal. 
+
+{\ttfamily \#include \texorpdfstring{$<$}{<}\mbox{\hyperlink{_ratios_8hpp}{Ratios.\+hpp}}\texorpdfstring{$>$}{>}} 
+\begin{DoxyParams}{Parameters}
+{\em value} & Decimal which fraction will generate from. \\
+\hline
+{\em n} & Max calculate precision. Not the bigger the better, too big value wiil caouse integer overflow, and some small value may product fraction with higher precision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Numerator and denominator of the fraction with type {\ttfamily intmax\+\_\+t}. 
+\end{DoxyReturn}

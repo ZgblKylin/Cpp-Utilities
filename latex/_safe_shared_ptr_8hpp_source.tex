@@ -1,0 +1,913 @@
+\hypertarget{_safe_shared_ptr_8hpp_source}{}\doxysection{Safe\+Shared\+Ptr.\+hpp}
+\label{_safe_shared_ptr_8hpp_source}\index{include/Utilities/MemorySafety/SafeSharedPtr.hpp@{include/Utilities/MemorySafety/SafeSharedPtr.hpp}}
+\mbox{\hyperlink{_safe_shared_ptr_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CPP\_UTILITIES\_MEMORYSAFETY\_SAFESHAREDPTR\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CPP\_UTILITIES\_MEMORYSAFETY\_SAFESHAREDPTR\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <type\_traits>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}../Common.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if \_\_cplusplus >= 201703L}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <shared\_mutex>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpinLock.hpp}}"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{29 \mbox{\hyperlink{_common_8h_afd939a921079854300ffc21a768560e4}{UTILITIES\_NAMESPACE\_BEGIN}}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_memory}{Memory}} \{}
+\DoxyCodeLine{38 \textcolor{comment}{// Forward declaration}}
+\DoxyCodeLine{39 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{40          \textcolor{keyword}{typename} mutex\_t,}
+\DoxyCodeLine{41          \textcolor{keyword}{typename} read\_lock\_t,}
+\DoxyCodeLine{42          \textcolor{keyword}{typename} write\_lock\_t>}
+\DoxyCodeLine{43 \textcolor{keyword}{class }SafeWeakPtr;}
+\DoxyCodeLine{44 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{45          \textcolor{keyword}{typename} mutex\_t,}
+\DoxyCodeLine{46          \textcolor{keyword}{typename} read\_lock\_t,}
+\DoxyCodeLine{47          \textcolor{keyword}{typename} write\_lock\_t>}
+\DoxyCodeLine{48 \textcolor{keyword}{class }EnableSafeSharedFromThis;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#if \_\_cplusplus >= 201703L}}
+\DoxyCodeLine{55     \textcolor{keyword}{using} \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\_mutex\_t}} = std::shared\_mutex;}
+\DoxyCodeLine{60     \textcolor{keyword}{using} \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{shared\_lock\_t}} = std::shared\_lock<shared\_mutex\_t>;}
+\DoxyCodeLine{65     \textcolor{keyword}{using} \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{unique\_lock\_t}} = std::unique\_lock<shared\_mutex\_t>;}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{71     \textcolor{keyword}{using} \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\_mutex\_t}} = \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}};}
+\DoxyCodeLine{76     \textcolor{keyword}{using} \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{shared\_lock\_t}} = \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{RWSpinLock::ReadHolder}};}
+\DoxyCodeLine{81     \textcolor{keyword}{using} \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{unique\_lock\_t}} = \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{RWSpinLock::WriteHolder}};}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{189 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{190          \textcolor{keyword}{typename} mutex\_t = \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\_mutex\_t}},}
+\DoxyCodeLine{191          \textcolor{keyword}{typename} read\_lock\_t = \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{shared\_lock\_t}},}
+\DoxyCodeLine{192          \textcolor{keyword}{typename} write\_lock\_t = \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{unique\_lock\_t}}>}
+\DoxyCodeLine{193 \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}}
+\DoxyCodeLine{194 \{}
+\DoxyCodeLine{195     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} M, \textcolor{keyword}{typename} R, \textcolor{keyword}{typename} W>}
+\DoxyCodeLine{196     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}};}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{keyword}{public}:}
+\DoxyCodeLine{199     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Lock> \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper}};}
+\DoxyCodeLine{200     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Lock> \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}};}
+\DoxyCodeLine{201     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Lock> \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}};}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{204     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}} = mutex\_t;}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{207     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_af087e5e01fc2dc8c0f684c3fd44ba01b}{SharedLock}} = read\_lock\_t;}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{210     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a307b37022dad9f3be04d444c2552197e}{UniqueLock}} = write\_lock\_t;}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{215     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a15764a8befe6bc607d64b89282ddf790}{element\_type}} = \textcolor{keyword}{typename} std::remove\_extent<T>::type;}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{218     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{weak\_type}} = \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T, SharedMutex, SharedLock, UniqueLock>}};}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{228     \textcolor{keyword}{constexpr} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aeeac6146880f2a94384a786131e0795c}{SafeSharedPtr}}()}
+\DoxyCodeLine{229         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>())}
+\DoxyCodeLine{230     \{\}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{241     \textcolor{keyword}{constexpr} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a41ad045b71d296d29841970a079e75d3}{SafeSharedPtr}}(std::nullptr\_t p)}
+\DoxyCodeLine{242         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()),}
+\DoxyCodeLine{243           ptr(p)}
+\DoxyCodeLine{244     \{\}}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{259     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{260     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a74e811373e69a437ff984fb7b79eca21}{SafeSharedPtr}}(Y* p,}
+\DoxyCodeLine{261                            \textcolor{keyword}{typename} std::enable\_if<!std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{262         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()),}
+\DoxyCodeLine{263           ptr(p)}
+\DoxyCodeLine{264     \{}
+\DoxyCodeLine{265     \}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{280     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{281     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a5c50d60f57e20702ba2f2a14abb9e14c}{SafeSharedPtr}}(Y* p,}
+\DoxyCodeLine{282                            \textcolor{keyword}{typename} std::enable\_if<std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{283         : ptr(p)}
+\DoxyCodeLine{284     \{ mutex = ptr-\/>\_\_safeSharedLock; \}}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{304     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} Deleter>}
+\DoxyCodeLine{305     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a3ce0660616336054aaa24af283e73f3e}{SafeSharedPtr}}(Y* p, Deleter d,}
+\DoxyCodeLine{306                   \textcolor{keyword}{typename} std::enable\_if<!std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{307         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()),}
+\DoxyCodeLine{308           ptr(p, d)}
+\DoxyCodeLine{309     \{}
+\DoxyCodeLine{310     \}}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{330     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} Deleter>}
+\DoxyCodeLine{331     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_af217e31f1a81b2904a2763f67b3fccee}{SafeSharedPtr}}(Y* p, Deleter d,}
+\DoxyCodeLine{332                   \textcolor{keyword}{typename} std::enable\_if<std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{333         : ptr(p, d)}
+\DoxyCodeLine{334     \{ mutex = ptr-\/>\_\_safeSharedLock; \}}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{353     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Deleter>}
+\DoxyCodeLine{354     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a664dc347b4b6671ec0da0b9a78144bb2}{SafeSharedPtr}}(std::nullptr\_t p, Deleter d)}
+\DoxyCodeLine{355         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()),}
+\DoxyCodeLine{356           ptr(p, d)}
+\DoxyCodeLine{357     \{\}}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{380     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} Deleter, \textcolor{keyword}{typename} Alloc>}
+\DoxyCodeLine{381     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_abd267be3c5843ce63b72f96c906484fa}{SafeSharedPtr}}(Y* p, Deleter d, Alloc alloc,}
+\DoxyCodeLine{382                   \textcolor{keyword}{typename} std::enable\_if<!std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{383         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()),}
+\DoxyCodeLine{384           ptr(p, d, alloc)}
+\DoxyCodeLine{385     \{\}}
+\DoxyCodeLine{386     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} Deleter, \textcolor{keyword}{typename} Alloc>}
+\DoxyCodeLine{387     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aa98fc3faea69b45577952f4fbc44e6d1}{SafeSharedPtr}}(Y* p, Deleter d, Alloc alloc,}
+\DoxyCodeLine{388                   \textcolor{keyword}{typename} std::enable\_if<std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{389         : ptr(p, d, alloc)}
+\DoxyCodeLine{390     \{ mutex = ptr-\/>\_\_safeSharedLock; \}}
+\DoxyCodeLine{391 }
+\DoxyCodeLine{412     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Deleter, \textcolor{keyword}{typename} Alloc>}
+\DoxyCodeLine{413     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aa7c80a9695eb74a377a0689433cd37f3}{SafeSharedPtr}}(std::nullptr\_t p, Deleter d, Alloc alloc)}
+\DoxyCodeLine{414         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()),}
+\DoxyCodeLine{415           ptr(p, d, alloc)}
+\DoxyCodeLine{416     \{\}}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{436     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} U>}
+\DoxyCodeLine{437     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_af5926c67fbb7fb28e12366e5e4b0f0fa}{SafeSharedPtr}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, SharedMutex, SharedLock, UniqueLock>}}\& other, U* p) noexcept}
+\DoxyCodeLine{438         : mutex(other.mutex), ptr(other.ptr, p)}
+\DoxyCodeLine{439     \{\}}
+\DoxyCodeLine{440 }
+\DoxyCodeLine{458     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{459     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a28ea811c93c07b4cfe7d71b5c16b1884}{SafeSharedPtr}}(\textcolor{keyword}{const} std::shared\_ptr<Y>\& other, T* p,}
+\DoxyCodeLine{460                   \textcolor{keyword}{typename} std::enable\_if<!std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr}) noexcept}
+\DoxyCodeLine{461         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()), ptr(other, p)}
+\DoxyCodeLine{462     \{\}}
+\DoxyCodeLine{463     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{464     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_af6e6fb5c4c38bfa0e18b74a3f56473a9}{SafeSharedPtr}}(\textcolor{keyword}{const} std::shared\_ptr<Y>\& other, T* p,}
+\DoxyCodeLine{465                   \textcolor{keyword}{typename} std::enable\_if<std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr}) noexcept}
+\DoxyCodeLine{466         : mutex(other-\/>\_\_safeSharedLock), ptr(other, p)}
+\DoxyCodeLine{467     \{}
+\DoxyCodeLine{468     \}}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{476     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a9147c745c0a087c117652958cca1e07c}{SafeSharedPtr}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& other) noexcept}
+\DoxyCodeLine{477         : mutex(other.mutex), ptr(other.ptr)}
+\DoxyCodeLine{478     \{\}}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{487     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{488     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7fb071a8a3875a93bec00fd737cdce36}{SafeSharedPtr}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, SharedMutex, SharedLock, UniqueLock>}}\& other) noexcept}
+\DoxyCodeLine{489         : mutex(other.mutex), ptr(other.ptr)}
+\DoxyCodeLine{490     \{\}}
+\DoxyCodeLine{491 }
+\DoxyCodeLine{498     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ab7d3d0ed9f838f6e930cf8af638360d5}{SafeSharedPtr}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\&\& other) noexcept}
+\DoxyCodeLine{499         : mutex(std::forward<std::shared\_ptr<SharedMutex>>(other.mutex)),}
+\DoxyCodeLine{500           ptr(std::forward<std::shared\_ptr<T>>(other.ptr))}
+\DoxyCodeLine{501     \{\}}
+\DoxyCodeLine{502 }
+\DoxyCodeLine{510     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{511     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_af2c6e67aaaad5a8d910311ae6fd995d6}{SafeSharedPtr}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, SharedMutex, SharedLock, UniqueLock>}}\&\& other) noexcept}
+\DoxyCodeLine{512         : mutex(std::forward<std::shared\_ptr<SharedMutex>>(other.mutex)),}
+\DoxyCodeLine{513           ptr(std::forward<std::shared\_ptr<Y>>(other.ptr))}
+\DoxyCodeLine{514     \{\}}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{530     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{531     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ac42fa3ffe7837cbeb1b45fac0d737d6e}{SafeSharedPtr}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<Y, SharedMutex, SharedLock, UniqueLock>}}\& other)}
+\DoxyCodeLine{532         : mutex(other.mutex), ptr(other.ptr)}
+\DoxyCodeLine{533     \{\}}
+\DoxyCodeLine{534 }
+\DoxyCodeLine{549     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{550     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aa7bc3e6c98debe915b898678aa2642c2}{SafeSharedPtr}}(\textcolor{keyword}{const} std::shared\_ptr<Y>\& other,}
+\DoxyCodeLine{551                   \textcolor{keyword}{typename} std::enable\_if<!std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{552         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()), ptr(other)}
+\DoxyCodeLine{553     \{\}}
+\DoxyCodeLine{554     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{555     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_af568425da383280b7aa6472625a94fe4}{SafeSharedPtr}}(\textcolor{keyword}{const} std::shared\_ptr<Y>\& other,}
+\DoxyCodeLine{556                   \textcolor{keyword}{typename} std::enable\_if<std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{557         : ptr(other)}
+\DoxyCodeLine{558     \{ mutex = ptr-\/>\_\_safeSharedLock; \}}
+\DoxyCodeLine{559 }
+\DoxyCodeLine{571     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{572     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a9880ea84ac1475066a737316b8d1b235}{SafeSharedPtr}}(std::shared\_ptr<Y>\&\& other,}
+\DoxyCodeLine{573                   \textcolor{keyword}{typename} std::enable\_if<!std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{574         : mutex(\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad96e006426ca7d988bcfbbc9dd6f7f34}{SharedMutex}}>()),}
+\DoxyCodeLine{575           ptr(\mbox{\hyperlink{namespacestd}{std}}::forward<\mbox{\hyperlink{namespacestd}{std}}::shared\_ptr<Y>>(other))}
+\DoxyCodeLine{576     \{\}}
+\DoxyCodeLine{577     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{578     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a42aec530388e6d4b492ad3af519392bc}{SafeSharedPtr}}(std::shared\_ptr<Y>\&\& other,}
+\DoxyCodeLine{579                   \textcolor{keyword}{typename} std::enable\_if<std::is\_base\_of<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<Y, SharedMutex, SharedLock, UniqueLock>}}, Y>::value>::type* = \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{580         : ptr(\mbox{\hyperlink{namespacestd}{std}}::forward<\mbox{\hyperlink{namespacestd}{std}}::shared\_ptr<Y>>(other))}
+\DoxyCodeLine{581     \{ mutex = ptr-\/>\_\_safeSharedLock; \}}
+\DoxyCodeLine{582 }
+\DoxyCodeLine{604     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{605     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a1c2df83572d82bf2e7c4160401d9ee29}{SafeSharedPtr}}(\textcolor{keyword}{const} std::weak\_ptr<Y>\& other)}
+\DoxyCodeLine{606         : \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}(other.\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a4feb9ee085a0ac9b2eeb68ca6e765144}{lock}}())}
+\DoxyCodeLine{607     \{\}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{619     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ab55e1b406c2678eb7d9795744dfec037}{\string~SafeSharedPtr}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{620 }
+\DoxyCodeLine{634     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a9cb67ead145e8d31d89795ca1d359bdf}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{635     \{}
+\DoxyCodeLine{636         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(other).swap(*\textcolor{keyword}{this});}
+\DoxyCodeLine{637         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{638     \}}
+\DoxyCodeLine{639 }
+\DoxyCodeLine{654     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a53634802cd322f29e76d37d7b681d875}{operator=}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\&\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{655     \{}
+\DoxyCodeLine{656         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(std::move(other)).swap(*\textcolor{keyword}{this});}
+\DoxyCodeLine{657         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{658     \}}
+\DoxyCodeLine{659 }
+\DoxyCodeLine{674     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{675     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a612d5e11edfccf514fc0806927d2f83d}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, SharedMutex, SharedLock, UniqueLock>}}\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{676     \{}
+\DoxyCodeLine{677         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(other).swap(*\textcolor{keyword}{this});}
+\DoxyCodeLine{678         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{679     \}}
+\DoxyCodeLine{680 }
+\DoxyCodeLine{696     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{697     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a9fbf94b94f5c0afc6270b0ab0dcdeffb}{operator=}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, SharedMutex, SharedLock, UniqueLock>}}\&\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{698     \{}
+\DoxyCodeLine{699         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(std::forward<\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, SharedMutex, SharedLock, UniqueLock>}}>(other)).swap(*\textcolor{keyword}{this});}
+\DoxyCodeLine{700         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{701     \}}
+\DoxyCodeLine{702 }
+\DoxyCodeLine{724     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{725     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ae27df84a870aa6772502f6a21804ba5d}{operator=}}(\textcolor{keyword}{const} std::shared\_ptr<Y>\& other)}
+\DoxyCodeLine{726     \{}
+\DoxyCodeLine{727         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(other).swap(*\textcolor{keyword}{this});}
+\DoxyCodeLine{728         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{729     \}}
+\DoxyCodeLine{730 }
+\DoxyCodeLine{750     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{751     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a9da7ee94ff7d22196a85f92e34381a36}{operator=}}(std::shared\_ptr<Y>\&\& other)}
+\DoxyCodeLine{752     \{}
+\DoxyCodeLine{753         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(std::forward<std::shared\_ptr<Y>>(other)).swap(*\textcolor{keyword}{this});}
+\DoxyCodeLine{754         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{755     \}}
+\DoxyCodeLine{756 }
+\DoxyCodeLine{770     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a2793a74e4785e18f3182d6b28388e424}{reset}}()}
+\DoxyCodeLine{771     \{ \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}().swap(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{772 }
+\DoxyCodeLine{800     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{801     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ab86f0aee7fa1ea22d904e02bead06b2c}{reset}}(Y* ptr)}
+\DoxyCodeLine{802     \{ \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(ptr).swap(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{803 }
+\DoxyCodeLine{833     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} Deleter>}
+\DoxyCodeLine{834     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ac73b29740bf94575d8d76a1945b8bc1e}{reset}}(Y* ptr, Deleter d)}
+\DoxyCodeLine{835     \{ \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(ptr, d).swap(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{836 }
+\DoxyCodeLine{872     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} Deleter, \textcolor{keyword}{typename} Alloc>}
+\DoxyCodeLine{873     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_adf44870440366c44f671b4ea4740d146}{reset}}(Y* ptr, Deleter d, Alloc alloc)}
+\DoxyCodeLine{874     \{ \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(ptr, d, alloc).swap(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{875 }
+\DoxyCodeLine{883     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a431c7e9ff292cd7a6568152caf497402}{swap}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{884     \{}
+\DoxyCodeLine{885         mutex.swap(other.mutex);}
+\DoxyCodeLine{886         ptr.swap(other.ptr);}
+\DoxyCodeLine{887     \}}
+\DoxyCodeLine{888 }
+\DoxyCodeLine{900     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a15764a8befe6bc607d64b89282ddf790}{element\_type}}* \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a4084b69baf9080919bc1e980026d8922}{get}}() const noexcept}
+\DoxyCodeLine{901     \{ \textcolor{keywordflow}{return} ptr.get(); \}}
+\DoxyCodeLine{902 }
+\DoxyCodeLine{912     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper<UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ac390b527de9723be2ad0f2ab89202a3c}{operator*}}() noexcept}
+\DoxyCodeLine{913     \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper<UniqueLock>}}(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{914 }
+\DoxyCodeLine{924     \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper<SharedLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_acb88efab2e60cdb2541083ce0c5a209b}{operator*}}() const noexcept}
+\DoxyCodeLine{925     \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper<SharedLock>}}(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{926 }
+\DoxyCodeLine{935     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper<UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ab508790b00b5e5b0e28e062683837ac2}{operator-\/>}}() noexcept}
+\DoxyCodeLine{936     \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper<UniqueLock>}}(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{937 }
+\DoxyCodeLine{946     \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper<SharedLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a39ec55d0d90b23e8cb458a10ff9e1931}{operator-\/>}}() const noexcept}
+\DoxyCodeLine{947     \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper<SharedLock>}}(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{948 }
+\DoxyCodeLine{949 \textcolor{preprocessor}{\#if \_\_cplusplus >= 201703L}}
+\DoxyCodeLine{969     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper<UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ac6906c36913884325c58cb7859bdf4c1}{operator[]}}(std::ptrdiff\_t idx)}
+\DoxyCodeLine{970     \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper<UniqueLock>}}(*\textcolor{keyword}{this}, idx); \}}
+\DoxyCodeLine{971 }
+\DoxyCodeLine{990     \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper<SharedLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a5fa872abb6970ab4b74a090ffcd5d323}{operator[]}}(std::ptrdiff\_t idx)\textcolor{keyword}{ const}}
+\DoxyCodeLine{991 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper<SharedLock>}}(*\textcolor{keyword}{this}, idx); \}}
+\DoxyCodeLine{992 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{993 }
+\DoxyCodeLine{1018     \textcolor{keywordtype}{long} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_afcf4f6ff2a313f979b1facc8a133e23d}{use\_count}}() const noexcept}
+\DoxyCodeLine{1019     \{ \textcolor{keywordflow}{return} ptr.use\_count(); \}}
+\DoxyCodeLine{1020 }
+\DoxyCodeLine{1030     \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool() const noexcept}
+\DoxyCodeLine{1031     \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a4084b69baf9080919bc1e980026d8922}{get}}() != \textcolor{keyword}{nullptr}; \}}
+\DoxyCodeLine{1032 }
+\DoxyCodeLine{1051     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} M, \textcolor{keyword}{typename} R, \textcolor{keyword}{typename} W>}
+\DoxyCodeLine{1052     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aaf6ba11202dffad645671a4630df231e}{owner\_before}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, M, R, W>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{1053 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} ptr.owner\_before(other.ptr); \}}
+\DoxyCodeLine{1054 }
+\DoxyCodeLine{1073     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} M, \textcolor{keyword}{typename} R, \textcolor{keyword}{typename} W>}
+\DoxyCodeLine{1074     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7734e6c43dabeaec33760869cd2e4b32}{owner\_before}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<Y, M, R, W>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{1075 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} ptr.owner\_before(other.ptr); \}}
+\DoxyCodeLine{1076 }
+\DoxyCodeLine{1089     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a377be554dffd319d515480ea927f9032}{lock\_shared}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1090 \textcolor{keyword}{    }\{ mutex-\/>lock\_shared(); \}}
+\DoxyCodeLine{1091 }
+\DoxyCodeLine{1100     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a8323922e0b6137aad2fa13f2c0963e1a}{unlock\_shared}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1101 \textcolor{keyword}{    }\{ mutex-\/>unlock\_shared(); \}}
+\DoxyCodeLine{1102 }
+\DoxyCodeLine{1116     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a4feb9ee085a0ac9b2eeb68ca6e765144}{lock}}()}
+\DoxyCodeLine{1117     \{ mutex-\/>lock(); \}}
+\DoxyCodeLine{1118 }
+\DoxyCodeLine{1127     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ae37b50a3c53c10e268aed5bc1bf1afac}{unlock}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1128 \textcolor{keyword}{    }\{ mutex-\/>unlock(); \}}
+\DoxyCodeLine{1129 }
+\DoxyCodeLine{1137     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_af087e5e01fc2dc8c0f684c3fd44ba01b}{SharedLock}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a394e1a8efbcc9ed3023437f99a66f617}{shared\_lock}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1138 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_af087e5e01fc2dc8c0f684c3fd44ba01b}{SharedLock}}(*mutex); \}}
+\DoxyCodeLine{1139 }
+\DoxyCodeLine{1147     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a307b37022dad9f3be04d444c2552197e}{UniqueLock}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a3abae1cdb34fc682b39d1905c4464afd}{unique\_lock}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1148 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} std::move(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a307b37022dad9f3be04d444c2552197e}{UniqueLock}}(*mutex)); \}}
+\DoxyCodeLine{1149 }
+\DoxyCodeLine{1161     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Lock>}
+\DoxyCodeLine{1162     \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper}}}
+\DoxyCodeLine{1163     \{}
+\DoxyCodeLine{1164     \textcolor{keyword}{public}:}
+\DoxyCodeLine{1166         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_ad551182aae461b500f15195be6e7ade0}{pointer}} = T*;}
+\DoxyCodeLine{1168         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a12ecfef02c14373536b179289b077ff1}{const\_pointer}} = \textcolor{keyword}{const} T*;}
+\DoxyCodeLine{1170         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_ae9505120da89c52df00d88e9dedbc097}{reference}} = T\&;}
+\DoxyCodeLine{1172         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_ab156838fdea5a73c8b4272847d7eae54}{const\_reference}} = \textcolor{keyword}{const} T\&;}
+\DoxyCodeLine{1173 }
+\DoxyCodeLine{1180         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a92013e0c16103f88a8d4133b2e5810a1}{PtrHelper}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& p)}
+\DoxyCodeLine{1181             : ptr(p.\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a4084b69baf9080919bc1e980026d8922}{get}}()),}
+\DoxyCodeLine{1182               lock(*(p.mutex))}
+\DoxyCodeLine{1183         \{}
+\DoxyCodeLine{1184         \}}
+\DoxyCodeLine{1185 }
+\DoxyCodeLine{1191         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a3487d919d4c206a012194d5109996736}{PtrHelper}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper}}\&\& other) noexcept}
+\DoxyCodeLine{1192             : ptr(std::move(other.ptr)),}
+\DoxyCodeLine{1193               lock(std::move(other.lock))}
+\DoxyCodeLine{1194         \{}
+\DoxyCodeLine{1195         \}}
+\DoxyCodeLine{1196 }
+\DoxyCodeLine{1200         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a1d20f091483eaf9b6d7c6751ae5f6649}{\string~PtrHelper}}()}
+\DoxyCodeLine{1201         \{}
+\DoxyCodeLine{1202         \}}
+\DoxyCodeLine{1203 }
+\DoxyCodeLine{1210         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a45c7dbcf7b6934329124f7b183beb4d3}{operator=}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper}}\&\& other)}
+\DoxyCodeLine{1211         \{}
+\DoxyCodeLine{1212             ptr = std::move(other.ptr);}
+\DoxyCodeLine{1213             lock = std::move(other.lock);}
+\DoxyCodeLine{1214             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{1215         \}}
+\DoxyCodeLine{1216 }
+\DoxyCodeLine{1221         \textcolor{keyword}{operator} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_ad551182aae461b500f15195be6e7ade0}{pointer}}()}
+\DoxyCodeLine{1222         \{ \textcolor{keywordflow}{return} ptr; \}}
+\DoxyCodeLine{1223 }
+\DoxyCodeLine{1228         \textcolor{keyword}{operator} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a12ecfef02c14373536b179289b077ff1}{const\_pointer}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1229 \textcolor{keyword}{        }\{ \textcolor{keywordflow}{return} ptr; \}}
+\DoxyCodeLine{1230 }
+\DoxyCodeLine{1235         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_ad551182aae461b500f15195be6e7ade0}{pointer}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a08e10c23089127dace34ef522d4b4494}{operator-\/>}}()}
+\DoxyCodeLine{1236         \{ \textcolor{keywordflow}{return} ptr; \}}
+\DoxyCodeLine{1237 }
+\DoxyCodeLine{1242         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a12ecfef02c14373536b179289b077ff1}{const\_pointer}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a2d090d1b89eace9af41939a98b1bc333}{operator-\/>}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1243 \textcolor{keyword}{        }\{ \textcolor{keywordflow}{return} ptr; \}}
+\DoxyCodeLine{1244 }
+\DoxyCodeLine{1245     \textcolor{keyword}{private}:}
+\DoxyCodeLine{1246         T* \textcolor{keyword}{const} ptr = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{1247         Lock lock;}
+\DoxyCodeLine{1248 }
+\DoxyCodeLine{1249         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a92013e0c16103f88a8d4133b2e5810a1}{PtrHelper}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{1250         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper_a45c7dbcf7b6934329124f7b183beb4d3}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{PtrHelper}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{1251     \};}
+\DoxyCodeLine{1252 }
+\DoxyCodeLine{1266     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Lock>}
+\DoxyCodeLine{1267     \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}}}
+\DoxyCodeLine{1268     \{}
+\DoxyCodeLine{1269     \textcolor{keyword}{public}:}
+\DoxyCodeLine{1271         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a027d0cf2bebe31f82f57a709ec639a48}{reference}} = T\&;}
+\DoxyCodeLine{1273         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a075a198ce813857152a6b9fe635eff26}{const\_reference}} = \textcolor{keyword}{const} T\&;}
+\DoxyCodeLine{1274 }
+\DoxyCodeLine{1281         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{RefHelper}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& p)}
+\DoxyCodeLine{1282             : ptr(p.\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a4084b69baf9080919bc1e980026d8922}{get}}()),}
+\DoxyCodeLine{1283               lock(*(p.mutex))}
+\DoxyCodeLine{1284         \{}
+\DoxyCodeLine{1285         \}}
+\DoxyCodeLine{1286 }
+\DoxyCodeLine{1292         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a4e1d0be25f84612db9353b641be72a39}{RefHelper}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}}\&\& other) noexcept}
+\DoxyCodeLine{1293             : ptr(std::move(other.ptr)),}
+\DoxyCodeLine{1294               lock(std::move(other.lock))}
+\DoxyCodeLine{1295         \{}
+\DoxyCodeLine{1296         \}}
+\DoxyCodeLine{1297 }
+\DoxyCodeLine{1301         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a8f06f232c45415a8988f62d84b4844b5}{\string~RefHelper}}()}
+\DoxyCodeLine{1302         \{}
+\DoxyCodeLine{1303         \}}
+\DoxyCodeLine{1304 }
+\DoxyCodeLine{1311         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5c11485e3443e73a6437186b5b3a3c98}{operator=}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}}\&\& other)}
+\DoxyCodeLine{1312         \{}
+\DoxyCodeLine{1313             ptr = std::move(other.ptr);}
+\DoxyCodeLine{1314             lock = std::move(other.lock);}
+\DoxyCodeLine{1315             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{1316         \}}
+\DoxyCodeLine{1317 }
+\DoxyCodeLine{1322         \textcolor{keyword}{operator} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a027d0cf2bebe31f82f57a709ec639a48}{reference}}()}
+\DoxyCodeLine{1323         \{ \textcolor{keywordflow}{return} *ptr; \}}
+\DoxyCodeLine{1324 }
+\DoxyCodeLine{1329         \textcolor{keyword}{operator} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a075a198ce813857152a6b9fe635eff26}{const\_reference}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1330 \textcolor{keyword}{        }\{ \textcolor{keywordflow}{return} *ptr; \}}
+\DoxyCodeLine{1331 }
+\DoxyCodeLine{1344         \textcolor{keyword}{template}<\textcolor{keyword}{typename} X>}
+\DoxyCodeLine{1345         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5da5ed5184f750bb2f62605bc6c54843}{operator=}}(\textcolor{keyword}{const} X\& other)}
+\DoxyCodeLine{1346         \{}
+\DoxyCodeLine{1347             \textcolor{keyword}{operator} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a027d0cf2bebe31f82f57a709ec639a48}{reference}}() = other;}
+\DoxyCodeLine{1348             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{1349         \}}
+\DoxyCodeLine{1350 }
+\DoxyCodeLine{1351     \textcolor{keyword}{private}:}
+\DoxyCodeLine{1352         T* \textcolor{keyword}{const} ptr = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{1353         Lock lock;}
+\DoxyCodeLine{1354 }
+\DoxyCodeLine{1355         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{RefHelper}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{1356         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5c11485e3443e73a6437186b5b3a3c98}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{RefHelper}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{1357     \};}
+\DoxyCodeLine{1358 }
+\DoxyCodeLine{1359 \textcolor{preprocessor}{    \#if \_\_cplusplus >= 201703L}}
+\DoxyCodeLine{1375     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Lock>}
+\DoxyCodeLine{1376     \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}}}
+\DoxyCodeLine{1377     \{}
+\DoxyCodeLine{1378     \textcolor{keyword}{public}:}
+\DoxyCodeLine{1380         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_abc29803726014e7edf53ee806a6648ec}{element\_type}} = std::remove\_extent\_t<T>;}
+\DoxyCodeLine{1382         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a1b6a9bb056fd4bd84ed72697c75e0c62}{pointer}} = \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_abc29803726014e7edf53ee806a6648ec}{element\_type}}*;}
+\DoxyCodeLine{1384         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a50f5be4766ad5ab1178b0d7364937356}{const\_pointer}} = \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_abc29803726014e7edf53ee806a6648ec}{element\_type}}*;}
+\DoxyCodeLine{1386         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a0d9d9ad875b30cbf6e0ee110f7e91adb}{reference}} = \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_abc29803726014e7edf53ee806a6648ec}{element\_type}}\&;}
+\DoxyCodeLine{1388         \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a3f688fea3233f74300200920883f3383}{const\_reference}} = \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_abc29803726014e7edf53ee806a6648ec}{element\_type}}\&;}
+\DoxyCodeLine{1389 }
+\DoxyCodeLine{1397         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a451b464326d14be89299b734923c7d8d}{ArrayHelper}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}}\& p, std::ptrdiff\_t idx)}
+\DoxyCodeLine{1398             : ptr(p.\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a4084b69baf9080919bc1e980026d8922}{get}}()),}
+\DoxyCodeLine{1399               index(idx),}
+\DoxyCodeLine{1400               lock(*(p.mutex))}
+\DoxyCodeLine{1401         \{}
+\DoxyCodeLine{1402         \}}
+\DoxyCodeLine{1403 }
+\DoxyCodeLine{1409         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a7a0a213a653f6fa9c177c523070bad24}{ArrayHelper}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}}\&\& other) noexcept}
+\DoxyCodeLine{1410             : ptr(std::move(other.ptr)),}
+\DoxyCodeLine{1411               index(std::move(other.index)),}
+\DoxyCodeLine{1412               lock(std::move(other.lock))}
+\DoxyCodeLine{1413         \{}
+\DoxyCodeLine{1414         \}}
+\DoxyCodeLine{1415 }
+\DoxyCodeLine{1419         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a51b3b5d8ef05df6c1f8c6891e8860d3e}{\string~ArrayHelper}}()}
+\DoxyCodeLine{1420         \{}
+\DoxyCodeLine{1421         \}}
+\DoxyCodeLine{1422 }
+\DoxyCodeLine{1429         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_ab8ffc45472605fd78598baa0b4d228a4}{operator=}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}}\&\& other)}
+\DoxyCodeLine{1430         \{}
+\DoxyCodeLine{1431             ptr = std::move(other.ptr);}
+\DoxyCodeLine{1432             index = std::move(other.index);}
+\DoxyCodeLine{1433             lock = std::move(other.lock);}
+\DoxyCodeLine{1434             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{1435         \}}
+\DoxyCodeLine{1436 }
+\DoxyCodeLine{1441         \textcolor{keyword}{operator} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a0d9d9ad875b30cbf6e0ee110f7e91adb}{reference}}()}
+\DoxyCodeLine{1442         \{ \textcolor{keywordflow}{return} ptr[index]; \}}
+\DoxyCodeLine{1443 }
+\DoxyCodeLine{1448         \textcolor{keyword}{operator} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a3f688fea3233f74300200920883f3383}{const\_reference}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1449 \textcolor{keyword}{        }\{ \textcolor{keywordflow}{return} ptr[index]; \}}
+\DoxyCodeLine{1450 }
+\DoxyCodeLine{1463         \textcolor{keyword}{template}<\textcolor{keyword}{typename} X>}
+\DoxyCodeLine{1464         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_ac3f04e2c2ddb1abb03f21df7db943ffc}{operator=}}(\textcolor{keyword}{const} X\& other)}
+\DoxyCodeLine{1465         \{}
+\DoxyCodeLine{1466             \textcolor{keyword}{operator} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a0d9d9ad875b30cbf6e0ee110f7e91adb}{reference}}() = other;}
+\DoxyCodeLine{1467             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{1468         \}}
+\DoxyCodeLine{1469 }
+\DoxyCodeLine{1470     \textcolor{keyword}{private}:}
+\DoxyCodeLine{1471         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a15764a8befe6bc607d64b89282ddf790}{element\_type}}* \textcolor{keyword}{const} ptr = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{1472         std::ptrdiff\_t index = 0;}
+\DoxyCodeLine{1473         Lock lock;}
+\DoxyCodeLine{1474 }
+\DoxyCodeLine{1475         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_a451b464326d14be89299b734923c7d8d}{ArrayHelper}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{1476         \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}}\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper_ab8ffc45472605fd78598baa0b4d228a4}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{ArrayHelper}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{1477     \};}
+\DoxyCodeLine{1478 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1479 }
+\DoxyCodeLine{1480 \textcolor{keyword}{private}:}
+\DoxyCodeLine{1481     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a7908794f85e07a5817c7c163bef38aae}{SafeSharedPtr}}(std::shared\_ptr<SharedMutex> l, std::shared\_ptr<T> p)}
+\DoxyCodeLine{1482         : mutex(l), ptr(p)}
+\DoxyCodeLine{1483     \{\}}
+\DoxyCodeLine{1484 }
+\DoxyCodeLine{1485     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} M, \textcolor{keyword}{typename} R, \textcolor{keyword}{typename} W>}
+\DoxyCodeLine{1486     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr}};}
+\DoxyCodeLine{1487     \textcolor{keyword}{mutable} std::shared\_ptr<SharedMutex> mutex;}
+\DoxyCodeLine{1488     std::shared\_ptr<T> ptr;}
+\DoxyCodeLine{1489 \};}
+\DoxyCodeLine{1490 }
+\DoxyCodeLine{1556 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{1557          \textcolor{keyword}{typename} SharedMutex = \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\_mutex\_t}},}
+\DoxyCodeLine{1558          \textcolor{keyword}{typename} SharedLock = \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{shared\_lock\_t}},}
+\DoxyCodeLine{1559          \textcolor{keyword}{typename} UniqueLock = \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{unique\_lock\_t}},}
+\DoxyCodeLine{1560          \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{1561 \textcolor{keyword}{inline} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aba373e70b553b08cf7206aa01c860058}{make\_shared}}(Args\&\&... args)}
+\DoxyCodeLine{1562 \{}
+\DoxyCodeLine{1563     std::shared\_ptr<T> p = std::make\_shared<T>(std::forward<Args>(args)...);}
+\DoxyCodeLine{1564     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}(p);}
+\DoxyCodeLine{1565 \}}
+\DoxyCodeLine{1566 }
+\DoxyCodeLine{1629 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{1630          \textcolor{keyword}{typename} Alloc,}
+\DoxyCodeLine{1631          \textcolor{keyword}{typename} SharedMutex = \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\_mutex\_t}},}
+\DoxyCodeLine{1632          \textcolor{keyword}{typename} SharedLock = \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{shared\_lock\_t}},}
+\DoxyCodeLine{1633          \textcolor{keyword}{typename} UniqueLock = \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{unique\_lock\_t}},}
+\DoxyCodeLine{1634          \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{1635 \textcolor{keyword}{inline} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a686309b6158b54f593cd09d0a34802b4}{allocate\_shared}}(\textcolor{keyword}{const} Alloc\& alloc,}
+\DoxyCodeLine{1636                                                                              Args\&\&... args)}
+\DoxyCodeLine{1637 \{}
+\DoxyCodeLine{1638     std::shared\_ptr<T> p = std::allocate\_shared<T>(alloc, std::forward<Args>(args)...);}
+\DoxyCodeLine{1639     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}(p, p.get());}
+\DoxyCodeLine{1640 \}}
+\DoxyCodeLine{1641 }
+\DoxyCodeLine{1668 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{1669          \textcolor{keyword}{typename} U,}
+\DoxyCodeLine{1670          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{1671          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{1672          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{1673 \textcolor{keyword}{inline} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_acfcaa73d9729eac1f4c750c7e784679f}{static\_pointer\_cast}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<U, SharedMutex, SharedLock, UniqueLock>}}\& r) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1674 \{}
+\DoxyCodeLine{1675     \textcolor{keyword}{auto} p = \textcolor{keyword}{static\_cast<}typename std::shared\_ptr<T>::element\_type*\textcolor{keyword}{>}(r.get());}
+\DoxyCodeLine{1676     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}(r, p);}
+\DoxyCodeLine{1677 \}}
+\DoxyCodeLine{1678 }
+\DoxyCodeLine{1708 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{1709          \textcolor{keyword}{typename} U,}
+\DoxyCodeLine{1710          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{1711          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{1712          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{1713 \textcolor{keyword}{inline} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ae64f890d617e6b671b6103d880022b27}{dynamic\_pointer\_cast}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<U, SharedMutex, SharedLock, UniqueLock>}}\& r) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1714 \{}
+\DoxyCodeLine{1715     \textcolor{keyword}{auto} p = \textcolor{keyword}{dynamic\_cast<}typename std::shared\_ptr<T>::element\_type*\textcolor{keyword}{>}(r.get());}
+\DoxyCodeLine{1716     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}(r, p);}
+\DoxyCodeLine{1717 \}}
+\DoxyCodeLine{1718 }
+\DoxyCodeLine{1745 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{1746          \textcolor{keyword}{typename} U,}
+\DoxyCodeLine{1747          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{1748          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{1749          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{1750 \textcolor{keyword}{inline} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a358fcf2cda62de7df872b1e3e15e8aee}{const\_pointer\_cast}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<U, SharedMutex, SharedLock, UniqueLock>}}\& r) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1751 \{}
+\DoxyCodeLine{1752     \textcolor{keyword}{auto} p = \textcolor{keyword}{const\_cast<}typename std::shared\_ptr<T>::element\_type*\textcolor{keyword}{>}(r.get());}
+\DoxyCodeLine{1753     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}(r, p);}
+\DoxyCodeLine{1754 \}}
+\DoxyCodeLine{1755 }
+\DoxyCodeLine{1782 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{1783          \textcolor{keyword}{typename} U,}
+\DoxyCodeLine{1784          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{1785          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{1786          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{1787 \textcolor{keyword}{inline} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a393c868824d967df828b4d2b62378497}{reinterpret\_pointer\_cast}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<U, SharedMutex, SharedLock, UniqueLock>}}\& r) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1788 \{}
+\DoxyCodeLine{1789     \textcolor{keyword}{auto} p = \textcolor{keyword}{reinterpret\_cast<}typename std::shared\_ptr<T>::element\_type*\textcolor{keyword}{>}(r.get());}
+\DoxyCodeLine{1790     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}(r, p);}
+\DoxyCodeLine{1791 \}}
+\DoxyCodeLine{1792 }
+\DoxyCodeLine{1815 \textcolor{keyword}{template}<\textcolor{keyword}{typename} Deleter,}
+\DoxyCodeLine{1816          \textcolor{keyword}{typename} T,}
+\DoxyCodeLine{1817          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{1818          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{1819          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{1820 \textcolor{keyword}{inline} Deleter* \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a01dd4bba91bd839c1d9708a2fa1dda30}{get\_deleter}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& p) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1821 \{ \textcolor{keywordflow}{return} std::get\_deleter<Deleter>(p.ptr); \}}
+\DoxyCodeLine{1822 }
+\DoxyCodeLine{1848 \textcolor{keyword}{template}<\textcolor{keyword}{typename} L,}
+\DoxyCodeLine{1849          \textcolor{keyword}{typename} SharedMutex\_L,}
+\DoxyCodeLine{1850          \textcolor{keyword}{typename} SharedLock\_L,}
+\DoxyCodeLine{1851          \textcolor{keyword}{typename} UniqueLock\_L,}
+\DoxyCodeLine{1852          \textcolor{keyword}{typename} R,}
+\DoxyCodeLine{1853          \textcolor{keyword}{typename} SharedMutex\_R,}
+\DoxyCodeLine{1854          \textcolor{keyword}{typename} SharedLock\_R,}
+\DoxyCodeLine{1855          \textcolor{keyword}{typename} UniqueLock\_R>}
+\DoxyCodeLine{1856 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_aea30536d574f1b543bcaf35093e0f399}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<L, SharedMutex\_L, SharedLock\_L, UniqueLock\_L>}}\& lhs,}
+\DoxyCodeLine{1857                        \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<R, SharedMutex\_R, SharedLock\_R, UniqueLock\_R>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1858 \{ \textcolor{keywordflow}{return} lhs.ptr == rhs.ptr; \}}
+\DoxyCodeLine{1859 }
+\DoxyCodeLine{1885 \textcolor{keyword}{template}<\textcolor{keyword}{typename} L,}
+\DoxyCodeLine{1886          \textcolor{keyword}{typename} SharedMutex\_L,}
+\DoxyCodeLine{1887          \textcolor{keyword}{typename} SharedLock\_L,}
+\DoxyCodeLine{1888          \textcolor{keyword}{typename} UniqueLock\_L,}
+\DoxyCodeLine{1889          \textcolor{keyword}{typename} R,}
+\DoxyCodeLine{1890          \textcolor{keyword}{typename} SharedMutex\_R,}
+\DoxyCodeLine{1891          \textcolor{keyword}{typename} SharedLock\_R,}
+\DoxyCodeLine{1892          \textcolor{keyword}{typename} UniqueLock\_R>}
+\DoxyCodeLine{1893 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a24d831c3866e40edc151ed3886d7323f}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<L, SharedMutex\_L, SharedLock\_L, UniqueLock\_L>}}\& lhs,}
+\DoxyCodeLine{1894                        \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<R, SharedMutex\_R, SharedLock\_R, UniqueLock\_R>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1895 \{ \textcolor{keywordflow}{return} !(lhs == rhs); \}}
+\DoxyCodeLine{1896 }
+\DoxyCodeLine{1922 \textcolor{keyword}{template}<\textcolor{keyword}{typename} L,}
+\DoxyCodeLine{1923          \textcolor{keyword}{typename} SharedMutex\_L,}
+\DoxyCodeLine{1924          \textcolor{keyword}{typename} SharedLock\_L,}
+\DoxyCodeLine{1925          \textcolor{keyword}{typename} UniqueLock\_L,}
+\DoxyCodeLine{1926          \textcolor{keyword}{typename} R,}
+\DoxyCodeLine{1927          \textcolor{keyword}{typename} SharedMutex\_R,}
+\DoxyCodeLine{1928          \textcolor{keyword}{typename} SharedLock\_R,}
+\DoxyCodeLine{1929          \textcolor{keyword}{typename} UniqueLock\_R>}
+\DoxyCodeLine{1930 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a6b4c984d1deb47c2469cd475ddc25c14}{operator<}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<L, SharedMutex\_L, SharedLock\_L, UniqueLock\_L>}}\& lhs,}
+\DoxyCodeLine{1931                       \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<R, SharedMutex\_R, SharedLock\_R, UniqueLock\_R>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1932 \{ \textcolor{keywordflow}{return} lhs.ptr < rhs.ptr; \}}
+\DoxyCodeLine{1933 }
+\DoxyCodeLine{1959 \textcolor{keyword}{template}<\textcolor{keyword}{typename} L,}
+\DoxyCodeLine{1960          \textcolor{keyword}{typename} SharedMutex\_L,}
+\DoxyCodeLine{1961          \textcolor{keyword}{typename} SharedLock\_L,}
+\DoxyCodeLine{1962          \textcolor{keyword}{typename} UniqueLock\_L,}
+\DoxyCodeLine{1963          \textcolor{keyword}{typename} R,}
+\DoxyCodeLine{1964          \textcolor{keyword}{typename} SharedMutex\_R,}
+\DoxyCodeLine{1965          \textcolor{keyword}{typename} SharedLock\_R,}
+\DoxyCodeLine{1966          \textcolor{keyword}{typename} UniqueLock\_R>}
+\DoxyCodeLine{1967 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a2e10b6b4cfc455208dd9360fb6c00cc6}{operator>}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<L, SharedMutex\_L, SharedLock\_L, UniqueLock\_L>}}\& lhs,}
+\DoxyCodeLine{1968                       \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<R, SharedMutex\_R, SharedLock\_R, UniqueLock\_R>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{1969 \{ \textcolor{keywordflow}{return} lhs.ptr > rhs.ptr; \}}
+\DoxyCodeLine{1970 }
+\DoxyCodeLine{1996 \textcolor{keyword}{template}<\textcolor{keyword}{typename} L,}
+\DoxyCodeLine{1997          \textcolor{keyword}{typename} SharedMutex\_L,}
+\DoxyCodeLine{1998          \textcolor{keyword}{typename} SharedLock\_L,}
+\DoxyCodeLine{1999          \textcolor{keyword}{typename} UniqueLock\_L,}
+\DoxyCodeLine{2000          \textcolor{keyword}{typename} R,}
+\DoxyCodeLine{2001          \textcolor{keyword}{typename} SharedMutex\_R,}
+\DoxyCodeLine{2002          \textcolor{keyword}{typename} SharedLock\_R,}
+\DoxyCodeLine{2003          \textcolor{keyword}{typename} UniqueLock\_R>}
+\DoxyCodeLine{2004 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a05af639eed5ce705a12894fdd12c7794}{operator<=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<L, SharedMutex\_L, SharedLock\_L, UniqueLock\_L>}}\& lhs,}
+\DoxyCodeLine{2005                        \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<R, SharedMutex\_R, SharedLock\_R, UniqueLock\_R>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2006 \{ \textcolor{keywordflow}{return} !(lhs > rhs); \}}
+\DoxyCodeLine{2007 }
+\DoxyCodeLine{2033 \textcolor{keyword}{template}<\textcolor{keyword}{typename} L,}
+\DoxyCodeLine{2034          \textcolor{keyword}{typename} SharedMutex\_L,}
+\DoxyCodeLine{2035          \textcolor{keyword}{typename} SharedLock\_L,}
+\DoxyCodeLine{2036          \textcolor{keyword}{typename} UniqueLock\_L,}
+\DoxyCodeLine{2037          \textcolor{keyword}{typename} R,}
+\DoxyCodeLine{2038          \textcolor{keyword}{typename} SharedMutex\_R,}
+\DoxyCodeLine{2039          \textcolor{keyword}{typename} SharedLock\_R,}
+\DoxyCodeLine{2040          \textcolor{keyword}{typename} UniqueLock\_R>}
+\DoxyCodeLine{2041 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a558f45f4e0d1ca15311415a4915827a9}{operator>=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<L, SharedMutex\_L, SharedLock\_L, UniqueLock\_L>}}\& lhs,}
+\DoxyCodeLine{2042                        \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<R, SharedMutex\_R, SharedLock\_R, UniqueLock\_R>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2043 \{ \textcolor{keywordflow}{return} !(lhs < rhs); \}}
+\DoxyCodeLine{2044 }
+\DoxyCodeLine{2066 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2067          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2068          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2069          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2070 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a6e176a912d85aaa16228c8d3a9ca9795}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& lhs,}
+\DoxyCodeLine{2071                        std::nullptr\_t rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2072 \{ \textcolor{keywordflow}{return} lhs.ptr == rhs; \}}
+\DoxyCodeLine{2073 }
+\DoxyCodeLine{2095 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2096          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2097          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2098          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2099 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a95bb8ef0dc48ecf41fbfc20e03793996}{operator==}}(std::nullptr\_t lhs,}
+\DoxyCodeLine{2100                        \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2101 \{ \textcolor{keywordflow}{return} lhs == rhs.ptr; \}}
+\DoxyCodeLine{2102 }
+\DoxyCodeLine{2124 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2125          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2126          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2127          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2128 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ad7eed5d76ff613e8cbbe0d8b09a7687f}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& lhs,}
+\DoxyCodeLine{2129                        std::nullptr\_t rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2130 \{ \textcolor{keywordflow}{return} !(lhs.ptr == rhs); \}}
+\DoxyCodeLine{2131 }
+\DoxyCodeLine{2153 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2154          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2155          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2156          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2157 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a699e75e4bdae6b4d249e21cb45958e54}{operator!=}}(std::nullptr\_t lhs,}
+\DoxyCodeLine{2158                        \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2159 \{ \textcolor{keywordflow}{return} !(lhs == rhs.ptr); \}}
+\DoxyCodeLine{2160 }
+\DoxyCodeLine{2182 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2183          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2184          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2185          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2186 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a5463cddbff946ee0fbf3dac144ef0c6c}{operator<}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& lhs,}
+\DoxyCodeLine{2187                       std::nullptr\_t rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2188 \{ \textcolor{keywordflow}{return} lhs.ptr < rhs; \}}
+\DoxyCodeLine{2189 }
+\DoxyCodeLine{2211 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2212          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2213          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2214          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2215 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ab58cdfbacfa9e2b14f90f9e9f8221467}{operator<}}(std::nullptr\_t lhs,}
+\DoxyCodeLine{2216                       \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2217 \{ \textcolor{keywordflow}{return} lhs < rhs.ptr; \}}
+\DoxyCodeLine{2218 }
+\DoxyCodeLine{2240 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2241          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2242          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2243          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2244 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_ab80ecfb71eb67881ec5424bd962d8158}{operator>}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& lhs,}
+\DoxyCodeLine{2245                       std::nullptr\_t rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2246 \{ \textcolor{keywordflow}{return} lhs.ptr > rhs; \}}
+\DoxyCodeLine{2247 }
+\DoxyCodeLine{2269 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2270          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2271          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2272          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2273 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a1aba416835ddbdf9b19863ec5019cfb9}{operator>}}(std::nullptr\_t lhs,}
+\DoxyCodeLine{2274                       \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2275 \{ \textcolor{keywordflow}{return} lhs > rhs.ptr; \}}
+\DoxyCodeLine{2276 }
+\DoxyCodeLine{2298 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2299          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2300          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2301          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2302 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a26849326620709ff6428b133c79ad1c0}{operator<=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& lhs,}
+\DoxyCodeLine{2303                        std::nullptr\_t rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2304 \{ \textcolor{keywordflow}{return} !(lhs > rhs); \}}
+\DoxyCodeLine{2305 }
+\DoxyCodeLine{2327 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2328          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2329          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2330          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2331 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a193659a1357eb32d3627c72b74b9f9c0}{operator<=}}(std::nullptr\_t lhs,}
+\DoxyCodeLine{2332                        \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2333 \{ \textcolor{keywordflow}{return} !(lhs > rhs); \}}
+\DoxyCodeLine{2334 }
+\DoxyCodeLine{2356 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2357          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2358          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2359          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2360 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a35960731d11d54985d384f15d7c530e6}{operator>=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& lhs,}
+\DoxyCodeLine{2361                        std::nullptr\_t rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2362 \{ \textcolor{keywordflow}{return} !(lhs < rhs); \}}
+\DoxyCodeLine{2363 }
+\DoxyCodeLine{2386 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2387          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2388          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2389          \textcolor{keyword}{typename} UniqueLock>}
+\DoxyCodeLine{2390 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a264f33cced46d07bd154bf3dcaa19725}{operator>=}}(std::nullptr\_t lhs,}
+\DoxyCodeLine{2391                        \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2392 \{ \textcolor{keywordflow}{return} !(lhs < rhs); \}}
+\DoxyCodeLine{2393 }
+\DoxyCodeLine{2410 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2411          \textcolor{keyword}{typename} SharedMutex,}
+\DoxyCodeLine{2412          \textcolor{keyword}{typename} SharedLock,}
+\DoxyCodeLine{2413          \textcolor{keyword}{typename} UniqueLock,}
+\DoxyCodeLine{2414          \textcolor{keyword}{typename} OStream>}
+\DoxyCodeLine{2415 \textcolor{keyword}{inline} OStream\& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a9e2e3789aedc31bd3ffd12d7d82df700}{operator<<}}(OStream\& os,}
+\DoxyCodeLine{2416                            \textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& ptr)}
+\DoxyCodeLine{2417 \{}
+\DoxyCodeLine{2418     os << ptr.\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a4084b69baf9080919bc1e980026d8922}{get}}();}
+\DoxyCodeLine{2419     \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{2420 \}}
+\DoxyCodeLine{2421 }
+\DoxyCodeLine{2443 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2444          \textcolor{keyword}{typename} mutex\_t = \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\_mutex\_t}},}
+\DoxyCodeLine{2445          \textcolor{keyword}{typename} read\_lock\_t = \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{shared\_lock\_t}},}
+\DoxyCodeLine{2446          \textcolor{keyword}{typename} write\_lock\_t = \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{unique\_lock\_t}}>}
+\DoxyCodeLine{2447 \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr}}}
+\DoxyCodeLine{2448 \{}
+\DoxyCodeLine{2449 \textcolor{keyword}{public}:}
+\DoxyCodeLine{2451     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{SharedMutex}} = mutex\_t;}
+\DoxyCodeLine{2452 }
+\DoxyCodeLine{2454     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{SharedLock}} = read\_lock\_t;}
+\DoxyCodeLine{2455 }
+\DoxyCodeLine{2457     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{UniqueLock}} = write\_lock\_t;}
+\DoxyCodeLine{2458 }
+\DoxyCodeLine{2460     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a537c6fd770770526341af57592e35f24}{element\_type}} = \textcolor{keyword}{typename} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a15764a8befe6bc607d64b89282ddf790}{SafeSharedPtr<T>::element\_type}};}
+\DoxyCodeLine{2461 }
+\DoxyCodeLine{2465     \textcolor{keyword}{constexpr} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a56c8224543ced53cfc22d31c668a3f8a}{SafeWeakPtr}}() noexcept = default;}
+\DoxyCodeLine{2466 }
+\DoxyCodeLine{2475     template<typename Y>}
+\DoxyCodeLine{2476     \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr}}(const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr}}<Y, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{SharedMutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{SharedLock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{UniqueLock}}>\& other)}
+\DoxyCodeLine{2477         : mutex(other.mutex), ptr(other.ptr)}
+\DoxyCodeLine{2478     \{\}}
+\DoxyCodeLine{2479 }
+\DoxyCodeLine{2488     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{2489     \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a2f183890413cfe622d4e3d0516751c08}{SafeWeakPtr}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, SharedMutex, SharedLock, UniqueLock>}}\& other)}
+\DoxyCodeLine{2490         : mutex(other.mutex), ptr(other.ptr)}
+\DoxyCodeLine{2491     \{\}}
+\DoxyCodeLine{2492 }
+\DoxyCodeLine{2497     \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a4c9349c4c5f2e3959b3e2a70ed1b0117}{\string~SafeWeakPtr}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{2498 }
+\DoxyCodeLine{2511     \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T>}}\& \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9b909d6a7ec8797825531875315732ee}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T>}}\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2512     \{}
+\DoxyCodeLine{2513         \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T>}}(other).\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a74b1b58bf122b0d344a0828f028ff157}{swap}}(*\textcolor{keyword}{this});}
+\DoxyCodeLine{2514         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{2515     \}}
+\DoxyCodeLine{2516 }
+\DoxyCodeLine{2530     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y>}
+\DoxyCodeLine{2531     \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T>}}\& \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abe5d6cc64989f60c0faf2a8eceec2e64}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<Y, SharedMutex, SharedLock, UniqueLock>}}\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2532     \{}
+\DoxyCodeLine{2533         \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T>}}(other).\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a74b1b58bf122b0d344a0828f028ff157}{swap}}(*\textcolor{keyword}{this});}
+\DoxyCodeLine{2534         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{2535     \}}
+\DoxyCodeLine{2536 }
+\DoxyCodeLine{2541     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abe32f8c86727a07c0a8d19257bdfc79f}{reset}}() noexcept}
+\DoxyCodeLine{2542     \{ \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T>}}().\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a74b1b58bf122b0d344a0828f028ff157}{swap}}(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{2543 }
+\DoxyCodeLine{2551     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a74b1b58bf122b0d344a0828f028ff157}{swap}}(\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T>}}\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2552     \{}
+\DoxyCodeLine{2553         mutex.swap(other.mutex);}
+\DoxyCodeLine{2554         ptr.swap(other.ptr);}
+\DoxyCodeLine{2555     \}}
+\DoxyCodeLine{2556 }
+\DoxyCodeLine{2572     \textcolor{keywordtype}{long} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6d36236c6792077e26809fca8bc1f868}{use\_count}}() const noexcept}
+\DoxyCodeLine{2573     \{ \textcolor{keywordflow}{return} ptr.use\_count(); \}}
+\DoxyCodeLine{2574 }
+\DoxyCodeLine{2589     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abfdd1288d41ba5b5225283e04e686641}{expired}}() const noexcept}
+\DoxyCodeLine{2590     \{ \textcolor{keywordflow}{return} ptr.expired(); \}}
+\DoxyCodeLine{2591 }
+\DoxyCodeLine{2611     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T>}} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6566b256f4e2c2bbd84dde1c2acbaf9c}{lock}}() const noexcept}
+\DoxyCodeLine{2612     \{}
+\DoxyCodeLine{2613         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abfdd1288d41ba5b5225283e04e686641}{expired}}() ? \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T>}}() : \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T>}}(*\textcolor{keyword}{this});}
+\DoxyCodeLine{2614     \}}
+\DoxyCodeLine{2615 }
+\DoxyCodeLine{2635     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} M, \textcolor{keyword}{typename} R, \textcolor{keyword}{typename} W>}
+\DoxyCodeLine{2636     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_ae18d517b24bee769ac429b5cde0a6652}{owner\_before}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<Y, M, R, W>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{2637 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} ptr.owner\_before(other.ptr); \}}
+\DoxyCodeLine{2638 }
+\DoxyCodeLine{2658     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} M, \textcolor{keyword}{typename} R, \textcolor{keyword}{typename} W>}
+\DoxyCodeLine{2659     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a4222b4ca30d1053027485057d21ca1df}{owner\_before}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<Y, M, R, W>}}\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{2660 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} ptr.owner\_before(other); \}}
+\DoxyCodeLine{2661 }
+\DoxyCodeLine{2662 \textcolor{keyword}{private}:}
+\DoxyCodeLine{2663     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} M, \textcolor{keyword}{typename} R, \textcolor{keyword}{typename} W>}
+\DoxyCodeLine{2664     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}};}
+\DoxyCodeLine{2665     std::weak\_ptr<SharedMutex> mutex;}
+\DoxyCodeLine{2666     std::weak\_ptr<T> ptr;}
+\DoxyCodeLine{2667 \};}
+\DoxyCodeLine{2668 }
+\DoxyCodeLine{2683 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2684          \textcolor{keyword}{typename} mutex\_t = \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\_mutex\_t}},}
+\DoxyCodeLine{2685          \textcolor{keyword}{typename} read\_lock\_t = \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{shared\_lock\_t}},}
+\DoxyCodeLine{2686          \textcolor{keyword}{typename} write\_lock\_t = \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{unique\_lock\_t}}>}
+\DoxyCodeLine{2687 \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis}} : \textcolor{keyword}{public} std::enable\_shared\_from\_this<T>}
+\DoxyCodeLine{2688 \{}
+\DoxyCodeLine{2689 \textcolor{keyword}{public}:}
+\DoxyCodeLine{2691     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a3d836f01141aa6cf029dd12f6d226dda}{SharedMutex}} = mutex\_t;}
+\DoxyCodeLine{2692 }
+\DoxyCodeLine{2694     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ac4d1a2e3af6a1a9deb3688b5d68f662f}{SharedLock}} = read\_lock\_t;}
+\DoxyCodeLine{2695 }
+\DoxyCodeLine{2697     \textcolor{keyword}{using} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a5eca063636677871a120f858c9662ac2}{UniqueLock}} = write\_lock\_t;}
+\DoxyCodeLine{2698 }
+\DoxyCodeLine{2704     \textcolor{keyword}{constexpr} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_abc95f007eb9b7c254ef8ac6feb79b624}{EnableSafeSharedFromThis}}() noexcept}
+\DoxyCodeLine{2705         : \_\_safeSharedLock(\mbox{\hyperlink{namespacestd}{std}}::make\_shared<\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a3d836f01141aa6cf029dd12f6d226dda}{SharedMutex}}>())}
+\DoxyCodeLine{2706     \{\}}
+\DoxyCodeLine{2707 }
+\DoxyCodeLine{2717     \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_acced9e203995c238e4265c358806fc73}{EnableSafeSharedFromThis}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis}}\& other) noexcept}
+\DoxyCodeLine{2718         : std::enable\_shared\_from\_this<T>(other),}
+\DoxyCodeLine{2719           \_\_safeSharedLock(other.\_\_safeSharedLock)}
+\DoxyCodeLine{2720     \{\}}
+\DoxyCodeLine{2721 }
+\DoxyCodeLine{2731     \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ad808b9603dbe053d1ea3a5ced195fa41}{EnableSafeSharedFromThis}}(\textcolor{keyword}{const} std::enable\_shared\_from\_this<T>\& other) noexcept}
+\DoxyCodeLine{2732         : std::enable\_shared\_from\_this<T>(other),}
+\DoxyCodeLine{2733           \_\_safeSharedLock(std::make\_shared<SharedMutex>())}
+\DoxyCodeLine{2734     \{\}}
+\DoxyCodeLine{2735 }
+\DoxyCodeLine{2740     \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_aa4b73a70f2f24e8af5d68a749e1d60ae}{\string~EnableSafeSharedFromThis}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{2741 }
+\DoxyCodeLine{2751     \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis}}\& \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ae6b4fc0a0726a2b649881cec5382142f}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis}}\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2752     \{}
+\DoxyCodeLine{2753         \textcolor{keyword}{static\_cast<}std::enable\_shared\_from\_this<T>\&\textcolor{keyword}{>}(*this)}
+\DoxyCodeLine{2754                 = \textcolor{keyword}{static\_cast<}std::enable\_shared\_from\_this<T>\&\textcolor{keyword}{>}(other);}
+\DoxyCodeLine{2755         \_\_safeSharedLock = other.\_\_safeSharedLock;}
+\DoxyCodeLine{2756         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{2757     \}}
+\DoxyCodeLine{2758 }
+\DoxyCodeLine{2768     \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{EnableSafeSharedFromThis<T>}}\& \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ae7137ce519764636788735834b0a552e}{operator=}}(\textcolor{keyword}{const} std::enable\_shared\_from\_this<T>\& other) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2769     \{}
+\DoxyCodeLine{2770         \textcolor{keyword}{static\_cast<}std::enable\_shared\_from\_this<T>\&\textcolor{keyword}{>}(*this) = other;}
+\DoxyCodeLine{2771         \_\_safeSharedLock = std::make\_shared<SharedMutex>();}
+\DoxyCodeLine{2772         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{2773     \}}
+\DoxyCodeLine{2774 }
+\DoxyCodeLine{2798     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_afb8bc2ac61e732c4327c9f6fb1c13972}{shared\_from\_this}}()}
+\DoxyCodeLine{2799     \{}
+\DoxyCodeLine{2800         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}(}
+\DoxyCodeLine{2801                     \_\_safeSharedLock,}
+\DoxyCodeLine{2802                     std::enable\_shared\_from\_this<T>::shared\_from\_this());}
+\DoxyCodeLine{2803     \}}
+\DoxyCodeLine{2804 }
+\DoxyCodeLine{2828     \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T const>}} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_aeec2f43db25e805c81e97602b1929b85}{shared\_from\_this}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{2829 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{2830         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr<T const>}}(\_\_safeSharedLock,}
+\DoxyCodeLine{2831                                       std::enable\_shared\_from\_this<T>::shared\_from\_this());}
+\DoxyCodeLine{2832     \}}
+\DoxyCodeLine{2833 }
+\DoxyCodeLine{2844     \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T>}} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a7b4df5f24639eb5f5c437724cebd0d8f}{weak\_from\_this}}()}
+\DoxyCodeLine{2845     \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_afb8bc2ac61e732c4327c9f6fb1c13972}{shared\_from\_this}}(); \}}
+\DoxyCodeLine{2846 }
+\DoxyCodeLine{2857     \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{SafeWeakPtr<T const>}} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ac671a18dc36f8c13cc11d367d5d6d1d2}{weak\_from\_this}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{2858 \textcolor{keyword}{    }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_afb8bc2ac61e732c4327c9f6fb1c13972}{shared\_from\_this}}(); \}}
+\DoxyCodeLine{2859 }
+\DoxyCodeLine{2860 \textcolor{keyword}{private}:}
+\DoxyCodeLine{2861     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Y, \textcolor{keyword}{typename} M, \textcolor{keyword}{typename} R, \textcolor{keyword}{typename} W>}
+\DoxyCodeLine{2862     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{SafeSharedPtr}};}
+\DoxyCodeLine{2863     std::shared\_ptr<typename SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>::SharedMutex> \_\_safeSharedLock;}
+\DoxyCodeLine{2864 \};}
+\DoxyCodeLine{2865 \} \textcolor{comment}{// namespace Memory}}
+\DoxyCodeLine{2868 \textcolor{comment}{}\mbox{\hyperlink{_common_8h_add21c59d72c4c8b62da5082f77a8d6b9}{UTILITIES\_NAMESPACE\_END}}}
+\DoxyCodeLine{2869 }
+\DoxyCodeLine{2870 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacestd}{std}} \{}
+\DoxyCodeLine{2887 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2888          \textcolor{keyword}{typename} SharedMutex = \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{Memory::shared\_mutex\_t}},}
+\DoxyCodeLine{2889          \textcolor{keyword}{typename} SharedLock = \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{Memory::shared\_lock\_t}},}
+\DoxyCodeLine{2890          \textcolor{keyword}{typename} UniqueLock = \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{Memory::unique\_lock\_t}}>}
+\DoxyCodeLine{2891 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_a6aa42f7da4280c4574b5024a132691d1}{swap}}(\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory::SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& lhs,}
+\DoxyCodeLine{2892                  \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory::SafeSharedPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2893 \{ lhs.swap(rhs); \}}
+\DoxyCodeLine{2910 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T,}
+\DoxyCodeLine{2911          \textcolor{keyword}{typename} SharedMutex = \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{Memory::shared\_mutex\_t}},}
+\DoxyCodeLine{2912          \textcolor{keyword}{typename} SharedLock = \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{Memory::shared\_lock\_t}},}
+\DoxyCodeLine{2913          \textcolor{keyword}{typename} UniqueLock = \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{Memory::unique\_lock\_t}}>}
+\DoxyCodeLine{2914 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a4af5fd4f3529eb5569d8fe6df8391460}{swap}}(\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory::SafeWeakPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& lhs,}
+\DoxyCodeLine{2915           \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory::SafeWeakPtr<T, SharedMutex, SharedLock, UniqueLock>}}\& rhs) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{2916 \{ lhs.swap(rhs); \}}
+\DoxyCodeLine{2917 \} \textcolor{comment}{// namespace std}}
+\DoxyCodeLine{2918 }
+\DoxyCodeLine{2921 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// CPP\_UTILITIES\_MEMORYSAFETY\_SAFESHAREDPTR\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,63 @@
+\hypertarget{namespace_memory}{}\doxysection{Memory Namespace Reference}
+\label{namespace_memory}\index{Memory@{Memory}}
+
+
+Namespace for all classes, typedefs and functions of memory safety. See \mbox{\hyperlink{group___memory_safety}{Memory Safety}} for more instrucion.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}}
+\begin{DoxyCompactList}\small\item\em A proxy class from {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} to provide same functionality for \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}}
+\begin{DoxyCompactList}\small\item\em High-\/performance read-\/write-\/spinlock, see \mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpin\+Lock.\+hpp}} for details. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}
+\begin{DoxyCompactList}\small\item\em Wrapper to {\ttfamily std\+::shared\+\_\+ptr} to provide thread-\/safety while operating the underlying pointer. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}
+\begin{DoxyCompactList}\small\item\em Wrapper to {\ttfamily std\+::weak\+\_\+ptr} to provide weak reference for \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\+\_\+mutex\+\_\+t}} = std\+::shared\+\_\+mutex
+\begin{DoxyCompactList}\small\item\em Defined to {\ttfamily std\+::shared\+\_\+mutex} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}}. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{shared\+\_\+lock\+\_\+t}} = std\+::shared\+\_\+lock$<$ \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\+\_\+mutex\+\_\+t}} $>$
+\begin{DoxyCompactList}\small\item\em Defined to {\ttfamily std\+::shared\+\_\+lock\texorpdfstring{$<$}{<}std\+::shared\+\_\+mutex\texorpdfstring{$>$}{>}} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{RWSpin\+Lock\+::\+Read\+Holder}}. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{unique\+\_\+lock\+\_\+t}} = std\+::unique\+\_\+lock$<$ \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\+\_\+mutex\+\_\+t}} $>$
+\begin{DoxyCompactList}\small\item\em Defined to {\ttfamily std\+::unique\+\_\+lock\texorpdfstring{$<$}{<}std\+::shared\+\_\+mutex\texorpdfstring{$>$}{>}} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{RWSpin\+Lock\+::\+Write\+Holder}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Namespace for all classes, typedefs and functions of memory safety. See \mbox{\hyperlink{group___memory_safety}{Memory Safety}} for more instrucion. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}\label{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}} 
+\index{Memory@{Memory}!shared\_mutex\_t@{shared\_mutex\_t}}
+\index{shared\_mutex\_t@{shared\_mutex\_t}!Memory@{Memory}}
+\doxysubsubsection{\texorpdfstring{shared\_mutex\_t}{shared\_mutex\_t}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{Memory\+::shared\+\_\+mutex\+\_\+t}} = typedef std\+::shared\+\_\+mutex}
+
+
+
+Defined to {\ttfamily std\+::shared\+\_\+mutex} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}}. 
+
+\mbox{\Hypertarget{namespace_memory_a8d0060337492ae51ea2cb554363b2981}\label{namespace_memory_a8d0060337492ae51ea2cb554363b2981}} 
+\index{Memory@{Memory}!shared\_lock\_t@{shared\_lock\_t}}
+\index{shared\_lock\_t@{shared\_lock\_t}!Memory@{Memory}}
+\doxysubsubsection{\texorpdfstring{shared\_lock\_t}{shared\_lock\_t}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{Memory\+::shared\+\_\+lock\+\_\+t}} = typedef std\+::shared\+\_\+lock$<$\mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\+\_\+mutex\+\_\+t}}$>$}
+
+
+
+Defined to {\ttfamily std\+::shared\+\_\+lock\texorpdfstring{$<$}{<}std\+::shared\+\_\+mutex\texorpdfstring{$>$}{>}} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{RWSpin\+Lock\+::\+Read\+Holder}}. 
+
+\mbox{\Hypertarget{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}\label{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}} 
+\index{Memory@{Memory}!unique\_lock\_t@{unique\_lock\_t}}
+\index{unique\_lock\_t@{unique\_lock\_t}!Memory@{Memory}}
+\doxysubsubsection{\texorpdfstring{unique\_lock\_t}{unique\_lock\_t}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{Memory\+::unique\+\_\+lock\+\_\+t}} = typedef std\+::unique\+\_\+lock$<$\mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{shared\+\_\+mutex\+\_\+t}}$>$}
+
+
+
+Defined to {\ttfamily std\+::unique\+\_\+lock\texorpdfstring{$<$}{<}std\+::shared\+\_\+mutex\texorpdfstring{$>$}{>}} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{RWSpin\+Lock\+::\+Write\+Holder}}. 
+

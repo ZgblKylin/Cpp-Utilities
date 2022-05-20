@@ -1,0 +1,343 @@
+\hypertarget{_r_w_spin_lock_8hpp_source}{}\doxysection{RWSpin\+Lock.\+hpp}
+\label{_r_w_spin_lock_8hpp_source}\index{include/Utilities/MemorySafety/RWSpinLock.hpp@{include/Utilities/MemorySafety/RWSpinLock.hpp}}
+\mbox{\hyperlink{_r_w_spin_lock_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CPP\_UTILITIES\_MEMORYSAFETY\_RWSPINLOCK\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CPP\_UTILITIES\_MEMORYSAFETY\_RWSPINLOCK\_HPP}}
+\DoxyCodeLine{3 \textcolor{comment}{/*}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright 2011-\/present Facebook, Inc.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{7 \textcolor{comment}{ * you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{8 \textcolor{comment}{ * You may obtain a copy of the License at}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ *   http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ * Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{13 \textcolor{comment}{ * distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{14 \textcolor{comment}{ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{15 \textcolor{comment}{ * See the License for the specific language governing permissions and}}
+\DoxyCodeLine{16 \textcolor{comment}{ * limitations under the License.}}
+\DoxyCodeLine{17 \textcolor{comment}{ */}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#include <atomic>}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#include <thread>}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#include "{}../Common.h"{}}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \mbox{\hyperlink{_common_8h_afd939a921079854300ffc21a768560e4}{UTILITIES\_NAMESPACE\_BEGIN}}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{159 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_memory}{Memory}} \{}
+\DoxyCodeLine{164 \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}} \{}
+\DoxyCodeLine{165     enum : int32\_t \{ READER = 4, UPGRADED = 2, WRITER = 1 \};}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{keyword}{public}:}
+\DoxyCodeLine{168     \textcolor{keyword}{constexpr} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a67238162cd542b57af44cd9b11fd8f2e}{RWSpinLock}}() : bits\_(0) \{\}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170     \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a2e3842da240930f0d5ac7932b235b389}{RWSpinLock}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}} \textcolor{keyword}{const}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{171     \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a1e962f3c75f6328d9aa8b5e9bf051de4}{operator=}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}} \textcolor{keyword}{const}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{174     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}() \{}
+\DoxyCodeLine{175         uint\_fast32\_t count = 0;}
+\DoxyCodeLine{176         \textcolor{keywordflow}{while} (!\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a5324c83b8a6830e61b852cb511212649}{try\_lock}}()) \{}
+\DoxyCodeLine{177             \textcolor{keywordflow}{if} (++count > 1000) \{}
+\DoxyCodeLine{178                 std::this\_thread::yield();}
+\DoxyCodeLine{179             \}}
+\DoxyCodeLine{180         \}}
+\DoxyCodeLine{181     \}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{184     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{unlock}}() \{}
+\DoxyCodeLine{185         \textcolor{keyword}{static\_assert}(READER > WRITER + UPGRADED, \textcolor{stringliteral}{"{}wrong bits!"{}});}
+\DoxyCodeLine{186         bits\_.fetch\_and(\string~(WRITER | UPGRADED), std::memory\_order\_release);}
+\DoxyCodeLine{187     \}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{190     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}{lock\_shared}}() \{}
+\DoxyCodeLine{191         uint\_fast32\_t count = 0;}
+\DoxyCodeLine{192         \textcolor{keywordflow}{while} (!\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a4b51f06eae6d86ac12324b4d06334e5b}{try\_lock\_shared}}()) \{}
+\DoxyCodeLine{193             \textcolor{keywordflow}{if} (++count > 1000) \{}
+\DoxyCodeLine{194                 std::this\_thread::yield();}
+\DoxyCodeLine{195             \}}
+\DoxyCodeLine{196         \}}
+\DoxyCodeLine{197     \}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8ce7c822fdb5e9c3b5997e77186ef2ad}{unlock\_shared}}() \{}
+\DoxyCodeLine{200         bits\_.fetch\_add(-\/READER, std::memory\_order\_release);}
+\DoxyCodeLine{201     \}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{204     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_aae71af29b49eb7345131fb967eb56ee5}{unlock\_and\_lock\_shared}}() \{}
+\DoxyCodeLine{205         bits\_.fetch\_add(READER, std::memory\_order\_acquire);}
+\DoxyCodeLine{206         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{unlock}}();}
+\DoxyCodeLine{207     \}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{210     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{lock\_upgrade}}() \{}
+\DoxyCodeLine{211         uint\_fast32\_t count = 0;}
+\DoxyCodeLine{212         \textcolor{keywordflow}{while} (!\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ab71e6893bbe5d5aaa04c861e61059bc6}{try\_lock\_upgrade}}()) \{}
+\DoxyCodeLine{213             \textcolor{keywordflow}{if} (++count > 1000) \{}
+\DoxyCodeLine{214                 std::this\_thread::yield();}
+\DoxyCodeLine{215             \}}
+\DoxyCodeLine{216         \}}
+\DoxyCodeLine{217     \}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}{unlock\_upgrade}}() \{}
+\DoxyCodeLine{220         bits\_.fetch\_add(-\/UPGRADED, std::memory\_order\_acq\_rel);}
+\DoxyCodeLine{221     \}}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{224     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8f4d78fbd649daabb0aaf47cb0386578}{unlock\_upgrade\_and\_lock}}() \{}
+\DoxyCodeLine{225         int64\_t count = 0;}
+\DoxyCodeLine{226         \textcolor{keywordflow}{while} (!\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ab47cfb0f09949a579afcfc6018b04297}{try\_unlock\_upgrade\_and\_lock}}()) \{}
+\DoxyCodeLine{227             \textcolor{keywordflow}{if} (++count > 1000) \{}
+\DoxyCodeLine{228                 std::this\_thread::yield();}
+\DoxyCodeLine{229             \}}
+\DoxyCodeLine{230         \}}
+\DoxyCodeLine{231     \}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{234     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ad5aeb650d708607c0326c6378108bb74}{unlock\_upgrade\_and\_lock\_shared}}() \{}
+\DoxyCodeLine{235         bits\_.fetch\_add(READER -\/ UPGRADED, std::memory\_order\_acq\_rel);}
+\DoxyCodeLine{236     \}}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{239     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a98e4cd1a12789d684c22c1c116bbfe0f}{unlock\_and\_lock\_upgrade}}() \{}
+\DoxyCodeLine{240         \textcolor{comment}{// need to do it in two steps here -\/-\/ as the UPGRADED bit might be OR-\/ed}}
+\DoxyCodeLine{241         \textcolor{comment}{// at the same time when other threads are trying do try\_lock\_upgrade().}}
+\DoxyCodeLine{242         bits\_.fetch\_or(UPGRADED, std::memory\_order\_acquire);}
+\DoxyCodeLine{243         bits\_.fetch\_add(-\/WRITER, std::memory\_order\_release);}
+\DoxyCodeLine{244     \}}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{247     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a5324c83b8a6830e61b852cb511212649}{try\_lock}}() \{}
+\DoxyCodeLine{248         int32\_t expect = 0;}
+\DoxyCodeLine{249         \textcolor{keywordflow}{return} bits\_.compare\_exchange\_strong(}
+\DoxyCodeLine{250                     expect, WRITER, std::memory\_order\_acq\_rel);}
+\DoxyCodeLine{251     \}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{262     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a4b51f06eae6d86ac12324b4d06334e5b}{try\_lock\_shared}}() \{}
+\DoxyCodeLine{263         \textcolor{comment}{// fetch\_add is considerably (100\%) faster than compare\_exchange,}}
+\DoxyCodeLine{264         \textcolor{comment}{// so here we are optimizing for the common (lock success) case.}}
+\DoxyCodeLine{265         int32\_t value = bits\_.fetch\_add(READER, std::memory\_order\_acquire);}
+\DoxyCodeLine{266         \textcolor{keywordflow}{if} (value \& (WRITER | UPGRADED)) \{}
+\DoxyCodeLine{267             bits\_.fetch\_add(-\/READER, std::memory\_order\_release);}
+\DoxyCodeLine{268             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{269         \}}
+\DoxyCodeLine{270         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{271     \}}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{274     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ab47cfb0f09949a579afcfc6018b04297}{try\_unlock\_upgrade\_and\_lock}}() \{}
+\DoxyCodeLine{275         int32\_t expect = UPGRADED;}
+\DoxyCodeLine{276         \textcolor{keywordflow}{return} bits\_.compare\_exchange\_strong(}
+\DoxyCodeLine{277                     expect, WRITER, std::memory\_order\_acq\_rel);}
+\DoxyCodeLine{278     \}}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{288     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ab71e6893bbe5d5aaa04c861e61059bc6}{try\_lock\_upgrade}}() \{}
+\DoxyCodeLine{289         int32\_t value = bits\_.fetch\_or(UPGRADED, std::memory\_order\_acquire);}
+\DoxyCodeLine{290 }
+\DoxyCodeLine{291         \textcolor{keywordflow}{return} ((value \& (UPGRADED | WRITER)) == 0);}
+\DoxyCodeLine{292     \}}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{295     int32\_t \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a739e32f4d567f8de3a0e87a6826f200c}{bits}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{296         \textcolor{keywordflow}{return} bits\_.load(std::memory\_order\_acquire);}
+\DoxyCodeLine{297     \}}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299     \textcolor{keyword}{class }ReadHolder;}
+\DoxyCodeLine{300     \textcolor{keyword}{class }UpgradedHolder;}
+\DoxyCodeLine{301     \textcolor{keyword}{class }WriteHolder;}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{307     \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}} \{}
+\DoxyCodeLine{308     \textcolor{keyword}{public}:}
+\DoxyCodeLine{309         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a9d79840d7b3a3bcba67326950e6e7724}{ReadHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) : lock\_(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) \{}
+\DoxyCodeLine{310             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{311                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}{lock\_shared}}();}
+\DoxyCodeLine{312             \}}
+\DoxyCodeLine{313         \}}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_ab9f0878aa9074189ff50d9b6a9b122c2}{ReadHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) : lock\_(\&\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) \{}
+\DoxyCodeLine{316             lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}{lock\_shared}}();}
+\DoxyCodeLine{317         \}}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a7a2fc7f5bee3678bdc1f9ab074a22b21}{ReadHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}}\&\& other) noexcept : lock\_(other.lock\_) \{}
+\DoxyCodeLine{320             other.lock\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{321         \}}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{324         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_acb608b0a3e04cf81f569d7c9f7590d4f}{ReadHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\&\& upgraded) : lock\_(upgraded.lock\_) \{}
+\DoxyCodeLine{325             upgraded.lock\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{326             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{327                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ad5aeb650d708607c0326c6378108bb74}{unlock\_upgrade\_and\_lock\_shared}}();}
+\DoxyCodeLine{328             \}}
+\DoxyCodeLine{329         \}}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a9678e591a95eec448705cd892cd7d8e7}{ReadHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}\&\& writer) : lock\_(writer.lock\_) \{}
+\DoxyCodeLine{332             writer.lock\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{333             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{334                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_aae71af29b49eb7345131fb967eb56ee5}{unlock\_and\_lock\_shared}}();}
+\DoxyCodeLine{335             \}}
+\DoxyCodeLine{336         \}}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a977f1120084c04d5001c01e7103244b0}{operator=}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}}\&\& other) \{}
+\DoxyCodeLine{339             \textcolor{keyword}{using} std::swap;}
+\DoxyCodeLine{340             \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a90efd25fd0169088f7cf1891c477d88c}{swap}}(lock\_, other.lock\_);}
+\DoxyCodeLine{341             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{342         \}}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a9e8604bfed728817bab7ea12fe1c1da7}{ReadHolder}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}}\& other) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{345         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_aea7e3bccc5470dfc820524a72b6d4042}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}}\& other) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a64b4fbc9b41048f913bc402f7e207632}{\string~ReadHolder}}() \{}
+\DoxyCodeLine{348             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{349                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8ce7c822fdb5e9c3b5997e77186ef2ad}{unlock\_shared}}();}
+\DoxyCodeLine{350             \}}
+\DoxyCodeLine{351         \}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a72ea795eeb8695b526034c35c800411a}{reset}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}} = \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{354             \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}} == lock\_) \{}
+\DoxyCodeLine{355                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{356             \}}
+\DoxyCodeLine{357             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{358                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8ce7c822fdb5e9c3b5997e77186ef2ad}{unlock\_shared}}();}
+\DoxyCodeLine{359             \}}
+\DoxyCodeLine{360             lock\_ = \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}};}
+\DoxyCodeLine{361             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{362                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}{lock\_shared}}();}
+\DoxyCodeLine{363             \}}
+\DoxyCodeLine{364         \}}
+\DoxyCodeLine{365 }
+\DoxyCodeLine{366         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder_a90efd25fd0169088f7cf1891c477d88c}{swap}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}}\& other) \{}
+\DoxyCodeLine{367             std::swap(lock\_, other.lock\_);}
+\DoxyCodeLine{368         \}}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370     \textcolor{keyword}{private}:}
+\DoxyCodeLine{371         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}};}
+\DoxyCodeLine{372         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}};}
+\DoxyCodeLine{373         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* lock\_;}
+\DoxyCodeLine{374     \};}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{380     \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}} \{}
+\DoxyCodeLine{381     \textcolor{keyword}{public}:}
+\DoxyCodeLine{382         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_acdf4619e13a4ff73e3babf7e21c859fa}{UpgradedHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) : lock\_(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) \{}
+\DoxyCodeLine{383             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{384                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{lock\_upgrade}}();}
+\DoxyCodeLine{385             \}}
+\DoxyCodeLine{386         \}}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a5dba0dda7825da7c391560602883c014}{UpgradedHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) : lock\_(\&\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) \{}
+\DoxyCodeLine{389             lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{lock\_upgrade}}();}
+\DoxyCodeLine{390         \}}
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a9f5ad84c75820a0f6be49d2487a8b4a7}{UpgradedHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}\&\& writer) \{}
+\DoxyCodeLine{393             lock\_ = writer.lock\_;}
+\DoxyCodeLine{394             writer.lock\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{395             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{396                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a98e4cd1a12789d684c22c1c116bbfe0f}{unlock\_and\_lock\_upgrade}}();}
+\DoxyCodeLine{397             \}}
+\DoxyCodeLine{398         \}}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_aa357df8e120289d0ded2ecc167fbf634}{UpgradedHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\&\& other) noexcept : lock\_(other.lock\_) \{}
+\DoxyCodeLine{401             other.lock\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{402         \}}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_af2cb8281ec81d249e657d3f2557d71f5}{operator=}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\&\& other) \{}
+\DoxyCodeLine{405             \textcolor{keyword}{using} std::swap;}
+\DoxyCodeLine{406             \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a24ec9845cefe95167719fa9c48f3cbc4}{swap}}(lock\_, other.lock\_);}
+\DoxyCodeLine{407             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{408         \}}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_ac705369f4a821a31b1fc99851b18d4f2}{UpgradedHolder}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\& other) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{411         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a311596c25eda7531d13e3f72d780a79f}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\& other) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{412 }
+\DoxyCodeLine{413         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a452a2267803e2befbb58aac8f19ef26b}{\string~UpgradedHolder}}() \{}
+\DoxyCodeLine{414             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{415                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}{unlock\_upgrade}}();}
+\DoxyCodeLine{416             \}}
+\DoxyCodeLine{417         \}}
+\DoxyCodeLine{418 }
+\DoxyCodeLine{419         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a87034edbd87288b07f80d9008c647f87}{reset}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}} = \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{420             \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}} == lock\_) \{}
+\DoxyCodeLine{421                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{422             \}}
+\DoxyCodeLine{423             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{424                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}{unlock\_upgrade}}();}
+\DoxyCodeLine{425             \}}
+\DoxyCodeLine{426             lock\_ = \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}};}
+\DoxyCodeLine{427             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{428                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{lock\_upgrade}}();}
+\DoxyCodeLine{429             \}}
+\DoxyCodeLine{430         \}}
+\DoxyCodeLine{431 }
+\DoxyCodeLine{432         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a24ec9845cefe95167719fa9c48f3cbc4}{swap}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\& other) \{}
+\DoxyCodeLine{433             \textcolor{keyword}{using} std::swap;}
+\DoxyCodeLine{434             \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder_a24ec9845cefe95167719fa9c48f3cbc4}{swap}}(lock\_, other.lock\_);}
+\DoxyCodeLine{435         \}}
+\DoxyCodeLine{436 }
+\DoxyCodeLine{437     \textcolor{keyword}{private}:}
+\DoxyCodeLine{438         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}};}
+\DoxyCodeLine{439         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}};}
+\DoxyCodeLine{440         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* lock\_;}
+\DoxyCodeLine{441     \};}
+\DoxyCodeLine{442 }
+\DoxyCodeLine{447     \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}} \{}
+\DoxyCodeLine{448     \textcolor{keyword}{public}:}
+\DoxyCodeLine{449         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a7e3baf33ba3b8e9c16082bea16dcc643}{WriteHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) : lock\_(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) \{}
+\DoxyCodeLine{450             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{451                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}();}
+\DoxyCodeLine{452             \}}
+\DoxyCodeLine{453         \}}
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_adc66ed4aabafb221a41a2bb0ef5bce84}{WriteHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) : lock\_(\&\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}) \{}
+\DoxyCodeLine{456             lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}();}
+\DoxyCodeLine{457         \}}
+\DoxyCodeLine{458 }
+\DoxyCodeLine{460         \textcolor{keyword}{explicit} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_af320c83c20da4b620b24b4b498f44457}{WriteHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}}\&\& upgraded) \{}
+\DoxyCodeLine{461             lock\_ = upgraded.lock\_;}
+\DoxyCodeLine{462             upgraded.lock\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{463             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{464                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8f4d78fbd649daabb0aaf47cb0386578}{unlock\_upgrade\_and\_lock}}();}
+\DoxyCodeLine{465             \}}
+\DoxyCodeLine{466         \}}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_ac1740b71ab3fe6860f865e8678346968}{WriteHolder}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}\&\& other) noexcept : lock\_(other.lock\_) \{}
+\DoxyCodeLine{469             other.lock\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{470         \}}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a08df529655f493843e2b610b1e254885}{operator=}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}\&\& other) \{}
+\DoxyCodeLine{473             \textcolor{keyword}{using} std::swap;}
+\DoxyCodeLine{474             \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a62a5dda1cd84d48b2fadf71dc41a572e}{swap}}(lock\_, other.lock\_);}
+\DoxyCodeLine{475             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{476         \}}
+\DoxyCodeLine{477 }
+\DoxyCodeLine{478         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a0001fb000d25bab85af4ca6bb98bfb4b}{WriteHolder}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}\& other) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{479         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}\& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_abe5e2d6c36e7fe81d13e84895e38eb4a}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}\& other) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{480 }
+\DoxyCodeLine{481         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_af775577630611c2677d638e805f7db36}{\string~WriteHolder}}() \{}
+\DoxyCodeLine{482             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{483                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{unlock}}();}
+\DoxyCodeLine{484             \}}
+\DoxyCodeLine{485         \}}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a1f346f9e7532e37ed641d9f16c757510}{reset}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}} = \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{488             \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}} == lock\_) \{}
+\DoxyCodeLine{489                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{490             \}}
+\DoxyCodeLine{491             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{492                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{unlock}}();}
+\DoxyCodeLine{493             \}}
+\DoxyCodeLine{494             lock\_ = \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}};}
+\DoxyCodeLine{495             \textcolor{keywordflow}{if} (lock\_) \{}
+\DoxyCodeLine{496                 lock\_-\/>\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}();}
+\DoxyCodeLine{497             \}}
+\DoxyCodeLine{498         \}}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a62a5dda1cd84d48b2fadf71dc41a572e}{swap}}(\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{WriteHolder}}* other) \{}
+\DoxyCodeLine{501             \textcolor{keyword}{using} std::swap;}
+\DoxyCodeLine{502             \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a62a5dda1cd84d48b2fadf71dc41a572e}{swap}}(lock\_, other-\/>lock\_);}
+\DoxyCodeLine{503         \}}
+\DoxyCodeLine{504 }
+\DoxyCodeLine{505     \textcolor{keyword}{private}:}
+\DoxyCodeLine{506         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{ReadHolder}};}
+\DoxyCodeLine{507         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{UpgradedHolder}};}
+\DoxyCodeLine{508         \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpinLock}}* lock\_;}
+\DoxyCodeLine{509     \};}
+\DoxyCodeLine{510 }
+\DoxyCodeLine{511 \textcolor{keyword}{private}:}
+\DoxyCodeLine{512     std::atomic<int32\_t> bits\_;}
+\DoxyCodeLine{513 \};}
+\DoxyCodeLine{514 \} \textcolor{comment}{// namespace Memory}}
+\DoxyCodeLine{517 \textcolor{comment}{}\mbox{\hyperlink{_common_8h_add21c59d72c4c8b62da5082f77a8d6b9}{UTILITIES\_NAMESPACE\_END}}}
+\DoxyCodeLine{518 }
+\DoxyCodeLine{519 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// CPP\_UTILITIES\_MEMORYSAFETY\_RWSPINLOCK\_HPP}}
+
+\end{DoxyCode}

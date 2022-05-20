@@ -1,0 +1,38 @@
+\hypertarget{_safe_shared_ptr_8hpp}{}\doxysection{include/\+Utilities/\+Memory\+Safety/\+Safe\+Shared\+Ptr.hpp File Reference}
+\label{_safe_shared_ptr_8hpp}\index{include/Utilities/MemorySafety/SafeSharedPtr.hpp@{include/Utilities/MemorySafety/SafeSharedPtr.hpp}}
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include \char`\"{}../\+Common.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$shared\+\_\+mutex$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$}}
+\begin{DoxyCompactList}\small\item\em Wrapper to {\ttfamily std\+::shared\+\_\+ptr} to provide thread-\/safety while operating the underlying pointer. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ptr_helper}{Memory\+::\+Safe\+Shared\+Ptr$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Ptr\+Helper$<$ Lock $>$}}
+\begin{DoxyCompactList}\small\item\em Proxy class for operator-\/\texorpdfstring{$>$}{>} in \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}, behave like underlying object, and provide RAII read-\/write lock for thread safety. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Memory\+::\+Safe\+Shared\+Ptr$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Ref\+Helper$<$ Lock $>$}}
+\begin{DoxyCompactList}\small\item\em Proxy class for operator$\ast$ in \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}, behave like underlying object, and provide RAII read-\/write lock for thread safety. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_array_helper}{Memory\+::\+Safe\+Shared\+Ptr$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Array\+Helper$<$ Lock $>$}}
+\begin{DoxyCompactList}\small\item\em Proxy class for operator\mbox{[}\mbox{]} in \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}, behave like array element of underlying array object, and provide RAII read-\/write lock for thread safety. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$}}
+\begin{DoxyCompactList}\small\item\em Wrapper to {\ttfamily std\+::weak\+\_\+ptr} to provide weak reference for \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$}}
+\begin{DoxyCompactList}\small\item\em A proxy class from {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} to provide same functionality for \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_memory}{Memory}}
+\begin{DoxyCompactList}\small\item\em Namespace for all classes, typedefs and functions of memory safety. See \mbox{\hyperlink{group___memory_safety}{Memory Safety}} for more instrucion. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespacestd}{std}}
+\begin{DoxyCompactList}\small\item\em Contains std functions overload for classes in Utilities, cannot hide in doxygen, just ignore it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_memory_a30e5496e1f14fcdbad931a163f1d64af}{Memory\+::shared\+\_\+mutex\+\_\+t}} = std\+::shared\+\_\+mutex
+\begin{DoxyCompactList}\small\item\em Defined to {\ttfamily std\+::shared\+\_\+mutex} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}}. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespace_memory_a8d0060337492ae51ea2cb554363b2981}{Memory\+::shared\+\_\+lock\+\_\+t}} = std\+::shared\+\_\+lock$<$ shared\+\_\+mutex\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Defined to {\ttfamily std\+::shared\+\_\+lock\texorpdfstring{$<$}{<}std\+::shared\+\_\+mutex\texorpdfstring{$>$}{>}} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{RWSpin\+Lock\+::\+Read\+Holder}}. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespace_memory_ac07c2782daf84e421b42f78cf31df72a}{Memory\+::unique\+\_\+lock\+\_\+t}} = std\+::unique\+\_\+lock$<$ shared\+\_\+mutex\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Defined to {\ttfamily std\+::unique\+\_\+lock\texorpdfstring{$<$}{<}std\+::shared\+\_\+mutex\texorpdfstring{$>$}{>}} with C++17 or higher, otherwise defined to \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{RWSpin\+Lock\+::\+Write\+Holder}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

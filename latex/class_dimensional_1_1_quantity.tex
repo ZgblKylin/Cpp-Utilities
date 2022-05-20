@@ -1,0 +1,1633 @@
+\hypertarget{class_dimensional_1_1_quantity}{}\doxysection{Dimensional\+::Quantity\texorpdfstring{$<$}{<} T, U, Ratio \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_dimensional_1_1_quantity}\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+
+
+The \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}} struct is used to describe arithmetic values with units.  
+
+
+
+
+{\ttfamily \#include $<$Dimensional\+Analysis.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_dimensional_1_1_quantity_a962fac6d9cd445719282bd40e6410364}{type}} = \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$
+\begin{DoxyCompactList}\small\item\em Self type for this quantity struct. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_dimensional_1_1_quantity_a0ac30a56fc7237d45c8b19d7d0b946d6}{value\+\_\+type}} = T
+\begin{DoxyCompactList}\small\item\em Value type for this quantity struct. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_dimensional_1_1_quantity_aa57e6634876446e1c486df79b207311b}{unit\+\_\+type}} = U
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} type for this quantity struct. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_dimensional_1_1_quantity_a64e222ad44be5d3b46ea35727ced2912}{ratio\+\_\+type}} = Ratio
+\begin{DoxyCompactList}\small\item\em Ratio type for this quantity struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_dimensional_1_1_quantity_a1fa6d53c45c5aca1195c968101d066fc}{Quantity}} (T x=0)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_dimensional_1_1_quantity_a0c2bc6fb39abb83c28f1ec34f2659b57}{Quantity}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity_a969f535ceeaaf1785e862d67fcf75561}{Quantity}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor from same quantity type with different ratio. \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}} () const
+\begin{DoxyCompactList}\small\item\em Get underlying value of the quantity, value represented with current unit and ratio will be returned. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dimensional_1_1_quantity_a44865d241738a9c0fa57630cb7023fb9}{set\+\_\+value}} (T \mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}})
+\begin{DoxyCompactList}\small\item\em Set underlying value of the quantity. \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{class_dimensional_1_1_quantity_abb794e63000de5ff8e4a1e3958e64fc1}{standard\+\_\+value}} () const
+\begin{DoxyCompactList}\small\item\em Get standard value of the quantity, {\ttfamily Ratio} is reverted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dimensional_1_1_quantity_abfba1ce30645b019884f36f0c8e202b0}{set\+\_\+standard\+\_\+value}} (T \mbox{\hyperlink{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}{value}})
+\begin{DoxyCompactList}\small\item\em Get standard value of the quantity, {\ttfamily Ratio} is reverted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \& \mbox{\hyperlink{class_dimensional_1_1_quantity_a7f29303155e6ea6da99953ca8add4b8e}{operator+=}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Add \& assignment operator overload, add value from same type with {\bfseries{maybe}} different ratio, operand value will be converted by {\ttfamily ratio\+\_\+type} before performing add. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \& \mbox{\hyperlink{class_dimensional_1_1_quantity_ae47d4fb50a00e9e170dc41071b48a75d}{operator=}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Assisgnment operator overload. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \& \mbox{\hyperlink{class_dimensional_1_1_quantity_a64e0b8ff0ade6288eb076123856bb1a9}{operator=}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Assisgnment operator overload, assign value from same type but different ratio, operand value will be converted by {\ttfamily ratio\+\_\+type} before performing assignment. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\bool \mbox{\hyperlink{class_dimensional_1_1_quantity_a3561837402ddff080205e06e4e3a834d}{operator==}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Equality operator overload, value will be convered to same ratio before comparison. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\bool \mbox{\hyperlink{class_dimensional_1_1_quantity_aebe2b34f87e01d71d7d1d77ac38cdfef}{operator!=}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Inequality operator overload, value will be convered to same ratio before comparison. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\bool \mbox{\hyperlink{class_dimensional_1_1_quantity_a7891dc9a02d034839e2703d9fabe2958}{operator$<$}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Less than operator overload, value will be convered to same ratio before comparison. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\bool \mbox{\hyperlink{class_dimensional_1_1_quantity_a88f272b0b2f39a758c555e078dd6af32}{operator$<$=}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Less or equal operator overload, value will be convered to same ratio before comparison. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\bool \mbox{\hyperlink{class_dimensional_1_1_quantity_a4c809b1c85ae8152e543e16290b095a3}{operator$>$}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Larger than operator overload, value will be convered to same ratio before comparison. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Ratio $>$ }\\bool \mbox{\hyperlink{class_dimensional_1_1_quantity_a193aa8b5efdf94068ba11beec2607a29}{operator$>$=}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Larger or equal operator overload, value will be convered to same ratio before comparison. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , typename U , typename Ratio1 , typename Ratio2 $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio1 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2cb2a57bae59e96d9894b877d0a46b04}{operator+}} (\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio1 $>$ lhs, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio2 $>$ rhs)
+\begin{DoxyCompactList}\small\item\em Plus operator overload, values will be converted to same ratio before calculation, both inputs should have same value type and unit type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename U , typename Ratio1 , typename Ratio2 $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio1 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a18c90a00a9838498b5f2846fd25ffc27}{operator-\/}} (\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio1 $>$ \&lhs, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio2 $>$ rhs)
+\begin{DoxyCompactList}\small\item\em Subtract operator overload, values will be converted to same ratio before calculation, both inputs should have same value type and unit type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename Unit1 , typename Ratio1 , typename Unit2 , typename Ratio2 $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit\+Multiply$<$ Unit1, Unit2 $>$, Ratio1 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad129be6aadefea0016e47d71dc3aaf94}{operator$\ast$}} (\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit1, Ratio1 $>$ lhs, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit2, Ratio2 $>$ rhs)
+\begin{DoxyCompactList}\small\item\em Multiply operator overload, values will be converted to same ratio before calculation, inputs can have different unit type, a new unit type will be generated. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename Unit1 , typename Ratio1 , typename Unit2 , typename Ratio2 $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit\+Divide$<$ Unit1, Unit2 $>$, Ratio1 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aefd6bb39884379afb271ef2776d333c1}{operator/}} (\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit1, Ratio1 $>$ lhs, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit2, Ratio2 $>$ rhs)
+\begin{DoxyCompactList}\small\item\em Divide operator overload, values will be converted to same ratio before calculation, inputs can have different unit type, a new unit type will be generated. \end{DoxyCompactList}\item 
+{\footnotesize template$<$int factor, typename T , typename U , typename Ratio $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit\+Pow$<$ U, factor $>$, std\+::ratio$<$ 1 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a4d6941bd4f7a697e730b0e2fb2355096}{pow}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Power calculation, performed both on value and unit, ratio will be casted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$int factor, typename T , typename U , typename Ratio $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit\+Root$<$ U, factor $>$, std\+::ratio$<$ 1 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a7d020dcc04265c31b45268f324bbd2cc}{root}} (const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Root calculation, performed both on value and unit, ratio will be casted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename New\+Ratio , typename T , typename U , typename Ratio $>$ }\\\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, New\+Ratio $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6a71b12c7ca38fddda916be9b5deb574}{quantity\+\_\+cast}} (\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ x)
+\begin{DoxyCompactList}\small\item\em Cast a quantity to another ratio, value will be converted too. Sample code for convert to standard value\+: {\ttfamily b = quantity\+\_\+cast\texorpdfstring{$<$}{<}std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}(a);} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Common Ratio}\par
+{\em Common ratios for calculation. }\begin{DoxyCompactItemize}
+\item 
+typedef std\+::ratio$<$ 80813362, 25723692 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_add238b06de06bc8daa695aab5a39ed02}{ratio\+\_\+\+PI}}
+\begin{DoxyCompactList}\small\item\em Ratio to display π in approximate fraction, with high presion up to $3.14159266096017653069$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_add238b06de06bc8daa695aab5a39ed02}{ratio\+\_\+\+PI}}, std\+::ratio$<$ 180 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a904d8eeeb56c4abbb388ca883269d61a}{ratio\+\_\+degree}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert degree into radian, using equation $rad = degree * \frac{pi}{180}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Chinese Units}\par
+{\em Ratios for Chinese units of mass and length. }\begin{DoxyCompactItemize}
+\item 
+typedef std\+::ratio$<$ 500, 1 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac8b12a64f66fcf4132f3d1d0742e7b98}{ratio\+\_\+length\+\_\+li}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 li = 15 yin = 500 m$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac8b12a64f66fcf4132f3d1d0742e7b98}{ratio\+\_\+length\+\_\+li}}, std\+::ratio$<$ 15 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_afb4cec1cf4b73ee98cf506c475b7f138}{ratio\+\_\+yin}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 yin = \frac{1}{15} li = 10 zhang = 33.\overline{3} m$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_afb4cec1cf4b73ee98cf506c475b7f138}{ratio\+\_\+yin}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}{ratio\+\_\+zhang}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 zhang = \frac{1}{10} yin = 10 chi = 3.\overline{3} m$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}{ratio\+\_\+zhang}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6bf547fc1c4dd349e21d04434da13702}{ratio\+\_\+xun}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 xun = 1/2 zhang = 5 chi = 1.\overline{6} m$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}{ratio\+\_\+zhang}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aebc8a06a3788e348ad98cfafd371dff0}{ratio\+\_\+chi}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 chi = 33.\overline{3} cm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aebc8a06a3788e348ad98cfafd371dff0}{ratio\+\_\+chi}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ae2388b56d8c398e954e431d5bc70edff}{ratio\+\_\+cun}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 cun = \frac{1}{10} chi = 3.\overline{3} cm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ae2388b56d8c398e954e431d5bc70edff}{ratio\+\_\+cun}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a5c35f2c227ab3289032ba9e5e166f9d8}{ratio\+\_\+length\+\_\+fen}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 fen = \frac{1}{10} cun = 3.\overline{3} mm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a5c35f2c227ab3289032ba9e5e166f9d8}{ratio\+\_\+length\+\_\+fen}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad2eed4fb38c59b82c165aa5e8cc4bb31}{ratio\+\_\+length\+\_\+li2}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 li = \frac{1}{10} fen = 333.\overline{3} um$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad2eed4fb38c59b82c165aa5e8cc4bb31}{ratio\+\_\+length\+\_\+li2}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aeff6c2de3e692c0e6b7e3992a5d5410b}{ratio\+\_\+length\+\_\+hao}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 hao = \frac{1}{10} li = 33.\overline{3} um$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aeff6c2de3e692c0e6b7e3992a5d5410b}{ratio\+\_\+length\+\_\+hao}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a830ade483123925e45ca333db4c3861d}{ratio\+\_\+length\+\_\+si}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 si = \frac{1}{10} hao = 3.\overline{3} um$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a830ade483123925e45ca333db4c3861d}{ratio\+\_\+length\+\_\+si}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a84d1f06061d0b5cf508cd20a8929bb65}{ratio\+\_\+length\+\_\+hu}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 hu = \frac{1}{10} si = 333.\overline{3} nm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 200000, 3 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a70e6834ed7198da22600f10feac7f2f4}{ratio\+\_\+qing}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to suqaremeter. $1 qing = 100 mu = 66666.\overline{6} m^{2}$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 2000, 3 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad5a1600cf2b4f44c55b09cb589dbf007}{ratio\+\_\+mu}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to suqaremeter. $1 mu = 240 gong = 666.\overline{6} m^{2}$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad5a1600cf2b4f44c55b09cb589dbf007}{ratio\+\_\+mu}}, std\+::ratio$<$ 240 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ae153cf54afd64fa565768c7bfa7cdcb3}{ratio\+\_\+gong}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to suqaremeter. $1 gong = 1 xun^{2} = 2.\overline{7} m^{2}$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 50 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aba1ed39ce4e7f0c620075d8254ca5ac3}{ratio\+\_\+dan}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 dan = 50 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 1, 2 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a31ecd73c229c83327869c83a81c33942}{ratio\+\_\+jin}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram, also called {\ttfamily market carry}. $1 jin = 500 g catty$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a31ecd73c229c83327869c83a81c33942}{ratio\+\_\+jin}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a38e666646e92a80ddd31f3f0e885b432}{ratio\+\_\+liang}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 liang = \frac{1}{10} jin = 50 g$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a38e666646e92a80ddd31f3f0e885b432}{ratio\+\_\+liang}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a8580539a4e3d6751eea3b1dcc2a9f4c2}{ratio\+\_\+qian}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 qian = \frac{1}{10} liang = 5 g$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a8580539a4e3d6751eea3b1dcc2a9f4c2}{ratio\+\_\+qian}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad52ed66623f187ea119156144f84425e}{ratio\+\_\+mass\+\_\+fen}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 fen = \frac{1}{10} qian = 500 mg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad52ed66623f187ea119156144f84425e}{ratio\+\_\+mass\+\_\+fen}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2b20dab65f4bc5b82ed2f93294b0b37a}{ratio\+\_\+mass\+\_\+li}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 li = \frac{1}{10} fen = 50 mg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2b20dab65f4bc5b82ed2f93294b0b37a}{ratio\+\_\+mass\+\_\+li}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a00a45449864955ab1b9f95aff6d596bb}{ratio\+\_\+mass\+\_\+hao}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 hao = \frac{1}{10} li = 5 mg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a00a45449864955ab1b9f95aff6d596bb}{ratio\+\_\+mass\+\_\+hao}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ab61138f11aa230185fad960653502937}{ratio\+\_\+mass\+\_\+si}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 si = \frac{1}{10} hao = 500 ug$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ab61138f11aa230185fad960653502937}{ratio\+\_\+mass\+\_\+si}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a884c0b234107e0f709e4e92db3eea00d}{ratio\+\_\+mass\+\_\+hu}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 hu = \frac{1}{10} si = 50 ug$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Yard Pound}\par
+{\em Ratios for International Avoirdupois System of yard and pound units. }\begin{DoxyCompactItemize}
+\item 
+typedef std\+::ratio\+\_\+multiply$<$ std\+::ratio$<$ 1609344ll, 1000000ll $>$, std\+::kilo $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aa0ad6c0caff76254f6f075c5aca11f32}{ratio\+\_\+mile}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 mile = 1.609344 km$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aa0ad6c0caff76254f6f075c5aca11f32}{ratio\+\_\+mile}}, std\+::ratio$<$ 8 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6b0b2f3c883c285c88f3ce53fd420b64}{ratio\+\_\+furlong}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 furlong = 201.168 m$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6b0b2f3c883c285c88f3ce53fd420b64}{ratio\+\_\+furlong}}, std\+::ratio$<$ 10 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a719981abae877612a709bcce290949a5}{ratio\+\_\+chain}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 20.1168 m$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a719981abae877612a709bcce290949a5}{ratio\+\_\+chain}}, std\+::ratio$<$ 22 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}{ratio\+\_\+yard}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 yard = \frac{1}{22} chain = \frac{1}{1760} mile = 0.9144 m$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}{ratio\+\_\+yard}}, std\+::ratio$<$ 16 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a70fd9319fef87c94f78cf41b290164dd}{ratio\+\_\+nail}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 nail = \frac{1}{16} yard = \frac{9}{4} inch = 5.715 cm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}{ratio\+\_\+yard}}, std\+::ratio$<$ 3 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2bb3b2fca214fbca6aff2c7c900dac7f}{ratio\+\_\+feet}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 feet = \frac{1}{3} yard = 30.48 cm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2bb3b2fca214fbca6aff2c7c900dac7f}{ratio\+\_\+feet}}, std\+::ratio$<$ 12 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2414dba6005eed916a876bd4524a4251}{ratio\+\_\+inch}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter. $1 inch = \frac{1}{12} feet = 2.54 cm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2414dba6005eed916a876bd4524a4251}{ratio\+\_\+inch}}, std\+::ratio$<$ 6 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a153a88b16c0c55f364f0c2fa856848e5}{ratio\+\_\+pica}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter, with symbol {\ttfamily pc}. $1 pica = \frac{1}{6} inch = 4.2\overline{3} mm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a153a88b16c0c55f364f0c2fa856848e5}{ratio\+\_\+pica}}, std\+::ratio$<$ 12 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ab40c734406d8cbd033db420925c619ab}{ratio\+\_\+point}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to meter, with symbol \textquotesingle{}pt\textquotesingle{}. $1 point = \frac{1}{12} pica = 0.352\overline{7} mm$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 10160469088, 10000000 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aac1fedec435fe50c4ed96002264190a5}{ratio\+\_\+longton}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 longton = 2240 pound = 1016.0469088 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 90718474, 100000 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a29d3b77c3d282ee7167001e70351bce1}{ratio\+\_\+shortton}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 shortton = 2000 pound = 907.18474 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 5080234544, 100000000 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aebbfa00900d148a3fe091e8d84561d4e}{ratio\+\_\+long\+\_\+hundredweight}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 long\ hundredweight = 112 pound = 50.80234544 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 45359237, 1000000 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a504accecc554cbb4b570c528d5c420a0}{ratio\+\_\+short\+\_\+hundredweight}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 short\ hundredweight = 100 pound = 45.359237 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio$<$ 45359237, 100000000 $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\+\_\+pound}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 pound = 0.45359237 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\+\_\+pound}}, std\+::ratio$<$ 16 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af67214972753c0151b0e770974d9bb78}{ratio\+\_\+ounce}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 ounce = \frac{1}{16} pound = 28.349523125 g$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af67214972753c0151b0e770974d9bb78}{ratio\+\_\+ounce}}, std\+::ratio$<$ 16 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_affe8b9383a40c5c910710906989d38cb}{ratio\+\_\+drachm}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 drachm = \frac{1}{16} ounce = 1.7718451953125 g$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ std\+::ratio$<$ 6479891, 100000ll $>$, std\+::micro $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aaef9ca651a7ff91fda58767a6f78538d}{ratio\+\_\+grain}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 grain = 64.79891 mg$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Imperial Units}\par
+{\em Imperial units of mass and volume }\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_dimensional_1_1_quantity_aebbfa00900d148a3fe091e8d84561d4e}{ratio\+\_\+long\+\_\+hundredweight}} \mbox{\hyperlink{class_dimensional_1_1_quantity_ae8269344350cc3a60336b76c2901181f}{ratio\+\_\+en\+\_\+hundredweight}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 Imperial\ hundredweight = 8 stone = 112 pound = 50.80234544 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\+\_\+pound}}, std\+::ratio$<$ 28 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a59254cf6150d82a6275f15b3bc38e486}{ratio\+\_\+en\+\_\+quarter}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 quarter = 2 stone = 28 pound = 12.70058636 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\+\_\+pound}}, std\+::ratio$<$ 14 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a75de6c6e2d6fb77761337976830d52a5}{ratio\+\_\+en\+\_\+stone}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram. $1 stone = 14 pound = 6.35029318 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ std\+::ratio$<$ 35516328125ll, 10000000000ll $>$, std\+::micro $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a7c6e8e4e855bc9ee42dcf8781c31159c}{ratio\+\_\+en\+\_\+fluid\+\_\+dram}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 fluid\ dram = 3.5516328125 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a7c6e8e4e855bc9ee42dcf8781c31159c}{ratio\+\_\+en\+\_\+fluid\+\_\+dram}}, std\+::ratio$<$ 8 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a0a1229aabe760440a7672a7991aa544f}{ratio\+\_\+en\+\_\+fluid\+\_\+ounce}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 fluid\ ounce = 8 fluind\ dram = 28.4130625 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a0a1229aabe760440a7672a7991aa544f}{ratio\+\_\+en\+\_\+fluid\+\_\+ounce}}, std\+::ratio$<$ 5 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a92c1d103f4b9e4ef327a8a2d0b3a5e54}{ratio\+\_\+en\+\_\+gill}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 gill = 5 fluid\ ounce = 142.0653125 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a92c1d103f4b9e4ef327a8a2d0b3a5e54}{ratio\+\_\+en\+\_\+gill}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a8b459a0fff40544a6d6c4f36035b1d53}{ratio\+\_\+en\+\_\+cup}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 cup = 2 gill = 284.130625 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a8b459a0fff40544a6d6c4f36035b1d53}{ratio\+\_\+en\+\_\+cup}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a3c0826f21e647cd67273e30420735d64}{ratio\+\_\+en\+\_\+pint}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 pint = 2 cup = 568.26125 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a3c0826f21e647cd67273e30420735d64}{ratio\+\_\+en\+\_\+pint}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a547c7b250d689cd0c26d91fba5dce5cc}{ratio\+\_\+en\+\_\+quart}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 quart = 2 pint = 1.1365225 L$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a547c7b250d689cd0c26d91fba5dce5cc}{ratio\+\_\+en\+\_\+quart}}, std\+::ratio$<$ 4 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a1dbebae7cf4299bf8bcabc16ccda594e}{ratio\+\_\+en\+\_\+gallon}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 gallon = 4 quart = 4.54609 L$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a1dbebae7cf4299bf8bcabc16ccda594e}{ratio\+\_\+en\+\_\+gallon}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af47d5ef890466385567a61120f8f101c}{ratio\+\_\+en\+\_\+peck}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 peck = 2 gallon = 9.09218 L$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af47d5ef890466385567a61120f8f101c}{ratio\+\_\+en\+\_\+peck}}, std\+::ratio$<$ 4 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a3659edb6bf36d5bcf65043f873f49b1a}{ratio\+\_\+en\+\_\+bushel}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 bushel = 4 peck = 36.36872 L$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ US Units}\par
+{\em US units of mass and volume }\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_dimensional_1_1_quantity_a504accecc554cbb4b570c528d5c420a0}{ratio\+\_\+short\+\_\+hundredweight}} \mbox{\hyperlink{class_dimensional_1_1_quantity_a3128f51d085513d0704e52b4213f2cdb}{ratio\+\_\+us\+\_\+hundredweight}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to kilogram $1 US hundredweight = 100 pound = 45.359237 kg$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ std\+::ratio$<$ 36966911953125ll, 10000000000000ll $>$, std\+::micro $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac887d76caa939183ff3e3c0651611a1e}{ratio\+\_\+us\+\_\+fluid\+\_\+dram}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 fluid\ dram = 3.6966911953125 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac887d76caa939183ff3e3c0651611a1e}{ratio\+\_\+us\+\_\+fluid\+\_\+dram}}, std\+::ratio$<$ 8 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\+\_\+us\+\_\+fluid\+\_\+ounce}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 fluid\ ounce = 8 fluid\ dram = 29.5735295625 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\+\_\+us\+\_\+fluid\+\_\+ounce}}, std\+::ratio$<$ 6 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aed05bb5ade36b8a7ccdb4c11b911a8f8}{ratio\+\_\+us\+\_\+teaspoons}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 teaspoons = \frac{1}{6} fluid\ ounce = 4.92892159375 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+divide$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\+\_\+us\+\_\+fluid\+\_\+ounce}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a559612fd0fef51ae4db5b1326832a315}{ratio\+\_\+us\+\_\+tablespoons}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 tablespoons = \frac{1}{2} fluid\ ounce = 14.78676478125 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\+\_\+us\+\_\+fluid\+\_\+ounce}}, std\+::ratio$<$ 4 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_abc22e43966996c178278993415db97f3}{ratio\+\_\+us\+\_\+gill}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 gill = 4 fluid\ ounce = 118.29411825 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_abc22e43966996c178278993415db97f3}{ratio\+\_\+us\+\_\+gill}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_afa624fe455467c4fea8eacfebbd91daa}{ratio\+\_\+us\+\_\+cup}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 cup = 2 gill = 236.5882365 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_afa624fe455467c4fea8eacfebbd91daa}{ratio\+\_\+us\+\_\+cup}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_affee17e4f6356cc3b56ab2fcf61eca25}{ratio\+\_\+us\+\_\+pint}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 pint = 2 cup = 473.176473 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_affee17e4f6356cc3b56ab2fcf61eca25}{ratio\+\_\+us\+\_\+pint}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af8eb015f62475c00c084c3a1f1382286}{ratio\+\_\+us\+\_\+quart}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 quart = 2 pint = 946.352946 mL$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af8eb015f62475c00c084c3a1f1382286}{ratio\+\_\+us\+\_\+quart}}, std\+::ratio$<$ 4 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a0fa6b379459f14e00c435bd041e7d26f}{ratio\+\_\+us\+\_\+gallon}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 gallon = 4 quart = 3.785411784 L$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ std\+::ratio$<$ 5506104713575ll, 10000000000000ll $>$, std\+::milli $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a39d95fe224ba9b9591c7b5c593724afa}{ratio\+\_\+us\+\_\+dry\+\_\+pint}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 dry\ pint = 0.5506104713575 L$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a39d95fe224ba9b9591c7b5c593724afa}{ratio\+\_\+us\+\_\+dry\+\_\+pint}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_abdd83b73d63b2ba65a13cc320c8dac24}{ratio\+\_\+us\+\_\+dry\+\_\+quart}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 dry\ quart = 2 dry\ pint = 1.101220942715 L$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_abdd83b73d63b2ba65a13cc320c8dac24}{ratio\+\_\+us\+\_\+dry\+\_\+quart}}, std\+::ratio$<$ 4 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6d98ec560e5cd288aa2b8a35b95085ae}{ratio\+\_\+us\+\_\+dry\+\_\+gallon}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 dry\ gallon = 4 dry\ quart = 4.40488377086 L$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6d98ec560e5cd288aa2b8a35b95085ae}{ratio\+\_\+us\+\_\+dry\+\_\+gallon}}, std\+::ratio$<$ 2 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6fd6b3532a8a004f77751ac80e68b226}{ratio\+\_\+us\+\_\+dry\+\_\+peck}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 dry\ peck = 2 dry\ gallon = 8.80976754172 L$. \end{DoxyCompactList}\item 
+typedef std\+::ratio\+\_\+multiply$<$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6fd6b3532a8a004f77751ac80e68b226}{ratio\+\_\+us\+\_\+dry\+\_\+peck}}, std\+::ratio$<$ 4 $>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6515326d2c38ec692b588eb3fc1c6e2b}{ratio\+\_\+us\+\_\+bushel}}
+\begin{DoxyCompactList}\small\item\em Ratio to convert to cubicmeter. $1 bushel = 4 dry\ peck = 35.23907016688 L$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename U, typename Ratio = std\+::ratio$<$1$>$$>$\newline
+class Dimensional\+::\+Quantity$<$ T, U, Ratio $>$}
+The \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}} struct is used to describe arithmetic values with units. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Arithmetic type for value. \\
+\hline
+{\em U} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} type for this physical quantity. \\
+\hline
+{\em Ratio} & Conversion ratio for nonstandard units such as feet or yard.\\
+\hline
+\end{DoxyTemplParams}
+This template guarantee strong-\/typed safe calculation of physical values.~\newline
+ Variables with different unit cannot add, subtract and compare with each other. Multiply, divide, power, root calculation will generate value with unit.~\newline
+ Value is allowd to be described with different Ratio. Calculation with different ratios is safe, and result has same Ratio of first operand.~\newline
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group___dimensional_analysis}{Dimensional Analysis}}, \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a962fac6d9cd445719282bd40e6410364}\label{class_dimensional_1_1_quantity_a962fac6d9cd445719282bd40e6410364}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!type@{type}}
+\index{type@{type}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+using \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::type =  \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$T, U, Ratio$>$}
+
+
+
+Self type for this quantity struct. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a0ac30a56fc7237d45c8b19d7d0b946d6}\label{class_dimensional_1_1_quantity_a0ac30a56fc7237d45c8b19d7d0b946d6}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!value\_type@{value\_type}}
+\index{value\_type@{value\_type}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{value\_type}{value\_type}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+using \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::value\+\_\+type =  T}
+
+
+
+Value type for this quantity struct. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aa57e6634876446e1c486df79b207311b}\label{class_dimensional_1_1_quantity_aa57e6634876446e1c486df79b207311b}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!unit\_type@{unit\_type}}
+\index{unit\_type@{unit\_type}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{unit\_type}{unit\_type}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+using \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::unit\+\_\+type =  U}
+
+
+
+\mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} type for this quantity struct. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a64e222ad44be5d3b46ea35727ced2912}\label{class_dimensional_1_1_quantity_a64e222ad44be5d3b46ea35727ced2912}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_type@{ratio\_type}}
+\index{ratio\_type@{ratio\_type}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_type}{ratio\_type}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+using \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::ratio\+\_\+type =  Ratio}
+
+
+
+Ratio type for this quantity struct. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a1fa6d53c45c5aca1195c968101d066fc}\label{class_dimensional_1_1_quantity_a1fa6d53c45c5aca1195c968101d066fc}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!Quantity@{Quantity}}
+\index{Quantity@{Quantity}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{Quantity()}{Quantity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::\+Quantity (\begin{DoxyParamCaption}\item[{T}]{x = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Default constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Initial value, default is 0. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a0c2bc6fb39abb83c28f1ec34f2659b57}\label{class_dimensional_1_1_quantity_a0c2bc6fb39abb83c28f1ec34f2659b57}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!Quantity@{Quantity}}
+\index{Quantity@{Quantity}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{Quantity()}{Quantity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::\+Quantity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Operand to be copied. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a969f535ceeaaf1785e862d67fcf75561}\label{class_dimensional_1_1_quantity_a969f535ceeaaf1785e862d67fcf75561}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!Quantity@{Quantity}}
+\index{Quantity@{Quantity}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{Quantity()}{Quantity()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::\+Quantity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor from same quantity type with different ratio. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Operand to be copied. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}\label{class_dimensional_1_1_quantity_aa9dbd91147f54862f9d9fc5249ab9590}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!value@{value}}
+\index{value@{value}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+T \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get underlying value of the quantity, value represented with current unit and ratio will be returned. 
+
+\begin{DoxyWarning}{Warning}
+Return value is under the {\ttfamily Ratio} and may not be standard value. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+underlying Value with {\ttfamily Ratio} converted. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a44865d241738a9c0fa57630cb7023fb9}\label{class_dimensional_1_1_quantity_a44865d241738a9c0fa57630cb7023fb9}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!set\_value@{set\_value}}
+\index{set\_value@{set\_value}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{set\_value()}{set\_value()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+void \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::set\+\_\+value (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set underlying value of the quantity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value represented by {\ttfamily Ratio}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+{\ttfamily value} is under the {\ttfamily Ratio} and may not be standard value. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_abb794e63000de5ff8e4a1e3958e64fc1}\label{class_dimensional_1_1_quantity_abb794e63000de5ff8e4a1e3958e64fc1}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!standard\_value@{standard\_value}}
+\index{standard\_value@{standard\_value}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{standard\_value()}{standard\_value()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+T \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::standard\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get standard value of the quantity, {\ttfamily Ratio} is reverted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. 
+
+\begin{DoxyReturn}{Returns}
+Standard value with {\ttfamily Ratio} reverted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_abfba1ce30645b019884f36f0c8e202b0}\label{class_dimensional_1_1_quantity_abfba1ce30645b019884f36f0c8e202b0}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!set\_standard\_value@{set\_standard\_value}}
+\index{set\_standard\_value@{set\_standard\_value}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{set\_standard\_value()}{set\_standard\_value()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+void \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::set\+\_\+standard\+\_\+value (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get standard value of the quantity, {\ttfamily Ratio} is reverted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. 
+
+\begin{DoxyReturn}{Returns}
+Standard value with {\ttfamily Ratio} reverted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a7f29303155e6ea6da99953ca8add4b8e}\label{class_dimensional_1_1_quantity_a7f29303155e6ea6da99953ca8add4b8e}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \& \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add \& assignment operator overload, add value from same type with {\bfseries{maybe}} different ratio, operand value will be converted by {\ttfamily ratio\+\_\+type} before performing add. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & Ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Operand to assign from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to self with value added. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ae47d4fb50a00e9e170dc41071b48a75d}\label{class_dimensional_1_1_quantity_ae47d4fb50a00e9e170dc41071b48a75d}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \& \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assisgnment operator overload. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Operand to assign from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to self with value assigned. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a64e0b8ff0ade6288eb076123856bb1a9}\label{class_dimensional_1_1_quantity_a64e0b8ff0ade6288eb076123856bb1a9}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \& \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assisgnment operator overload, assign value from same type but different ratio, operand value will be converted by {\ttfamily ratio\+\_\+type} before performing assignment. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & Ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Operand to assign from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to self with value assigned. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a3561837402ddff080205e06e4e3a834d}\label{class_dimensional_1_1_quantity_a3561837402ddff080205e06e4e3a834d}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+bool \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Equality operator overload, value will be convered to same ratio before comparison. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & Ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Other operand to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value for result of comparison. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aebe2b34f87e01d71d7d1d77ac38cdfef}\label{class_dimensional_1_1_quantity_aebe2b34f87e01d71d7d1d77ac38cdfef}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+bool \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inequality operator overload, value will be convered to same ratio before comparison. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & Ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Other operand to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value for result of comparison. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a7891dc9a02d034839e2703d9fabe2958}\label{class_dimensional_1_1_quantity_a7891dc9a02d034839e2703d9fabe2958}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+bool \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Less than operator overload, value will be convered to same ratio before comparison. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & Ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Other operand to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value for result of comparison. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a88f272b0b2f39a758c555e078dd6af32}\label{class_dimensional_1_1_quantity_a88f272b0b2f39a758c555e078dd6af32}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+bool \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Less or equal operator overload, value will be convered to same ratio before comparison. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & Ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Other operand to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value for result of comparison. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a4c809b1c85ae8152e543e16290b095a3}\label{class_dimensional_1_1_quantity_a4c809b1c85ae8152e543e16290b095a3}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+bool \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Larger than operator overload, value will be convered to same ratio before comparison. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & Ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Other operand to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value for result of comparison. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a193aa8b5efdf94068ba11beec2607a29}\label{class_dimensional_1_1_quantity_a193aa8b5efdf94068ba11beec2607a29}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+template$<$typename Other\+Ratio $>$ \\
+bool \mbox{\hyperlink{class_dimensional_1_1_quantity}{Dimensional\+::\+Quantity}}$<$ T, U, Ratio $>$\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Other\+Ratio $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Larger or equal operator overload, value will be convered to same ratio before comparison. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Other\+Ratio} & Ratio of input operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Other operand to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value for result of comparison. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_add238b06de06bc8daa695aab5a39ed02}\label{class_dimensional_1_1_quantity_add238b06de06bc8daa695aab5a39ed02}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_PI@{ratio\_PI}}
+\index{ratio\_PI@{ratio\_PI}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_PI}{ratio\_PI}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$80813362, 25723692$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_add238b06de06bc8daa695aab5a39ed02}{ratio\+\_\+\+PI}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to display π in approximate fraction, with high presion up to $3.14159266096017653069$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a904d8eeeb56c4abbb388ca883269d61a}\label{class_dimensional_1_1_quantity_a904d8eeeb56c4abbb388ca883269d61a}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_degree@{ratio\_degree}}
+\index{ratio\_degree@{ratio\_degree}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_degree}{ratio\_degree}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_add238b06de06bc8daa695aab5a39ed02}{ratio\+\_\+\+PI}}, std\+::ratio$<$180$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a904d8eeeb56c4abbb388ca883269d61a}{ratio\+\_\+degree}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert degree into radian, using equation $rad = degree * \frac{pi}{180}$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ac8b12a64f66fcf4132f3d1d0742e7b98}\label{class_dimensional_1_1_quantity_ac8b12a64f66fcf4132f3d1d0742e7b98}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_length\_li@{ratio\_length\_li}}
+\index{ratio\_length\_li@{ratio\_length\_li}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_length\_li}{ratio\_length\_li}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$500, 1$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac8b12a64f66fcf4132f3d1d0742e7b98}{ratio\+\_\+length\+\_\+li}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 li = 15 yin = 500 m$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_afb4cec1cf4b73ee98cf506c475b7f138}\label{class_dimensional_1_1_quantity_afb4cec1cf4b73ee98cf506c475b7f138}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_yin@{ratio\_yin}}
+\index{ratio\_yin@{ratio\_yin}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_yin}{ratio\_yin}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ac8b12a64f66fcf4132f3d1d0742e7b98}{ratio\+\_\+length\+\_\+li}}, std\+::ratio$<$15$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_afb4cec1cf4b73ee98cf506c475b7f138}{ratio\+\_\+yin}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 yin = \frac{1}{15} li = 10 zhang = 33.\overline{3} m$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}\label{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_zhang@{ratio\_zhang}}
+\index{ratio\_zhang@{ratio\_zhang}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_zhang}{ratio\_zhang}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_afb4cec1cf4b73ee98cf506c475b7f138}{ratio\+\_\+yin}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}{ratio\+\_\+zhang}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 zhang = \frac{1}{10} yin = 10 chi = 3.\overline{3} m$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a6bf547fc1c4dd349e21d04434da13702}\label{class_dimensional_1_1_quantity_a6bf547fc1c4dd349e21d04434da13702}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_xun@{ratio\_xun}}
+\index{ratio\_xun@{ratio\_xun}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_xun}{ratio\_xun}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}{ratio\+\_\+zhang}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6bf547fc1c4dd349e21d04434da13702}{ratio\+\_\+xun}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 xun = 1/2 zhang = 5 chi = 1.\overline{6} m$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aebc8a06a3788e348ad98cfafd371dff0}\label{class_dimensional_1_1_quantity_aebc8a06a3788e348ad98cfafd371dff0}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_chi@{ratio\_chi}}
+\index{ratio\_chi@{ratio\_chi}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_chi}{ratio\_chi}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ac285657d72548268a5fae28108cbd8d0}{ratio\+\_\+zhang}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aebc8a06a3788e348ad98cfafd371dff0}{ratio\+\_\+chi}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 chi = 33.\overline{3} cm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ae2388b56d8c398e954e431d5bc70edff}\label{class_dimensional_1_1_quantity_ae2388b56d8c398e954e431d5bc70edff}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_cun@{ratio\_cun}}
+\index{ratio\_cun@{ratio\_cun}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_cun}{ratio\_cun}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_aebc8a06a3788e348ad98cfafd371dff0}{ratio\+\_\+chi}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ae2388b56d8c398e954e431d5bc70edff}{ratio\+\_\+cun}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 cun = \frac{1}{10} chi = 3.\overline{3} cm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a5c35f2c227ab3289032ba9e5e166f9d8}\label{class_dimensional_1_1_quantity_a5c35f2c227ab3289032ba9e5e166f9d8}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_length\_fen@{ratio\_length\_fen}}
+\index{ratio\_length\_fen@{ratio\_length\_fen}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_length\_fen}{ratio\_length\_fen}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ae2388b56d8c398e954e431d5bc70edff}{ratio\+\_\+cun}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a5c35f2c227ab3289032ba9e5e166f9d8}{ratio\+\_\+length\+\_\+fen}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 fen = \frac{1}{10} cun = 3.\overline{3} mm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ad2eed4fb38c59b82c165aa5e8cc4bb31}\label{class_dimensional_1_1_quantity_ad2eed4fb38c59b82c165aa5e8cc4bb31}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_length\_li2@{ratio\_length\_li2}}
+\index{ratio\_length\_li2@{ratio\_length\_li2}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_length\_li2}{ratio\_length\_li2}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a5c35f2c227ab3289032ba9e5e166f9d8}{ratio\+\_\+length\+\_\+fen}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad2eed4fb38c59b82c165aa5e8cc4bb31}{ratio\+\_\+length\+\_\+li2}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 li = \frac{1}{10} fen = 333.\overline{3} um$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aeff6c2de3e692c0e6b7e3992a5d5410b}\label{class_dimensional_1_1_quantity_aeff6c2de3e692c0e6b7e3992a5d5410b}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_length\_hao@{ratio\_length\_hao}}
+\index{ratio\_length\_hao@{ratio\_length\_hao}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_length\_hao}{ratio\_length\_hao}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ad2eed4fb38c59b82c165aa5e8cc4bb31}{ratio\+\_\+length\+\_\+li2}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aeff6c2de3e692c0e6b7e3992a5d5410b}{ratio\+\_\+length\+\_\+hao}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 hao = \frac{1}{10} li = 33.\overline{3} um$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a830ade483123925e45ca333db4c3861d}\label{class_dimensional_1_1_quantity_a830ade483123925e45ca333db4c3861d}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_length\_si@{ratio\_length\_si}}
+\index{ratio\_length\_si@{ratio\_length\_si}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_length\_si}{ratio\_length\_si}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_aeff6c2de3e692c0e6b7e3992a5d5410b}{ratio\+\_\+length\+\_\+hao}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a830ade483123925e45ca333db4c3861d}{ratio\+\_\+length\+\_\+si}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 si = \frac{1}{10} hao = 3.\overline{3} um$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a84d1f06061d0b5cf508cd20a8929bb65}\label{class_dimensional_1_1_quantity_a84d1f06061d0b5cf508cd20a8929bb65}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_length\_hu@{ratio\_length\_hu}}
+\index{ratio\_length\_hu@{ratio\_length\_hu}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_length\_hu}{ratio\_length\_hu}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a830ade483123925e45ca333db4c3861d}{ratio\+\_\+length\+\_\+si}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a84d1f06061d0b5cf508cd20a8929bb65}{ratio\+\_\+length\+\_\+hu}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 hu = \frac{1}{10} si = 333.\overline{3} nm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a70e6834ed7198da22600f10feac7f2f4}\label{class_dimensional_1_1_quantity_a70e6834ed7198da22600f10feac7f2f4}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_qing@{ratio\_qing}}
+\index{ratio\_qing@{ratio\_qing}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_qing}{ratio\_qing}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$200000, 3$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a70e6834ed7198da22600f10feac7f2f4}{ratio\+\_\+qing}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to suqaremeter. $1 qing = 100 mu = 66666.\overline{6} m^{2}$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ad5a1600cf2b4f44c55b09cb589dbf007}\label{class_dimensional_1_1_quantity_ad5a1600cf2b4f44c55b09cb589dbf007}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_mu@{ratio\_mu}}
+\index{ratio\_mu@{ratio\_mu}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_mu}{ratio\_mu}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$2000, 3$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad5a1600cf2b4f44c55b09cb589dbf007}{ratio\+\_\+mu}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to suqaremeter. $1 mu = 240 gong = 666.\overline{6} m^{2}$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ae153cf54afd64fa565768c7bfa7cdcb3}\label{class_dimensional_1_1_quantity_ae153cf54afd64fa565768c7bfa7cdcb3}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_gong@{ratio\_gong}}
+\index{ratio\_gong@{ratio\_gong}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_gong}{ratio\_gong}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ad5a1600cf2b4f44c55b09cb589dbf007}{ratio\+\_\+mu}}, std\+::ratio$<$240$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ae153cf54afd64fa565768c7bfa7cdcb3}{ratio\+\_\+gong}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to suqaremeter. $1 gong = 1 xun^{2} = 2.\overline{7} m^{2}$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aba1ed39ce4e7f0c620075d8254ca5ac3}\label{class_dimensional_1_1_quantity_aba1ed39ce4e7f0c620075d8254ca5ac3}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_dan@{ratio\_dan}}
+\index{ratio\_dan@{ratio\_dan}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_dan}{ratio\_dan}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$50$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aba1ed39ce4e7f0c620075d8254ca5ac3}{ratio\+\_\+dan}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 dan = 50 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a31ecd73c229c83327869c83a81c33942}\label{class_dimensional_1_1_quantity_a31ecd73c229c83327869c83a81c33942}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_jin@{ratio\_jin}}
+\index{ratio\_jin@{ratio\_jin}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_jin}{ratio\_jin}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$1, 2$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a31ecd73c229c83327869c83a81c33942}{ratio\+\_\+jin}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram, also called {\ttfamily market carry}. $1 jin = 500 g catty$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a38e666646e92a80ddd31f3f0e885b432}\label{class_dimensional_1_1_quantity_a38e666646e92a80ddd31f3f0e885b432}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_liang@{ratio\_liang}}
+\index{ratio\_liang@{ratio\_liang}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_liang}{ratio\_liang}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a31ecd73c229c83327869c83a81c33942}{ratio\+\_\+jin}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a38e666646e92a80ddd31f3f0e885b432}{ratio\+\_\+liang}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 liang = \frac{1}{10} jin = 50 g$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a8580539a4e3d6751eea3b1dcc2a9f4c2}\label{class_dimensional_1_1_quantity_a8580539a4e3d6751eea3b1dcc2a9f4c2}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_qian@{ratio\_qian}}
+\index{ratio\_qian@{ratio\_qian}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_qian}{ratio\_qian}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a38e666646e92a80ddd31f3f0e885b432}{ratio\+\_\+liang}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a8580539a4e3d6751eea3b1dcc2a9f4c2}{ratio\+\_\+qian}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 qian = \frac{1}{10} liang = 5 g$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ad52ed66623f187ea119156144f84425e}\label{class_dimensional_1_1_quantity_ad52ed66623f187ea119156144f84425e}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_mass\_fen@{ratio\_mass\_fen}}
+\index{ratio\_mass\_fen@{ratio\_mass\_fen}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_mass\_fen}{ratio\_mass\_fen}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a8580539a4e3d6751eea3b1dcc2a9f4c2}{ratio\+\_\+qian}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad52ed66623f187ea119156144f84425e}{ratio\+\_\+mass\+\_\+fen}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 fen = \frac{1}{10} qian = 500 mg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a2b20dab65f4bc5b82ed2f93294b0b37a}\label{class_dimensional_1_1_quantity_a2b20dab65f4bc5b82ed2f93294b0b37a}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_mass\_li@{ratio\_mass\_li}}
+\index{ratio\_mass\_li@{ratio\_mass\_li}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_mass\_li}{ratio\_mass\_li}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ad52ed66623f187ea119156144f84425e}{ratio\+\_\+mass\+\_\+fen}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2b20dab65f4bc5b82ed2f93294b0b37a}{ratio\+\_\+mass\+\_\+li}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 li = \frac{1}{10} fen = 50 mg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a00a45449864955ab1b9f95aff6d596bb}\label{class_dimensional_1_1_quantity_a00a45449864955ab1b9f95aff6d596bb}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_mass\_hao@{ratio\_mass\_hao}}
+\index{ratio\_mass\_hao@{ratio\_mass\_hao}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_mass\_hao}{ratio\_mass\_hao}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a2b20dab65f4bc5b82ed2f93294b0b37a}{ratio\+\_\+mass\+\_\+li}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a00a45449864955ab1b9f95aff6d596bb}{ratio\+\_\+mass\+\_\+hao}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 hao = \frac{1}{10} li = 5 mg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ab61138f11aa230185fad960653502937}\label{class_dimensional_1_1_quantity_ab61138f11aa230185fad960653502937}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_mass\_si@{ratio\_mass\_si}}
+\index{ratio\_mass\_si@{ratio\_mass\_si}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_mass\_si}{ratio\_mass\_si}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a00a45449864955ab1b9f95aff6d596bb}{ratio\+\_\+mass\+\_\+hao}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ab61138f11aa230185fad960653502937}{ratio\+\_\+mass\+\_\+si}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 si = \frac{1}{10} hao = 500 ug$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a884c0b234107e0f709e4e92db3eea00d}\label{class_dimensional_1_1_quantity_a884c0b234107e0f709e4e92db3eea00d}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_mass\_hu@{ratio\_mass\_hu}}
+\index{ratio\_mass\_hu@{ratio\_mass\_hu}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_mass\_hu}{ratio\_mass\_hu}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ab61138f11aa230185fad960653502937}{ratio\+\_\+mass\+\_\+si}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a884c0b234107e0f709e4e92db3eea00d}{ratio\+\_\+mass\+\_\+hu}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 hu = \frac{1}{10} si = 50 ug$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aa0ad6c0caff76254f6f075c5aca11f32}\label{class_dimensional_1_1_quantity_aa0ad6c0caff76254f6f075c5aca11f32}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_mile@{ratio\_mile}}
+\index{ratio\_mile@{ratio\_mile}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_mile}{ratio\_mile}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$std\+::ratio$<$1609344ll, 1000000ll$>$, std\+::kilo$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aa0ad6c0caff76254f6f075c5aca11f32}{ratio\+\_\+mile}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 mile = 1.609344 km$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a6b0b2f3c883c285c88f3ce53fd420b64}\label{class_dimensional_1_1_quantity_a6b0b2f3c883c285c88f3ce53fd420b64}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_furlong@{ratio\_furlong}}
+\index{ratio\_furlong@{ratio\_furlong}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_furlong}{ratio\_furlong}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_aa0ad6c0caff76254f6f075c5aca11f32}{ratio\+\_\+mile}}, std\+::ratio$<$8$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6b0b2f3c883c285c88f3ce53fd420b64}{ratio\+\_\+furlong}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 furlong = 201.168 m$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a719981abae877612a709bcce290949a5}\label{class_dimensional_1_1_quantity_a719981abae877612a709bcce290949a5}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_chain@{ratio\_chain}}
+\index{ratio\_chain@{ratio\_chain}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_chain}{ratio\_chain}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a6b0b2f3c883c285c88f3ce53fd420b64}{ratio\+\_\+furlong}}, std\+::ratio$<$10$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a719981abae877612a709bcce290949a5}{ratio\+\_\+chain}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 chain = \frac{1}{10} furlong = \frac{1}{80} mile = 20.1168 m$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}\label{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_yard@{ratio\_yard}}
+\index{ratio\_yard@{ratio\_yard}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_yard}{ratio\_yard}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a719981abae877612a709bcce290949a5}{ratio\+\_\+chain}}, std\+::ratio$<$22$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}{ratio\+\_\+yard}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 yard = \frac{1}{22} chain = \frac{1}{1760} mile = 0.9144 m$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a70fd9319fef87c94f78cf41b290164dd}\label{class_dimensional_1_1_quantity_a70fd9319fef87c94f78cf41b290164dd}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_nail@{ratio\_nail}}
+\index{ratio\_nail@{ratio\_nail}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_nail}{ratio\_nail}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}{ratio\+\_\+yard}}, std\+::ratio$<$16$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a70fd9319fef87c94f78cf41b290164dd}{ratio\+\_\+nail}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 nail = \frac{1}{16} yard = \frac{9}{4} inch = 5.715 cm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a2bb3b2fca214fbca6aff2c7c900dac7f}\label{class_dimensional_1_1_quantity_a2bb3b2fca214fbca6aff2c7c900dac7f}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_feet@{ratio\_feet}}
+\index{ratio\_feet@{ratio\_feet}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_feet}{ratio\_feet}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_aff961ba1d6460cf2278c50bc7db5ad7c}{ratio\+\_\+yard}}, std\+::ratio$<$3$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2bb3b2fca214fbca6aff2c7c900dac7f}{ratio\+\_\+feet}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 feet = \frac{1}{3} yard = 30.48 cm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a2414dba6005eed916a876bd4524a4251}\label{class_dimensional_1_1_quantity_a2414dba6005eed916a876bd4524a4251}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_inch@{ratio\_inch}}
+\index{ratio\_inch@{ratio\_inch}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_inch}{ratio\_inch}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a2bb3b2fca214fbca6aff2c7c900dac7f}{ratio\+\_\+feet}}, std\+::ratio$<$12$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a2414dba6005eed916a876bd4524a4251}{ratio\+\_\+inch}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter. $1 inch = \frac{1}{12} feet = 2.54 cm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a153a88b16c0c55f364f0c2fa856848e5}\label{class_dimensional_1_1_quantity_a153a88b16c0c55f364f0c2fa856848e5}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_pica@{ratio\_pica}}
+\index{ratio\_pica@{ratio\_pica}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_pica}{ratio\_pica}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a2414dba6005eed916a876bd4524a4251}{ratio\+\_\+inch}}, std\+::ratio$<$6$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a153a88b16c0c55f364f0c2fa856848e5}{ratio\+\_\+pica}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter, with symbol {\ttfamily pc}. $1 pica = \frac{1}{6} inch = 4.2\overline{3} mm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ab40c734406d8cbd033db420925c619ab}\label{class_dimensional_1_1_quantity_ab40c734406d8cbd033db420925c619ab}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_point@{ratio\_point}}
+\index{ratio\_point@{ratio\_point}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_point}{ratio\_point}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a153a88b16c0c55f364f0c2fa856848e5}{ratio\+\_\+pica}}, std\+::ratio$<$12$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ab40c734406d8cbd033db420925c619ab}{ratio\+\_\+point}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to meter, with symbol \textquotesingle{}pt\textquotesingle{}. $1 point = \frac{1}{12} pica = 0.352\overline{7} mm$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aac1fedec435fe50c4ed96002264190a5}\label{class_dimensional_1_1_quantity_aac1fedec435fe50c4ed96002264190a5}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_longton@{ratio\_longton}}
+\index{ratio\_longton@{ratio\_longton}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_longton}{ratio\_longton}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$10160469088, 10000000$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aac1fedec435fe50c4ed96002264190a5}{ratio\+\_\+longton}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 longton = 2240 pound = 1016.0469088 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a29d3b77c3d282ee7167001e70351bce1}\label{class_dimensional_1_1_quantity_a29d3b77c3d282ee7167001e70351bce1}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_shortton@{ratio\_shortton}}
+\index{ratio\_shortton@{ratio\_shortton}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_shortton}{ratio\_shortton}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$90718474, 100000$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a29d3b77c3d282ee7167001e70351bce1}{ratio\+\_\+shortton}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 shortton = 2000 pound = 907.18474 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aebbfa00900d148a3fe091e8d84561d4e}\label{class_dimensional_1_1_quantity_aebbfa00900d148a3fe091e8d84561d4e}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_long\_hundredweight@{ratio\_long\_hundredweight}}
+\index{ratio\_long\_hundredweight@{ratio\_long\_hundredweight}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_long\_hundredweight}{ratio\_long\_hundredweight}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$5080234544, 100000000$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aebbfa00900d148a3fe091e8d84561d4e}{ratio\+\_\+long\+\_\+hundredweight}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 long\ hundredweight = 112 pound = 50.80234544 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a504accecc554cbb4b570c528d5c420a0}\label{class_dimensional_1_1_quantity_a504accecc554cbb4b570c528d5c420a0}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_short\_hundredweight@{ratio\_short\_hundredweight}}
+\index{ratio\_short\_hundredweight@{ratio\_short\_hundredweight}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_short\_hundredweight}{ratio\_short\_hundredweight}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$45359237, 1000000$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a504accecc554cbb4b570c528d5c420a0}{ratio\+\_\+short\+\_\+hundredweight}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 short\ hundredweight = 100 pound = 45.359237 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}\label{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_pound@{ratio\_pound}}
+\index{ratio\_pound@{ratio\_pound}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_pound}{ratio\_pound}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio$<$45359237, 100000000$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\+\_\+pound}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 pound = 0.45359237 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_af67214972753c0151b0e770974d9bb78}\label{class_dimensional_1_1_quantity_af67214972753c0151b0e770974d9bb78}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_ounce@{ratio\_ounce}}
+\index{ratio\_ounce@{ratio\_ounce}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_ounce}{ratio\_ounce}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\+\_\+pound}}, std\+::ratio$<$16$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af67214972753c0151b0e770974d9bb78}{ratio\+\_\+ounce}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 ounce = \frac{1}{16} pound = 28.349523125 g$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_affe8b9383a40c5c910710906989d38cb}\label{class_dimensional_1_1_quantity_affe8b9383a40c5c910710906989d38cb}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_drachm@{ratio\_drachm}}
+\index{ratio\_drachm@{ratio\_drachm}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_drachm}{ratio\_drachm}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_af67214972753c0151b0e770974d9bb78}{ratio\+\_\+ounce}}, std\+::ratio$<$16$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_affe8b9383a40c5c910710906989d38cb}{ratio\+\_\+drachm}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 drachm = \frac{1}{16} ounce = 1.7718451953125 g$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aaef9ca651a7ff91fda58767a6f78538d}\label{class_dimensional_1_1_quantity_aaef9ca651a7ff91fda58767a6f78538d}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_grain@{ratio\_grain}}
+\index{ratio\_grain@{ratio\_grain}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_grain}{ratio\_grain}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$std\+::ratio$<$6479891, 100000ll$>$, std\+::micro$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aaef9ca651a7ff91fda58767a6f78538d}{ratio\+\_\+grain}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 grain = 64.79891 mg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ae8269344350cc3a60336b76c2901181f}\label{class_dimensional_1_1_quantity_ae8269344350cc3a60336b76c2901181f}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_hundredweight@{ratio\_en\_hundredweight}}
+\index{ratio\_en\_hundredweight@{ratio\_en\_hundredweight}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_hundredweight}{ratio\_en\_hundredweight}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef \mbox{\hyperlink{class_dimensional_1_1_quantity_aebbfa00900d148a3fe091e8d84561d4e}{ratio\+\_\+long\+\_\+hundredweight}} \mbox{\hyperlink{class_dimensional_1_1_quantity_ae8269344350cc3a60336b76c2901181f}{ratio\+\_\+en\+\_\+hundredweight}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 Imperial\ hundredweight = 8 stone = 112 pound = 50.80234544 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a59254cf6150d82a6275f15b3bc38e486}\label{class_dimensional_1_1_quantity_a59254cf6150d82a6275f15b3bc38e486}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_quarter@{ratio\_en\_quarter}}
+\index{ratio\_en\_quarter@{ratio\_en\_quarter}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_quarter}{ratio\_en\_quarter}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\+\_\+pound}}, std\+::ratio$<$28$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a59254cf6150d82a6275f15b3bc38e486}{ratio\+\_\+en\+\_\+quarter}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 quarter = 2 stone = 28 pound = 12.70058636 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a75de6c6e2d6fb77761337976830d52a5}\label{class_dimensional_1_1_quantity_a75de6c6e2d6fb77761337976830d52a5}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_stone@{ratio\_en\_stone}}
+\index{ratio\_en\_stone@{ratio\_en\_stone}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_stone}{ratio\_en\_stone}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_aa39f5d9fb1848cd88bd25176f928fb93}{ratio\+\_\+pound}}, std\+::ratio$<$14$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a75de6c6e2d6fb77761337976830d52a5}{ratio\+\_\+en\+\_\+stone}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram. $1 stone = 14 pound = 6.35029318 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a7c6e8e4e855bc9ee42dcf8781c31159c}\label{class_dimensional_1_1_quantity_a7c6e8e4e855bc9ee42dcf8781c31159c}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_fluid\_dram@{ratio\_en\_fluid\_dram}}
+\index{ratio\_en\_fluid\_dram@{ratio\_en\_fluid\_dram}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_fluid\_dram}{ratio\_en\_fluid\_dram}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$std\+::ratio$<$35516328125ll, 10000000000ll$>$, std\+::micro$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a7c6e8e4e855bc9ee42dcf8781c31159c}{ratio\+\_\+en\+\_\+fluid\+\_\+dram}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 fluid\ dram = 3.5516328125 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a0a1229aabe760440a7672a7991aa544f}\label{class_dimensional_1_1_quantity_a0a1229aabe760440a7672a7991aa544f}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_fluid\_ounce@{ratio\_en\_fluid\_ounce}}
+\index{ratio\_en\_fluid\_ounce@{ratio\_en\_fluid\_ounce}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_fluid\_ounce}{ratio\_en\_fluid\_ounce}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a7c6e8e4e855bc9ee42dcf8781c31159c}{ratio\+\_\+en\+\_\+fluid\+\_\+dram}}, std\+::ratio$<$8$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a0a1229aabe760440a7672a7991aa544f}{ratio\+\_\+en\+\_\+fluid\+\_\+ounce}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 fluid\ ounce = 8 fluind\ dram = 28.4130625 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a92c1d103f4b9e4ef327a8a2d0b3a5e54}\label{class_dimensional_1_1_quantity_a92c1d103f4b9e4ef327a8a2d0b3a5e54}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_gill@{ratio\_en\_gill}}
+\index{ratio\_en\_gill@{ratio\_en\_gill}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_gill}{ratio\_en\_gill}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a0a1229aabe760440a7672a7991aa544f}{ratio\+\_\+en\+\_\+fluid\+\_\+ounce}}, std\+::ratio$<$5$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a92c1d103f4b9e4ef327a8a2d0b3a5e54}{ratio\+\_\+en\+\_\+gill}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 gill = 5 fluid\ ounce = 142.0653125 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a8b459a0fff40544a6d6c4f36035b1d53}\label{class_dimensional_1_1_quantity_a8b459a0fff40544a6d6c4f36035b1d53}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_cup@{ratio\_en\_cup}}
+\index{ratio\_en\_cup@{ratio\_en\_cup}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_cup}{ratio\_en\_cup}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a92c1d103f4b9e4ef327a8a2d0b3a5e54}{ratio\+\_\+en\+\_\+gill}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a8b459a0fff40544a6d6c4f36035b1d53}{ratio\+\_\+en\+\_\+cup}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 cup = 2 gill = 284.130625 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a3c0826f21e647cd67273e30420735d64}\label{class_dimensional_1_1_quantity_a3c0826f21e647cd67273e30420735d64}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_pint@{ratio\_en\_pint}}
+\index{ratio\_en\_pint@{ratio\_en\_pint}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_pint}{ratio\_en\_pint}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a8b459a0fff40544a6d6c4f36035b1d53}{ratio\+\_\+en\+\_\+cup}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a3c0826f21e647cd67273e30420735d64}{ratio\+\_\+en\+\_\+pint}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 pint = 2 cup = 568.26125 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a547c7b250d689cd0c26d91fba5dce5cc}\label{class_dimensional_1_1_quantity_a547c7b250d689cd0c26d91fba5dce5cc}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_quart@{ratio\_en\_quart}}
+\index{ratio\_en\_quart@{ratio\_en\_quart}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_quart}{ratio\_en\_quart}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a3c0826f21e647cd67273e30420735d64}{ratio\+\_\+en\+\_\+pint}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a547c7b250d689cd0c26d91fba5dce5cc}{ratio\+\_\+en\+\_\+quart}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 quart = 2 pint = 1.1365225 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a1dbebae7cf4299bf8bcabc16ccda594e}\label{class_dimensional_1_1_quantity_a1dbebae7cf4299bf8bcabc16ccda594e}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_gallon@{ratio\_en\_gallon}}
+\index{ratio\_en\_gallon@{ratio\_en\_gallon}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_gallon}{ratio\_en\_gallon}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a547c7b250d689cd0c26d91fba5dce5cc}{ratio\+\_\+en\+\_\+quart}}, std\+::ratio$<$4$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a1dbebae7cf4299bf8bcabc16ccda594e}{ratio\+\_\+en\+\_\+gallon}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 gallon = 4 quart = 4.54609 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_af47d5ef890466385567a61120f8f101c}\label{class_dimensional_1_1_quantity_af47d5ef890466385567a61120f8f101c}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_peck@{ratio\_en\_peck}}
+\index{ratio\_en\_peck@{ratio\_en\_peck}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_peck}{ratio\_en\_peck}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a1dbebae7cf4299bf8bcabc16ccda594e}{ratio\+\_\+en\+\_\+gallon}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af47d5ef890466385567a61120f8f101c}{ratio\+\_\+en\+\_\+peck}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 peck = 2 gallon = 9.09218 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a3659edb6bf36d5bcf65043f873f49b1a}\label{class_dimensional_1_1_quantity_a3659edb6bf36d5bcf65043f873f49b1a}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_en\_bushel@{ratio\_en\_bushel}}
+\index{ratio\_en\_bushel@{ratio\_en\_bushel}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_en\_bushel}{ratio\_en\_bushel}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_af47d5ef890466385567a61120f8f101c}{ratio\+\_\+en\+\_\+peck}}, std\+::ratio$<$4$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a3659edb6bf36d5bcf65043f873f49b1a}{ratio\+\_\+en\+\_\+bushel}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 bushel = 4 peck = 36.36872 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a3128f51d085513d0704e52b4213f2cdb}\label{class_dimensional_1_1_quantity_a3128f51d085513d0704e52b4213f2cdb}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_hundredweight@{ratio\_us\_hundredweight}}
+\index{ratio\_us\_hundredweight@{ratio\_us\_hundredweight}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_hundredweight}{ratio\_us\_hundredweight}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef \mbox{\hyperlink{class_dimensional_1_1_quantity_a504accecc554cbb4b570c528d5c420a0}{ratio\+\_\+short\+\_\+hundredweight}} \mbox{\hyperlink{class_dimensional_1_1_quantity_a3128f51d085513d0704e52b4213f2cdb}{ratio\+\_\+us\+\_\+hundredweight}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to kilogram $1 US hundredweight = 100 pound = 45.359237 kg$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ac887d76caa939183ff3e3c0651611a1e}\label{class_dimensional_1_1_quantity_ac887d76caa939183ff3e3c0651611a1e}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_fluid\_dram@{ratio\_us\_fluid\_dram}}
+\index{ratio\_us\_fluid\_dram@{ratio\_us\_fluid\_dram}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_fluid\_dram}{ratio\_us\_fluid\_dram}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$std\+::ratio$<$36966911953125ll, 10000000000000ll$>$, std\+::micro$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ac887d76caa939183ff3e3c0651611a1e}{ratio\+\_\+us\+\_\+fluid\+\_\+dram}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 fluid\ dram = 3.6966911953125 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}\label{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_fluid\_ounce@{ratio\_us\_fluid\_ounce}}
+\index{ratio\_us\_fluid\_ounce@{ratio\_us\_fluid\_ounce}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_fluid\_ounce}{ratio\_us\_fluid\_ounce}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ac887d76caa939183ff3e3c0651611a1e}{ratio\+\_\+us\+\_\+fluid\+\_\+dram}}, std\+::ratio$<$8$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\+\_\+us\+\_\+fluid\+\_\+ounce}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 fluid\ ounce = 8 fluid\ dram = 29.5735295625 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aed05bb5ade36b8a7ccdb4c11b911a8f8}\label{class_dimensional_1_1_quantity_aed05bb5ade36b8a7ccdb4c11b911a8f8}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_teaspoons@{ratio\_us\_teaspoons}}
+\index{ratio\_us\_teaspoons@{ratio\_us\_teaspoons}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_teaspoons}{ratio\_us\_teaspoons}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\+\_\+us\+\_\+fluid\+\_\+ounce}}, std\+::ratio$<$6$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_aed05bb5ade36b8a7ccdb4c11b911a8f8}{ratio\+\_\+us\+\_\+teaspoons}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 teaspoons = \frac{1}{6} fluid\ ounce = 4.92892159375 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a559612fd0fef51ae4db5b1326832a315}\label{class_dimensional_1_1_quantity_a559612fd0fef51ae4db5b1326832a315}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_tablespoons@{ratio\_us\_tablespoons}}
+\index{ratio\_us\_tablespoons@{ratio\_us\_tablespoons}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_tablespoons}{ratio\_us\_tablespoons}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+divide$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\+\_\+us\+\_\+fluid\+\_\+ounce}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a559612fd0fef51ae4db5b1326832a315}{ratio\+\_\+us\+\_\+tablespoons}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 tablespoons = \frac{1}{2} fluid\ ounce = 14.78676478125 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_abc22e43966996c178278993415db97f3}\label{class_dimensional_1_1_quantity_abc22e43966996c178278993415db97f3}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_gill@{ratio\_us\_gill}}
+\index{ratio\_us\_gill@{ratio\_us\_gill}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_gill}{ratio\_us\_gill}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_ad1f99423de23c40c787dd3a479ff72ef}{ratio\+\_\+us\+\_\+fluid\+\_\+ounce}}, std\+::ratio$<$4$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_abc22e43966996c178278993415db97f3}{ratio\+\_\+us\+\_\+gill}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 gill = 4 fluid\ ounce = 118.29411825 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_afa624fe455467c4fea8eacfebbd91daa}\label{class_dimensional_1_1_quantity_afa624fe455467c4fea8eacfebbd91daa}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_cup@{ratio\_us\_cup}}
+\index{ratio\_us\_cup@{ratio\_us\_cup}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_cup}{ratio\_us\_cup}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_abc22e43966996c178278993415db97f3}{ratio\+\_\+us\+\_\+gill}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_afa624fe455467c4fea8eacfebbd91daa}{ratio\+\_\+us\+\_\+cup}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 cup = 2 gill = 236.5882365 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_affee17e4f6356cc3b56ab2fcf61eca25}\label{class_dimensional_1_1_quantity_affee17e4f6356cc3b56ab2fcf61eca25}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_pint@{ratio\_us\_pint}}
+\index{ratio\_us\_pint@{ratio\_us\_pint}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_pint}{ratio\_us\_pint}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_afa624fe455467c4fea8eacfebbd91daa}{ratio\+\_\+us\+\_\+cup}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_affee17e4f6356cc3b56ab2fcf61eca25}{ratio\+\_\+us\+\_\+pint}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 pint = 2 cup = 473.176473 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_af8eb015f62475c00c084c3a1f1382286}\label{class_dimensional_1_1_quantity_af8eb015f62475c00c084c3a1f1382286}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_quart@{ratio\_us\_quart}}
+\index{ratio\_us\_quart@{ratio\_us\_quart}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_quart}{ratio\_us\_quart}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_affee17e4f6356cc3b56ab2fcf61eca25}{ratio\+\_\+us\+\_\+pint}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_af8eb015f62475c00c084c3a1f1382286}{ratio\+\_\+us\+\_\+quart}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 quart = 2 pint = 946.352946 mL$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a0fa6b379459f14e00c435bd041e7d26f}\label{class_dimensional_1_1_quantity_a0fa6b379459f14e00c435bd041e7d26f}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_gallon@{ratio\_us\_gallon}}
+\index{ratio\_us\_gallon@{ratio\_us\_gallon}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_gallon}{ratio\_us\_gallon}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_af8eb015f62475c00c084c3a1f1382286}{ratio\+\_\+us\+\_\+quart}}, std\+::ratio$<$4$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a0fa6b379459f14e00c435bd041e7d26f}{ratio\+\_\+us\+\_\+gallon}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 gallon = 4 quart = 3.785411784 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a39d95fe224ba9b9591c7b5c593724afa}\label{class_dimensional_1_1_quantity_a39d95fe224ba9b9591c7b5c593724afa}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_dry\_pint@{ratio\_us\_dry\_pint}}
+\index{ratio\_us\_dry\_pint@{ratio\_us\_dry\_pint}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_dry\_pint}{ratio\_us\_dry\_pint}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$std\+::ratio$<$5506104713575ll, 10000000000000ll$>$, std\+::milli$>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a39d95fe224ba9b9591c7b5c593724afa}{ratio\+\_\+us\+\_\+dry\+\_\+pint}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 dry\ pint = 0.5506104713575 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_abdd83b73d63b2ba65a13cc320c8dac24}\label{class_dimensional_1_1_quantity_abdd83b73d63b2ba65a13cc320c8dac24}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_dry\_quart@{ratio\_us\_dry\_quart}}
+\index{ratio\_us\_dry\_quart@{ratio\_us\_dry\_quart}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_dry\_quart}{ratio\_us\_dry\_quart}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a39d95fe224ba9b9591c7b5c593724afa}{ratio\+\_\+us\+\_\+dry\+\_\+pint}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_abdd83b73d63b2ba65a13cc320c8dac24}{ratio\+\_\+us\+\_\+dry\+\_\+quart}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 dry\ quart = 2 dry\ pint = 1.101220942715 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a6d98ec560e5cd288aa2b8a35b95085ae}\label{class_dimensional_1_1_quantity_a6d98ec560e5cd288aa2b8a35b95085ae}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_dry\_gallon@{ratio\_us\_dry\_gallon}}
+\index{ratio\_us\_dry\_gallon@{ratio\_us\_dry\_gallon}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_dry\_gallon}{ratio\_us\_dry\_gallon}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_abdd83b73d63b2ba65a13cc320c8dac24}{ratio\+\_\+us\+\_\+dry\+\_\+quart}}, std\+::ratio$<$4$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6d98ec560e5cd288aa2b8a35b95085ae}{ratio\+\_\+us\+\_\+dry\+\_\+gallon}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 dry\ gallon = 4 dry\ quart = 4.40488377086 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a6fd6b3532a8a004f77751ac80e68b226}\label{class_dimensional_1_1_quantity_a6fd6b3532a8a004f77751ac80e68b226}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_dry\_peck@{ratio\_us\_dry\_peck}}
+\index{ratio\_us\_dry\_peck@{ratio\_us\_dry\_peck}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_dry\_peck}{ratio\_us\_dry\_peck}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a6d98ec560e5cd288aa2b8a35b95085ae}{ratio\+\_\+us\+\_\+dry\+\_\+gallon}}, std\+::ratio$<$2$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6fd6b3532a8a004f77751ac80e68b226}{ratio\+\_\+us\+\_\+dry\+\_\+peck}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 dry\ peck = 2 dry\ gallon = 8.80976754172 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a6515326d2c38ec692b588eb3fc1c6e2b}\label{class_dimensional_1_1_quantity_a6515326d2c38ec692b588eb3fc1c6e2b}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!ratio\_us\_bushel@{ratio\_us\_bushel}}
+\index{ratio\_us\_bushel@{ratio\_us\_bushel}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{ratio\_us\_bushel}{ratio\_us\_bushel}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio  = std\+::ratio$<$1$>$$>$ \\
+typedef std\+::ratio\+\_\+multiply$<$\mbox{\hyperlink{class_dimensional_1_1_quantity_a6fd6b3532a8a004f77751ac80e68b226}{ratio\+\_\+us\+\_\+dry\+\_\+peck}}, std\+::ratio$<$4$>$ $>$ \mbox{\hyperlink{class_dimensional_1_1_quantity_a6515326d2c38ec692b588eb3fc1c6e2b}{ratio\+\_\+us\+\_\+bushel}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Ratio to convert to cubicmeter. $1 bushel = 4 dry\ peck = 35.23907016688 L$. 
+
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a2cb2a57bae59e96d9894b877d0a46b04}\label{class_dimensional_1_1_quantity_a2cb2a57bae59e96d9894b877d0a46b04}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio1 , typename Ratio2 $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio1 $>$ operator+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio1 $>$}]{lhs,  }\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio2 $>$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Plus operator overload, values will be converted to same ratio before calculation, both inputs should have same value type and unit type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of operands. \\
+\hline
+{\em U} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of operands. \\
+\hline
+{\em Ratio1} & Ratio of first operand. \\
+\hline
+{\em Ratio2} & Ratio of second operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & First operand. \\
+\hline
+{\em rhs} & Second operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculation result represened with {\ttfamily Ratio1.} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a18c90a00a9838498b5f2846fd25ffc27}\label{class_dimensional_1_1_quantity_a18c90a00a9838498b5f2846fd25ffc27}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename T , typename U , typename Ratio1 , typename Ratio2 $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio1 $>$ operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio1 $>$ \&}]{lhs,  }\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio2 $>$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Subtract operator overload, values will be converted to same ratio before calculation, both inputs should have same value type and unit type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of operands. \\
+\hline
+{\em U} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of operands. \\
+\hline
+{\em Ratio1} & Ratio of first operand. \\
+\hline
+{\em Ratio2} & Ratio of second operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & First operand. \\
+\hline
+{\em rhs} & Second operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculation result represened with {\ttfamily Ratio1.} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_ad129be6aadefea0016e47d71dc3aaf94}\label{class_dimensional_1_1_quantity_ad129be6aadefea0016e47d71dc3aaf94}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename T , typename Unit1 , typename Ratio1 , typename Unit2 , typename Ratio2 $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit\+Multiply$<$ Unit1, Unit2 $>$, Ratio1 $>$ operator$\ast$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit1, Ratio1 $>$}]{lhs,  }\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit2, Ratio2 $>$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Multiply operator overload, values will be converted to same ratio before calculation, inputs can have different unit type, a new unit type will be generated. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of operands. \\
+\hline
+{\em Unit1} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of first operand. \\
+\hline
+{\em Ratio1} & Ratio of first operand. \\
+\hline
+{\em Unit2} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of second operand. \\
+\hline
+{\em Ratio2} & Ratio of second operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & First operand. \\
+\hline
+{\em rhs} & Second operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculation result represened with {\ttfamily Ratio1.} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_aefd6bb39884379afb271ef2776d333c1}\label{class_dimensional_1_1_quantity_aefd6bb39884379afb271ef2776d333c1}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$typename T , typename Unit1 , typename Ratio1 , typename Unit2 , typename Ratio2 $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit\+Divide$<$ Unit1, Unit2 $>$, Ratio1 $>$ operator/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit1, Ratio1 $>$}]{lhs,  }\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit2, Ratio2 $>$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Divide operator overload, values will be converted to same ratio before calculation, inputs can have different unit type, a new unit type will be generated. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of operands. \\
+\hline
+{\em Unit1} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of first operand. \\
+\hline
+{\em Ratio1} & Ratio of first operand. \\
+\hline
+{\em Unit2} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of second operand. \\
+\hline
+{\em Ratio2} & Ratio of second operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & First operand. \\
+\hline
+{\em rhs} & Second operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculation result represened with {\ttfamily Ratio1.} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a4d6941bd4f7a697e730b0e2fb2355096}\label{class_dimensional_1_1_quantity_a4d6941bd4f7a697e730b0e2fb2355096}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!pow@{pow}}
+\index{pow@{pow}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{pow()}{pow()}}
+{\footnotesize\ttfamily template$<$int factor, typename T , typename U , typename Ratio $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit\+Pow$<$ U, factor $>$, std\+::ratio$<$ 1 $>$ $>$ pow (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Power calculation, performed both on value and unit, ratio will be casted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em factor} & Factor of power calculation. \\
+\hline
+{\em T} & Value type of operands. \\
+\hline
+{\em U} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of operand. \\
+\hline
+{\em Ratio} & Ratio of operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}} operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculation result with power performed both on value and unit. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a7d020dcc04265c31b45268f324bbd2cc}\label{class_dimensional_1_1_quantity_a7d020dcc04265c31b45268f324bbd2cc}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!root@{root}}
+\index{root@{root}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{root()}{root()}}
+{\footnotesize\ttfamily template$<$int factor, typename T , typename U , typename Ratio $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, Unit\+Root$<$ U, factor $>$, std\+::ratio$<$ 1 $>$ $>$ root (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Root calculation, performed both on value and unit, ratio will be casted to {\ttfamily std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em factor} & Factor of root calculation. \\
+\hline
+{\em T} & Value type of operands. \\
+\hline
+{\em U} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of operand. \\
+\hline
+{\em Ratio} & Ratio of operand. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}} operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculation result with root performed both on value and unit. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dimensional_1_1_quantity_a6a71b12c7ca38fddda916be9b5deb574}\label{class_dimensional_1_1_quantity_a6a71b12c7ca38fddda916be9b5deb574}} 
+\index{Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}!quantity\_cast@{quantity\_cast}}
+\index{quantity\_cast@{quantity\_cast}!Dimensional::Quantity$<$ T, U, Ratio $>$@{Dimensional::Quantity$<$ T, U, Ratio $>$}}
+\doxysubsubsection{\texorpdfstring{quantity\_cast()}{quantity\_cast()}}
+{\footnotesize\ttfamily template$<$typename New\+Ratio , typename T , typename U , typename Ratio $>$ \\
+\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, New\+Ratio $>$ quantity\+\_\+cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}}$<$ T, U, Ratio $>$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Cast a quantity to another ratio, value will be converted too. Sample code for convert to standard value\+: {\ttfamily b = quantity\+\_\+cast\texorpdfstring{$<$}{<}std\+::ratio\texorpdfstring{$<$}{<}1\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}(a);} 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em New\+Ratio} & Ratio to be cast to. \\
+\hline
+{\em T} & Value type of input. \\
+\hline
+{\em U} & \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} of input. \\
+\hline
+{\em Ratio} & Ratio of input. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Operand to be cast. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+New quantity cast to {\ttfamily New\+Ratio}. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Dimensional\+Analysis/\mbox{\hyperlink{_dimensional_analysis_8hpp}{Dimensional\+Analysis.\+hpp}}\end{DoxyCompactItemize}

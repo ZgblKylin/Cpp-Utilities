@@ -1,0 +1,377 @@
+\hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base}{}\doxysection{Container\+::Sequencial\+Map\texorpdfstring{$<$}{<} Key, T, Compare, Allocator \texorpdfstring{$>$}{>}\+::iterator\+\_\+base\texorpdfstring{$<$}{<} constant \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{struct_container_1_1_sequencial_map_1_1iterator__base}\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+
+
+Base type for iterators.  
+
+
+
+
+{\ttfamily \#include $<$Sequencial\+Map.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a972f1214cb28b41fe74a682d4ce77fef}{iterator\+\_\+category}} = std\+::random\+\_\+access\+\_\+iterator\+\_\+tag
+\item 
+using \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}} = typename \mbox{\hyperlink{class_container_1_1_sequencial_map_a37963b4a5251896ca414b670e1e2175c}{Sequencial\+Map\+::difference\+\_\+type}}
+\item 
+using \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a0a5e405fdb5d10a1b5dc540afb689a4f}{node\+\_\+type}} = typename Sequencial\+Map\+::vector\+\_\+type\+::value\+\_\+type
+\item 
+using \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}} = typename \mbox{\hyperlink{class_container_1_1_sequencial_map_aab11dbc368501e7063836895044e3c6d}{Sequencial\+Map\+::value\+\_\+type}}
+\item 
+using \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_accbe4e450459b621f9a20dda501366ed}{pointer}} = typename std\+::conditional$<$ constant, const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}} $\ast$, \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}} $\ast$ $>$\+::type
+\item 
+using \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_abc7e0f813564f1916c342434e77fe3cb}{reference}} = typename std\+::conditional$<$ constant, const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}} \&, \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}} \& $>$\+::type
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{iterator\+\_\+base}} ()=default
+\item 
+{\footnotesize template$<$bool Other\+Constant$>$ }\\\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a7d62ce86d7c65e59852f3eb75176426b}{iterator\+\_\+base}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ Other\+Constant $>$ \&other)
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_abc7e0f813564f1916c342434e77fe3cb}{reference}} \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a9914f655890c6f18dd9b38b8c172f0a5}{operator$\ast$}} () const
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_accbe4e450459b621f9a20dda501366ed}{pointer}} \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a74490eacd5a6d117c753954936397b12}{operator-\/$>$}} () const
+\item 
+{\footnotesize template$<$bool Other\+Constant$>$ }\\\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a8058e002ea91b6970238c346854bfafe}{operator=}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ Other\+Constant $>$ \&other)
+\item 
+{\footnotesize template$<$bool other\+Constant$>$ }\\bool \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a8cbc49d0dd8a200955ed61653c0ec168}{operator==}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&other) const
+\item 
+{\footnotesize template$<$bool other\+Constant$>$ }\\bool \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a7c9052a1addce9d57bfa75bcf0afd866}{operator!=}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&other) const
+\item 
+{\footnotesize template$<$bool other\+Constant$>$ }\\bool \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a4517d416c842dd325ee61cf70eeed75e}{operator$<$}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&other) const
+\item 
+{\footnotesize template$<$bool other\+Constant$>$ }\\bool \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_aec3089d4626011c0c630301eea677357}{operator$<$=}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&other) const
+\item 
+{\footnotesize template$<$bool other\+Constant$>$ }\\bool \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a6c345120c8da8a97ddb0f87f1470289b}{operator$>$}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&other) const
+\item 
+{\footnotesize template$<$bool other\+Constant$>$ }\\bool \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a9524db564a17cb76282219525e05f26a}{operator$>$=}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&other) const
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a5aa254a2d9f2dc582a92309beeabc399}{operator++}} ()
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_ac57ee8748149b6e303715f998b90004b}{operator++}} (int)
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_ab933a585e60d2731f57db28ad2c2dd87}{operator-\/-\/}} ()
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a942d50788edd32f3fc120f9363c54648}{operator-\/-\/}} (int)
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a95f82706a749edd2b898d6fdf51c158d}{operator+=}} (\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}} j)
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_abea2a81a87db6304d41f4055c3cab8af}{operator-\/=}} (\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}} j)
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a6b7a1f298f7dbca188daf85c56b97b46}{operator+}} (\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}} j) const
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_ae052ad5efa60d7accef7a56d161315f1}{operator-\/}} (\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}} j) const
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}} \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_ace5e004361a46f1d36de085c9ee9dead}{operator-\/}} (\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a6de3b696984bc9d6b0d3b98950aa6904}{iterator\+\_\+base}} (const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a0a5e405fdb5d10a1b5dc540afb689a4f}{node\+\_\+type}} $\ast$node)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a0a5e405fdb5d10a1b5dc540afb689a4f}{node\+\_\+type}} $\ast$ \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_ac4008d0a52f372e2ebaeb3ee13424476}{n}} = nullptr
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a98cfcd88dde514bae76312bba88b9378}{Sequencial\+Map}}
+\item 
+struct \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a44416a0d4ae0fedd2054368a3135c74d}{iterator\+\_\+base$<$!constant $>$}}
+\item 
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a427a9ae1bfcee610fb5b684bc2619bf1}{operator+}} (\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}} j, \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \&it)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Key, typename T, typename Compare = std\+::less$<$\+Key$>$, typename Allocator = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$\newline
+template$<$bool constant$>$\newline
+struct Container\+::\+Sequencial\+Map$<$ Key, T, Compare, Allocator $>$\+::iterator\+\_\+base$<$ constant $>$}
+Base type for iterators. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em constant} & Whether the iterator is mutable or constant. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a972f1214cb28b41fe74a682d4ce77fef}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a972f1214cb28b41fe74a682d4ce77fef}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!iterator\_category@{iterator\_category}}
+\index{iterator\_category@{iterator\_category}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{iterator\_category}{iterator\_category}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+using \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::iterator\+\_\+category =  std\+::random\+\_\+access\+\_\+iterator\+\_\+tag}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!difference\_type@{difference\_type}}
+\index{difference\_type@{difference\_type}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{difference\_type}{difference\_type}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+using \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::difference\+\_\+type =  typename \mbox{\hyperlink{class_container_1_1_sequencial_map_a37963b4a5251896ca414b670e1e2175c}{Sequencial\+Map\+::difference\+\_\+type}}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a0a5e405fdb5d10a1b5dc540afb689a4f}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a0a5e405fdb5d10a1b5dc540afb689a4f}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!node\_type@{node\_type}}
+\index{node\_type@{node\_type}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{node\_type}{node\_type}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+using \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::node\+\_\+type =  typename Sequencial\+Map\+::vector\+\_\+type\+::value\+\_\+type}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!value\_type@{value\_type}}
+\index{value\_type@{value\_type}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{value\_type}{value\_type}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+using \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::value\+\_\+type =  typename \mbox{\hyperlink{class_container_1_1_sequencial_map_aab11dbc368501e7063836895044e3c6d}{Sequencial\+Map\+::value\+\_\+type}}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_accbe4e450459b621f9a20dda501366ed}\label{struct_container_1_1_sequencial_map_1_1iterator__base_accbe4e450459b621f9a20dda501366ed}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!pointer@{pointer}}
+\index{pointer@{pointer}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{pointer}{pointer}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+using \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::pointer =  typename std\+::conditional$<$constant, const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}}$\ast$, \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}}$\ast$$>$\+::type}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_abc7e0f813564f1916c342434e77fe3cb}\label{struct_container_1_1_sequencial_map_1_1iterator__base_abc7e0f813564f1916c342434e77fe3cb}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!reference@{reference}}
+\index{reference@{reference}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{reference}{reference}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+using \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::reference =  typename std\+::conditional$<$constant, const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}}\&, \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a120e08e97abea71b379aecd3090f3434}{value\+\_\+type}}\&$>$\+::type}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}\label{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!iterator\_base@{iterator\_base}}
+\index{iterator\_base@{iterator\_base}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{iterator\_base()}{iterator\_base()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\+::iterator\+\_\+base$<$ constant $>$\+::iterator\+\_\+base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [default]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a7d62ce86d7c65e59852f3eb75176426b}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a7d62ce86d7c65e59852f3eb75176426b}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!iterator\_base@{iterator\_base}}
+\index{iterator\_base@{iterator\_base}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{iterator\_base()}{iterator\_base()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+template$<$bool Other\+Constant$>$ \\
+\mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\+::iterator\+\_\+base$<$ constant $>$\+::iterator\+\_\+base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ Other\+Constant $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a6de3b696984bc9d6b0d3b98950aa6904}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a6de3b696984bc9d6b0d3b98950aa6904}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!iterator\_base@{iterator\_base}}
+\index{iterator\_base@{iterator\_base}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{iterator\_base()}{iterator\_base()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\+::iterator\+\_\+base$<$ constant $>$\+::iterator\+\_\+base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a0a5e405fdb5d10a1b5dc540afb689a4f}{node\+\_\+type}} $\ast$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a9914f655890c6f18dd9b38b8c172f0a5}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a9914f655890c6f18dd9b38b8c172f0a5}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_abc7e0f813564f1916c342434e77fe3cb}{reference}} \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator$\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a74490eacd5a6d117c753954936397b12}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a74490eacd5a6d117c753954936397b12}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_accbe4e450459b621f9a20dda501366ed}{pointer}} \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a8058e002ea91b6970238c346854bfafe}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a8058e002ea91b6970238c346854bfafe}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+template$<$bool Other\+Constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ Other\+Constant $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a8cbc49d0dd8a200955ed61653c0ec168}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a8cbc49d0dd8a200955ed61653c0ec168}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+template$<$bool other\+Constant$>$ \\
+bool \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a7c9052a1addce9d57bfa75bcf0afd866}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a7c9052a1addce9d57bfa75bcf0afd866}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+template$<$bool other\+Constant$>$ \\
+bool \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a4517d416c842dd325ee61cf70eeed75e}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a4517d416c842dd325ee61cf70eeed75e}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+template$<$bool other\+Constant$>$ \\
+bool \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_aec3089d4626011c0c630301eea677357}\label{struct_container_1_1_sequencial_map_1_1iterator__base_aec3089d4626011c0c630301eea677357}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+template$<$bool other\+Constant$>$ \\
+bool \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a6c345120c8da8a97ddb0f87f1470289b}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a6c345120c8da8a97ddb0f87f1470289b}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+template$<$bool other\+Constant$>$ \\
+bool \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a9524db564a17cb76282219525e05f26a}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a9524db564a17cb76282219525e05f26a}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+template$<$bool other\+Constant$>$ \\
+bool \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ other\+Constant $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a5aa254a2d9f2dc582a92309beeabc399}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a5aa254a2d9f2dc582a92309beeabc399}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator++@{operator++}}
+\index{operator++@{operator++}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_ac57ee8748149b6e303715f998b90004b}\label{struct_container_1_1_sequencial_map_1_1iterator__base_ac57ee8748149b6e303715f998b90004b}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator++@{operator++}}
+\index{operator++@{operator++}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator++ (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_ab933a585e60d2731f57db28ad2c2dd87}\label{struct_container_1_1_sequencial_map_1_1iterator__base_ab933a585e60d2731f57db28ad2c2dd87}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/-\/()}{operator--()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator-\/-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a942d50788edd32f3fc120f9363c54648}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a942d50788edd32f3fc120f9363c54648}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/-\/()}{operator--()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator-\/-\/ (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a95f82706a749edd2b898d6fdf51c158d}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a95f82706a749edd2b898d6fdf51c158d}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator+= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_abea2a81a87db6304d41f4055c3cab8af}\label{struct_container_1_1_sequencial_map_1_1iterator__base_abea2a81a87db6304d41f4055c3cab8af}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \& \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a6b7a1f298f7dbca188daf85c56b97b46}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a6b7a1f298f7dbca188daf85c56b97b46}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}}}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_ae052ad5efa60d7accef7a56d161315f1}\label{struct_container_1_1_sequencial_map_1_1iterator__base_ae052ad5efa60d7accef7a56d161315f1}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}}}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_ace5e004361a46f1d36de085c9ee9dead}\label{struct_container_1_1_sequencial_map_1_1iterator__base_ace5e004361a46f1d36de085c9ee9dead}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}} \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ constant $>$}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a98cfcd88dde514bae76312bba88b9378}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a98cfcd88dde514bae76312bba88b9378}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!SequencialMap@{SequencialMap}}
+\index{SequencialMap@{SequencialMap}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{SequencialMap}{SequencialMap}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+friend class \mbox{\hyperlink{class_container_1_1_sequencial_map}{Sequencial\+Map}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a44416a0d4ae0fedd2054368a3135c74d}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a44416a0d4ae0fedd2054368a3135c74d}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!iterator\_base$<$"!constant $>$@{iterator\_base$<$"!constant $>$}}
+\index{iterator\_base$<$"!constant $>$@{iterator\_base$<$"!constant $>$}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{iterator\_base$<$"!constant $>$}{iterator\_base<!constant >}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+friend struct \mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$!constant $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_a427a9ae1bfcee610fb5b684bc2619bf1}\label{struct_container_1_1_sequencial_map_1_1iterator__base_a427a9ae1bfcee610fb5b684bc2619bf1}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{operator+}{operator+}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}} operator+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a3dd675589e2c39cb475d6f8e74c6e3f6}{difference\+\_\+type}}}]{j,  }\item[{\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base}{iterator\+\_\+base}}$<$ constant $>$ \&}]{it }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_container_1_1_sequencial_map_1_1iterator__base_ac4008d0a52f372e2ebaeb3ee13424476}\label{struct_container_1_1_sequencial_map_1_1iterator__base_ac4008d0a52f372e2ebaeb3ee13424476}} 
+\index{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}!n@{n}}
+\index{n@{n}!Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$@{Container::SequencialMap$<$ Key, T, Compare, Allocator $>$::iterator\_base$<$ constant $>$}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily template$<$typename Key , typename T , typename Compare  = std\+::less$<$\+Key$>$, typename Allocator  = std\+::allocator$<$std\+::pair$<$const Key, T$>$$>$$>$ \\
+template$<$bool constant$>$ \\
+\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_a0a5e405fdb5d10a1b5dc540afb689a4f}{node\+\_\+type}}$\ast$ \mbox{\hyperlink{class_container_1_1_sequencial_map}{Container\+::\+Sequencial\+Map}}$<$ Key, T, Compare, Allocator $>$\mbox{\hyperlink{struct_container_1_1_sequencial_map_1_1iterator__base_adacba96391a8b9e38d988987a278108d}{\+::iterator\+\_\+base}}$<$ constant $>$\+::n = nullptr\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Containers/\mbox{\hyperlink{_sequencial_map_8hpp}{Sequencial\+Map.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,455 @@
+\hypertarget{class_memory_1_1_safe_weak_ptr}{}\doxysection{Memory\+::Safe\+Weak\+Ptr\texorpdfstring{$<$}{<} T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_memory_1_1_safe_weak_ptr}\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+
+
+Wrapper to {\ttfamily std\+::weak\+\_\+ptr} to provide weak reference for \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}.  
+
+
+
+
+{\ttfamily \#include $<$Safe\+Shared\+Ptr.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}} = mutex\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type alias for template shared\+\_\+mutex\+\_\+t. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}} = read\+\_\+lock\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type alias for template read\+\_\+lock\+\_\+t. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} = write\+\_\+lock\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type alias for template write\+\_\+lock\+\_\+t. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a537c6fd770770526341af57592e35f24}{element\+\_\+type}} = typename \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ T $>$\+::element\+\_\+type
+\begin{DoxyCompactList}\small\item\em Same element\+\_\+type of \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a56c8224543ced53cfc22d31c668a3f8a}{Safe\+Weak\+Ptr}} () noexcept=default
+\begin{DoxyCompactList}\small\item\em Default constructor. Constructs empty weak\+\_\+ptr. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Y $>$ }\\\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_ada42eb2aa069f1cab54cb52229d9cee1}{Safe\+Weak\+Ptr}} (const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ Y, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Constructs new \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} that shares an object with {\ttfamily other}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Y $>$ }\\\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a2f183890413cfe622d4e3d0516751c08}{Safe\+Weak\+Ptr}} (const \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ Y, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Constructs new \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} that shares an object with {\ttfamily other}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a4c9349c4c5f2e3959b3e2a70ed1b0117}{$\sim$\+Safe\+Weak\+Ptr}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroys the weak\+\_\+ptr object. Results in no effect to the managed object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \& \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9b909d6a7ec8797825531875315732ee}{operator=}} (const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \&other) noexcept
+\begin{DoxyCompactList}\small\item\em Replaces the managed object with the one managed by {\ttfamily other}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Y $>$ }\\\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \& \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abe5d6cc64989f60c0faf2a8eceec2e64}{operator=}} (const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ Y, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&other) noexcept
+\begin{DoxyCompactList}\small\item\em Replaces the managed object with the one managed by {\ttfamily other}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abe32f8c86727a07c0a8d19257bdfc79f}{reset}} () noexcept
+\begin{DoxyCompactList}\small\item\em Releases the ownership of the managed object. After the call {\ttfamily $\ast$this} manages no object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a74b1b58bf122b0d344a0828f028ff157}{swap}} (\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \&other) noexcept
+\begin{DoxyCompactList}\small\item\em Exchanges the contents of {\ttfamily $\ast$this} and {\ttfamily other}. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6d36236c6792077e26809fca8bc1f868}{use\+\_\+count}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the number of {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} instances that share ownership of the managed object, or 0 if the managed object has already been deleted, i.\+e. {\ttfamily $\ast$this} is empty. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abfdd1288d41ba5b5225283e04e686641}{expired}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Checks whether the referenced object was already deleted. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ T $>$ \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6566b256f4e2c2bbd84dde1c2acbaf9c}{lock}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Creates a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that manages the referenced object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Y , typename M , typename R , typename W $>$ }\\bool \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_ae18d517b24bee769ac429b5cde0a6652}{owner\+\_\+before}} (const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ Y, M, R, W $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Provides owner-\/based ordering of weak pointers. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Y , typename M , typename R , typename W $>$ }\\bool \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a4222b4ca30d1053027485057d21ca1df}{owner\+\_\+before}} (const \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ Y, M, R, W $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Provides owner-\/based ordering of weak pointers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Y , typename M , typename R , typename W $>$ }\\class \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a7908794f85e07a5817c7c163bef38aae}{Safe\+Shared\+Ptr}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , typename \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}  = Memory\+::shared\+\_\+mutex\+\_\+t, typename \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}  = Memory\+::shared\+\_\+lock\+\_\+t, typename \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}}  = Memory\+::unique\+\_\+lock\+\_\+t$>$ }\\void \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a4af5fd4f3529eb5569d8fe6df8391460}{swap}} (\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&lhs, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Specializes the {\ttfamily std\+::swap} algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename mutex\+\_\+t = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t = unique\+\_\+lock\+\_\+t$>$\newline
+class Memory\+::\+Safe\+Weak\+Ptr$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$}
+Wrapper to {\ttfamily std\+::weak\+\_\+ptr} to provide weak reference for \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the object held by \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}. \\
+\hline
+{\em mutex\+\_\+t} & Type of the mutex used, default is shared\+\_\+mutex\+\_\+t. \\
+\hline
+{\em read\+\_\+lock\+\_\+t} & Type of the read-\/lock used, default is shared\+\_\+lock\+\_\+t. \\
+\hline
+{\em write\+\_\+lock\+\_\+t} & Type of the write-\/lock used, default is unique\+\_\+lock\+\_\+t.\\
+\hline
+\end{DoxyTemplParams}
+Same API as {\ttfamily std\+::weak\+\_\+ptr}.~\newline
+ See \href{https://en.cppreference.com/w/cpp/memory/weak_ptr}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/memory/weak\+\_\+ptr}} for more details of functionalities with std\+::weak\+\_\+ptr.~\newline
+\begin{DoxyNote}{Note}
+{\bfseries{Before C++17}}, for the purposes of the description below, a pointer type {\ttfamily Y$\ast$} requires that {\ttfamily Y$\ast$} must be implicitly convertible to {\ttfamily T$\ast$}.~\newline
+ {\bfseries{Since C++17}}, for the purposes of the description below, a pointer type {\ttfamily Y$\ast$} is said to be {\bfseries{compatible}} with a pointer type {\ttfamily T$\ast$} if either {\ttfamily Y$\ast$} is convertible to {\ttfamily T$\ast$} or {\ttfamily Y} is the array type {\ttfamily U\mbox{[}N\mbox{]}} and {\ttfamily T} is {\ttfamily U cv \mbox{[}\mbox{]}} (where cv is some set of cv-\/qualifiers).~\newline
+ {\bfseries{Since C++17}}, default deleter called on destructor will use {\ttfamily delete\mbox{[}\mbox{]}} if {\ttfamily T} is an arry type; 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}\label{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SharedMutex@{SharedMutex}}
+\index{SharedMutex@{SharedMutex}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SharedMutex}{SharedMutex}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+using \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Shared\+Mutex =  mutex\+\_\+t}
+
+
+
+Type alias for template shared\+\_\+mutex\+\_\+t. 
+
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}\label{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SharedLock@{SharedLock}}
+\index{SharedLock@{SharedLock}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SharedLock}{SharedLock}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+using \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Shared\+Lock =  read\+\_\+lock\+\_\+t}
+
+
+
+Type alias for template read\+\_\+lock\+\_\+t. 
+
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}\label{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!UniqueLock@{UniqueLock}}
+\index{UniqueLock@{UniqueLock}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{UniqueLock}{UniqueLock}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+using \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Unique\+Lock =  write\+\_\+lock\+\_\+t}
+
+
+
+Type alias for template write\+\_\+lock\+\_\+t. 
+
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a537c6fd770770526341af57592e35f24}\label{class_memory_1_1_safe_weak_ptr_a537c6fd770770526341af57592e35f24}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!element\_type@{element\_type}}
+\index{element\_type@{element\_type}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{element\_type}{element\_type}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+using \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::element\+\_\+type =  typename \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$T$>$\+::element\+\_\+type}
+
+
+
+Same element\+\_\+type of \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a56c8224543ced53cfc22d31c668a3f8a}\label{class_memory_1_1_safe_weak_ptr_a56c8224543ced53cfc22d31c668a3f8a}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SafeWeakPtr@{SafeWeakPtr}}
+\index{SafeWeakPtr@{SafeWeakPtr}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SafeWeakPtr()}{SafeWeakPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+constexpr \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Safe\+Weak\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+Default constructor. Constructs empty weak\+\_\+ptr. 
+
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_ada42eb2aa069f1cab54cb52229d9cee1}\label{class_memory_1_1_safe_weak_ptr_ada42eb2aa069f1cab54cb52229d9cee1}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SafeWeakPtr@{SafeWeakPtr}}
+\index{SafeWeakPtr@{SafeWeakPtr}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SafeWeakPtr()}{SafeWeakPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Y $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Safe\+Weak\+Ptr (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ Y, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs new \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} that shares an object with {\ttfamily other}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Y} & Element type of input weak pointer. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Weak pointer to share object from.\\
+\hline
+\end{DoxyParams}
+Constructs new \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} which shares an object managed by {\ttfamily other}. If {\ttfamily other} manages no object, {\ttfamily $\ast$this} manages no object too. \mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a2f183890413cfe622d4e3d0516751c08}\label{class_memory_1_1_safe_weak_ptr_a2f183890413cfe622d4e3d0516751c08}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SafeWeakPtr@{SafeWeakPtr}}
+\index{SafeWeakPtr@{SafeWeakPtr}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SafeWeakPtr()}{SafeWeakPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Y $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Safe\+Weak\+Ptr (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ Y, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs new \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} that shares an object with {\ttfamily other}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Y} & Element type of input shared pointer. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Shared pointer to share object from.\\
+\hline
+\end{DoxyParams}
+Constructs new \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} which shares an object managed by {\ttfamily other}. If {\ttfamily other} manages no object, {\ttfamily $\ast$this} manages no object too. \mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a4c9349c4c5f2e3959b3e2a70ed1b0117}\label{class_memory_1_1_safe_weak_ptr_a4c9349c4c5f2e3959b3e2a70ed1b0117}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!````~SafeWeakPtr@{$\sim$SafeWeakPtr}}
+\index{````~SafeWeakPtr@{$\sim$SafeWeakPtr}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$SafeWeakPtr()}{~SafeWeakPtr()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::$\sim$\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroys the weak\+\_\+ptr object. Results in no effect to the managed object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a9b909d6a7ec8797825531875315732ee}\label{class_memory_1_1_safe_weak_ptr_a9b909d6a7ec8797825531875315732ee}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \& \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Replaces the managed object with the one managed by {\ttfamily other}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Smart pointer to share an object with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this}.
+\end{DoxyReturn}
+The object is shared with {\ttfamily other}. If {\ttfamily other} manages no object, {\ttfamily $\ast$this} manages no object too. Equivalent to {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}(other).swap($\ast$this)}. \begin{DoxyNote}{Note}
+The implementation may meet the requirements without creating a temporary \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} object. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_abe5d6cc64989f60c0faf2a8eceec2e64}\label{class_memory_1_1_safe_weak_ptr_abe5d6cc64989f60c0faf2a8eceec2e64}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Y $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \& \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ Y, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Replaces the managed object with the one managed by {\ttfamily other}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Y} & Element type of input pointer \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Smart pointer to share an object with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this}.
+\end{DoxyReturn}
+The object is shared with {\ttfamily other}. If {\ttfamily other} manages no object, {\ttfamily $\ast$this} manages no object too. Equivalent to {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}(other).swap($\ast$this)}. \begin{DoxyNote}{Note}
+The implementation may meet the requirements without creating a temporary \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} object. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_abe32f8c86727a07c0a8d19257bdfc79f}\label{class_memory_1_1_safe_weak_ptr_abe32f8c86727a07c0a8d19257bdfc79f}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!reset@{reset}}
+\index{reset@{reset}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+void \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Releases the ownership of the managed object. After the call {\ttfamily $\ast$this} manages no object. 
+
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a74b1b58bf122b0d344a0828f028ff157}\label{class_memory_1_1_safe_weak_ptr_a74b1b58bf122b0d344a0828f028ff157}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!swap@{swap}}
+\index{swap@{swap}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+void \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Exchanges the contents of {\ttfamily $\ast$this} and {\ttfamily other}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Another weak pointer to exchange the contents with.\\
+\hline
+\end{DoxyParams}
+{\bfseries{Complexity}}~\newline
+ Constant. \mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a6d36236c6792077e26809fca8bc1f868}\label{class_memory_1_1_safe_weak_ptr_a6d36236c6792077e26809fca8bc1f868}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!use\_count@{use\_count}}
+\index{use\_count@{use\_count}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{use\_count()}{use\_count()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+long \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::use\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Returns the number of {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} instances that share ownership of the managed object, or 0 if the managed object has already been deleted, i.\+e. {\ttfamily $\ast$this} is empty. 
+
+\begin{DoxyReturn}{Returns}
+The number of {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} instances sharing the ownership of the managed object at the instant of the call. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abfdd1288d41ba5b5225283e04e686641}{expired()}} may be faster than \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6d36236c6792077e26809fca8bc1f868}{use\+\_\+count()}}. This function is inherently racy, if the managed object is shared among threads that might be creating and destroying copies of the \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\+: then, the result is reliable only if it matches the number of copies uniquely owned by the calling thread, or zero; any other value may become stale before it can be used. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abfdd1288d41ba5b5225283e04e686641}{expired}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_abfdd1288d41ba5b5225283e04e686641}\label{class_memory_1_1_safe_weak_ptr_abfdd1288d41ba5b5225283e04e686641}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!expired@{expired}}
+\index{expired@{expired}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{expired()}{expired()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+bool \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::expired (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Checks whether the referenced object was already deleted. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the managed object has already been deleted, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+Equivalent to {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6d36236c6792077e26809fca8bc1f868}{use\+\_\+count()}} == 0}. The destructor for the managed object may not yet have been called, but this object\textquotesingle{}s destruction is imminent (or may have already happened). \begin{DoxyNote}{Note}
+This function is inherently racy if the managed object is shared among threads. In particular, a false result may become stale before it can be used. A true result is reliable. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6566b256f4e2c2bbd84dde1c2acbaf9c}{lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6d36236c6792077e26809fca8bc1f868}{use\+\_\+count}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a6566b256f4e2c2bbd84dde1c2acbaf9c}\label{class_memory_1_1_safe_weak_ptr_a6566b256f4e2c2bbd84dde1c2acbaf9c}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!lock@{lock}}
+\index{lock@{lock}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{lock()}{lock()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ T $>$ \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::lock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Creates a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that manages the referenced object. 
+
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} which shares ownership of the owned object if expired returns {\ttfamily false}. Else returns default-\/constructed {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} of type {\ttfamily T}.
+\end{DoxyReturn}
+Creates a new {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that shares ownership of the managed object. If there is no managed object, i.\+e. {\ttfamily $\ast$this} is empty, then the returned {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} also is empty.\textbackslash{}n Effectively returns {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_abfdd1288d41ba5b5225283e04e686641}{expired()}} ? \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}() \+: \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}($\ast$this)}, executed atomically. \begin{DoxyNote}{Note}
+Both this function and the constructor of {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} may be used to acquire temporary ownership of the managed object referred to by a \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}. The difference is that the constructor of \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} throws an exception when its \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} argument is empty, while {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a6566b256f4e2c2bbd84dde1c2acbaf9c}{lock()}}} constructs an empty Safe\+Shared\+Ptr$<$\+T$>$. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_ae18d517b24bee769ac429b5cde0a6652}\label{class_memory_1_1_safe_weak_ptr_ae18d517b24bee769ac429b5cde0a6652}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!owner\_before@{owner\_before}}
+\index{owner\_before@{owner\_before}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{owner\_before()}{owner\_before()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Y , typename M , typename R , typename W $>$ \\
+bool \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::owner\+\_\+before (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ Y, M, R, W $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Provides owner-\/based ordering of weak pointers. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Y} & Type of the object managed by input pointer. \\
+\hline
+{\em M} & Type of the mutex used, default is shared\+\_\+mutex\+\_\+t. \\
+\hline
+{\em R} & Type of the read-\/lock used, default is shared\+\_\+lock\+\_\+t. \\
+\hline
+{\em W} & Type of the write-\/lock used, default is unique\+\_\+lock\+\_\+t. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if {\ttfamily $\ast$this} precedes other, {\ttfamily false} otherwise. Common implementations compare the addresses of the control blocks.
+\end{DoxyReturn}
+Checks whether this \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} precedes other in implementation defined owner-\/based (as opposed to value-\/based) order. The order is such that two smart pointers compare equivalent only if they are both empty or if they both own the same object, even if the values of the pointers obtained by get() are different (e.\+g. because they point at different subobjects within the same object).~\newline
+ This ordering is used to make shared and weak pointers usable as keys in associative containers, typically through std\+::owner\+\_\+less. \mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a4222b4ca30d1053027485057d21ca1df}\label{class_memory_1_1_safe_weak_ptr_a4222b4ca30d1053027485057d21ca1df}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!owner\_before@{owner\_before}}
+\index{owner\_before@{owner\_before}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{owner\_before()}{owner\_before()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Y , typename M , typename R , typename W $>$ \\
+bool \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::owner\+\_\+before (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ Y, M, R, W $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Provides owner-\/based ordering of weak pointers. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Y} & Type of the object managed by input pointer. \\
+\hline
+{\em M} & Type of the mutex used, default is shared\+\_\+mutex\+\_\+t. \\
+\hline
+{\em R} & Type of the read-\/lock used, default is shared\+\_\+lock\+\_\+t. \\
+\hline
+{\em W} & Type of the write-\/lock used, default is unique\+\_\+lock\+\_\+t. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} to be compared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if {\ttfamily $\ast$this} precedes other, {\ttfamily false} otherwise. Common implementations compare the addresses of the control blocks.
+\end{DoxyReturn}
+Checks whether this \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}} precedes other in implementation defined owner-\/based (as opposed to value-\/based) order. The order is such that two smart pointers compare equivalent only if they are both empty or if they both own the same object, even if the values of the pointers obtained by get() are different (e.\+g. because they point at different subobjects within the same object).~\newline
+ This ordering is used to make shared and weak pointers usable as keys in associative containers, typically through std\+::owner\+\_\+less. 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a7908794f85e07a5817c7c163bef38aae}\label{class_memory_1_1_safe_weak_ptr_a7908794f85e07a5817c7c163bef38aae}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SafeSharedPtr@{SafeSharedPtr}}
+\index{SafeSharedPtr@{SafeSharedPtr}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SafeSharedPtr}{SafeSharedPtr}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Y , typename M , typename R , typename W $>$ \\
+friend class \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_memory_1_1_safe_weak_ptr_a4af5fd4f3529eb5569d8fe6df8391460}\label{class_memory_1_1_safe_weak_ptr_a4af5fd4f3529eb5569d8fe6df8391460}} 
+\index{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!swap@{swap}}
+\index{swap@{swap}!Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::SafeWeakPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily template$<$typename T , typename \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}  = Memory\+::shared\+\_\+mutex\+\_\+t, typename \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}  = Memory\+::shared\+\_\+lock\+\_\+t, typename \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}}  = Memory\+::unique\+\_\+lock\+\_\+t$>$ \\
+void swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&}]{lhs,  }\item[{\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}$<$ T, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a861892c155b9417a7b6f313fbb64b33c}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a09101fc26930345b2cf74e95478a7532}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr_a9e13568d26dc121b9075e1f3ebdf2643}{Unique\+Lock}} $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Specializes the {\ttfamily std\+::swap} algorithm. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Element type of input shared pointers. \\
+\hline
+{\em Shared\+Mutex} & Type of the mutex used, default is shared\+\_\+mutex\+\_\+t. \\
+\hline
+{\em Shared\+Lock} & Type of the read-\/lock used, default is shared\+\_\+lock\+\_\+t. \\
+\hline
+{\em Unique\+Lock} & Type of the write-\/lock used, default is unique\+\_\+lock\+\_\+t. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & Shared pointer whose contents to swap. \\
+\hline
+{\em rhs} & Another shared pointer whose contents to swap.\\
+\hline
+\end{DoxyParams}
+Specializes the {\ttfamily std\+::swap} algorithm for \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Memory\+::\+Safe\+Weak\+Ptr}}. Swaps the pointers of {\ttfamily lhs} and {\ttfamily rhs}. Calls {\ttfamily lhs.\+swap(rhs)}.
+
+{\bfseries{Complexity}}~\newline
+ Constant. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Memory\+Safety/\mbox{\hyperlink{_safe_shared_ptr_8hpp}{Safe\+Shared\+Ptr.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,681 @@
+\hypertarget{struct_dimensional_1_1_unit}{}\doxysection{Dimensional\+::Unit\texorpdfstring{$<$}{<} length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{struct_dimensional_1_1_unit}\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+
+
+The \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} struct is used to describe physical units.  
+
+
+
+
+{\ttfamily \#include $<$Dimensional\+Analysis.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{struct_dimensional_1_1_unit_a1c087c087b7783eeedd45d48239cb314}{type}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$
+\begin{DoxyCompactList}\small\item\em Type of the struct itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr std\+::tuple$<$ int, int, int, int, int, int, int $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a8666366931b3c834df1531a5ac1c2c26}{factors}}
+\begin{DoxyCompactList}\small\item\em Power factors of 7 base units. \end{DoxyCompactList}\item 
+static constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit_a51ea0da54c2a91564e2f90f45e555f1f}{factor\+Length}} = length
+\begin{DoxyCompactList}\small\item\em Power factor of length unit. \end{DoxyCompactList}\item 
+static constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit_a2c4d120e60e400794ce16dec74430885}{factor\+Mass}} = mass
+\begin{DoxyCompactList}\small\item\em Power factor of length mass unit. \end{DoxyCompactList}\item 
+static constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit_ae663bbbde99350bb783ec91237e06503}{factor\+Time}} = time
+\begin{DoxyCompactList}\small\item\em Power factor of length time unit. \end{DoxyCompactList}\item 
+static constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit_a30066d103e8c79cd6f620aa88a7797c2}{factor\+Current}} = current
+\begin{DoxyCompactList}\small\item\em Power factor of length current unit. \end{DoxyCompactList}\item 
+static constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit_a5ca9ed5745370dcbc4690e58b0e464ef}{factor\+Temperature}} = temperature
+\begin{DoxyCompactList}\small\item\em Power factor of length temperature unit. \end{DoxyCompactList}\item 
+static constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit_af5aad5ff98685dfba3f0f6f82406dccc}{factor\+Amount\+Of\+Substance}} = amount\+Of\+Substance
+\begin{DoxyCompactList}\small\item\em Power factor of amount\+\_\+of\+\_\+substance unit unit. \end{DoxyCompactList}\item 
+static constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit_ad6c13b894589debc60d585226e04603c}{factor\+Luminous\+Intensity}} = luminous\+Intensity
+\begin{DoxyCompactList}\small\item\em Power factor of luminous\+\_\+intensity unit unit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{Indent}\textbf{ Unit Conversion}\par
+{\em Helper typedef for unit conversion }\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Unit1 , typename Unit2 $>$ }\\using \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ Unit1\+::factor\+Length+Unit2\+::factor\+Length, Unit1\+::factor\+Mass+Unit2\+::factor\+Mass, Unit1\+::factor\+Time+Unit2\+::factor\+Time, Unit1\+::factor\+Current+Unit2\+::factor\+Current, Unit1\+::factor\+Temperature+Unit2\+::factor\+Temperature, Unit1\+::factor\+Amount\+Of\+Substance+Unit2\+::factor\+Amount\+Of\+Substance, Unit1\+::factor\+Luminous\+Intensity+Unit2\+::factor\+Luminous\+Intensity $>$
+\begin{DoxyCompactList}\small\item\em The Unit\+Multiply type is an alias of multiply calculation with two units. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Unit1 , typename Unit2 $>$ }\\using \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ Unit1\+::factor\+Length -\/ Unit2\+::factor\+Length, Unit1\+::factor\+Mass -\/ Unit2\+::factor\+Mass, Unit1\+::factor\+Time -\/ Unit2\+::factor\+Time, Unit1\+::factor\+Current -\/ Unit2\+::factor\+Current, Unit1\+::factor\+Temperature -\/ Unit2\+::factor\+Temperature, Unit1\+::factor\+Amount\+Of\+Substance -\/ Unit2\+::factor\+Amount\+Of\+Substance, Unit1\+::factor\+Luminous\+Intensity -\/ Unit2\+::factor\+Luminous\+Intensity $>$
+\begin{DoxyCompactList}\small\item\em The Unit\+Divide type is an alias of divide calculation with two units. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U , int n$>$ }\\using \mbox{\hyperlink{struct_dimensional_1_1_unit_a7a39f68d2b27d8753c0d72e8b15d899d}{Unit\+Pow}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ U\+::factor\+Length $\ast$n, U\+::factor\+Mass $\ast$n, U\+::factor\+Time $\ast$n, U\+::factor\+Current $\ast$n, U\+::factor\+Temperature $\ast$n, U\+::factor\+Amount\+Of\+Substance $\ast$n, U\+::factor\+Luminous\+Intensity $\ast$n $>$
+\begin{DoxyCompactList}\small\item\em The Unit\+Pow type is an alias of power calculation with two units. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U , int n$>$ }\\using \mbox{\hyperlink{struct_dimensional_1_1_unit_afefb410d0d193083ea9ea371546c060f}{Unit\+Root}} = \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ U\+::factor\+Length/n, U\+::factor\+Mass/n, U\+::factor\+Time/n, U\+::factor\+Current/n, U\+::factor\+Temperature/n, U\+::factor\+Amount\+Of\+Substance/n, U\+::factor\+Luminous\+Intensity/n $>$
+\begin{DoxyCompactList}\small\item\em The Unit\+Root type is an alias of power calculation with two units. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Base Units}\par
+{\em 7 international base units. }\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ 0, 0, 0, 0, 0, 0, 0 $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}}
+\begin{DoxyCompactList}\small\item\em The scala type of non-\/unit. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ 1, 0, 0, 0, 0, 0, 0 $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}
+\begin{DoxyCompactList}\small\item\em Length unit, called {\bfseries{meter}}, with symbol {\ttfamily m}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ 0, 1, 0, 0, 0, 0, 0 $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}}
+\begin{DoxyCompactList}\small\item\em Mass unit, called {\bfseries{kilogram}}, with symbol {\ttfamily kg}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ 0, 0, 1, 0, 0, 0, 0 $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}
+\begin{DoxyCompactList}\small\item\em Time unit, called {\bfseries{second}}, with symbol {\ttfamily s}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ 0, 0, 0, 1, 0, 0, 0 $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}}
+\begin{DoxyCompactList}\small\item\em Electric current unit, called {\bfseries{ampere}}, with symbol {\ttfamily A}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ 0, 0, 0, 0, 1, 0, 0 $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a7ec670efa91aa11e50b52a2f9f5720ce}{Temperature}}
+\begin{DoxyCompactList}\small\item\em Thermodynamic temperature unit, called {\bfseries{kelvin}}, with symbol {\ttfamily K}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ 0, 0, 0, 0, 0, 1, 0 $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_af2d5c04939f2dcbd1886cc4d20bedb3c}{Amount\+Of\+Substance}}
+\begin{DoxyCompactList}\small\item\em Amount of substance unit, called {\bfseries{mole}}, with symbol {\ttfamily mol}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ 0, 0, 0, 0, 0, 0, 1 $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}{Luminous\+Intensity}}
+\begin{DoxyCompactList}\small\item\em Luminous intensity unit, called {\bfseries{candela}}, with symbol {\ttfamily cd}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Derived Units}\par
+{\em International System of Units derived from base units. }\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a2778245cc18590fcf814160ae0c93ced}{Speed}}
+\begin{DoxyCompactList}\small\item\em Speed unit, derived from $m/s$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a2778245cc18590fcf814160ae0c93ced}{Speed}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a13945f34cda20835710037b27adee9f8}{Acceleration}}
+\begin{DoxyCompactList}\small\item\em Acceleration unit, derived from $m/s^{2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a82bf54bd48d0aac2ccc92ca604af24f7}{Frenquency}}
+\begin{DoxyCompactList}\small\item\em Frequence unit, called {\bfseries{hertz}}, with symbol {\ttfamily Hz}, derived from $s^{-1}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_a13945f34cda20835710037b27adee9f8}{Acceleration}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}{Force}}
+\begin{DoxyCompactList}\small\item\em Force unit, called {\bfseries{newton}}, with symbol {\ttfamily N}, derived from $kg \cdot m \cdot s^{-2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}}
+\begin{DoxyCompactList}\small\item\em Area unit, with symbol $m^{2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a34956d832952f77cf675d4bcbfedd7b3}{Volume}}
+\begin{DoxyCompactList}\small\item\em Volume unit, with symbol $m^{3}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}{Force}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a811a9c6202076db547347f54c364ca01}{Pressure}}
+\begin{DoxyCompactList}\small\item\em Pressure unit, called {\bfseries{pascal}}, with symbol {\ttfamily Pa}, derived from $N/m^{2}$ or $kg \cdot m^{-1} \cdot s^{-2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}{Force}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}}
+\begin{DoxyCompactList}\small\item\em Enegy unit, called {\bfseries{joule}}, with symbol {\ttfamily J}, derived from $N \cdot m$ or $kg \cdot m^{2} \cdot s^{-2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a62bb3aa7042c094c841c9f2c1702b43e}{Power}}
+\begin{DoxyCompactList}\small\item\em Power unit, called {\bfseries{watt}}, with symbol {\ttfamily W}, derived from $J/s$ or $kg \cdot m^{2} \cdot s^{-3}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a763b77700b2ac8b41caede559ae0fa1e}{Charge}}
+\begin{DoxyCompactList}\small\item\em Charge unit, called {\bfseries{coulomb}}, with symbol {\ttfamily C}, derived from $s \cdot A$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a62bb3aa7042c094c841c9f2c1702b43e}{Power}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}}
+\begin{DoxyCompactList}\small\item\em Voltage unit, called {\bfseries{volt}}, with symbol {\ttfamily V}, derived from $W/A$ or $kg \cdot m^{2} \cdot s^{-3} \cdot A^{-1}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a763b77700b2ac8b41caede559ae0fa1e}{Charge}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a7120229a1b8430ce7ec22c005f7031b9}{Elelctric\+Capacitance}}
+\begin{DoxyCompactList}\small\item\em Elelctric capacitance unit, called {\bfseries{farad}}, with symbol {\ttfamily F}, derived from $C/V$ or $kg^{-1} \cdot m^{-2} \cdot s^{4} \cdot A^{2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ae4d3240cbf8bf4922fc10fd84509a920}{Electric\+Resistance}}
+\begin{DoxyCompactList}\small\item\em Electric resistance unit, called {\bfseries{ohm}}, with symbol {\ttfamily Ω}, derived from $V/A$ or $kg \cdot m^{2} \cdot s^{-3} \cdot A^{-2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ae4d3240cbf8bf4922fc10fd84509a920}{Electric\+Resistance}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a83d31d0073acc8b3220c25132023c02d}{Elelctric\+Conductance}}
+\begin{DoxyCompactList}\small\item\em Electric conductance unit, called {\bfseries{simens}}, with symbol {\ttfamily S}, derived from $1/\Omega$ or $kg^{-1} \cdot m^{-2} \cdot s^{3} \cdot A^{2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}{Magnetic\+Flux}}
+\begin{DoxyCompactList}\small\item\em Magnetic flux unit, called {\bfseries{webber}}, with symbol Wb$\ast$$\ast$, derived from $V \cdot s$ or $kg \cdot m^{2} \cdot s^{-2} \cdot A^{-1}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}{Magnetic\+Flux}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a2be6e8299922aea6ae1dcc72066b9a41}{Magnet\+Flux\+Density}}
+\begin{DoxyCompactList}\small\item\em Magnet flux density unit, called {\bfseries{tesla}}, with symbol {\ttfamily T}, derived from $Wb/m^{2}$ or $kg \cdot s^{-2} \cdot A^{-1}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}{Magnetic\+Flux}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a51214909e540b8a4a0aa775d9acddbff}{Inductance}}
+\begin{DoxyCompactList}\small\item\em Electric unit, called {\bfseries{henry}}, with symbol {\ttfamily H}, derived from $Wb/A$ or $kg \cdot m^{2} \cdot s^{-2} \cdot A^{-2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}{Luminous\+Intensity}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a7393ed41aaf3662939eb4105f3c6aa17}{Luminous}}
+\begin{DoxyCompactList}\small\item\em Luminous flux unit, called {\bfseries{lumen}}, with symbol {\ttfamily lm}, derived from $cd \cdot sr$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}{Luminous\+Intensity}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a8071b6ff261a06e90062c333559f9cf6}{Illuminance}}
+\begin{DoxyCompactList}\small\item\em Illuminance unit, called {\bfseries{lux}}, with symbol {\ttfamily ls}, derived from $lm/m^{2}$ or $m^{-2} \cdot cd$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ad17af70045be41582851db8e6b596154}{Radioactivity}}
+\begin{DoxyCompactList}\small\item\em Radioactivity unit of decays per second, called {\bfseries{becquerel}}, with symbol {\ttfamily Bq} derived from $s^{-1}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a4ea995aeb49c9a3361c4d50cba384967}{Absorbed\+Dose}}
+\begin{DoxyCompactList}\small\item\em Absorbed dose unit of ionising radiation, called {\bfseries{gray}}, with symbol {\ttfamily Gy}, derived from $J/kg$ or $m^{2} \cdot s^{-2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a39c2bb948aa7e93a0e560d1301b31343}{Equivalent\+Dose}}
+\begin{DoxyCompactList}\small\item\em Equivalent dose unit of ionising radiation, called {\bfseries{sievert}}, with symbol {\ttfamily Sv}, derived from $J/kg$ or $m^{2} \cdot s^{-2}$. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$ \mbox{\hyperlink{struct_dimensional_1_1_unit_af2d5c04939f2dcbd1886cc4d20bedb3c}{Amount\+Of\+Substance}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}} $>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a5b2c627434658dc5c677203bfacf0920}{Catalytic\+Activity}}
+\begin{DoxyCompactList}\small\item\em Catalytic activity unit called {\bfseries{katal}}, with symbol {\ttfamily kat}, derived from $mol \cdot s^{-1}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$\newline
+struct Dimensional\+::\+Unit$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$}
+The \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}} struct is used to describe physical units. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em length} & Power factor of length unit. \\
+\hline
+{\em mass} & Power factor of length mass unit. \\
+\hline
+{\em time} & Power factor of length time unit. \\
+\hline
+{\em current} & Power factor of length current unit. \\
+\hline
+{\em temperature} & Power factor of length temperature unit. \\
+\hline
+{\em amount\+Of\+Substance} & Power factor of amount\+\_\+of\+\_\+substance unit. \\
+\hline
+{\em luminous\+Intensity} & Power factor of luminous\+\_\+intensity unit.\\
+\hline
+\end{DoxyTemplParams}
+This template use 7 international base units to describe all physical units, to guarantee strong-\/typed unit analysis.~\newline
+ Directly use this struct is not suggested, use {\ttfamily Unit\+Multiply}, {\ttfamily Unit\+Divide}, {\ttfamily Unit\+Power} and {\ttfamily Unit\+Root} with {\ttfamily typedef/using} to generate derived unit with exisiting units.~\newline
+sa Dimensional\+Analysis, \mbox{\hyperlink{class_dimensional_1_1_quantity}{Quantity}} 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a1c087c087b7783eeedd45d48239cb314}\label{struct_dimensional_1_1_unit_a1c087c087b7783eeedd45d48239cb314}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!type@{type}}
+\index{type@{type}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+using \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::type =  \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity$>$}
+
+
+
+Type of the struct itself. 
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}\label{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!UnitMultiply@{UnitMultiply}}
+\index{UnitMultiply@{UnitMultiply}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{UnitMultiply}{UnitMultiply}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+template$<$typename Unit1 , typename Unit2 $>$ \\
+using \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}} =  \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ Unit1\+::factor\+Length + Unit2\+::factor\+Length, Unit1\+::factor\+Mass + Unit2\+::factor\+Mass, Unit1\+::factor\+Time + Unit2\+::factor\+Time, Unit1\+::factor\+Current + Unit2\+::factor\+Current, Unit1\+::factor\+Temperature + Unit2\+::factor\+Temperature, Unit1\+::factor\+Amount\+Of\+Substance + Unit2\+::factor\+Amount\+Of\+Substance, Unit1\+::factor\+Luminous\+Intensity + Unit2\+::factor\+Luminous\+Intensity $>$\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+The Unit\+Multiply type is an alias of multiply calculation with two units. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Unit1} & First operand unit. \\
+\hline
+{\em Unit2} & Second operand unit. \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}\label{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!UnitDivide@{UnitDivide}}
+\index{UnitDivide@{UnitDivide}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{UnitDivide}{UnitDivide}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+template$<$typename Unit1 , typename Unit2 $>$ \\
+using \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}} =  \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ Unit1\+::factor\+Length -\/ Unit2\+::factor\+Length, Unit1\+::factor\+Mass -\/ Unit2\+::factor\+Mass, Unit1\+::factor\+Time -\/ Unit2\+::factor\+Time, Unit1\+::factor\+Current -\/ Unit2\+::factor\+Current, Unit1\+::factor\+Temperature -\/ Unit2\+::factor\+Temperature, Unit1\+::factor\+Amount\+Of\+Substance -\/ Unit2\+::factor\+Amount\+Of\+Substance, Unit1\+::factor\+Luminous\+Intensity -\/ Unit2\+::factor\+Luminous\+Intensity $>$\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+The Unit\+Divide type is an alias of divide calculation with two units. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Unit1} & First operand unit. \\
+\hline
+{\em Unit2} & Second operand unit. \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a7a39f68d2b27d8753c0d72e8b15d899d}\label{struct_dimensional_1_1_unit_a7a39f68d2b27d8753c0d72e8b15d899d}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!UnitPow@{UnitPow}}
+\index{UnitPow@{UnitPow}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{UnitPow}{UnitPow}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+template$<$typename U , int n$>$ \\
+using \mbox{\hyperlink{struct_dimensional_1_1_unit_a7a39f68d2b27d8753c0d72e8b15d899d}{Unit\+Pow}} =  \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ U\+::factor\+Length $\ast$ n, U\+::factor\+Mass $\ast$ n, U\+::factor\+Time $\ast$ n, U\+::factor\+Current $\ast$ n, U\+::factor\+Temperature $\ast$ n, U\+::factor\+Amount\+Of\+Substance $\ast$ n, U\+::factor\+Luminous\+Intensity $\ast$ n $>$\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+The Unit\+Pow type is an alias of power calculation with two units. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em U} & Operand unit. \\
+\hline
+{\em n} & Factor of power calculation. \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_afefb410d0d193083ea9ea371546c060f}\label{struct_dimensional_1_1_unit_afefb410d0d193083ea9ea371546c060f}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!UnitRoot@{UnitRoot}}
+\index{UnitRoot@{UnitRoot}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{UnitRoot}{UnitRoot}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+template$<$typename U , int n$>$ \\
+using \mbox{\hyperlink{struct_dimensional_1_1_unit_afefb410d0d193083ea9ea371546c060f}{Unit\+Root}} =  \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$ U\+::factor\+Length / n, U\+::factor\+Mass / n, U\+::factor\+Time / n, U\+::factor\+Current / n, U\+::factor\+Temperature / n, U\+::factor\+Amount\+Of\+Substance / n, U\+::factor\+Luminous\+Intensity / n $>$\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+The Unit\+Root type is an alias of power calculation with two units. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em U} & Operand unit. \\
+\hline
+{\em n} & Factor of root calculation. \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}\label{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Scala@{Scala}}
+\index{Scala@{Scala}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Scala}{Scala}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$0, 0, 0, 0, 0, 0, 0$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+The scala type of non-\/unit. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}\label{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Length@{Length}}
+\index{Length@{Length}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Length}{Length}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$1, 0, 0, 0, 0, 0, 0$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Length unit, called {\bfseries{meter}}, with symbol {\ttfamily m}. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}\label{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Mass@{Mass}}
+\index{Mass@{Mass}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Mass}{Mass}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$0, 1, 0, 0, 0, 0, 0$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Mass unit, called {\bfseries{kilogram}}, with symbol {\ttfamily kg}. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}\label{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Time@{Time}}
+\index{Time@{Time}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Time}{Time}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$0, 0, 1, 0, 0, 0, 0$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Time unit, called {\bfseries{second}}, with symbol {\ttfamily s}. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}\label{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Current@{Current}}
+\index{Current@{Current}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Current}{Current}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$0, 0, 0, 1, 0, 0, 0$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Electric current unit, called {\bfseries{ampere}}, with symbol {\ttfamily A}. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a7ec670efa91aa11e50b52a2f9f5720ce}\label{struct_dimensional_1_1_unit_a7ec670efa91aa11e50b52a2f9f5720ce}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Temperature@{Temperature}}
+\index{Temperature@{Temperature}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Temperature}{Temperature}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$0, 0, 0, 0, 1, 0, 0$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a7ec670efa91aa11e50b52a2f9f5720ce}{Temperature}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Thermodynamic temperature unit, called {\bfseries{kelvin}}, with symbol {\ttfamily K}. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_af2d5c04939f2dcbd1886cc4d20bedb3c}\label{struct_dimensional_1_1_unit_af2d5c04939f2dcbd1886cc4d20bedb3c}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!AmountOfSubstance@{AmountOfSubstance}}
+\index{AmountOfSubstance@{AmountOfSubstance}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{AmountOfSubstance}{AmountOfSubstance}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$0, 0, 0, 0, 0, 1, 0$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_af2d5c04939f2dcbd1886cc4d20bedb3c}{Amount\+Of\+Substance}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Amount of substance unit, called {\bfseries{mole}}, with symbol {\ttfamily mol}. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}\label{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!LuminousIntensity@{LuminousIntensity}}
+\index{LuminousIntensity@{LuminousIntensity}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{LuminousIntensity}{LuminousIntensity}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit}{Unit}}$<$0, 0, 0, 0, 0, 0, 1$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}{Luminous\+Intensity}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Luminous intensity unit, called {\bfseries{candela}}, with symbol {\ttfamily cd}. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a2778245cc18590fcf814160ae0c93ced}\label{struct_dimensional_1_1_unit_a2778245cc18590fcf814160ae0c93ced}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Speed@{Speed}}
+\index{Speed@{Speed}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Speed}{Speed}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a2778245cc18590fcf814160ae0c93ced}{Speed}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Speed unit, derived from $m/s$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a13945f34cda20835710037b27adee9f8}\label{struct_dimensional_1_1_unit_a13945f34cda20835710037b27adee9f8}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Acceleration@{Acceleration}}
+\index{Acceleration@{Acceleration}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Acceleration}{Acceleration}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a2778245cc18590fcf814160ae0c93ced}{Speed}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a13945f34cda20835710037b27adee9f8}{Acceleration}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Acceleration unit, derived from $m/s^{2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a82bf54bd48d0aac2ccc92ca604af24f7}\label{struct_dimensional_1_1_unit_a82bf54bd48d0aac2ccc92ca604af24f7}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Frenquency@{Frenquency}}
+\index{Frenquency@{Frenquency}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Frenquency}{Frenquency}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a82bf54bd48d0aac2ccc92ca604af24f7}{Frenquency}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Frequence unit, called {\bfseries{hertz}}, with symbol {\ttfamily Hz}, derived from $s^{-1}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}\label{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Force@{Force}}
+\index{Force@{Force}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Force}{Force}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_a13945f34cda20835710037b27adee9f8}{Acceleration}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}{Force}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Force unit, called {\bfseries{newton}}, with symbol {\ttfamily N}, derived from $kg \cdot m \cdot s^{-2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}\label{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Area@{Area}}
+\index{Area@{Area}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Area}{Area}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Area unit, with symbol $m^{2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a34956d832952f77cf675d4bcbfedd7b3}\label{struct_dimensional_1_1_unit_a34956d832952f77cf675d4bcbfedd7b3}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Volume@{Volume}}
+\index{Volume@{Volume}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Volume}{Volume}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a34956d832952f77cf675d4bcbfedd7b3}{Volume}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Volume unit, with symbol $m^{3}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a811a9c6202076db547347f54c364ca01}\label{struct_dimensional_1_1_unit_a811a9c6202076db547347f54c364ca01}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Pressure@{Pressure}}
+\index{Pressure@{Pressure}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Pressure}{Pressure}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}{Force}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a811a9c6202076db547347f54c364ca01}{Pressure}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Pressure unit, called {\bfseries{pascal}}, with symbol {\ttfamily Pa}, derived from $N/m^{2}$ or $kg \cdot m^{-1} \cdot s^{-2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}\label{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Energy@{Energy}}
+\index{Energy@{Energy}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Energy}{Energy}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a7ea5d902cfd0a1d1dc63eaf77e2800ce}{Force}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_af779ef69e622c35d24fee1e947161903}{Length}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Enegy unit, called {\bfseries{joule}}, with symbol {\ttfamily J}, derived from $N \cdot m$ or $kg \cdot m^{2} \cdot s^{-2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a62bb3aa7042c094c841c9f2c1702b43e}\label{struct_dimensional_1_1_unit_a62bb3aa7042c094c841c9f2c1702b43e}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Power@{Power}}
+\index{Power@{Power}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Power}{Power}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a62bb3aa7042c094c841c9f2c1702b43e}{Power}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Power unit, called {\bfseries{watt}}, with symbol {\ttfamily W}, derived from $J/s$ or $kg \cdot m^{2} \cdot s^{-3}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a763b77700b2ac8b41caede559ae0fa1e}\label{struct_dimensional_1_1_unit_a763b77700b2ac8b41caede559ae0fa1e}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Charge@{Charge}}
+\index{Charge@{Charge}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Charge}{Charge}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a763b77700b2ac8b41caede559ae0fa1e}{Charge}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Charge unit, called {\bfseries{coulomb}}, with symbol {\ttfamily C}, derived from $s \cdot A$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}\label{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Voltage@{Voltage}}
+\index{Voltage@{Voltage}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Voltage}{Voltage}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a62bb3aa7042c094c841c9f2c1702b43e}{Power}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Voltage unit, called {\bfseries{volt}}, with symbol {\ttfamily V}, derived from $W/A$ or $kg \cdot m^{2} \cdot s^{-3} \cdot A^{-1}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a7120229a1b8430ce7ec22c005f7031b9}\label{struct_dimensional_1_1_unit_a7120229a1b8430ce7ec22c005f7031b9}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!ElelctricCapacitance@{ElelctricCapacitance}}
+\index{ElelctricCapacitance@{ElelctricCapacitance}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{ElelctricCapacitance}{ElelctricCapacitance}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a763b77700b2ac8b41caede559ae0fa1e}{Charge}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a7120229a1b8430ce7ec22c005f7031b9}{Elelctric\+Capacitance}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Elelctric capacitance unit, called {\bfseries{farad}}, with symbol {\ttfamily F}, derived from $C/V$ or $kg^{-1} \cdot m^{-2} \cdot s^{4} \cdot A^{2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_ae4d3240cbf8bf4922fc10fd84509a920}\label{struct_dimensional_1_1_unit_ae4d3240cbf8bf4922fc10fd84509a920}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!ElectricResistance@{ElectricResistance}}
+\index{ElectricResistance@{ElectricResistance}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{ElectricResistance}{ElectricResistance}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ae4d3240cbf8bf4922fc10fd84509a920}{Electric\+Resistance}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Electric resistance unit, called {\bfseries{ohm}}, with symbol {\ttfamily Ω}, derived from $V/A$ or $kg \cdot m^{2} \cdot s^{-3} \cdot A^{-2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a83d31d0073acc8b3220c25132023c02d}\label{struct_dimensional_1_1_unit_a83d31d0073acc8b3220c25132023c02d}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!ElelctricConductance@{ElelctricConductance}}
+\index{ElelctricConductance@{ElelctricConductance}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{ElelctricConductance}{ElelctricConductance}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ae4d3240cbf8bf4922fc10fd84509a920}{Electric\+Resistance}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a83d31d0073acc8b3220c25132023c02d}{Elelctric\+Conductance}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Electric conductance unit, called {\bfseries{simens}}, with symbol {\ttfamily S}, derived from $1/\Omega$ or $kg^{-1} \cdot m^{-2} \cdot s^{3} \cdot A^{2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}\label{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!MagneticFlux@{MagneticFlux}}
+\index{MagneticFlux@{MagneticFlux}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{MagneticFlux}{MagneticFlux}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_ab62b0f814065c13ee42a6d0a3fd7ebec}{Unit\+Multiply}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_ad474eec75d789b2656b5ec7d1f51d3e1}{Voltage}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}{Magnetic\+Flux}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Magnetic flux unit, called {\bfseries{webber}}, with symbol Wb$\ast$$\ast$, derived from $V \cdot s$ or $kg \cdot m^{2} \cdot s^{-2} \cdot A^{-1}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a2be6e8299922aea6ae1dcc72066b9a41}\label{struct_dimensional_1_1_unit_a2be6e8299922aea6ae1dcc72066b9a41}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!MagnetFluxDensity@{MagnetFluxDensity}}
+\index{MagnetFluxDensity@{MagnetFluxDensity}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{MagnetFluxDensity}{MagnetFluxDensity}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}{Magnetic\+Flux}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a2be6e8299922aea6ae1dcc72066b9a41}{Magnet\+Flux\+Density}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Magnet flux density unit, called {\bfseries{tesla}}, with symbol {\ttfamily T}, derived from $Wb/m^{2}$ or $kg \cdot s^{-2} \cdot A^{-1}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a51214909e540b8a4a0aa775d9acddbff}\label{struct_dimensional_1_1_unit_a51214909e540b8a4a0aa775d9acddbff}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Inductance@{Inductance}}
+\index{Inductance@{Inductance}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Inductance}{Inductance}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_ab22702d86abeb105ad55b9b3a355563d}{Magnetic\+Flux}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_ac9e9ecdb18277bb42343e311e537c962}{Current}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a51214909e540b8a4a0aa775d9acddbff}{Inductance}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Electric unit, called {\bfseries{henry}}, with symbol {\ttfamily H}, derived from $Wb/A$ or $kg \cdot m^{2} \cdot s^{-2} \cdot A^{-2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a7393ed41aaf3662939eb4105f3c6aa17}\label{struct_dimensional_1_1_unit_a7393ed41aaf3662939eb4105f3c6aa17}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Luminous@{Luminous}}
+\index{Luminous@{Luminous}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Luminous}{Luminous}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}{Luminous\+Intensity}} \mbox{\hyperlink{struct_dimensional_1_1_unit_a7393ed41aaf3662939eb4105f3c6aa17}{Luminous}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Luminous flux unit, called {\bfseries{lumen}}, with symbol {\ttfamily lm}, derived from $cd \cdot sr$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a8071b6ff261a06e90062c333559f9cf6}\label{struct_dimensional_1_1_unit_a8071b6ff261a06e90062c333559f9cf6}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Illuminance@{Illuminance}}
+\index{Illuminance@{Illuminance}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Illuminance}{Illuminance}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a5c12a7af0dd71e20365b0769d5b78fb0}{Luminous\+Intensity}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aefc42563e06eeab0226eaeca6f930095}{Area}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a8071b6ff261a06e90062c333559f9cf6}{Illuminance}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Illuminance unit, called {\bfseries{lux}}, with symbol {\ttfamily ls}, derived from $lm/m^{2}$ or $m^{-2} \cdot cd$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_ad17af70045be41582851db8e6b596154}\label{struct_dimensional_1_1_unit_ad17af70045be41582851db8e6b596154}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!Radioactivity@{Radioactivity}}
+\index{Radioactivity@{Radioactivity}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{Radioactivity}{Radioactivity}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_aaae0e8ae65b46289af1378c88a397917}{Scala}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_ad17af70045be41582851db8e6b596154}{Radioactivity}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Radioactivity unit of decays per second, called {\bfseries{becquerel}}, with symbol {\ttfamily Bq} derived from $s^{-1}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a4ea995aeb49c9a3361c4d50cba384967}\label{struct_dimensional_1_1_unit_a4ea995aeb49c9a3361c4d50cba384967}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!AbsorbedDose@{AbsorbedDose}}
+\index{AbsorbedDose@{AbsorbedDose}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{AbsorbedDose}{AbsorbedDose}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a4ea995aeb49c9a3361c4d50cba384967}{Absorbed\+Dose}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Absorbed dose unit of ionising radiation, called {\bfseries{gray}}, with symbol {\ttfamily Gy}, derived from $J/kg$ or $m^{2} \cdot s^{-2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a39c2bb948aa7e93a0e560d1301b31343}\label{struct_dimensional_1_1_unit_a39c2bb948aa7e93a0e560d1301b31343}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!EquivalentDose@{EquivalentDose}}
+\index{EquivalentDose@{EquivalentDose}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{EquivalentDose}{EquivalentDose}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_a36266eb86ccc8cd7c96da9aac33b9350}{Energy}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_a11021c171307ec0682b50efb8744db04}{Mass}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a39c2bb948aa7e93a0e560d1301b31343}{Equivalent\+Dose}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Equivalent dose unit of ionising radiation, called {\bfseries{sievert}}, with symbol {\ttfamily Sv}, derived from $J/kg$ or $m^{2} \cdot s^{-2}$. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a5b2c627434658dc5c677203bfacf0920}\label{struct_dimensional_1_1_unit_a5b2c627434658dc5c677203bfacf0920}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!CatalyticActivity@{CatalyticActivity}}
+\index{CatalyticActivity@{CatalyticActivity}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{CatalyticActivity}{CatalyticActivity}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+typedef \mbox{\hyperlink{struct_dimensional_1_1_unit_a480d403224861d41a81d8c9971c0e396}{Unit\+Divide}}$<$\mbox{\hyperlink{struct_dimensional_1_1_unit_af2d5c04939f2dcbd1886cc4d20bedb3c}{Amount\+Of\+Substance}}, \mbox{\hyperlink{struct_dimensional_1_1_unit_aa7754249da62cbb75a165f0ad77bb158}{Time}}$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit_a5b2c627434658dc5c677203bfacf0920}{Catalytic\+Activity}}\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Catalytic activity unit called {\bfseries{katal}}, with symbol {\ttfamily kat}, derived from $mol \cdot s^{-1}$. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a8666366931b3c834df1531a5ac1c2c26}\label{struct_dimensional_1_1_unit_a8666366931b3c834df1531a5ac1c2c26}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!factors@{factors}}
+\index{factors@{factors}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{factors}{factors}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+constexpr std\+::tuple$<$int, int, int, int, int, int, int$>$ \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::factors\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        length, mass, time, current, temperature, amountOfSubstance, luminousIntensity}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+Power factors of 7 base units. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a51ea0da54c2a91564e2f90f45e555f1f}\label{struct_dimensional_1_1_unit_a51ea0da54c2a91564e2f90f45e555f1f}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!factorLength@{factorLength}}
+\index{factorLength@{factorLength}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{factorLength}{factorLength}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::factor\+Length = length\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Power factor of length unit. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a2c4d120e60e400794ce16dec74430885}\label{struct_dimensional_1_1_unit_a2c4d120e60e400794ce16dec74430885}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!factorMass@{factorMass}}
+\index{factorMass@{factorMass}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{factorMass}{factorMass}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::factor\+Mass = mass\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Power factor of length mass unit. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_ae663bbbde99350bb783ec91237e06503}\label{struct_dimensional_1_1_unit_ae663bbbde99350bb783ec91237e06503}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!factorTime@{factorTime}}
+\index{factorTime@{factorTime}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{factorTime}{factorTime}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::factor\+Time = time\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Power factor of length time unit. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a30066d103e8c79cd6f620aa88a7797c2}\label{struct_dimensional_1_1_unit_a30066d103e8c79cd6f620aa88a7797c2}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!factorCurrent@{factorCurrent}}
+\index{factorCurrent@{factorCurrent}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{factorCurrent}{factorCurrent}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::factor\+Current = current\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Power factor of length current unit. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_a5ca9ed5745370dcbc4690e58b0e464ef}\label{struct_dimensional_1_1_unit_a5ca9ed5745370dcbc4690e58b0e464ef}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!factorTemperature@{factorTemperature}}
+\index{factorTemperature@{factorTemperature}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{factorTemperature}{factorTemperature}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::factor\+Temperature = temperature\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Power factor of length temperature unit. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_af5aad5ff98685dfba3f0f6f82406dccc}\label{struct_dimensional_1_1_unit_af5aad5ff98685dfba3f0f6f82406dccc}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!factorAmountOfSubstance@{factorAmountOfSubstance}}
+\index{factorAmountOfSubstance@{factorAmountOfSubstance}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{factorAmountOfSubstance}{factorAmountOfSubstance}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::factor\+Amount\+Of\+Substance = amount\+Of\+Substance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Power factor of amount\+\_\+of\+\_\+substance unit unit. 
+
+\mbox{\Hypertarget{struct_dimensional_1_1_unit_ad6c13b894589debc60d585226e04603c}\label{struct_dimensional_1_1_unit_ad6c13b894589debc60d585226e04603c}} 
+\index{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}!factorLuminousIntensity@{factorLuminousIntensity}}
+\index{factorLuminousIntensity@{factorLuminousIntensity}!Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$@{Dimensional::Unit$<$ length, mass, time, current, temperature, amountOfSubstance, luminousIntensity $>$}}
+\doxysubsubsection{\texorpdfstring{factorLuminousIntensity}{factorLuminousIntensity}}
+{\footnotesize\ttfamily template$<$int length, int mass, int time, int current, int temperature, int amount\+Of\+Substance, int luminous\+Intensity$>$ \\
+constexpr int \mbox{\hyperlink{struct_dimensional_1_1_unit}{Dimensional\+::\+Unit}}$<$ length, mass, time, current, temperature, amount\+Of\+Substance, luminous\+Intensity $>$\+::factor\+Luminous\+Intensity = luminous\+Intensity\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Power factor of luminous\+\_\+intensity unit unit. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Dimensional\+Analysis/\mbox{\hyperlink{_dimensional_analysis_8hpp}{Dimensional\+Analysis.\+hpp}}\end{DoxyCompactItemize}

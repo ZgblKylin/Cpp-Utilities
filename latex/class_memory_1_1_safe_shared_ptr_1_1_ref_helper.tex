@@ -1,0 +1,218 @@
+\hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{}\doxysection{Memory\+::Safe\+Shared\+Ptr\texorpdfstring{$<$}{<} T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t \texorpdfstring{$>$}{>}\+::Ref\+Helper\texorpdfstring{$<$}{<} Lock \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+
+
+Proxy class for operator$\ast$ in \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}, behave like underlying object, and provide RAII read-\/write lock for thread safety.  
+
+
+
+
+{\ttfamily \#include $<$Safe\+Shared\+Ptr.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a027d0cf2bebe31f82f57a709ec639a48}{reference}} = T \&
+\begin{DoxyCompactList}\small\item\em Reference type of element. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a075a198ce813857152a6b9fe635eff26}{const\+\_\+reference}} = const T \&
+\begin{DoxyCompactList}\small\item\em Const eference type of element. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{Ref\+Helper}} (const \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} \&p)
+\begin{DoxyCompactList}\small\item\em Constructor a constant \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} to gain access to underlying object of \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a4e1d0be25f84612db9353b641be72a39}{Ref\+Helper}} (\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor, transport ownership to another \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}}, keep existing lock state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a8f06f232c45415a8988f62d84b4844b5}{$\sim$\+Ref\+Helper}} ()
+\begin{DoxyCompactList}\small\item\em Destructor, release Lock if exists. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} \& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5c11485e3443e73a6437186b5b3a3c98}{operator=}} (\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} \&\&other)
+\begin{DoxyCompactList}\small\item\em Move assigment, transport ownership to another \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}}, keep existing lock state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a899627e99444e44b9899df3ea4ece25b}{operator reference}} ()
+\begin{DoxyCompactList}\small\item\em Operator overload to act as {\ttfamily T\&}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_ad25792d7578768b4a67d18478c45a85d}{operator const\+\_\+reference}} () const
+\begin{DoxyCompactList}\small\item\em Operator overload to act as {\ttfamily const T\&}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename X $>$ }\\\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} \& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5da5ed5184f750bb2f62605bc6c54843}{operator=}} (const X \&other)
+\begin{DoxyCompactList}\small\item\em Assign operator to assign from another value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename mutex\+\_\+t = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t = unique\+\_\+lock\+\_\+t$>$\newline
+template$<$typename Lock$>$\newline
+class Memory\+::\+Safe\+Shared\+Ptr$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Ref\+Helper$<$ Lock $>$}
+Proxy class for operator$\ast$ in \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}, behave like underlying object, and provide RAII read-\/write lock for thread safety. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lock} & Lock type used for protect the object. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+Copy constructor and copy assignment are deleted to prevent multiply locks, use {\ttfamily std\+::move} with move constructor and move assignment to transport it\textquotesingle{}s ownership, or simply use it like type T$\ast$ or T\&.~\newline
+ Because operator. cannot be overloaded, {\ttfamily $\ast$p\+Point.x} cannot compile, use {\ttfamily p\+Point-\/\texorpdfstring{$>$}{>}x} instead. Sorry for that. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a027d0cf2bebe31f82f57a709ec639a48}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a027d0cf2bebe31f82f57a709ec639a48}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!reference@{reference}}
+\index{reference@{reference}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{reference}{reference}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+using \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{\+::\+Ref\+Helper}}$<$ Lock $>$\+::reference =  T\&}
+
+
+
+Reference type of element. 
+
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a075a198ce813857152a6b9fe635eff26}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a075a198ce813857152a6b9fe635eff26}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!const\_reference@{const\_reference}}
+\index{const\_reference@{const\_reference}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{const\_reference}{const\_reference}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+using \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{\+::\+Ref\+Helper}}$<$ Lock $>$\+::const\+\_\+reference =  const T\&}
+
+
+
+Const eference type of element. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!RefHelper@{RefHelper}}
+\index{RefHelper@{RefHelper}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{RefHelper()}{RefHelper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Ref\+Helper$<$ Lock $>$\+::\+Ref\+Helper (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor a constant \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} to gain access to underlying object of \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. 
+
+Will construct Lock object to guard the pointer. 
+\begin{DoxyParams}{Parameters}
+{\em p} & {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} to access from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a4e1d0be25f84612db9353b641be72a39}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a4e1d0be25f84612db9353b641be72a39}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!RefHelper@{RefHelper}}
+\index{RefHelper@{RefHelper}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{RefHelper()}{RefHelper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Ref\+Helper$<$ Lock $>$\+::\+Ref\+Helper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}}$<$ Lock $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Move constructor, transport ownership to another \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}}, keep existing lock state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Another \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} to move to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a8f06f232c45415a8988f62d84b4844b5}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a8f06f232c45415a8988f62d84b4844b5}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!````~RefHelper@{$\sim$RefHelper}}
+\index{````~RefHelper@{$\sim$RefHelper}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$RefHelper()}{~RefHelper()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{\+::\+Ref\+Helper}}$<$ Lock $>$\+::$\sim$\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor, release Lock if exists. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5c11485e3443e73a6437186b5b3a3c98}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5c11485e3443e73a6437186b5b3a3c98}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} \& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{\+::\+Ref\+Helper}}$<$ Lock $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}}$<$ Lock $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Move assigment, transport ownership to another \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}}, keep existing lock state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Another \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} to move to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this} with empty content. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a899627e99444e44b9899df3ea4ece25b}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a899627e99444e44b9899df3ea4ece25b}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!operator reference@{operator reference}}
+\index{operator reference@{operator reference}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{operator reference()}{operator reference()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{\+::\+Ref\+Helper}}$<$ Lock $>$\+::operator \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a027d0cf2bebe31f82f57a709ec639a48}{reference}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overload to act as {\ttfamily T\&}. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily T\&}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_ad25792d7578768b4a67d18478c45a85d}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_ad25792d7578768b4a67d18478c45a85d}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!operator const\_reference@{operator const\_reference}}
+\index{operator const\_reference@{operator const\_reference}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{operator const\_reference()}{operator const\_reference()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{\+::\+Ref\+Helper}}$<$ Lock $>$\+::operator \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a075a198ce813857152a6b9fe635eff26}{const\+\_\+reference}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overload to act as {\ttfamily const T\&}. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily const T\&}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5da5ed5184f750bb2f62605bc6c54843}\label{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a5da5ed5184f750bb2f62605bc6c54843}} 
+\index{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$@{Memory::SafeSharedPtr$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$::RefHelper$<$ Lock $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Lock $>$ \\
+template$<$typename X $>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper}{Ref\+Helper}} \& \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Memory\+::\+Safe\+Shared\+Ptr}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr_1_1_ref_helper_a65eca2481a37e060850771695acdb9a2}{\+::\+Ref\+Helper}}$<$ Lock $>$\+::operator= (\begin{DoxyParamCaption}\item[{const X \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assign operator to assign from another value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em X} & Type of input, {\ttfamily X\&} must be implicitly convertible to {\ttfamily T\&}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Input value to be assigned from.\\
+\hline
+\end{DoxyParams}
+Used for situations like\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto} ptr = Memory::make\_shared<int>(0);}
+\DoxyCodeLine{*ptr = 42;}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Memory\+Safety/\mbox{\hyperlink{_safe_shared_ptr_8hpp}{Safe\+Shared\+Ptr.\+hpp}}\end{DoxyCompactItemize}

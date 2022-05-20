@@ -1,0 +1,134 @@
+\hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{}\doxysection{Memory\+::RWSpin\+Lock\+::Write\+Holder Class Reference}
+\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder}\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+
+
+RAII guard for write lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{RWSpin\+Lock\+::lock()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{RWSpin\+Lock\+::unlock()}} on destruction.  
+
+
+
+
+{\ttfamily \#include $<$RWSpin\+Lock.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a7e3baf33ba3b8e9c16082bea16dcc643}{Write\+Holder}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} $\ast$\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}})
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_adc66ed4aabafb221a41a2bb0ef5bce84}{Write\+Holder}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} \&\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}})
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_af320c83c20da4b620b24b4b498f44457}{Write\+Holder}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&\&upgraded)
+\begin{DoxyCompactList}\small\item\em promoted from an upgrade lock holder \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_ac1740b71ab3fe6860f865e8678346968}{Write\+Holder}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&\&other) noexcept
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a08df529655f493843e2b610b1e254885}{operator=}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&\&other)
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a0001fb000d25bab85af4ca6bb98bfb4b}{Write\+Holder}} (const \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&other)=delete
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_abe5e2d6c36e7fe81d13e84895e38eb4a}{operator=}} (const \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&other)=delete
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_af775577630611c2677d638e805f7db36}{$\sim$\+Write\+Holder}} ()
+\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a1f346f9e7532e37ed641d9f16c757510}{reset}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} $\ast$\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}}=nullptr)
+\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a62a5dda1cd84d48b2fadf71dc41a572e}{swap}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} $\ast$other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a9cd3c321918aa92510b511be1c3d4aae}{Read\+Holder}}
+\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder_ac2c0ee4653f8a910fc1644a4594facbf}{Upgraded\+Holder}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RAII guard for write lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{RWSpin\+Lock\+::lock()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{RWSpin\+Lock\+::unlock()}} on destruction. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a7e3baf33ba3b8e9c16082bea16dcc643}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a7e3baf33ba3b8e9c16082bea16dcc643}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!WriteHolder@{WriteHolder}}
+\index{WriteHolder@{WriteHolder}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{WriteHolder()}{WriteHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::\+Write\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} $\ast$}]{lock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_adc66ed4aabafb221a41a2bb0ef5bce84}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_adc66ed4aabafb221a41a2bb0ef5bce84}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!WriteHolder@{WriteHolder}}
+\index{WriteHolder@{WriteHolder}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{WriteHolder()}{WriteHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::\+Write\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} \&}]{lock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_af320c83c20da4b620b24b4b498f44457}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_af320c83c20da4b620b24b4b498f44457}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!WriteHolder@{WriteHolder}}
+\index{WriteHolder@{WriteHolder}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{WriteHolder()}{WriteHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::\+Write\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}} \&\&}]{upgraded }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+promoted from an upgrade lock holder 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_ac1740b71ab3fe6860f865e8678346968}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_ac1740b71ab3fe6860f865e8678346968}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!WriteHolder@{WriteHolder}}
+\index{WriteHolder@{WriteHolder}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{WriteHolder()}{WriteHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::\+Write\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a0001fb000d25bab85af4ca6bb98bfb4b}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a0001fb000d25bab85af4ca6bb98bfb4b}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!WriteHolder@{WriteHolder}}
+\index{WriteHolder@{WriteHolder}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{WriteHolder()}{WriteHolder()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::\+Write\+Holder (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_af775577630611c2677d638e805f7db36}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_af775577630611c2677d638e805f7db36}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!````~WriteHolder@{$\sim$WriteHolder}}
+\index{````~WriteHolder@{$\sim$WriteHolder}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{$\sim$WriteHolder()}{~WriteHolder()}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::$\sim$\+Write\+Holder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a08df529655f493843e2b610b1e254885}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a08df529655f493843e2b610b1e254885}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \& Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_abe5e2d6c36e7fe81d13e84895e38eb4a}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_abe5e2d6c36e7fe81d13e84895e38eb4a}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \& Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a1f346f9e7532e37ed641d9f16c757510}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a1f346f9e7532e37ed641d9f16c757510}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!reset@{reset}}
+\index{reset@{reset}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} $\ast$}]{lock = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a62a5dda1cd84d48b2fadf71dc41a572e}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a62a5dda1cd84d48b2fadf71dc41a572e}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!swap@{swap}}
+\index{swap@{swap}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::\+Write\+Holder\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}} $\ast$}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a9cd3c321918aa92510b511be1c3d4aae}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_a9cd3c321918aa92510b511be1c3d4aae}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!ReadHolder@{ReadHolder}}
+\index{ReadHolder@{ReadHolder}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{ReadHolder}{ReadHolder}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{Read\+Holder}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_1_1_write_holder_ac2c0ee4653f8a910fc1644a4594facbf}\label{class_memory_1_1_r_w_spin_lock_1_1_write_holder_ac2c0ee4653f8a910fc1644a4594facbf}} 
+\index{Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}!UpgradedHolder@{UpgradedHolder}}
+\index{UpgradedHolder@{UpgradedHolder}!Memory::RWSpinLock::WriteHolder@{Memory::RWSpinLock::WriteHolder}}
+\doxysubsubsection{\texorpdfstring{UpgradedHolder}{UpgradedHolder}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Memory\+Safety/\mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpin\+Lock.\+hpp}}\end{DoxyCompactItemize}

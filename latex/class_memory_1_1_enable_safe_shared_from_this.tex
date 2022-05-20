@@ -1,0 +1,358 @@
+\hypertarget{class_memory_1_1_enable_safe_shared_from_this}{}\doxysection{Memory\+::Enable\+Safe\+Shared\+From\+This\texorpdfstring{$<$}{<} T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_memory_1_1_enable_safe_shared_from_this}\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+
+
+A proxy class from {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} to provide same functionality for \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}.  
+
+
+
+
+{\ttfamily \#include $<$Safe\+Shared\+Ptr.\+hpp$>$}
+
+Inheritance diagram for Memory\+::Enable\+Safe\+Shared\+From\+This\texorpdfstring{$<$}{<} T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_memory_1_1_enable_safe_shared_from_this}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a3d836f01141aa6cf029dd12f6d226dda}{Shared\+Mutex}} = mutex\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type alias for template shared\+\_\+mutex\+\_\+t. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ac4d1a2e3af6a1a9deb3688b5d68f662f}{Shared\+Lock}} = read\+\_\+lock\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type alias for template read\+\_\+lock\+\_\+t. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a5eca063636677871a120f858c9662ac2}{Unique\+Lock}} = write\+\_\+lock\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type alias for template write\+\_\+lock\+\_\+t. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_abc95f007eb9b7c254ef8ac6feb79b624}{Enable\+Safe\+Shared\+From\+This}} () noexcept
+\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} object. The private {\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member is empty-\/initialized. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_acced9e203995c238e4265c358806fc73}{Enable\+Safe\+Shared\+From\+This}} (const \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} \&other) noexcept
+\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} object. The private {\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member is value-\/initialized. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ad808b9603dbe053d1ea3a5ced195fa41}{Enable\+Safe\+Shared\+From\+This}} (const std\+::enable\+\_\+shared\+\_\+from\+\_\+this$<$ T $>$ \&other) noexcept
+\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} object. The private {\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member is value-\/initialized. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_aa4b73a70f2f24e8af5d68a749e1d60ae}{$\sim$\+Enable\+Safe\+Shared\+From\+This}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroys {\ttfamily $\ast$this}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} \& \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ae6b4fc0a0726a2b649881cec5382142f}{operator=}} (const \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} \&other) noexcept
+\begin{DoxyCompactList}\small\item\em Does nothing; returns $\ast$this. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}}$<$ T $>$ \& \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ae7137ce519764636788735834b0a552e}{operator=}} (const std\+::enable\+\_\+shared\+\_\+from\+\_\+this$<$ T $>$ \&other) noexcept
+\begin{DoxyCompactList}\small\item\em Does nothing; returns $\ast$this. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ T, \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a3d836f01141aa6cf029dd12f6d226dda}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ac4d1a2e3af6a1a9deb3688b5d68f662f}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a5eca063636677871a120f858c9662ac2}{Unique\+Lock}} $>$ \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_afb8bc2ac61e732c4327c9f6fb1c13972}{shared\+\_\+from\+\_\+this}} ()
+\begin{DoxyCompactList}\small\item\em Returns a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} that shares ownership of {\ttfamily $\ast$this} with all existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that refer to {\ttfamily $\ast$this}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ T const $>$ \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_aeec2f43db25e805c81e97602b1929b85}{shared\+\_\+from\+\_\+this}} () const
+\begin{DoxyCompactList}\small\item\em Returns a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T const\texorpdfstring{$>$}{>}} that shares ownership of {\ttfamily $\ast$this} with all existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that refer to {\ttfamily $\ast$this}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a7b4df5f24639eb5f5c437724cebd0d8f}{weak\+\_\+from\+\_\+this}} ()
+\begin{DoxyCompactList}\small\item\em Returns a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} that tracks ownership of {\ttfamily $\ast$this} by all existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that refer to {\ttfamily $\ast$this}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T const $>$ \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ac671a18dc36f8c13cc11d367d5d6d1d2}{weak\+\_\+from\+\_\+this}} () const
+\begin{DoxyCompactList}\small\item\em Returns a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}\texorpdfstring{$<$}{<}T const\texorpdfstring{$>$}{>}} that tracks ownership of {\ttfamily $\ast$this} by all existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that refer to {\ttfamily $\ast$this}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Y , typename M , typename R , typename W $>$ }\\class \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a7908794f85e07a5817c7c163bef38aae}{Safe\+Shared\+Ptr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename mutex\+\_\+t = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t = unique\+\_\+lock\+\_\+t$>$\newline
+class Memory\+::\+Enable\+Safe\+Shared\+From\+This$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$}
+A proxy class from {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} to provide same functionality for \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Object type same as \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}. \\
+\hline
+{\em mutex\+\_\+t} & Type of the mutex used, default is shared\+\_\+mutex\+\_\+t. \\
+\hline
+{\em read\+\_\+lock\+\_\+t} & Type of the read-\/lock used, default is shared\+\_\+lock\+\_\+t. \\
+\hline
+{\em write\+\_\+lock\+\_\+t} & Type of the write-\/lock used, default is unique\+\_\+lock\+\_\+t.\\
+\hline
+\end{DoxyTemplParams}
+This class has no member values, so could be {\ttfamily static\+\_\+cast} from {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} directly.~\newline
+ See \href{https://en.cppreference.com/w/cpp/memory/enable_shared_from_this}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/memory/enable\+\_\+shared\+\_\+from\+\_\+this}} for more details. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_a3d836f01141aa6cf029dd12f6d226dda}\label{class_memory_1_1_enable_safe_shared_from_this_a3d836f01141aa6cf029dd12f6d226dda}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SharedMutex@{SharedMutex}}
+\index{SharedMutex@{SharedMutex}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SharedMutex}{SharedMutex}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+using \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Shared\+Mutex =  mutex\+\_\+t}
+
+
+
+Type alias for template shared\+\_\+mutex\+\_\+t. 
+
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_ac4d1a2e3af6a1a9deb3688b5d68f662f}\label{class_memory_1_1_enable_safe_shared_from_this_ac4d1a2e3af6a1a9deb3688b5d68f662f}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SharedLock@{SharedLock}}
+\index{SharedLock@{SharedLock}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SharedLock}{SharedLock}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+using \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Shared\+Lock =  read\+\_\+lock\+\_\+t}
+
+
+
+Type alias for template read\+\_\+lock\+\_\+t. 
+
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_a5eca063636677871a120f858c9662ac2}\label{class_memory_1_1_enable_safe_shared_from_this_a5eca063636677871a120f858c9662ac2}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!UniqueLock@{UniqueLock}}
+\index{UniqueLock@{UniqueLock}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{UniqueLock}{UniqueLock}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+using \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Unique\+Lock =  write\+\_\+lock\+\_\+t}
+
+
+
+Type alias for template write\+\_\+lock\+\_\+t. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_abc95f007eb9b7c254ef8ac6feb79b624}\label{class_memory_1_1_enable_safe_shared_from_this_abc95f007eb9b7c254ef8ac6feb79b624}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!EnableSafeSharedFromThis@{EnableSafeSharedFromThis}}
+\index{EnableSafeSharedFromThis@{EnableSafeSharedFromThis}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{EnableSafeSharedFromThis()}{EnableSafeSharedFromThis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+constexpr \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Enable\+Safe\+Shared\+From\+This (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Constructs a new \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} object. The private {\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member is empty-\/initialized. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_acced9e203995c238e4265c358806fc73}\label{class_memory_1_1_enable_safe_shared_from_this_acced9e203995c238e4265c358806fc73}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!EnableSafeSharedFromThis@{EnableSafeSharedFromThis}}
+\index{EnableSafeSharedFromThis@{EnableSafeSharedFromThis}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{EnableSafeSharedFromThis()}{EnableSafeSharedFromThis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Enable\+Safe\+Shared\+From\+This (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Constructs a new \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} object. The private {\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member is value-\/initialized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Another \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+There is no move constructor\+: moving from an object derived from \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} does not transfer its shared identity. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_ad808b9603dbe053d1ea3a5ced195fa41}\label{class_memory_1_1_enable_safe_shared_from_this_ad808b9603dbe053d1ea3a5ced195fa41}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!EnableSafeSharedFromThis@{EnableSafeSharedFromThis}}
+\index{EnableSafeSharedFromThis@{EnableSafeSharedFromThis}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{EnableSafeSharedFromThis()}{EnableSafeSharedFromThis()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::\+Enable\+Safe\+Shared\+From\+This (\begin{DoxyParamCaption}\item[{const std\+::enable\+\_\+shared\+\_\+from\+\_\+this$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Constructs a new \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} object. The private {\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member is value-\/initialized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+There is no move constructor\+: moving from an object derived from \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} does not transfer its shared identity. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_aa4b73a70f2f24e8af5d68a749e1d60ae}\label{class_memory_1_1_enable_safe_shared_from_this_aa4b73a70f2f24e8af5d68a749e1d60ae}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!````~EnableSafeSharedFromThis@{$\sim$EnableSafeSharedFromThis}}
+\index{````~EnableSafeSharedFromThis@{$\sim$EnableSafeSharedFromThis}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$EnableSafeSharedFromThis()}{~EnableSafeSharedFromThis()}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::$\sim$\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroys {\ttfamily $\ast$this}. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_ae6b4fc0a0726a2b649881cec5382142f}\label{class_memory_1_1_enable_safe_shared_from_this_ae6b4fc0a0726a2b649881cec5382142f}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} \& \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Does nothing; returns $\ast$this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Another \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}} to assign to {\ttfamily $\ast$this}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The private {\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member is not affected by this assignment operator. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_ae7137ce519764636788735834b0a552e}\label{class_memory_1_1_enable_safe_shared_from_this_ae7137ce519764636788735834b0a552e}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Enable\+Safe\+Shared\+From\+This}}$<$ T $>$ \& \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::operator= (\begin{DoxyParamCaption}\item[{const std\+::enable\+\_\+shared\+\_\+from\+\_\+this$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Does nothing; returns $\ast$this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} to assign to {\ttfamily $\ast$this}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The private {\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member is not affected by this assignment operator. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_afb8bc2ac61e732c4327c9f6fb1c13972}\label{class_memory_1_1_enable_safe_shared_from_this_afb8bc2ac61e732c4327c9f6fb1c13972}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!shared\_from\_this@{shared\_from\_this}}
+\index{shared\_from\_this@{shared\_from\_this}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{shared\_from\_this()}{shared\_from\_this()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ T, \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a3d836f01141aa6cf029dd12f6d226dda}{Shared\+Mutex}}, \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_ac4d1a2e3af6a1a9deb3688b5d68f662f}{Shared\+Lock}}, \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this_a5eca063636677871a120f858c9662ac2}{Unique\+Lock}} $>$ \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::shared\+\_\+from\+\_\+this (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} that shares ownership of {\ttfamily $\ast$this} with all existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that refer to {\ttfamily $\ast$this}. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} that shares ownership of {\ttfamily $\ast$this} with pre-\/existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}}s.
+\end{DoxyReturn}
+Effectively executes {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}(weak\+\_\+this)}, where {\ttfamily weak\+\_\+this} is the private {\ttfamily mutable std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member of {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} base class. \begin{DoxyNote}{Note}
+It is permitted to call shared\+\_\+from\+\_\+this only on a previously shared object, i.\+e. on an object managed by {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} (in particular, shared\+\_\+from\+\_\+this cannot be called in a constructor).~\newline
+ Ohterwise\+:~\newline
+
+\begin{DoxyItemize}
+\item {\bfseries{Until C++17}}\+: The behavior is undefined.
+\item {\bfseries{Since C++17}}\+: {\ttfamily std\+::bad\+\_\+weak\+\_\+ptr} is thrown (by the \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} constructor from a default-\/constructed weak\+\_\+this). 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::bad\+\_\+weak\+\_\+ptr} & {\bfseries{Since C++17}}\+: When enable\+\_\+shared\+\_\+from\+\_\+this called in constructor, exception will be thrown by the {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} constructor from a default-\/constructed weak\+\_\+this. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_aeec2f43db25e805c81e97602b1929b85}\label{class_memory_1_1_enable_safe_shared_from_this_aeec2f43db25e805c81e97602b1929b85}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!shared\_from\_this@{shared\_from\_this}}
+\index{shared\_from\_this@{shared\_from\_this}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{shared\_from\_this()}{shared\_from\_this()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}$<$ T const  $>$ \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::shared\+\_\+from\+\_\+this (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T const\texorpdfstring{$>$}{>}} that shares ownership of {\ttfamily $\ast$this} with all existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that refer to {\ttfamily $\ast$this}. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T const\texorpdfstring{$>$}{>}} that shares ownership of {\ttfamily $\ast$this} with pre-\/existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}}s.
+\end{DoxyReturn}
+Effectively executes {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}(weak\+\_\+this)}, where {\ttfamily weak\+\_\+this} is the private {\ttfamily mutable std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} member of {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this} base class. \begin{DoxyNote}{Note}
+It is permitted to call shared\+\_\+from\+\_\+this only on a previously shared object, i.\+e. on an object managed by {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} (in particular, shared\+\_\+from\+\_\+this cannot be called in a constructor).~\newline
+ Ohterwise\+:~\newline
+
+\begin{DoxyItemize}
+\item {\bfseries{Until C++17}}\+: The behavior is undefined.
+\item {\bfseries{Since C++17}}\+: {\ttfamily std\+::bad\+\_\+weak\+\_\+ptr} is thrown (by the \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} constructor from a default-\/constructed weak\+\_\+this). 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::bad\+\_\+weak\+\_\+ptr} & {\bfseries{Since C++17}}\+: When enable\+\_\+shared\+\_\+from\+\_\+this called in constructor, exception will be thrown by the {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} constructor from a default-\/constructed weak\+\_\+this. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_a7b4df5f24639eb5f5c437724cebd0d8f}\label{class_memory_1_1_enable_safe_shared_from_this_a7b4df5f24639eb5f5c437724cebd0d8f}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!weak\_from\_this@{weak\_from\_this}}
+\index{weak\_from\_this@{weak\_from\_this}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{weak\_from\_this()}{weak\_from\_this()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T $>$ \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::weak\+\_\+from\+\_\+this (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} that tracks ownership of {\ttfamily $\ast$this} by all existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that refer to {\ttfamily $\ast$this}. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} that shares ownership of {\ttfamily $\ast$this} with pre-\/existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}}s; 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a copy of the the private mutable {\ttfamily std\+::weak\+\_\+ptr} member that is part of {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this}. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_ac671a18dc36f8c13cc11d367d5d6d1d2}\label{class_memory_1_1_enable_safe_shared_from_this_ac671a18dc36f8c13cc11d367d5d6d1d2}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!weak\_from\_this@{weak\_from\_this}}
+\index{weak\_from\_this@{weak\_from\_this}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{weak\_from\_this()}{weak\_from\_this()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+\mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}$<$ T const  $>$ \mbox{\hyperlink{class_memory_1_1_enable_safe_shared_from_this}{Memory\+::\+Enable\+Safe\+Shared\+From\+This}}$<$ T, mutex\+\_\+t, read\+\_\+lock\+\_\+t, write\+\_\+lock\+\_\+t $>$\+::weak\+\_\+from\+\_\+this (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}\texorpdfstring{$<$}{<}T const\texorpdfstring{$>$}{>}} that tracks ownership of {\ttfamily $\ast$this} by all existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}} that refer to {\ttfamily $\ast$this}. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_weak_ptr}{Safe\+Weak\+Ptr}}\texorpdfstring{$<$}{<}T const\texorpdfstring{$>$}{>}} that shares ownership of {\ttfamily $\ast$this} with pre-\/existing {\ttfamily \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}}s; 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a copy of the the private mutable {\ttfamily std\+::weak\+\_\+ptr} member that is part of {\ttfamily std\+::enable\+\_\+shared\+\_\+from\+\_\+this}. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_enable_safe_shared_from_this_a7908794f85e07a5817c7c163bef38aae}\label{class_memory_1_1_enable_safe_shared_from_this_a7908794f85e07a5817c7c163bef38aae}} 
+\index{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}!SafeSharedPtr@{SafeSharedPtr}}
+\index{SafeSharedPtr@{SafeSharedPtr}!Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$@{Memory::EnableSafeSharedFromThis$<$ T, mutex\_t, read\_lock\_t, write\_lock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{SafeSharedPtr}{SafeSharedPtr}}
+{\footnotesize\ttfamily template$<$typename T , typename mutex\+\_\+t  = shared\+\_\+mutex\+\_\+t, typename read\+\_\+lock\+\_\+t  = shared\+\_\+lock\+\_\+t, typename write\+\_\+lock\+\_\+t  = unique\+\_\+lock\+\_\+t$>$ \\
+template$<$typename Y , typename M , typename R , typename W $>$ \\
+friend class \mbox{\hyperlink{class_memory_1_1_safe_shared_ptr}{Safe\+Shared\+Ptr}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Memory\+Safety/\mbox{\hyperlink{_safe_shared_ptr_8hpp}{Safe\+Shared\+Ptr.\+hpp}}\end{DoxyCompactItemize}

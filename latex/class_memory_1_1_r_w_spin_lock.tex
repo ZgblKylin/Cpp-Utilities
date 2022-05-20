@@ -1,0 +1,232 @@
+\hypertarget{class_memory_1_1_r_w_spin_lock}{}\doxysection{Memory\+::RWSpin\+Lock Class Reference}
+\label{class_memory_1_1_r_w_spin_lock}\index{Memory::RWSpinLock@{Memory::RWSpinLock}}
+
+
+High-\/performance read-\/write-\/spinlock, see \mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpin\+Lock.\+hpp}} for details.  
+
+
+
+
+{\ttfamily \#include $<$RWSpin\+Lock.\+hpp$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_read_holder}{Read\+Holder}}
+\begin{DoxyCompactList}\small\item\em RAII guard for read lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}{RWSpin\+Lock\+::lock\+\_\+shared()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8ce7c822fdb5e9c3b5997e77186ef2ad}{RWSpin\+Lock\+::unlock\+\_\+shared()}} on destruction. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_upgraded_holder}{Upgraded\+Holder}}
+\begin{DoxyCompactList}\small\item\em RAII guard for upgrade lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{RWSpin\+Lock\+::lock\+\_\+upgrade()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}{RWSpin\+Lock\+::unlock\+\_\+upgrade()}} on destruction. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_1_1_write_holder}{Write\+Holder}}
+\begin{DoxyCompactList}\small\item\em RAII guard for write lock with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{RWSpin\+Lock\+::lock()}} on construction and \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{RWSpin\+Lock\+::unlock()}} on destruction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a67238162cd542b57af44cd9b11fd8f2e}{RWSpin\+Lock}} ()
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a2e3842da240930f0d5ac7932b235b389}{RWSpin\+Lock}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} const \&)=delete
+\item 
+\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} \& \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a1e962f3c75f6328d9aa8b5e9bf051de4}{operator=}} (\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} const \&)=delete
+\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}{lock}} ()
+\begin{DoxyCompactList}\small\item\em Lockable Concept. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{unlock}} ()
+\begin{DoxyCompactList}\small\item\em Writer is responsible for clearing up both the UPGRADED and WRITER bits. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}{lock\+\_\+shared}} ()
+\begin{DoxyCompactList}\small\item\em Shared\+Lockable Concept. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8ce7c822fdb5e9c3b5997e77186ef2ad}{unlock\+\_\+shared}} ()
+\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_aae71af29b49eb7345131fb967eb56ee5}{unlock\+\_\+and\+\_\+lock\+\_\+shared}} ()
+\begin{DoxyCompactList}\small\item\em Downgrade the lock from writer status to reader status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}{lock\+\_\+upgrade}} ()
+\begin{DoxyCompactList}\small\item\em Upgrade\+Lockable Concept. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}{unlock\+\_\+upgrade}} ()
+\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a8f4d78fbd649daabb0aaf47cb0386578}{unlock\+\_\+upgrade\+\_\+and\+\_\+lock}} ()
+\begin{DoxyCompactList}\small\item\em unlock upgrade and try to acquire write lock \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ad5aeb650d708607c0326c6378108bb74}{unlock\+\_\+upgrade\+\_\+and\+\_\+lock\+\_\+shared}} ()
+\begin{DoxyCompactList}\small\item\em unlock upgrade and read lock atomically \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a98e4cd1a12789d684c22c1c116bbfe0f}{unlock\+\_\+and\+\_\+lock\+\_\+upgrade}} ()
+\begin{DoxyCompactList}\small\item\em write unlock and upgrade lock atomically \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a5324c83b8a6830e61b852cb511212649}{try\+\_\+lock}} ()
+\item 
+bool \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a4b51f06eae6d86ac12324b4d06334e5b}{try\+\_\+lock\+\_\+shared}} ()
+\begin{DoxyCompactList}\small\item\em Try to get reader permission on the lock. This can fail if we find out someone is a writer or upgrader. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ab47cfb0f09949a579afcfc6018b04297}{try\+\_\+unlock\+\_\+upgrade\+\_\+and\+\_\+lock}} ()
+\begin{DoxyCompactList}\small\item\em try to unlock upgrade and write lock atomically \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ab71e6893bbe5d5aaa04c861e61059bc6}{try\+\_\+lock\+\_\+upgrade}} ()
+\begin{DoxyCompactList}\small\item\em try to acquire an upgradable lock. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_a739e32f4d567f8de3a0e87a6826f200c}{bits}} () const
+\begin{DoxyCompactList}\small\item\em mainly for debugging purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+High-\/performance read-\/write-\/spinlock, see \mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpin\+Lock.\+hpp}} for details. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a67238162cd542b57af44cd9b11fd8f2e}\label{class_memory_1_1_r_w_spin_lock_a67238162cd542b57af44cd9b11fd8f2e}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!RWSpinLock@{RWSpinLock}}
+\index{RWSpinLock@{RWSpinLock}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{RWSpinLock()}{RWSpinLock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily constexpr Memory\+::\+RWSpin\+Lock\+::\+RWSpin\+Lock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a2e3842da240930f0d5ac7932b235b389}\label{class_memory_1_1_r_w_spin_lock_a2e3842da240930f0d5ac7932b235b389}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!RWSpinLock@{RWSpinLock}}
+\index{RWSpinLock@{RWSpinLock}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{RWSpinLock()}{RWSpinLock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Memory\+::\+RWSpin\+Lock\+::\+RWSpin\+Lock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} const \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a1e962f3c75f6328d9aa8b5e9bf051de4}\label{class_memory_1_1_r_w_spin_lock_a1e962f3c75f6328d9aa8b5e9bf051de4}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!operator=@{operator=}}
+\index{operator=@{operator=}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} \& Memory\+::\+RWSpin\+Lock\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_memory_1_1_r_w_spin_lock}{RWSpin\+Lock}} const \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}\label{class_memory_1_1_r_w_spin_lock_a8910cf79fa5d02530a57b239f15749a1}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!lock@{lock}}
+\index{lock@{lock}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{lock()}{lock()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::lock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Lockable Concept. 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}\label{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!unlock@{unlock}}
+\index{unlock@{unlock}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{unlock()}{unlock()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::unlock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writer is responsible for clearing up both the UPGRADED and WRITER bits. 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}\label{class_memory_1_1_r_w_spin_lock_afd7f0984624001c03258bee4354e8388}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!lock\_shared@{lock\_shared}}
+\index{lock\_shared@{lock\_shared}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{lock\_shared()}{lock\_shared()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::lock\+\_\+shared (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Shared\+Lockable Concept. 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a8ce7c822fdb5e9c3b5997e77186ef2ad}\label{class_memory_1_1_r_w_spin_lock_a8ce7c822fdb5e9c3b5997e77186ef2ad}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!unlock\_shared@{unlock\_shared}}
+\index{unlock\_shared@{unlock\_shared}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{unlock\_shared()}{unlock\_shared()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::unlock\+\_\+shared (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_aae71af29b49eb7345131fb967eb56ee5}\label{class_memory_1_1_r_w_spin_lock_aae71af29b49eb7345131fb967eb56ee5}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!unlock\_and\_lock\_shared@{unlock\_and\_lock\_shared}}
+\index{unlock\_and\_lock\_shared@{unlock\_and\_lock\_shared}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{unlock\_and\_lock\_shared()}{unlock\_and\_lock\_shared()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::unlock\+\_\+and\+\_\+lock\+\_\+shared (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Downgrade the lock from writer status to reader status. 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}\label{class_memory_1_1_r_w_spin_lock_a318a4d4b4f3dc8f6fb4d8c07f15956e7}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!lock\_upgrade@{lock\_upgrade}}
+\index{lock\_upgrade@{lock\_upgrade}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{lock\_upgrade()}{lock\_upgrade()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::lock\+\_\+upgrade (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Upgrade\+Lockable Concept. 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}\label{class_memory_1_1_r_w_spin_lock_a0fefc1cc0184d89dc778b5a63903923e}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!unlock\_upgrade@{unlock\_upgrade}}
+\index{unlock\_upgrade@{unlock\_upgrade}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{unlock\_upgrade()}{unlock\_upgrade()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::unlock\+\_\+upgrade (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a8f4d78fbd649daabb0aaf47cb0386578}\label{class_memory_1_1_r_w_spin_lock_a8f4d78fbd649daabb0aaf47cb0386578}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!unlock\_upgrade\_and\_lock@{unlock\_upgrade\_and\_lock}}
+\index{unlock\_upgrade\_and\_lock@{unlock\_upgrade\_and\_lock}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{unlock\_upgrade\_and\_lock()}{unlock\_upgrade\_and\_lock()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::unlock\+\_\+upgrade\+\_\+and\+\_\+lock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+unlock upgrade and try to acquire write lock 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_ad5aeb650d708607c0326c6378108bb74}\label{class_memory_1_1_r_w_spin_lock_ad5aeb650d708607c0326c6378108bb74}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!unlock\_upgrade\_and\_lock\_shared@{unlock\_upgrade\_and\_lock\_shared}}
+\index{unlock\_upgrade\_and\_lock\_shared@{unlock\_upgrade\_and\_lock\_shared}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{unlock\_upgrade\_and\_lock\_shared()}{unlock\_upgrade\_and\_lock\_shared()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::unlock\+\_\+upgrade\+\_\+and\+\_\+lock\+\_\+shared (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+unlock upgrade and read lock atomically 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a98e4cd1a12789d684c22c1c116bbfe0f}\label{class_memory_1_1_r_w_spin_lock_a98e4cd1a12789d684c22c1c116bbfe0f}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!unlock\_and\_lock\_upgrade@{unlock\_and\_lock\_upgrade}}
+\index{unlock\_and\_lock\_upgrade@{unlock\_and\_lock\_upgrade}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{unlock\_and\_lock\_upgrade()}{unlock\_and\_lock\_upgrade()}}
+{\footnotesize\ttfamily void Memory\+::\+RWSpin\+Lock\+::unlock\+\_\+and\+\_\+lock\+\_\+upgrade (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+write unlock and upgrade lock atomically 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a5324c83b8a6830e61b852cb511212649}\label{class_memory_1_1_r_w_spin_lock_a5324c83b8a6830e61b852cb511212649}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!try\_lock@{try\_lock}}
+\index{try\_lock@{try\_lock}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{try\_lock()}{try\_lock()}}
+{\footnotesize\ttfamily bool Memory\+::\+RWSpin\+Lock\+::try\+\_\+lock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Attempt to acquire writer permission. Return false if we didn\textquotesingle{}t get it. \mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a4b51f06eae6d86ac12324b4d06334e5b}\label{class_memory_1_1_r_w_spin_lock_a4b51f06eae6d86ac12324b4d06334e5b}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!try\_lock\_shared@{try\_lock\_shared}}
+\index{try\_lock\_shared@{try\_lock\_shared}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{try\_lock\_shared()}{try\_lock\_shared()}}
+{\footnotesize\ttfamily bool Memory\+::\+RWSpin\+Lock\+::try\+\_\+lock\+\_\+shared (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Try to get reader permission on the lock. This can fail if we find out someone is a writer or upgrader. 
+
+Setting the UPGRADED bit would allow a writer-\/to-\/be to indicate its intention to write and block any new readers while waiting for existing readers to finish and release their read locks. This helps avoid starving writers (promoted from upgraders). \mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_ab47cfb0f09949a579afcfc6018b04297}\label{class_memory_1_1_r_w_spin_lock_ab47cfb0f09949a579afcfc6018b04297}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!try\_unlock\_upgrade\_and\_lock@{try\_unlock\_upgrade\_and\_lock}}
+\index{try\_unlock\_upgrade\_and\_lock@{try\_unlock\_upgrade\_and\_lock}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{try\_unlock\_upgrade\_and\_lock()}{try\_unlock\_upgrade\_and\_lock()}}
+{\footnotesize\ttfamily bool Memory\+::\+RWSpin\+Lock\+::try\+\_\+unlock\+\_\+upgrade\+\_\+and\+\_\+lock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+try to unlock upgrade and write lock atomically 
+
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_ab71e6893bbe5d5aaa04c861e61059bc6}\label{class_memory_1_1_r_w_spin_lock_ab71e6893bbe5d5aaa04c861e61059bc6}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!try\_lock\_upgrade@{try\_lock\_upgrade}}
+\index{try\_lock\_upgrade@{try\_lock\_upgrade}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{try\_lock\_upgrade()}{try\_lock\_upgrade()}}
+{\footnotesize\ttfamily bool Memory\+::\+RWSpin\+Lock\+::try\+\_\+lock\+\_\+upgrade (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+try to acquire an upgradable lock. 
+
+\begin{DoxyNote}{Note}
+when failed, we cannot flip the UPGRADED bit back, as in this case there is either another upgrade lock or a write lock. If it\textquotesingle{}s a write lock, the bit will get cleared up when that lock\textquotesingle{}s done with \mbox{\hyperlink{class_memory_1_1_r_w_spin_lock_ae3aca9f278ce35c12300c8159e9e898e}{unlock()}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_memory_1_1_r_w_spin_lock_a739e32f4d567f8de3a0e87a6826f200c}\label{class_memory_1_1_r_w_spin_lock_a739e32f4d567f8de3a0e87a6826f200c}} 
+\index{Memory::RWSpinLock@{Memory::RWSpinLock}!bits@{bits}}
+\index{bits@{bits}!Memory::RWSpinLock@{Memory::RWSpinLock}}
+\doxysubsubsection{\texorpdfstring{bits()}{bits()}}
+{\footnotesize\ttfamily int32\+\_\+t Memory\+::\+RWSpin\+Lock\+::bits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+mainly for debugging purposes. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utilities/\+Memory\+Safety/\mbox{\hyperlink{_r_w_spin_lock_8hpp}{RWSpin\+Lock.\+hpp}}\end{DoxyCompactItemize}
