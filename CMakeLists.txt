@@ -48,6 +48,7 @@ target_compile_definitions(${PROJECT_NAME} INTERFACE
 target_compile_options(${PROJECT_NAME} INTERFACE
     $<$<CXX_COMPILER_ID:MSVC>:$<$<COMPILE_LANGUAGE:CXX>:/Zc:__cplusplus>>
 )
+target_link_libraries(${PROJECT_NAME} INTERFACE Threads::Threads)
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen 1.8)
