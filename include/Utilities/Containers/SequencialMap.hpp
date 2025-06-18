@@ -1620,7 +1620,7 @@ public:
      *   Linear in the size of the container.
      */
     bool operator<=(const SequencialMap& other) const
-    { return m <= other.n; }
+    { return m <= other.m; }
 
     /**
      * \brief Compares the contents of two containers lexicographically.
