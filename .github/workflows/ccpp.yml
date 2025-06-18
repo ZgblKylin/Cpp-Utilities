@@ -42,7 +42,7 @@ jobs:
 
     - name: Initialize lcov collection
       if: ${{ matrix.os == 'ubuntu-latest' }}
-      run: lcov -c -i -d ../build/test
+      run: lcov --ignore-errors mismatch -c -i -d ../build/test
       working-directory: coverage
 
     - name: test
@@ -51,7 +51,7 @@ jobs:
 
     - name: lcov collect
       if: ${{ matrix.os == 'ubuntu-latest' }}
-      run: lcov -c -d ../build/test --include '*Utilities/*.hpp' --exclude '*/RWSpinLock.hpp' --exclude '/usr*' --exclude '*googletest*' -o lcov.info
+      run: lcov --ignore-errors mismatch -c -d ../build/test --include '*Utilities/*.hpp' --exclude '*/RWSpinLock.hpp' --exclude '/usr*' --exclude '*googletest*' -o lcov.info
       working-directory: coverage
 
     - name: Coveralls
