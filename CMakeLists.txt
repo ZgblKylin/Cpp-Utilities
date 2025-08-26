@@ -23,7 +23,9 @@ include(CheckCXXCompilerFlag)
 if(MSVC)
     add_compile_options("/Zc:__cplusplus")
 endif()
-set(CMAKE_CXX_STANDARD 11)
+if(NOT CMAKE_CXX_STANDARD)
+    set(CMAKE_CXX_STANDARD 11)
+endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # CMake configuration
