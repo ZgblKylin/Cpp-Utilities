@@ -145,10 +145,10 @@
  * </table>
  */
 
+#include "../Common.h"
 #include <algorithm>
 #include <atomic>
 #include <thread>
-#include "../Common.h"
 
 UTILITIES_NAMESPACE_BEGIN
 

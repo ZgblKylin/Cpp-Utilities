@@ -1,10 +1,10 @@
 #ifndef CPP_UTILITIES_DIMENSIONALANALYSIS_HPP
 #define CPP_UTILITIES_DIMENSIONALANALYSIS_HPP
 
+#include "../Common.h"
 #include <tuple>
 #include <ratio>
 #include <cmath>
-#include "../Common.h"
 
 /**
  * \defgroup DimensionalAnalysis Dimensional Analysis

@@ -1,10 +1,10 @@
 #ifndef CPP_UTILITIES_DIMENSIONALANALYSIS_RATIO_HPP
 #define CPP_UTILITIES_DIMENSIONALANALYSIS_RATIO_HPP
 
+#include "../Common.h"
 #include <utility>
 #include <cstdint>
 #include <cmath>
-#include "../Common.h"
 
 UTILITIES_NAMESPACE_BEGIN
 

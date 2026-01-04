@@ -1,6 +1,7 @@
 ﻿#ifndef CPP_UTILITIES_CONTAINERS_SEQUENCIALMAP_HPP
 #define CPP_UTILITIES_CONTAINERS_SEQUENCIALMAP_HPP
 
+#include "../Common.h"
 #include <cassert>
 #include <utility>
 #include <algorithm>
@@ -11,7 +12,6 @@
 #include <type_traits>
 #include <initializer_list>
 #include <functional>
-#include "../Common.h"
 
 /**
  * \defgroup Containers Containers

@@ -1,10 +1,11 @@
 ﻿#ifndef CPP_UTILITIES_MEMORYSAFETY_SAFESHAREDPTR_HPP
 #define CPP_UTILITIES_MEMORYSAFETY_SAFESHAREDPTR_HPP
 
+#include "../Common.h"
 #include <memory>
+#include <mutex>
 #include <utility>
 #include <type_traits>
-#include "../Common.h"
 #if __cplusplus >= 201703L
 #include <shared_mutex>
 #else
