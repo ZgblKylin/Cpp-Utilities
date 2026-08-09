@@ -1,3 +1,5 @@
+
+
 # Cpp Utilities
 [![C/C++ CI](https://github.com/ZgblKylin/Cpp-Utilities/workflows/C/C++%20CI/badge.svg)](https://github.com/ZgblKylin/Cpp-Utilities/actions)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e491773949f64a2ab684c3769b0b4d81)](https://app.codacy.com/gh/ZgblKylin/Cpp-Utilities?utm_source=github.com&utm_medium=referral&utm_content=ZgblKylin/Cpp-Utilities&utm_campaign=Badge_Grade)
@@ -9,6 +11,8 @@
 ## Details
 
 See branch `gh-pages`(offline) or [GitHub Pages](https://zgblkylin.github.io/Cpp-Utilities)(online) for details.
+
+The library is header-only. Simply use `git-submodule` to add it to your project and include the `.hpp` files you need.
 
 ## License
 
