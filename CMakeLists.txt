@@ -36,8 +36,10 @@ endif()
 
 # Referenced packages
 set(THREADS_PREFER_PTHREAD_FLAG ON)
-include(FindThreads)
-find_package(Threads REQUIRED)
+if(NOT CMAKE_SYSTEM_NAME STREQUAL "QNX")
+    include(FindThreads)
+    find_package(Threads REQUIRED)
+endif()
 
 # Add main target
 add_library(${PROJECT_NAME} INTERFACE IMPORTED GLOBAL)
@@ -50,7 +52,9 @@ target_compile_definitions(${PROJECT_NAME} INTERFACE
 target_compile_options(${PROJECT_NAME} INTERFACE
     $<$<CXX_COMPILER_ID:MSVC>:$<$<COMPILE_LANGUAGE:CXX>:/Zc:__cplusplus>>
 )
-target_link_libraries(${PROJECT_NAME} INTERFACE Threads::Threads)
+if(NOT CMAKE_SYSTEM_NAME STREQUAL "QNX")
+    target_link_libraries(${PROJECT_NAME} INTERFACE Threads::Threads)
+endif()
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen 1.8)

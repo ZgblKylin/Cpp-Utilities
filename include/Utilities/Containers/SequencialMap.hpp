@@ -232,7 +232,7 @@ public:
      * \param alloc Allocator given for this container.
      */
     SequencialMap(SequencialMap&& other, const Allocator& alloc = Allocator())
-        : v(std::forward<vector_type>(other.v), alloc), m(std::forward<map_type>(other.m))
+        : v(std::forward<vector_type>(other.v)), m(std::forward<map_type>(other.m), alloc)
     {
     }
 
@@ -1546,7 +1546,22 @@ public:
      *   `*this` and `other`.
      */
     SequencialMap& operator=(SequencialMap&& other)
-    { other.swap(*this); return *this; }
+    {
+        // Move assignment must stay well-defined when the container allocators
+        // compare unequal and do not propagate on move assignment (e.g. two
+        // instances backed by two different `std::pmr` pool resources): fall
+        // back to moving the elements into this container using this
+        // container's own allocator, instead of relying on swap().
+        using allocate_traits = std::allocator_traits<allocator_type>;
+        if (m.get_allocator() == other.m.get_allocator() ||
+            allocate_traits::propagate_on_container_move_assignment::value) {
+            other.swap(*this);
+            return *this;
+        }
+        clear();
+        std::move(other.begin(), other.end(), std::back_inserter(*this));
+        return *this;
+    }
 
     /**
      * \brief Replaces the contents of the input container.
@@ -1668,6 +1683,11 @@ public:
      */
     void swap(SequencialMap& other)
     {
+        // swap() steals the underlying nodes, so it is only well-defined when
+        // the allocators compare equal or propagate on swap.
+        using allocate_traits = std::allocator_traits<allocator_type>;
+        assert(m.get_allocator() == other.m.get_allocator() ||
+               allocate_traits::propagate_on_container_swap::value);
         v.swap(other.v);
         m.swap(other.m);
     }
